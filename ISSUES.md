@@ -1,9 +1,9 @@
 # ISSUES.md — Data Audit Report
-Generated: 2026-11-13
+Generated: 2026-11-14
 Total projects needing attention: 165
 
 ## Critical Missing Commitment Details
-(69 projects)
+(70 projects)
 
 Projects missing required fields based on status:
 - **amazon-bossier-parish-la** (construction): claimed_investment_usd
@@ -62,6 +62,7 @@ Projects missing required fields based on status:
 - **microsoft-heath-oh** (construction): claimed_investment_usd
 - **microsoft-hebron-oh** (construction): claimed_investment_usd
 - **microsoft-la-porte-in** (construction): claimed_investment_usd
+- **microsoft-new-albany-oh** (construction): claimed_investment_usd
 - **microsoft-san-antonio-tx** (operational): power_mw
 - **microsoft-west-des-moines-ia** (operational): power_mw
 - **ms-goodyear-az** (operational): claimed_investment_usd
@@ -77,7 +78,7 @@ Projects missing required fields based on status:
 - **xai-memphis-tn** (operational): claimed_investment_usd
 
 ## Medium Priority Missing Details
-(96 projects)
+(95 projects)
 
 Projects with important gaps:
 - **amazon-boardman-or** (announced): claimed_investment_usd, claimed_jobs, power_mw
@@ -150,7 +151,6 @@ Projects with important gaps:
 - **microsoft-gaines-township-mi** (announced): claimed_investment_usd, claimed_jobs, power_mw, at_a_glance
 - **microsoft-gainesville-va** (announced): claimed_investment_usd, claimed_jobs, power_mw
 - **microsoft-lowell-township-mi** (announced): claimed_investment_usd, claimed_jobs, power_mw, at_a_glance
-- **microsoft-new-albany-oh** (construction): claimed_jobs, power_mw
 - **microsoft-pecos-tx** (announced): claimed_investment_usd
 - **microsoft-person-county-nc** (announced): claimed_investment_usd, claimed_jobs, power_mw
 - **microsoft-tyrone-ga** (announced): claimed_investment_usd, claimed_jobs, power_mw, at_a_glance
@@ -181,45 +181,45 @@ Projects with important gaps:
 (42 records)
 
 `proposed` moratoriums/tariffs/policies or `pending` rate cases not re-verified in 21+ days — status may have changed (signed/vetoed/enacted/rejected). Re-check source and update:
-- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 52 days ago
-- **pa-hb2198-2026** (policy, Pennsylvania): captured 2026-09-23, 51 days ago
-- **nv-microsoft-ratepayer-protection-tariff** (tariff, NV): captured 2026-09-25, 49 days ago
-- **aps-arizona-large-load-rate-case-2025** (tariff, AZ): captured 2026-09-25, 49 days ago
-- **northwestern-energy-mt-2026-03** (tariff, MT): captured 2026-09-25, 49 days ago
-- **mo-psc-ameren-grc-2026** (rate_case, MO): captured 2026-09-25, 49 days ago
-- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 49 days ago
-- **ferc-pjm-colocated-el25-49** (rate_case, US): captured 2026-09-25, 49 days ago
-- **pa-puc-large-load-cost-allocation-2026** (rate_case, PA): captured 2026-10-02, 42 days ago
-- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 36 days ago
-- **davidson-county-nc-2026-09** (moratorium, Davidson County): captured 2026-10-18, 26 days ago
-- **martin-county-fl-2026-10** (moratorium, Martin County): captured 2026-10-18, 26 days ago
-- **duke-nc-large-load-rate-case-2025** (tariff, NC): captured 2026-10-18, 26 days ago
-- **pa-puc-oca-ppl-complaint-2026** (rate_case, PA): captured 2026-10-18, 26 days ago
-- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 26 days ago
-- **denton-tx-2026-08** (moratorium, Denton): captured 2026-10-19, 25 days ago
-- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 25 days ago
-- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 25 days ago
-- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 25 days ago
-- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 25 days ago
-- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 25 days ago
-- **nc-ncuc-duke-settlement-2026** (rate_case, NC): captured 2026-10-19, 25 days ago
-- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 25 days ago
-- **front-royal-va-datacenter-ban-proposal-2026** (policy, Front Royal, VA): captured 2026-10-19, 25 days ago
-- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 25 days ago
-- **iron-county-ut-draft-large-load-ordinance-2026-10** (policy, Iron County): captured 2026-10-19, 25 days ago
-- **hawaii-county-bill-170-2026-07** (policy, Hawaii County): captured 2026-10-19, 25 days ago
-- **boston-ma-datacenter-prohibited-use-order-2026-09** (policy, Boston): captured 2026-10-19, 25 days ago
-- **fairbanks-north-star-borough-2027-priorities-datacenter-moratorium-2026-08** (policy, Fairbanks North Star Borough): captured 2026-10-19, 25 days ago
-- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 25 days ago
-- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 23 days ago
-- **michigan-state-2026-06** (moratorium, Michigan): captured 2026-10-21, 23 days ago
-- **minnesota-state-hf4888-2026** (moratorium, Minnesota): captured 2026-10-21, 23 days ago
-- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 23 days ago
-- **pennsylvania-state-2026-01** (moratorium, Pennsylvania): captured 2026-10-21, 23 days ago
-- **pennsylvania-state-2026-02** (moratorium, Pennsylvania): captured 2026-10-21, 23 days ago
-- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 23 days ago
-- **pacificorp-oregon-schedule-401-ue463** (tariff, OR): captured 2026-10-21, 23 days ago
-- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 23 days ago
-- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 23 days ago
-- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 23 days ago
-- **effingham-county-ga-openai-camellia-community-benefits-2026** (policy, Effingham County, GA (Rincon)): captured 2026-10-21, 23 days ago
+- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 53 days ago
+- **pa-hb2198-2026** (policy, Pennsylvania): captured 2026-09-23, 52 days ago
+- **nv-microsoft-ratepayer-protection-tariff** (tariff, NV): captured 2026-09-25, 50 days ago
+- **aps-arizona-large-load-rate-case-2025** (tariff, AZ): captured 2026-09-25, 50 days ago
+- **northwestern-energy-mt-2026-03** (tariff, MT): captured 2026-09-25, 50 days ago
+- **mo-psc-ameren-grc-2026** (rate_case, MO): captured 2026-09-25, 50 days ago
+- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 50 days ago
+- **ferc-pjm-colocated-el25-49** (rate_case, US): captured 2026-09-25, 50 days ago
+- **pa-puc-large-load-cost-allocation-2026** (rate_case, PA): captured 2026-10-02, 43 days ago
+- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 37 days ago
+- **davidson-county-nc-2026-09** (moratorium, Davidson County): captured 2026-10-18, 27 days ago
+- **martin-county-fl-2026-10** (moratorium, Martin County): captured 2026-10-18, 27 days ago
+- **duke-nc-large-load-rate-case-2025** (tariff, NC): captured 2026-10-18, 27 days ago
+- **pa-puc-oca-ppl-complaint-2026** (rate_case, PA): captured 2026-10-18, 27 days ago
+- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 27 days ago
+- **denton-tx-2026-08** (moratorium, Denton): captured 2026-10-19, 26 days ago
+- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 26 days ago
+- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 26 days ago
+- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 26 days ago
+- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 26 days ago
+- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 26 days ago
+- **nc-ncuc-duke-settlement-2026** (rate_case, NC): captured 2026-10-19, 26 days ago
+- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 26 days ago
+- **front-royal-va-datacenter-ban-proposal-2026** (policy, Front Royal, VA): captured 2026-10-19, 26 days ago
+- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 26 days ago
+- **iron-county-ut-draft-large-load-ordinance-2026-10** (policy, Iron County): captured 2026-10-19, 26 days ago
+- **hawaii-county-bill-170-2026-07** (policy, Hawaii County): captured 2026-10-19, 26 days ago
+- **boston-ma-datacenter-prohibited-use-order-2026-09** (policy, Boston): captured 2026-10-19, 26 days ago
+- **fairbanks-north-star-borough-2027-priorities-datacenter-moratorium-2026-08** (policy, Fairbanks North Star Borough): captured 2026-10-19, 26 days ago
+- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 26 days ago
+- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 24 days ago
+- **michigan-state-2026-06** (moratorium, Michigan): captured 2026-10-21, 24 days ago
+- **minnesota-state-hf4888-2026** (moratorium, Minnesota): captured 2026-10-21, 24 days ago
+- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 24 days ago
+- **pennsylvania-state-2026-01** (moratorium, Pennsylvania): captured 2026-10-21, 24 days ago
+- **pennsylvania-state-2026-02** (moratorium, Pennsylvania): captured 2026-10-21, 24 days ago
+- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 24 days ago
+- **pacificorp-oregon-schedule-401-ue463** (tariff, OR): captured 2026-10-21, 24 days ago
+- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 24 days ago
+- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 24 days ago
+- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 24 days ago
+- **effingham-county-ga-openai-camellia-community-benefits-2026** (policy, Effingham County, GA (Rincon)): captured 2026-10-21, 24 days ago
