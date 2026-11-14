@@ -27,6 +27,10 @@
       "last_reviewed": "2026-09-29",
       "summary": "Checked the Abilene community page (jobs/tax/water figures unchanged) and newsroom. Confirmed crusoe-cheyenne-wy's operator handoff to Google (Project Tembo, Jupiter Star Holdings LLC, 2.7GW/716ac) and updated power_mw + notes; company_slug migration to google deferred as a lead. Added one new site, crusoe-warrenton-mo (announced, tax-abatement sourced)."
     },
+    "company:meta": {
+      "last_reviewed": "2026-11-14",
+      "summary": "Checked datacenters.atmeta.com: 2026 posts (New Albany Oct, Eagle Mountain Sept, careers Oct, 2026 grant recipients) already cited; no new sites or changed commitments found."
+    },
     "country:GB": {
       "last_check": {
         "date": "2026-10-21",
@@ -160,6 +164,14 @@
     "site:microsoft-hebron-oh": {
       "last_reviewed": "2026-11-13",
       "summary": "Microsoft Hebron page (Oct 2026): AMES GC, grading Feb–Nov 2026, substation underway; added project_page_url and notes. Status construction unchanged. 10TV source 403s scripts."
+    },
+    "site:microsoft-new-albany-oh": {
+      "last_reviewed": "2026-11-14",
+      "summary": "Checked One Columbus source and Microsoft's construction-update page; status stays construction (early works complete Oct 2026); $1B was three-campus so site investment set null; added project_page_url."
+    },
+    "site:microsoft-person-county-nc": {
+      "last_reviewed": "2026-11-14",
+      "summary": "Checked Microsoft project page (April 2026 update: planning phase, early site prep) and WRAL June 30 community meeting; added mixed residents response; status stays announced."
     },
     "site:ms-goodyear-az": {
       "last_reviewed": "2026-10-12",
@@ -392,13 +404,17 @@
     "state:NC": {
       "follow_ups": [
         {
+          "due": "2026-11-18",
+          "what": "vance-county-nc-2026-09: did the Nov 13 special called meeting extend the moratorium? If so, new end date and vote."
+        },
+        {
           "due": "2027-10-19",
           "what": "charlotte-city-2026-06 extended moratorium ends Oct 18, 2027: lapsed, extended or made permanent?"
         }
       ],
       "last_check": {
-        "date": "2026-11-07",
-        "summary": "Charlotte council voted unanimously Oct 26 to extend moratorium until Oct 18, 2027 (WFAE); record updated."
+        "date": "2026-11-14",
+        "summary": "Vance County 60-day moratorium ended Nov 13 unless extended; commissioners held a Nov 13 special called meeting on an extension (WIZS Nov 6), outcome not yet reported. Added Henderson city 6-month moratorium (4-3, Nov 9)."
       },
       "blocked": {
         "date": "2026-10-09",

@@ -739,6 +739,17 @@
       "single_source": true
     },
     {
+      "id": "resp-ms-person-june-meeting",
+      "project_id": "microsoft-person-county-nc",
+      "date": "2026-06-30",
+      "stance": "mixed",
+      "constituency": "residents",
+      "summary": "At a Microsoft community meeting in Person County, residents raised water, energy and noise concerns; Sierra Club of NC's Olive Burress questioned whether Microsoft's voluntary commitments will be kept, and Roxboro City Councilor Kendra Coggins, focused on how much city water the campus would draw, said the company gave 'a lot of canned responses' but thanked Microsoft for coming out.",
+      "source_url": "https://www.wral.com/news/local/person-county-microsoft-data-center-discussion-june-2026/",
+      "source_title": "WRAL — Person County residents question Microsoft at data center meeting",
+      "single_source": true
+    },
+    {
       "id": "resp-amazon-canton-residents-health",
       "project_id": "amazon-canton-ms",
       "date": "2026-04-09",

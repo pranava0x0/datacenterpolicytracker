@@ -2121,7 +2121,7 @@
       "notes": "1,350-acre former Person County Mega Park near Roxboro NC, purchased Nov 2024 for $26.85M. First North Carolina test of Microsoft's January 2026 Building Community-First AI Infrastructure pledge: pay own electricity costs, water-positive cooling, IT training, tax-base contribution. Permitting started April 2026; community NDA controversy resolved March 2026 with Microsoft's national commitment to stop signing community-blinding NDAs on new sites.",
       "source_url": "https://local.microsoft.com/blog/person-county-datacenter-project/",
       "source_title": "Microsoft Local — Person County datacenter project",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-14",
       "project_page_url": "https://local.microsoft.com/blog/person-county-datacenter-project/",
       "acreage": 1350,
       "offtaker": "Microsoft",
@@ -3426,17 +3426,18 @@
       "lon": -82.8088,
       "status": "construction",
       "announced_year": 2024,
-      "claimed_investment_usd": 1000000000,
+      "claimed_investment_usd": null,
       "claimed_jobs": null,
-      "notes": "One of three Microsoft Central Ohio campuses (with Heath and Hebron) totaling ~$1B initial investment. 245,000 sq ft site on ~200 acres at the Licking-Franklin county boundary.",
+      "notes": "One of three Microsoft Central Ohio campuses (with Heath and Hebron) totaling ~$1B initial investment. 245,000 sq ft site on ~200 acres at the Licking-Franklin county boundary. The ~$1B figure is shared across all three campuses (One Columbus: \"with an initial $1 billion investment for facilities in New Albany, Heath, and Hebron\"), so no site-level investment is stored here. Oct 2026: Microsoft's New Albany construction-update page reports \"Early construction works at the New Albany site are complete\" and says \"Completion of construction does not indicate datacenter operation/availability\"; future development phases are planned.",
       "source_url": "https://columbusregion.com/press-release/new-data-center-investment-by-microsoft/",
       "source_title": "One Columbus — Microsoft Data Center Investment in Columbus Region",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-14",
       "acreage": 200,
       "offtaker": "Microsoft",
       "at_a_glance": {
-        "energy": "$1B / 200 ac — part of Licking County three-campus cluster"
-      }
+        "energy": "~200 ac; part of a three-campus $1B Central Ohio plan with Heath and Hebron"
+      },
+      "project_page_url": "https://local.microsoft.com/blog/newalbany-datacenter-construction-update/"
     },
     {
       "id": "microsoft-heath-oh",
