@@ -5875,13 +5875,20 @@
       "state_code": "TX",
       "status": "proposed",
       "enacted_date": null,
-      "duration_description": "Not set; no moratorium adopted as of the August 5, 2026 coverage",
+      "duration_description": "Proposed: 90-day hold on new commercial data center applications (not yet adopted as of the Oct. 28, 2026 coverage)",
       "key_reasons": [],
-      "summary": "The Denton City Council is exploring a moratorium on further data center development within city limits, alongside development code updates. No moratorium had been adopted as of the August 5, 2026 coverage.",
-      "source_url": "https://communityimpact.com/denton/government/denton-officials-to-vote-on-public-hearings-for-data-center-moratorium-development-code-updates/",
-      "source_title": "Community Impact — Denton officials to vote on public hearings for data center moratorium, development code updates",
-      "captured_at": "2026-10-19",
-      "session": "2026"
+      "summary": "The Denton City Council is considering a moratorium on new data center development within city limits. The council adopted data center development code amendments on Oct. 13, 2026, and heard the first reading of the moratorium ordinance on Oct. 27. As proposed, the ordinance would place a temporary 90-day hold on accepting new development applications for commercial data centers; adoption needs a 75% supermajority, and the vote could take place as early as Dec. 1, 2026. Extending it to 180 days would need a separate vote.",
+      "source_url": "https://communityimpact.com/denton/government/denton-holds-final-hearing-first-reading-of-proposed-data-center-moratorium/",
+      "source_title": "Community Impact — Denton holds final hearing, first reading of proposed data center moratorium (Oct. 28, 2026)",
+      "captured_at": "2026-11-15",
+      "session": "2026",
+      "duration_months": 3,
+      "resources": [
+        {
+          "url": "https://communityimpact.com/denton/government/denton-officials-to-vote-on-public-hearings-for-data-center-moratorium-development-code-updates/",
+          "title": "Community Impact — Denton officials to vote on public hearings for data center moratorium, development code updates"
+        }
+      ]
     },
     {
       "id": "desert-hot-springs-ca-2026-07",
