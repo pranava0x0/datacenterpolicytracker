@@ -31,6 +31,10 @@
       "last_reviewed": "2026-11-14",
       "summary": "Checked datacenters.atmeta.com: 2026 posts (New Albany Oct, Eagle Mountain Sept, careers Oct, 2026 grant recipients) already cited; no new sites or changed commitments found."
     },
+    "company:openai": {
+      "last_reviewed": "2026-11-15",
+      "summary": "Newsroom RSS checked: no new sites since Effingham. New Nov 5 National Community Compact not yet recorded; openai.com + Wayback blocked, coverage paraphrases only. BACKLOG lead (high). last_reviewed bumped."
+    },
     "country:GB": {
       "last_check": {
         "date": "2026-10-21",
@@ -173,6 +177,14 @@
       "last_reviewed": "2026-11-14",
       "summary": "Checked Microsoft project page (April 2026 update: planning phase, early site prep) and WRAL June 30 community meeting; added mixed residents response; status stays announced."
     },
+    "site:microsoft-union-city-ga": {
+      "last_reviewed": "2026-11-15",
+      "summary": "Azure blog source doesn't name Union City; repointed source to AJC (EdgeConnex developer, Microsoft end user, 2032 completion condition); added DAFC 5-3 tax-break vote response. Pre-pledge site, no ratepayer assessment. No 2026 construction news found."
+    },
+    "site:microsoft-west-des-moines-ia": {
+      "last_reviewed": "2026-11-15",
+      "summary": "Business Record source live (Ruthenium location, >$6B). Jobs/largest/water figures in notes not on source: BACKLOG lead. Jan 2026 zero-water Ginger East approval found, but Axios blocked; lead filed."
+    },
     "site:ms-goodyear-az": {
       "last_reviewed": "2026-10-12",
       "summary": "Source/project page 403 to scripts; ABC15 (undated) confirms air-cooling + $36M wastewater deal but year unstated, so nothing citable; no change."
@@ -188,6 +200,24 @@
     "site:openai-lordstown-oh": {
       "last_reviewed": "2026-11-01",
       "summary": "Checked news + Epoch; appended note that site is retooled for equipment manufacturing; status/figures unchanged, mayor claim (no operational DC) not confirmed on fetched pages."
+    },
+    "site:openai-milam-county-tx": {
+      "last_reviewed": "2026-11-15",
+      "summary": "SB Energy page confirms 1.2 GW build-and-operate role; DCD source 403 (bot wall). No news since Jan 2026 found; trackers disagree on near-term capacity (0.3 GW / 2027-28), not recorded. Pre-pledge site, no ratepayer assessment."
+    },
+    "site:openai-shackelford-tx": {
+      "last_reviewed": "2026-11-15",
+      "summary": "Vantage release (Aug 19 2025) re-read: $25B, 1,200 ac, 1.4 GW, 10 bldgs/3.7M sq ft, 5,000+ jobs, first building H2 2026 all confirmed. No source yet confirms first building live; trackers (Cleanview) suggest late 2026-Q2 2027. Pre-pledge, no ratepayer assessment."
+    },
+    "site:oracle-dona-ana-nm": {
+      "last_reviewed": "2026-11-15",
+      "summary": "Added Sep 1 (NM Supreme Court keeps air-permit hearing paused, KRWG) and Sep 17 (stays lifted, ABQ Journal) updates. Source NM 403. NMED Law Center county suit and AG support not added (unread). Air permit decision expected by Nov 23.",
+      "follow_ups": [
+        {
+          "due": "2026-11-24",
+          "what": "NMED air quality permit decision for Project Jupiter (expected by Nov 23 per KRWG): issued, denied or delayed?"
+        }
+      ]
     },
     "site:prologis-coweta-ga": {
       "last_check": {
@@ -455,7 +485,9 @@
       "last_check": {
         "date": "2026-11-05",
         "summary": "Nov 5: Trenton Issue 17 already in elections.json (passed, unofficial ~80%). Other Ohio local measures (reports say 14-18 passed) not individually verified; counts differ by outlet; certified results due ~3 weeks after election."
-      }
+      },
+      "last_reviewed": "2026-11-15",
+      "summary": "Wilmington: added Jul 14 federal order + Sep 4 Brooks suit as lawsuit updates (WYSO, FOX19); abatement final vote still unread. Ashville referendum: only unofficial tracker counts, BOE 403; waits on Nov 30 follow-up. Tax-exemption pause: no change found since May. Amendment record already current (2027 target). Moratoriums captured Nov 7, not re-checked."
     },
     "state:OK": {
       "last_check": {
@@ -518,6 +550,10 @@
     "state:TX": {
       "follow_ups": [
         {
+          "due": "2026-12-02",
+          "what": "Denton council vote on 90-day data center moratorium (as early as Dec 1): adopted, failed, or delayed?"
+        },
+        {
           "due": "2026-12-07",
           "what": "Re-check for a published TWDB enforcement update or referrals to county/district attorneys."
         },
@@ -529,7 +565,9 @@
       "last_check": {
         "date": "2026-11-11",
         "summary": "2026-11-11: Fort Worth city page now lists 2nd hearing/1st reading Jan 12 2027 and adoption vote tentatively Feb 23 2027 (FAQ says Feb 16); no coverage of the Nov 10 hearing outcome found."
-      }
+      },
+      "last_reviewed": "2026-11-15",
+      "summary": "Denton moratorium: first reading Oct 27, 90-day hold proposed, vote as early as Dec 1 (Community Impact Oct 28); record updated. Fort Worth already current (Nov 11). Other TX records captured Oct-Nov, not re-checked."
     },
     "state:VA": {
       "follow_ups": [

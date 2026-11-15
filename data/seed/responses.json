@@ -2563,6 +2563,17 @@
       "source_url": "https://www.michiganpublic.org/politics-government/2026-10-15/google-wins-zoning-approval-for-huge-data-center-near-detroit-airport",
       "source_title": "Michigan Public — Google wins zoning approval for huge data center near Detroit airport",
       "single_source": true
+    },
+    {
+      "id": "resp-microsoft-union-city-ga-dafc-tax-break",
+      "project_id": "microsoft-union-city-ga",
+      "date": "2024-06-25",
+      "stance": "mixed",
+      "constituency": "local_government",
+      "summary": "The Development Authority of Fulton County's board voted 5-3 to approve $75 million in tax savings over 10 years for the EdgeConnex-built campus, adding a requirement that all three buildings be finished by 2032; three members voted no.",
+      "source_url": "https://www.ajc.com/news/business/fulton-board-approves-75m-tax-break-for-microsoft-data-center/Q3K2XGXZD5DGRJUPUB3ENQGB4A",
+      "source_title": "AJC — Fulton board approves $75M tax break for Microsoft data center",
+      "single_source": true
     }
   ]
 }

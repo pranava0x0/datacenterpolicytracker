@@ -2296,7 +2296,7 @@
       "notes": "1,400-acre, four-building campus in Doña Ana County, NM. Bloom Energy fuel-cell-powered as of Apr 27 2026 announcement (~92% NOx reduction vs combined-cycle gas, negligible water use). Up to ~2.4 GW. Closed-loop non-evaporative cooling. 4,000 construction + 1,500 ongoing jobs. Workforce-training partnership with Doña Ana Community College + Oracle Academy at NMSU. $600M+ projected Gross Revenue Tax payments to state + county. OpenAI is the workload tenant.",
       "source_url": "https://www.oracle.com/news/announcement/oracle-borderplex-and-bloom-energy-to-power-project-jupiter-with-fuel-cell-technology-2026-04-27/",
       "source_title": "Oracle — Project Jupiter powered by Bloom Energy fuel cells (Apr 27 2026)",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-15",
       "project_page_url": "https://www.oracle.com/data-centers/",
       "acreage": 1400,
       "power_mw": 2400,
@@ -2306,7 +2306,29 @@
         "tax_revenue": "$360M direct payments to Doña Ana County",
         "energy": "Bloom Energy fuel cells; ~92% NOx reduction vs gas turbines",
         "water": "Closed-loop non-evaporative cooling; $50M for local water systems"
-      }
+      },
+      "updates": [
+        {
+          "date": "2026-09-01",
+          "kind": "lawsuit",
+          "title": "NM Supreme Court denies developers' request to resume paused air permit hearing",
+          "summary": "The New Mexico Supreme Court denied a request from Project Jupiter's developers after unanimously pausing the campus's air quality permit hearing the week before. KRWG reported the final permit decision was expected by November 23.",
+          "authority": "New Mexico Supreme Court",
+          "upcoming": false,
+          "source_url": "https://www.krwg.org/krwg-news/2026-09-01/nm-supreme-court-denies-request-from-project-jupiter-developers-to-lift-air-quality-permit-stay",
+          "source_title": "KRWG — NM Supreme Court denies request from Project Jupiter developers to lift air quality permit stay"
+        },
+        {
+          "date": "2026-09-17",
+          "kind": "news",
+          "title": "Reported: NM Supreme Court unanimously denies two groups' petitions, lifting stays",
+          "summary": "The court unanimously denied petitions from New Energy Economy and the Center for Biological Diversity; the orders appear to clear the way for the air quality permit hearings to proceed and for developers to resume pumping water from the well.",
+          "authority": "New Mexico Supreme Court",
+          "upcoming": false,
+          "source_url": "https://www.abqjournal.com/business/new-mexico-supreme-court-lifts-stays-on-project-jupiter-dealing-setback-to-opponents/3124024",
+          "source_title": "Albuquerque Journal — New Mexico Supreme Court lifts stays on Project Jupiter, dealing setback to opponents"
+        }
+      ]
     },
     {
       "id": "qts-eagle-mountain-ut",
@@ -2816,7 +2838,7 @@
       "notes": "Phase 1 disclosed in a TDLR filing: single-story 548,950 sq ft data center with four data halls, completion target Oct 15. SB Energy (SoftBank subsidiary) is developing toward an eventual 1.2 GW facility. Phase 1 'topped out' per former Stargate lead Peter Hoeschele. Phase-1 capex $470M is a fraction of the eventual ~$5B+ full build cost.",
       "source_url": "https://www.datacenterdynamics.com/en/news/openai-stargates-milam-texas-freebird-data-center-to-span-548950-sq-ft-in-first-phase/",
       "source_title": "Data Center Dynamics — OpenAI Stargate's Milam, Texas, 'Freebird' data center to span 548,950 sq ft in first phase",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-15",
       "power_mw": 1200,
       "offtaker": "OpenAI",
       "at_a_glance": {
@@ -3406,7 +3428,7 @@
       "notes": "Vantage Data Centers 'Frontier' campus — 10 single-story buildings totaling ~3.7M sq ft across 1,200 acres near Albany / Moran TX. Air- and liquid-cooled at >250kW/rack densities. One of three new Oracle-partnership sites from the September 2025 five-site Stargate expansion. First building H2 2026.",
       "source_url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
       "source_title": "Vantage Data Centers — Frontier $25B mega-campus in Texas",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-15",
       "acreage": 1200,
       "power_mw": 1400,
       "offtaker": "OpenAI",
@@ -3492,10 +3514,10 @@
       "announced_year": 2024,
       "claimed_investment_usd": 1800000000,
       "claimed_jobs": null,
-      "notes": "Three buildings ~612,000 sq ft each (2.1M sq ft total) at 4810 Stonewall Tell Road, Fulton County. Fulton County approved a $75M tax break. Phase 1 online by 2026; additional phases through 2032. Anchors Microsoft's 'East US 3' Azure region (Fulton + Douglas Counties).",
-      "source_url": "https://azure.microsoft.com/en-us/blog/microsoft-will-establish-its-next-us-datacenter-region-in-georgia-s-fulton-and-douglas-counties/",
-      "source_title": "Microsoft Azure — Next US datacenter region in Georgia's Fulton and Douglas Counties",
-      "captured_at": "2026-05-16",
+      "notes": "Three buildings ~612,000 sq ft each (2.1M sq ft total) at 4810 Stonewall Tell Road, Fulton County. Fulton County approved a $75M tax break. Phase 1 online by 2026; additional phases through 2032. Anchors Microsoft's 'East US 3' Azure region (Fulton + Douglas Counties). Per the AJC (June 25 2024), the campus will be built by developer EdgeConnex; Microsoft owns the land and confirmed it is the end user. The Development Authority of Fulton County's 5-3 approval of $75M in tax savings over 10 years required EdgeConnex to finish all three buildings by 2032.",
+      "source_url": "https://www.ajc.com/news/business/fulton-board-approves-75m-tax-break-for-microsoft-data-center/Q3K2XGXZD5DGRJUPUB3ENQGB4A",
+      "source_title": "AJC — Fulton board approves $75M tax break for Microsoft data center",
+      "captured_at": "2026-11-15",
       "project_page_url": "https://azure.microsoft.com/en-us/blog/microsoft-will-establish-its-next-us-datacenter-region-in-georgia-s-fulton-and-douglas-counties/",
       "acreage": 90,
       "offtaker": "Microsoft",
@@ -3519,7 +3541,7 @@
       "notes": "Microsoft's largest US data-center deployment (per company statement re Project Osmium). Includes Projects Mountain, Alluvion, Osmium; 6th site 'Ruthenium' on Veterans Pkwy at Woodland Ave (Madison County). ~70M gallons/year water from West Des Moines Water Works in 2024. Spans Dallas/Polk/Warren/Madison counties.",
       "source_url": "https://www.businessrecord.com/west-des-moines-approves-agreement-with-microsoft-for-6th-data-center/",
       "source_title": "Business Record — West Des Moines approves agreement with Microsoft for 6th data center",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-15",
       "offtaker": "Microsoft",
       "at_a_glance": {
         "jobs": "$6B / 600 jobs — Iowa's largest data-center campus",
@@ -3876,7 +3898,7 @@
       "notes": "AWS acquired ~590 acres in Jefferson Township, Clinton County in August 2025. Proposed $4B campus on 471 acres off US-68. As of May 2026, twice tabled by Clinton County planning commission due to community opposition and unresolved approval questions. Legal action filed by neighbors. Port authority negotiating with Wilmington City Schools on a community benefit deal. At least 100 permanent jobs (DataCenterDynamics). Project has been tabled twice by the Wilmington Planning Commission (Nov 2025, then again Jan 7 2026) over incomplete traffic/lighting studies and unanswered questions about PFAS in facility water discharge — worth a CommunityResponse record if a curator wants to capture the local-government friction.",
       "source_url": "https://www.datacenterdynamics.com/en/news/aws-data-center-project-tabled-in-wilmington-ohio/",
       "source_title": "Data Center Dynamics — AWS Wilmington Ohio project tabled (2026)",
-      "captured_at": "2026-10-19",
+      "captured_at": "2026-11-15",
       "acreage": 590.0,
       "offtaker": "Amazon",
       "at_a_glance": {
@@ -3904,6 +3926,16 @@
           "source_title": "WHIO — Temporary restraining order prevents city from moving forward with data center plans"
         },
         {
+          "date": "2026-07-14",
+          "kind": "lawsuit",
+          "title": "Federal court orders Wilmington to redo data center ordinances before deciding site plan",
+          "summary": "In a suit brought by Wilmington residents, an order filed July 14 bars the city from deciding the Amazon data center site plan until it redoes ordinances on generator noise, rezoning the parcel and data centers as a permitted use. The case remains pending.",
+          "authority": "U.S. District Court for the Southern District of Ohio",
+          "upcoming": false,
+          "source_url": "https://www.wyso.org/news/2026-07-24/federal-judge-wilmington-has-to-redo-key-steps-to-consider-amazon-data-center-proposal",
+          "source_title": "WYSO — Federal judge: Wilmington has to redo key steps to consider Amazon data center proposal"
+        },
+        {
           "date": "2026-09-03",
           "kind": "news",
           "title": "Reported: Wilmington council passes AWS site rezoning 7-0 as emergency legislation",
@@ -3912,6 +3944,16 @@
           "upcoming": false,
           "source_url": "https://www.fox19.com/2026/09/04/wilmington-residents-continue-dissent-over-data-center-ordinances-passed-by-city-council/",
           "source_title": "FOX 19 — Wilmington residents continue dissent over data center ordinances passed by city council"
+        },
+        {
+          "date": "2026-09-04",
+          "kind": "lawsuit",
+          "title": "Resident sues to overturn Wilmington's emergency rezoning of the AWS site",
+          "summary": "Resident Rachel Mary Brooks sued the city seeking a temporary restraining order so residents could gather signatures for a ballot question. At a TRO hearing the city agreed not to act on the rezoning for a week.",
+          "authority": null,
+          "upcoming": false,
+          "source_url": "https://www.fox19.com/2026/09/04/tri-state-resident-sues-block-emergency-rezoning-data-center/",
+          "source_title": "FOX19 — Tri-State resident sues to block 'emergency' rezoning for data center"
         }
       ]
     },
