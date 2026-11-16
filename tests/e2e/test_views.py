@@ -1250,13 +1250,19 @@ class TestPoliciesView:
         """The directory ships collapsed (the principle cards are the way in),
         so open it the way a reader would before asserting on its rows."""
         page.goto(base_url + "/#policies/rules")
-        page.wait_for_selector("#policies-tbody tr[role=button]", timeout=E2E_WAIT)
+        page.wait_for_selector("#policies-tbody tr[role=button]:not(.is-moratorium-row)", timeout=E2E_WAIT)
+        # v7: moratoriums join the directory once their payload lands; wait
+        # for it so every count below reads the final table.
+        expect(page.locator("#policy-moratorium-callout")).to_be_visible()
 
     def test_directory_renders_every_record(self, page: Page, base_url: str):
         self._open(page, base_url)
         n = page.evaluate("() => state.policies.length")
         assert n > 0
-        assert page.locator("#policies-tbody tr[role=button]").count() == n
+        assert page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").count() == n
+        us_moratoriums = page.evaluate("() => state.moratoriums.filter(m => (m.country || 'US') === 'US').length")
+        assert us_moratoriums > 0
+        assert page.locator("#policies-tbody tr.is-moratorium-row").count() == us_moratoriums
         assert page.locator("#policy-stats .rp-stat").count() >= 4
 
     def test_payload_is_lazy(self, page: Page, base_url: str):
@@ -1281,7 +1287,7 @@ class TestPoliciesView:
 
     def test_row_opens_modal_and_escape_closes(self, page: Page, base_url: str):
         self._open(page, base_url)
-        row = page.locator("#policies-tbody tr[role=button]").first
+        row = page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").first
         row.focus()
         page.keyboard.press("Enter")
         page.wait_for_selector("#policy-modal:not([hidden])", timeout=5_000)
@@ -1325,7 +1331,7 @@ class TestPoliciesView:
         expected = page.evaluate(
             f"() => state.policies.filter(p => p.principles.includes('{key}')).length"
         )
-        assert page.locator("#policies-tbody tr[role=button]").count() == expected
+        assert page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").count() == expected
 
     def test_see_all_clears_other_filters(self, page: Page, base_url: str):
         self._open(page, base_url)
@@ -1341,7 +1347,7 @@ class TestPoliciesView:
         expected = page.evaluate(
             f"() => state.policies.filter(p => p.principles.includes('{key}')).length"
         )
-        assert page.locator("#policies-tbody tr[role=button]").count() == expected
+        assert page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").count() == expected
 
     def test_governor_year_uses_snapshot(self, page: Page, base_url: str):
         page.add_init_script("""(() => {
@@ -1367,10 +1373,10 @@ class TestPoliciesView:
         page = context.new_page()
         try:
             page.goto(base_url + "/#policies/rules")
-            page.wait_for_selector("#policies-tbody tr[role=button]", timeout=E2E_WAIT)
+            page.wait_for_selector("#policies-tbody tr[role=button]:not(.is-moratorium-row)", timeout=E2E_WAIT)
             with page.expect_download() as csv:
                 page.locator("#policies-csv-btn").click()
-            assert csv.value.suggested_filename == "policies-and-agreements-2026-09-22.csv"
+            assert csv.value.suggested_filename == "policies-and-moratoriums-2026-09-22.csv"
             with page.expect_download() as pdf:
                 page.locator("#policies-pdf-btn").click()
             assert pdf.value.suggested_filename == "policies-and-agreements-2026-09-22.pdf"
@@ -1423,7 +1429,7 @@ class TestPoliciesView:
           showPolicyDetail(policy);
           return policy.related_project_ids[0];
         }""")
-        page.locator("#pd-related-list button").first.click()
+        page.locator("#pd-related-list a").first.click()
         page.wait_for_function("id => state.selectedProjectId === id", arg=project_id, timeout=E2E_WAIT)
         assert page.evaluate("state.activeView") == "explorer"
 
@@ -1488,14 +1494,14 @@ class TestPoliciesView:
         expected = page.evaluate(
             "() => state.policies.filter(p => p.community_benefits_framework).length"
         )
-        assert page.locator("#policies-tbody tr[role=button]").count() == expected
+        assert page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").count() == expected
         assert page.locator("#policies-tbody .badge-cbf").count() == expected
 
     def test_delivered_assessment_renders_in_row_and_modal(self, page: Page, base_url: str):
         """An agreement with a delivery assessment shows the chip in its row and
         the Claims-tab delivered panel in its modal; one without shows neither."""
         self._open(page, base_url)
-        row = page.locator("#policies-tbody tr[role=button]").filter(
+        row = page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").filter(
             has=page.locator(".policy-delivered")
         ).first
         chip_bg = row.locator(".policy-delivered").evaluate(
@@ -1506,7 +1512,7 @@ class TestPoliciesView:
         page.wait_for_selector("#policy-modal:not([hidden])", timeout=5_000)
         assert page.locator("#pd-delivered .claim-delivered").is_visible()
         page.keyboard.press("Escape")
-        bare = page.locator("#policies-tbody tr[role=button]").filter(
+        bare = page.locator("#policies-tbody tr[role=button]:not(.is-moratorium-row)").filter(
             has_not=page.locator(".policy-delivered")
         ).first
         bare.click()
@@ -3685,10 +3691,10 @@ class TestIssue72Navigation:
 
     def test_policy_filter_and_record_round_trip_through_the_url(self, page: Page, base_url: str):
         page.goto(base_url + "/#policies/rules")
-        page.wait_for_selector("#policies-tbody tr[role='button']", state="attached", timeout=E2E_WAIT)
+        page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", state="attached", timeout=E2E_WAIT)
         code = page.evaluate("() => state.policies.find(p => p.state_code).state_code")
         page.select_option("#policy-state-filter", code)
-        page.locator("#policies-tbody tr[role='button']").first.click()
+        page.locator("#policies-tbody tr[role='button']:not(.is-moratorium-row)").first.click()
         expect(page.locator("#policy-modal")).to_be_visible()
         url = page.url
         assert f"p-state={code}" in url and "policy=" in url and url.endswith("#policies/rules")
@@ -3741,7 +3747,7 @@ class TestIssue72Navigation:
 
     def test_policy_detail_hands_off_to_the_matching_draft(self, page: Page, base_url: str):
         page.goto(base_url + "/#policies/rules")
-        page.wait_for_selector("#policies-tbody tr[role='button']", state="attached", timeout=E2E_WAIT)
+        page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", state="attached", timeout=E2E_WAIT)
         pid = page.evaluate("() => state.policies.find(p => p.scope === 'state').id")
         page.evaluate("(id) => showPolicyDetail(state.policies.find(p => p.id === id))", pid)
         page.click("#pd-draft-btn")
@@ -3756,8 +3762,8 @@ class TestIssue72Navigation:
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         page.click("#tab-policies")
         page.click("#subtab-pol-rules")
-        page.wait_for_selector("#policies-tbody tr[role='button']", timeout=E2E_WAIT)
-        page.locator("#policies-tbody tr[role='button']").first.click()
+        page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", timeout=E2E_WAIT)
+        page.locator("#policies-tbody tr[role='button']:not(.is-moratorium-row)").first.click()
         expect(page.locator("#policy-modal")).to_be_visible()
         page.go_back()
         expect(page.locator("#view-overview")).to_be_visible()
@@ -3786,7 +3792,7 @@ class TestIssue72Navigation:
 
     def test_leaving_policies_drops_its_query_params(self, page: Page, base_url: str):
         page.goto(base_url + "/#policies/rules")
-        page.wait_for_selector("#policies-tbody tr[role='button']", state="attached", timeout=E2E_WAIT)
+        page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", state="attached", timeout=E2E_WAIT)
         code = page.evaluate("() => state.policies.find(p => p.state_code).state_code")
         page.select_option("#policy-state-filter", code)
         assert "p-state=" in page.url
@@ -3825,7 +3831,7 @@ class TestIssue72Navigation:
     def test_policy_filters_restore_on_back(self, page: Page, base_url: str):
         # Codex review of #77: an older Frameworks entry kept the newer filters.
         page.goto(base_url + "/#policies/rules")
-        page.wait_for_selector("#policies-tbody tr[role='button']", state="attached", timeout=E2E_WAIT)
+        page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", state="attached", timeout=E2E_WAIT)
         a, b = page.evaluate("() => [...new Set(state.policies.map(p => p.state_code).filter(Boolean))].slice(0, 2)")
         page.select_option("#policy-state-filter", a)
         page.click("#tab-tariffs")

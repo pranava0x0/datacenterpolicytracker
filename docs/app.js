@@ -3225,6 +3225,58 @@ function policySort(a, b) {
   return a.title.localeCompare(b.title);
 }
 
+// v7: the Rules directory lists every government action, moratoriums
+// included. A moratorium keeps its own record type (thresholds, votes, lift
+// dates); here it is adapted to the policy row shape so one table, one set
+// of filters and one export cover both. `_m` is the original record.
+const MORATORIUM_POLICY_STATUS = { enacted: "in_effect", proposed: "proposed", failed: "failed" };
+const DIRECTORY_INSTRUMENTS = [...POLICY_INSTRUMENTS, "moratorium"];
+const DIRECTORY_INSTRUMENT_LABELS = { ...POLICY_INSTRUMENT_LABELS, moratorium: "Moratorium" };
+
+function moratoriumAsPolicyRow(m) {
+  const lifted = Boolean(m.lifted_date);
+  return {
+    id: m.id,
+    _kind: "moratorium",
+    _m: m,
+    title: m.bill_number ? `${moratoriumPlace(m)} moratorium (${m.bill_number})` : `${moratoriumPlace(m)} moratorium`,
+    instrument: "moratorium",
+    // Lifted pauses match no status filter: they are neither in effect nor failed.
+    status: lifted ? "lifted" : MORATORIUM_POLICY_STATUS[m.status] || m.status,
+    scope: m.jurisdiction_type,
+    jurisdiction: m.jurisdiction,
+    state_code: m.state_code,
+    date: moratoriumDate(m),
+    identifier: m.bill_number || null,
+    principles: Object.keys(m.topic_notes || {}),
+    benefit_themes: [],
+    community_benefits_framework: false,
+    value_usd: null,
+    key_terms: [],
+    summary: m.summary,
+    source_url: m.source_url,
+    delivered: null,
+    captured_at: m.captured_at,
+  };
+}
+
+// US moratoriums only: international pauses live on the International tab.
+function directoryMoratoriumRows() {
+  return (state.moratoriums || []).filter((m) => (m.country || "US") === "US").map(moratoriumAsPolicyRow);
+}
+
+function directoryStatusLabel(row) {
+  if (row._kind === "moratorium") return row.status === "lifted" ? "Lifted" : MORATORIUM_STATUS_LABEL[row._m.status] || row._m.status;
+  return POLICY_STATUS_LABELS[row.status] || row.status;
+}
+const MORATORIUM_STATUS_LABEL = { enacted: "Enacted", proposed: "Proposed", failed: "Failed" };
+
+function directoryStatusBadge(row) {
+  return row._kind === "moratorium"
+    ? `badge-moratorium-status-${effectiveStatus(row._m)}`
+    : POLICY_STATUS_BADGE_CLASS[row.status] || "";
+}
+
 const POLICY_FILTER_IDS = [
   "policy-instrument-filter",
   "policy-status-filter",
@@ -3311,9 +3363,10 @@ function applyPolicyUrl() {
   }
 }
 
-function filteredPolicies() {
+function filteredPolicies({ withMoratoriums = true } = {}) {
   const f = policyFilters();
-  return (state.policies || [])
+  const rows = withMoratoriums ? [...(state.policies || []), ...directoryMoratoriumRows()] : state.policies || [];
+  return rows
     .filter((p) => !f.instrument || p.instrument === f.instrument)
     .filter((p) => !f.status || p.status === f.status)
     .filter((p) => !f.scope || p.scope === f.scope)
@@ -3327,7 +3380,7 @@ function filteredPolicies() {
 // theme) or from the data (state), counting records per option so an empty
 // option is visibly empty rather than a dead end.
 function populatePolicyFilters() {
-  const all = state.policies || [];
+  const all = [...(state.policies || []), ...directoryMoratoriumRows()];
   const fill = (id, keys, labelOf, countOf) => {
     const sel = document.getElementById(id);
     if (!sel || sel.dataset.populated) return;
@@ -3341,7 +3394,7 @@ function populatePolicyFilters() {
     }
     sel.dataset.populated = "1";
   };
-  fill("policy-instrument-filter", POLICY_INSTRUMENTS, (k) => POLICY_INSTRUMENT_LABELS[k],
+  fill("policy-instrument-filter", DIRECTORY_INSTRUMENTS, (k) => DIRECTORY_INSTRUMENT_LABELS[k],
     (k) => all.filter((p) => p.instrument === k).length);
   fill("policy-status-filter", POLICY_STATUSES, (k) => POLICY_STATUS_LABELS[k],
     (k) => all.filter((p) => p.status === k).length);
@@ -3392,11 +3445,67 @@ function wirePolicyControls() {
   }
 }
 
+// The moratorium call-out at the top of Policy: counts by status, the three
+// most recent, and the way to the Moratoriums tab (map, trends, directory).
+// Moratoriums arrive after the policies: re-count the filter options (they
+// were filled from policies alone), keep the reader's selections, re-render.
+function refreshDirectoryWithMoratoriums() {
+  for (const id of POLICY_FILTER_IDS) {
+    const sel = document.getElementById(id);
+    if (!sel || sel.tagName !== "SELECT" || !sel.dataset.populated) continue;
+    const keep = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+    delete sel.dataset.populated;
+    sel.dataset.keep = keep;
+  }
+  populatePolicyFilters();
+  for (const id of POLICY_FILTER_IDS) {
+    const sel = document.getElementById(id);
+    if (sel && sel.dataset.keep !== undefined) {
+      sel.value = sel.dataset.keep;
+      delete sel.dataset.keep;
+    }
+  }
+  // A ?p-instrument=moratorium link could not apply before the option existed.
+  const wanted = new URLSearchParams(window.location.search).get("p-instrument");
+  const inst = document.getElementById("policy-instrument-filter");
+  if (wanted === "moratorium" && inst && !inst.value) inst.value = "moratorium";
+  renderMoratoriumCallout();
+  renderPoliciesTable();
+}
+
+function renderMoratoriumCallout() {
+  const box = document.getElementById("policy-moratorium-callout");
+  if (!box) return;
+  const list = (state.moratoriums || []).filter((m) => (m.country || "US") === "US");
+  if (!list.length) { box.hidden = true; return; }
+  const count = (k) => list.filter((m) => effectiveStatus(m) === k).length;
+  const latest = [...list]
+    .filter((m) => moratoriumDate(m))
+    .sort((a, b) => moratoriumDate(b).localeCompare(moratoriumDate(a)))
+    .slice(0, 3);
+  const parts = [
+    `${count("enacted")} enacted`, `${count("proposed")} proposed`, `${count("failed")} failed`,
+  ];
+  if (count("lifted")) parts.push(`${count("lifted")} lifted`);
+  document.getElementById("pmc-counts").textContent = `${list.length} moratoriums: ${parts.join(", ")}.`;
+  const ul = document.getElementById("pmc-latest");
+  ul.replaceChildren(...latest.map((m) => {
+    const li = el("li");
+    const a = el("a", null, moratoriumPlace(m));
+    a.href = recordHref("moratorium", m.id);
+    li.append(a, ` · ${MORATORIUM_STATUS_LABEL[m.status] || m.status} ${formatAsOf(moratoriumDate(m))}`);
+    return li;
+  }));
+  box.hidden = false;
+}
+
 function renderPoliciesView() {
   wirePolicyControls();
   populatePolicyFilters();
   const all = state.policies || [];
   renderPolicyStats(all);
+  renderMoratoriumCallout();
   if (_activeSubtab.pol === "agreements") renderAgreementsView();
   renderPolicyPrinciples(all);
   renderPolicyActions(all);
@@ -3861,7 +3970,7 @@ function renderPoliciesTable() {
   const tbody = document.getElementById("policies-tbody");
   if (!tbody) return;
   const rows = filteredPolicies();
-  setSubtabCount("policies-count", (state.policies || []).length);
+  setSubtabCount("policies-count", (state.policies || []).length + directoryMoratoriumRows().length);
   tbody.innerHTML = "";
   if (!rows.length) {
     tbody.innerHTML =
@@ -3870,7 +3979,8 @@ function renderPoliciesTable() {
   }
   for (const p of rows) {
     const tr = document.createElement("tr");
-    tr.className = `tariff-status-${p.status === "in_effect" ? "approved" : p.status === "failed" ? "rejected" : "proposed"}`;
+    tr.className = `tariff-status-${p.status === "in_effect" ? "approved" : p.status === "failed" || p.status === "lifted" ? "rejected" : "proposed"}`;
+    if (p._kind === "moratorium") tr.classList.add("is-moratorium-row");
     const cbf = p.community_benefits_framework
       ? ` <span class="badge badge-cbf" title="Requires, creates or is a community benefit agreement, fund or host payment">CBF</span>`
       : "";
@@ -3884,18 +3994,18 @@ function renderPoliciesTable() {
       <td><span class="tariff-row-name">${escapeHtml(p.title)}</span>${cbf}${deliveredTag}${
         p.identifier ? `<span class="tariff-row-type">${escapeHtml(p.identifier)}</span>` : ""
       }</td>
-      <td>${escapeHtml(POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument)}</td>
+      <td>${p._kind === "moratorium" ? '<span class="badge badge-instrument-moratorium">Moratorium</span>' : escapeHtml(POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument)}</td>
       <td>${escapeHtml(policyWhere(p))}</td>
-      <td><span class="badge ${POLICY_STATUS_BADGE_CLASS[p.status] || ""}">${escapeHtml(POLICY_STATUS_LABELS[p.status] || p.status)}</span></td>
+      <td><span class="badge ${directoryStatusBadge(p)}">${escapeHtml(directoryStatusLabel(p))}</span></td>
       <td class="policy-date">${escapeHtml(p.date || "Not dated")}</td>
       <td><span class="policy-themes">${themes}</span></td>`;
     tr.tabIndex = 0;
     tr.setAttribute("role", "button");
     tr.setAttribute(
       "aria-label",
-      `${p.title}, ${POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument}, ${POLICY_STATUS_LABELS[p.status] || p.status}. Open details.`
+      `${p.title}, ${DIRECTORY_INSTRUMENT_LABELS[p.instrument] || p.instrument}, ${directoryStatusLabel(p)}. Open details.`
     );
-    const open = () => showPolicyDetail(p);
+    const open = () => (p._kind === "moratorium" ? showMoratoriumDetail(p._m) : showPolicyDetail(p));
     tr.addEventListener("click", open);
     tr.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
@@ -4000,11 +4110,11 @@ function closePolicyDetail() {
 function _policyExportRows(list) {
   return list.map((p) => [
     p.title,
-    POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument,
+    DIRECTORY_INSTRUMENT_LABELS[p.instrument] || p.instrument,
     POLICY_SCOPE_LABELS[p.scope] || p.scope,
     policyWhere(p),
     p.state_code || "",
-    POLICY_STATUS_LABELS[p.status] || p.status,
+    directoryStatusLabel(p),
     p.date || "",
     p.identifier || "",
     policyParties(p).join("; "),
@@ -4031,7 +4141,7 @@ function downloadPoliciesCSV() {
   for (const row of _policyExportRows(filteredPolicies())) {
     lines.push(row.map(csvCell).join(","));
   }
-  _triggerDownload(lines.join("\r\n"), "policies-and-agreements-TODAY.csv");
+  _triggerDownload(lines.join("\r\n"), `policies-and-moratoriums-${localToday()}.csv`);
 }
 
 async function exportPoliciesToPDF() {
@@ -4661,11 +4771,14 @@ function loadMoratoriumPane(key) {
 function loadPolicyPane(key) {
   showPolicyLoadError();
   if (key === "agreements" && state.policies.length) renderAgreementsView();
-  if (key !== "latest") return;
+  if (key !== "latest" && key !== "rules") return;
+  // Latest merges governor pauses in; Rules lists every moratorium beside
+  // the policies (v7). Topics and Agreements never need the payload.
   loadMoratoriumsData().then(() => {
     policyErrors.delete("pauses");
     if (state.policies.length) renderPolicyStats(state.policies);
     renderPolicyActions(state.policies);
+    if (state.policies.length) refreshDirectoryWithMoratoriums();
     showPolicyLoadError();
   }).catch((err) => {
     console.error("Could not load pause records:", err);

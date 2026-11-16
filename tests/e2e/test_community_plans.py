@@ -182,6 +182,6 @@ def test_updated_records_link_to_the_schedule_and_host_site(page, base_url):
     rc.get_by_role("button", name="Read more").click()
     expect(rc.get_by_role("link", name="PSC-2026-0399", exact=False)).to_be_visible()
     page.goto(base_url + "/?policy=memphis-tn-community-benefits-fund-5953#policies")
-    page.locator("#pd-related-list button").first.click()
+    page.locator("#pd-related-list a").first.click()
     expect(page.locator("#project-detail")).to_be_visible()
     assert "project=xai-memphis-tn" in page.url

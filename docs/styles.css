@@ -6916,3 +6916,47 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
   .election-filters > label:not(:first-child) { flex: 1 1 140px; }
 }
 @media (pointer: coarse) { .election-more-filters > summary { min-height: 44px; display: list-item; line-height: 44px; padding: 0; } }
+
+/* v7: moratorium call-out on the Policy tab, and moratorium rows in its
+   directory. One accent rule; status colour stays in the badges. */
+.mor-callout {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  margin: 0 0 1rem;
+}
+.mor-callout-title {
+  margin: 0 0 0.25rem;
+  font-size: var(--fs-lg);
+}
+.mor-callout-counts {
+  margin: 0;
+  font-size: var(--fs-base);
+}
+.mor-callout-sub {
+  margin: 0.5rem 0 0.15rem;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.mor-callout-latest {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: var(--fs-sm);
+}
+.mor-callout-more {
+  margin: 0.5rem 0 0;
+  font-size: var(--fs-sm);
+}
+.badge-instrument-moratorium {
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.is-moratorium-row td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
