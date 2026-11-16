@@ -22,7 +22,6 @@ body {font: 10.5pt/1.38 Arial,sans-serif;color:#202e3e;margin:0}
 h1,h2,h3,summary {font-family:Georgia,serif;color:#111d35}
 h1 {font-size:21pt;line-height:1.1;margin:6pt 0 12pt}
 h2,h3,summary {break-after:avoid} h2 {font-size:17pt} h3,summary {font-size:13pt}
-.brand,.bp-kicker {color:#465977;font-weight:bold} .brand {border-bottom:1pt solid;padding-bottom:5pt}
 p,dl,ul {margin:5pt 0 8pt} dt {font-weight:bold;margin-top:8pt;break-after:avoid}
 dd {margin:2pt 0 6pt} li {margin-bottom:4pt} a {color:#184776}
 .bp-note {border-left:2pt solid #a3b1c0;padding-left:8pt} #common {break-before:page}
@@ -84,7 +83,7 @@ def build(check: bool) -> None:
                 target = base.rsplit("/", 1)[0] + "/" + query + "#policies/agreements/drafts"
             name = f"{key}-community-benefits.pdf"
             html = (f'<!doctype html><html lang="en"><meta charset="utf-8"><title>{escape(key.title())} community benefits draft</title>'
-                    f'<style>{CSS}</style><div class="brand">Data Center Policy Tracker · Community benefits plans</div>{body}'
+                    f'<style>{CSS}</style>{body}'
                     f'<p><a href="{escape(target)}">Editable draft and sources: {escape(target)}</a></p></html>')
             fingerprint = digest((html + FOOTER).encode())
             product = OUT / name
