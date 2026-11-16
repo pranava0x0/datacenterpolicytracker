@@ -14,3 +14,12 @@ Steps: [x] RecordRef+links.json  [x] deep links  [x] Policy combine  [ ] apply r
 - Unverified leads to fetch first: Utah SB 132 (2025) https://le.utah.gov/~2025/bills/static/SB0132.html and SB 227; Virginia 2026 bills HB 284/323/507/892, SB 371, SB 253/HB 1393 (amended), SB 619 (defeated) via lis.virginia.gov; VA budget data center exemption conditions.
 - Not yet searched: Rocky Mountain Power large-load agreement (UT), PUC generic dockets (OH, TX, GA, IN), WY, MI, NC, SC, LA, IL.
 - Valid principles: pay_own_way, community_benefits, incentive_terms, water, transparency, local_control, community_input, new_power, environmental_review, study, heat_reuse.
+## Batch A done (15/15, out_A.jsonl). Flags to resolve when applying:
+- duke-energy-indiana-meta-esa: IURC order names "Blocke, LLC", not Meta; check the seed's Meta attribution.
+- black-hills-large-power-contract-service: seed "35 MW" not in current tariff (5,000 kW, 115% capacity); fix summary.
+- entergy-mississippi-large-power-rate: no 30 MW schedule found; elements from ALGS-10 general schedule. Reconsider the record.
+- dominion GS-5, georgia large-load rules, xcel-mn competitive rider: regulator summaries only; thin.
+- AEP Ohio: reissued 2026-08-28, contract = ramp + 8 years (not 12).
+- We Energies: PSC order 2026-05-21, effective 2026-06-01.
+- NJ: third reprint caps threshold at 50 MW.
+- Batch A quotes not yet probed (run scripts/probe.py --evidence on them).
