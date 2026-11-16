@@ -6960,3 +6960,29 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
 .is-moratorium-row td:first-child {
   box-shadow: inset 3px 0 0 var(--accent);
 }
+
+/* v7: LBL 2026 elements. Sub-elements sit under their parent; a provision's
+   own words follow its one-line summary. */
+.tariff-coverage-card.is-sub {
+  margin-left: 1rem;
+  border-style: dashed;
+}
+.tcc-lbl {
+  display: block;
+  font-size: var(--fs-2xs);
+  color: var(--text-muted);
+}
+.tparam-sub {
+  margin-left: 1.25rem;
+}
+.tparam-quote {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.tariff-date {
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+}

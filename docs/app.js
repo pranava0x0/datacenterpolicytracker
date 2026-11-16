@@ -276,92 +276,188 @@ const POLICY_SCOPE_LABELS = {
   national: "National",
   supranational: "EU-wide",
 };
-// The five LBL element groups, in the brief's order: [group_key, label].
+// v7: LBL 2026 update taxonomy. Mirrors schema.py (parity-tested).
 const TARIFF_PARAMETER_GROUPS = [
-  ["eligibility", "Eligibility & Applicability"],
-  ["contract_size", "Contract Size"],
-  ["duration", "Contract Duration & Exit"],
-  ["energy_source", "Energy Source"],
-  ["other", "Other Elements"],
+  ["established", "Established practice"],
+  ["stable", "Stable practice"],
+  ["emerging", "Emerging practice"],
+  ["declining", "Declining practice"],
 ];
-// The 17 large-load rate-design elements from the LBL brief, in order.
 const TARIFF_PARAMETERS = [
-  "min_load",
+  "min_demand_threshold",
+  "min_contract_duration",
   "monthly_demand_charge",
-  "customer_type",
-  "study_cost_recovery",
-  "credit_collateral",
-  "contracted_capacity",
+  "min_billing_demand",
+  "min_bill",
+  "collateral",
+  "direct_cost_assignment",
+  "dca_capacity_reservation",
+  "dca_interconnection",
+  "dca_generation_capacity",
+  "dca_network_transmission",
+  "customer_resource_procurement",
+  "btm_generation",
+  "customer_led_procurement",
+  "load_flexibility",
+  "load_factor_threshold",
+  "aggregation_rules",
+  "load_forecast_requirement",
+  "explicit_load_forecast",
+  "forecast_update_cadence",
+  "price_premium",
+  "study_requirements",
+  "load_ramp_period",
+  "hold_harmless",
+  "formulaic_backstop",
+  "marginal_cost",
+  "no_harm_analysis",
   "resize_reassign",
-  "btm_backup",
-  "load_factor",
-  "contract_duration",
-  "ramp_times",
-  "duration_flexibility",
   "exit_fee",
-  "clean_energy",
-  "specific_generation",
-  "marginal_pricing",
-  "econ_dev_payments",
+  "customer_type",
 ];
 const TARIFF_PARAMETER_LABELS = {
-  min_load: "Minimum load requirement",
-  monthly_demand_charge: "Minimum demand charge",
-  customer_type: "Customer-type applicability",
-  study_cost_recovery: "Study-cost recovery",
-  credit_collateral: "Credit rating / collateral",
-  contracted_capacity: "Contracted capacity & energy",
-  resize_reassign: "Resizing / reassignment",
-  btm_backup: "Behind-the-meter backup",
-  load_factor: "Minimum load factor",
-  contract_duration: "Contract duration",
-  ramp_times: "Ramp times",
-  duration_flexibility: "Duration flexibility",
+  min_demand_threshold: "Minimum demand threshold",
+  min_contract_duration: "Minimum contract duration",
+  monthly_demand_charge: "Monthly demand charge",
+  min_billing_demand: "Minimum billing demand",
+  min_bill: "Minimum bill",
+  collateral: "Collateral requirements",
+  direct_cost_assignment: "Direct assignment of costs",
+  dca_capacity_reservation: "Capacity reservation",
+  dca_interconnection: "Interconnection upgrades",
+  dca_generation_capacity: "Generation and capacity costs",
+  dca_network_transmission: "Network transmission upgrades",
+  customer_resource_procurement: "Customer-specific resource procurement",
+  btm_generation: "Behind-the-meter generation",
+  customer_led_procurement: "Customer-led procurement",
+  load_flexibility: "Load flexibility",
+  load_factor_threshold: "Load factor threshold",
+  aggregation_rules: "Aggregation rules",
+  load_forecast_requirement: "Load forecast requirement",
+  explicit_load_forecast: "Explicit load forecast",
+  forecast_update_cadence: "Forecast update cadence",
+  price_premium: "Price premium",
+  study_requirements: "Study requirements",
+  load_ramp_period: "Load ramp period",
+  hold_harmless: "Hold harmless",
+  formulaic_backstop: "Formulaic backstop",
+  marginal_cost: "Incremental or marginal cost",
+  no_harm_analysis: "No-harm analysis",
+  resize_reassign: "Resizing or reassigning capacity",
   exit_fee: "Exit fee",
-  clean_energy: "Clean-energy requirements",
-  specific_generation: "Specific generation technologies",
-  marginal_pricing: "Marginal pricing / cost-sharing",
-  econ_dev_payments: "Economic-development payments",
+  customer_type: "Customer type",
 };
 const TARIFF_PARAMETER_DESCRIPTIONS = {
-  min_load: "A lower-bound MW load threshold to qualify for the tariff.",
-  monthly_demand_charge: "Minimum charge tied to a percentage of forecasted maximum demand.",
-  customer_type: "Tariff scoped to a specific large-load customer type (e.g., data centers).",
-  study_cost_recovery: "Customer pays for interconnection / system-impact studies.",
-  credit_collateral: "Minimum credit rating and/or collateral / deposit requirements.",
-  contracted_capacity: "Defined MW / MWh the customer is obligated to buy.",
-  resize_reassign: "Terms to resize, reassign, or sell unused contracted capacity / energy.",
-  btm_backup: "Treatment of behind-the-meter generation / storage as backup or supplemental power.",
-  load_factor: "A minimum average-to-peak load ratio the customer must maintain.",
-  contract_duration: "Minimum contract term to back long-lived utility investment.",
-  ramp_times: "An extended period to reach full contracted load.",
-  duration_flexibility: "Modifications / renewals to the contract term.",
-  exit_fee: "Charge for exiting the tariff or terminating service early.",
-  clean_energy: "Requirements / options to serve the load with clean or renewable energy.",
-  specific_generation: "Utility procures specific named generation on the customer's behalf.",
-  marginal_pricing: "Marginal-cost pricing / cost-sharing to limit cross-subsidization.",
-  econ_dev_payments: "Direct payments for workforce, community, or low-income programs.",
+  min_demand_threshold: "A minimum MW (or MVA) load a customer must reach to take service under the tariff.",
+  min_contract_duration: "A minimum term the customer must commit to, so long-lived utility investment is recovered.",
+  monthly_demand_charge: "A charge per kW or MW of monthly peak or contracted demand.",
+  min_billing_demand: "The customer is billed for at least a set share of contracted demand, whatever it uses.",
+  min_bill: "A floor on the monthly bill, usually tied to contracted capacity.",
+  collateral: "Credit rating, deposit, letter of credit or guarantee to cover the customer's obligations.",
+  direct_cost_assignment: "The customer pays directly for costs incurred to serve it, rather than sharing them across all customers.",
+  dca_capacity_reservation: "A payment to reserve grid capacity before service starts.",
+  dca_interconnection: "The customer pays for the lines, substations and equipment that connect it.",
+  dca_generation_capacity: "The customer pays for new generation or capacity built or bought to serve it.",
+  dca_network_transmission: "The customer pays for wider transmission network upgrades its load requires.",
+  customer_resource_procurement: "Arrangements for energy resources tied to this customer rather than the general supply.",
+  btm_generation: "Rules for on-site generation or storage the customer owns or uses.",
+  customer_led_procurement: "The customer can bring or direct its own generation, such as clean energy, through the utility.",
+  load_flexibility: "Curtailment, interruptible service or demand response the customer agrees to.",
+  load_factor_threshold: "A minimum ratio of average to peak load to qualify.",
+  aggregation_rules: "Whether loads at several sites or affiliates count together toward the threshold.",
+  load_forecast_requirement: "The customer must give the utility forecasts of its load.",
+  explicit_load_forecast: "A stated forecast, such as a ramp schedule, must be filed.",
+  forecast_update_cadence: "Forecasts must be updated on a set schedule.",
+  price_premium: "A rate adder above the otherwise applicable rate.",
+  study_requirements: "The customer must fund or complete load, interconnection or system-impact studies.",
+  load_ramp_period: "A set schedule for reaching full contracted load, with charges phased in.",
+  hold_harmless: "Provisions meant to keep other customers from paying for the large load's costs.",
+  formulaic_backstop: "A formula that charges the customer if costs shift to other ratepayers.",
+  marginal_cost: "Rates set from the incremental or marginal cost of serving the load.",
+  no_harm_analysis: "A required showing that serving the load does not raise other customers' costs.",
+  resize_reassign: "Terms for reducing, transferring or reassigning contracted capacity.",
+  exit_fee: "A charge for leaving the tariff or ending service early.",
+  customer_type: "The tariff applies only to a named customer type, such as data centers.",
 };
-// Maps each parameter key to its group key (for grouped rendering).
 const TARIFF_PARAMETER_GROUP_OF = {
-  min_load: "eligibility",
-  monthly_demand_charge: "eligibility",
-  customer_type: "eligibility",
-  study_cost_recovery: "eligibility",
-  credit_collateral: "eligibility",
-  contracted_capacity: "contract_size",
-  resize_reassign: "contract_size",
-  btm_backup: "contract_size",
-  load_factor: "contract_size",
-  contract_duration: "duration",
-  ramp_times: "duration",
-  duration_flexibility: "duration",
-  exit_fee: "duration",
-  clean_energy: "energy_source",
-  specific_generation: "energy_source",
-  marginal_pricing: "other",
-  econ_dev_payments: "other",
+  min_demand_threshold: "established",
+  min_contract_duration: "established",
+  monthly_demand_charge: "established",
+  min_billing_demand: "established",
+  min_bill: "established",
+  collateral: "established",
+  direct_cost_assignment: "established",
+  dca_capacity_reservation: "established",
+  dca_interconnection: "established",
+  dca_generation_capacity: "established",
+  dca_network_transmission: "established",
+  customer_resource_procurement: "established",
+  btm_generation: "established",
+  customer_led_procurement: "established",
+  load_flexibility: "established",
+  load_factor_threshold: "stable",
+  aggregation_rules: "stable",
+  load_forecast_requirement: "stable",
+  explicit_load_forecast: "stable",
+  forecast_update_cadence: "stable",
+  price_premium: "stable",
+  study_requirements: "emerging",
+  load_ramp_period: "emerging",
+  hold_harmless: "emerging",
+  formulaic_backstop: "emerging",
+  marginal_cost: "emerging",
+  no_harm_analysis: "emerging",
+  resize_reassign: "emerging",
+  exit_fee: "emerging",
+  customer_type: "declining",
 };
+const TARIFF_PARAMETER_PARENT = {
+  dca_capacity_reservation: "direct_cost_assignment",
+  dca_interconnection: "direct_cost_assignment",
+  dca_generation_capacity: "direct_cost_assignment",
+  dca_network_transmission: "direct_cost_assignment",
+  btm_generation: "customer_resource_procurement",
+  customer_led_procurement: "customer_resource_procurement",
+  load_flexibility: "customer_resource_procurement",
+  explicit_load_forecast: "load_forecast_requirement",
+  forecast_update_cadence: "load_forecast_requirement",
+  formulaic_backstop: "hold_harmless",
+  marginal_cost: "hold_harmless",
+  no_harm_analysis: "hold_harmless",
+};
+const TARIFF_PARAMETER_LBL_COUNT = {
+  min_demand_threshold: 51,
+  min_contract_duration: 47,
+  monthly_demand_charge: 46,
+  min_billing_demand: 39,
+  min_bill: 47,
+  collateral: 43,
+  direct_cost_assignment: 45,
+  dca_capacity_reservation: 4,
+  dca_interconnection: 38,
+  dca_generation_capacity: 28,
+  dca_network_transmission: 10,
+  customer_resource_procurement: 43,
+  btm_generation: 28,
+  customer_led_procurement: 25,
+  load_flexibility: 27,
+  load_factor_threshold: 13,
+  aggregation_rules: 20,
+  load_forecast_requirement: 12,
+  explicit_load_forecast: 10,
+  forecast_update_cadence: 11,
+  price_premium: 6,
+  study_requirements: 33,
+  load_ramp_period: 23,
+  hold_harmless: 25,
+  formulaic_backstop: 11,
+  marginal_cost: 19,
+  no_harm_analysis: 13,
+  resize_reassign: 26,
+  exit_fee: 31,
+  customer_type: 9,
+};
+const TARIFF_LBL_SAMPLE_SIZE = 55;
 
 
 // Mirrors schema.PROJECT_STATUSES (parity-tested).
@@ -2630,8 +2726,16 @@ function renderRateCases() {
 }
 
 // Number of LBL design elements a tariff addresses (included OR partial).
+// Top-level LBL 2026 elements only; sub-elements detail their parent.
+const TARIFF_TOP_ELEMENTS = TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]);
 function tariffElementCount(t) {
-  return Object.keys(t.parameters || {}).length;
+  return TARIFF_TOP_ELEMENTS.filter((k) => (t.parameters || {})[k]).length;
+}
+// The date a reader needs in the directory: decided, else filed.
+function tariffDateLine(t) {
+  if (t.decision_date) return `Decided ${formatAsOf(t.decision_date)}`;
+  if (t.filed_date) return `Filed ${formatAsOf(t.filed_date)}`;
+  return "Not dated";
 }
 
 function renderTariffsView() {
@@ -2723,7 +2827,7 @@ function renderTariffCoverage(tariffs) {
   const grid = document.getElementById("tariff-coverage-grid");
   if (!grid) return;
   grid.innerHTML = "";
-  setSubtabCount("tariff-coverage-count", TARIFF_PARAMETERS.length);
+  setSubtabCount("tariff-coverage-count", TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]).length);
 
   const counts = {};
   for (const k of TARIFF_PARAMETERS) counts[k] = 0;
@@ -2744,12 +2848,13 @@ function renderTariffCoverage(tariffs) {
       const count = counts[key];
       const card = document.createElement("button");
       card.type = "button";
-      card.className = "tariff-coverage-card" + (count === 0 ? " empty" : "");
+      card.className = "tariff-coverage-card" + (count === 0 ? " empty" : "") + (TARIFF_PARAMETER_PARENT[key] ? " is-sub" : "");
       card.dataset.param = key;
       card.title = TARIFF_PARAMETER_DESCRIPTIONS[key] || "";
       card.innerHTML = `
         <span class="tcc-label">${escapeHtml(TARIFF_PARAMETER_LABELS[key])}</span>
         <span class="tcc-count">${count}</span>
+        <span class="tcc-lbl">LBL sample: ${TARIFF_PARAMETER_LBL_COUNT[key]} of ${TARIFF_LBL_SAMPLE_SIZE}</span>
       `;
       card.addEventListener("click", () => {
         document
@@ -2794,6 +2899,7 @@ function renderTariffCoveragePopout(paramKey) {
             <span class="tpi-state">${escapeHtml(t.state)}</span>${partial}
           </div>
           <p class="tpi-detail">${escapeHtml(pc.detail)}</p>
+          ${pc.verbatim ? `<q class="tparam-quote">${escapeHtml(pc.verbatim)}</q>` : ""}
         </li>`;
     })
     .join("");
@@ -2801,7 +2907,7 @@ function renderTariffCoveragePopout(paramKey) {
   wrap.innerHTML = `
     <div class="tariff-popout active">
       <h4 class="tariff-popout-title">${escapeHtml(label)} <span class="tariff-popout-n">${matches.length} tariff${matches.length === 1 ? "" : "s"}</span></h4>
-      <p class="tariff-popout-desc">${escapeHtml(desc)}</p>
+      <p class="tariff-popout-desc">${escapeHtml(desc)} In LBL's 2026 sample, ${TARIFF_PARAMETER_LBL_COUNT[paramKey]} of ${TARIFF_LBL_SAMPLE_SIZE} tariffs include it.</p>
       <ul class="tariff-popout-list">${items}</ul>
     </div>`;
 }
@@ -2845,7 +2951,6 @@ function renderTariffsTable() {
     const tr = document.createElement("tr");
     tr.className = `tariff-status-${t.status}`;
     const minLoad = t.min_load_mw != null ? `${t.min_load_mw.toLocaleString()} MW` : "—";
-    const n = tariffElementCount(t);
     const typeLine = t.tariff_type
       ? `<span class="tariff-row-type">${escapeHtml(t.tariff_type)}</span>`
       : "";
@@ -2860,7 +2965,7 @@ function renderTariffsTable() {
       <td><span class="tariff-row-name">${escapeHtml(t.tariff_name)}</span>${typeLine}</td>
       <td><span class="badge badge-tariff-status-${t.status}">${escapeHtml(TARIFF_STATUS_LABELS[t.status] || t.status)}</span></td>
       <td class="num">${minLoad}</td>
-      <td class="num"><span class="tariff-elem-count" title="${n} of 17 LBL design elements">${n} / 17</span></td>
+      <td class="tariff-date">${escapeHtml(tariffDateLine(t))}</td>
     `;
     // Keyboard + screen-reader accessible: the row acts as a button.
     tr.tabIndex = 0;
@@ -2915,9 +3020,11 @@ function showTariffDetail(t) {
   const paramsHeading = document.getElementById("td-params-heading");
   if (paramsHeading) {
     const n = tariffElementCount(t);
+    const top = TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]);
+    const nTop = top.filter((k) => (t.parameters || {})[k]).length;
     paramsHeading.innerHTML =
-      `LBL rate-design elements — met or not ` +
-      `<span class="td-elem-tally">${n} of ${TARIFF_PARAMETERS.length} addressed</span>`;
+      `Rate-design elements (LBL 2026) ` +
+      `<span class="td-elem-tally">${nTop} of ${top.length} addressed</span>`;
   }
 
   // LBL element checklist — iterate the full taxonomy so "not addressed" shows.
@@ -2928,21 +3035,25 @@ function showTariffDetail(t) {
       (k) => TARIFF_PARAMETER_GROUP_OF[k] === groupKey
     );
     const rows = groupParams
+      // A sub-element only shows under a parent the tariff has: "not
+      // addressed" for both a parent and its four parts is noise.
+      .filter((key) => !TARIFF_PARAMETER_PARENT[key] || (t.parameters || {})[TARIFF_PARAMETER_PARENT[key]])
       .map((key) => {
         const pc = (t.parameters || {})[key];
         const status = pc ? pc.status || "included" : "absent";
         const icon = status === "included" ? "✓" : status === "partial" ? "◐" : "✕";
         const statusLabel =
           status === "included" ? "Included" : status === "partial" ? "Partial" : "Not addressed";
+        const quote = pc && pc.verbatim ? `<q class="tparam-quote">${escapeHtml(pc.verbatim)}</q>` : "";
         const detail = pc
-          ? `<span class="tparam-detail">${escapeHtml(pc.detail)}</span>`
+          ? `<span class="tparam-detail">${escapeHtml(pc.detail)}</span>${quote}`
           : `<span class="tparam-detail muted">Not addressed in this tariff.</span>`;
         const srcLink =
           pc && pc.source_url
             ? ` <a class="tparam-src" href="${escapeAttr(String(pc.source_url))}" target="_blank" rel="noopener noreferrer" title="Source for this element">↗</a>`
             : "";
         return `
-          <li class="tparam-row tparam-${status}">
+          <li class="tparam-row tparam-${status}${TARIFF_PARAMETER_PARENT[key] ? " tparam-sub" : ""}">
             <span class="tparam-icon" aria-hidden="true">${icon}</span>
             <div class="tparam-body">
               <span class="tparam-label">${escapeHtml(TARIFF_PARAMETER_LABELS[key])}<span class="tparam-status"> · ${statusLabel}</span>${srcLink}</span>
@@ -5187,7 +5298,7 @@ async function exportTariffsToPDF() {
     t.utility, t.state, t.tariff_name,
     TARIFF_STATUS_LABELS[t.status] || t.status,
     t.docket_number || "—", t.min_load_mw ?? "—",
-    `${tariffElementCount(t)} of ${TARIFF_PARAMETERS.length}`,
+    `${tariffElementCount(t)} of ${TARIFF_TOP_ELEMENTS.length}`,
     (t.summary || "").substring(0, 150),
   ]);
   const today = new Date().toISOString().slice(0, 10);
