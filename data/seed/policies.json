@@ -3421,7 +3421,7 @@
     },
     {
       "id": "wa-essb6231-2026",
-      "title": "Engrossed Substitute Senate Bill 6231 — repeal of data center replacement/refurbished equipment tax exemption",
+      "title": "Washington ESSB 6231 — data center refurbishment and replacement equipment tax exemptions",
       "instrument": "legislation",
       "status": "in_effect",
       "scope": "state",
@@ -3433,18 +3433,19 @@
       ],
       "community_benefits_framework": false,
       "key_terms": [
-        "The Washington bill removes a retail sales and use tax exemption for replacing server equipment at existing data centers starting July 1."
+        "Newly constructed data centers may still apply for an exemption certificate",
+        "making replacement server equipment subject to retail sales and use taxes"
       ],
-      "summary": "Washington's ESSB 6231, signed by Gov. Bob Ferguson in early April 2026 and effective July 1, 2026, narrows the state's data center sales-tax exemption by removing replacement and refurbished server equipment from eligibility, part of a broader 2026 rollback of recently enacted tax preferences.",
-      "source_url": "https://news.bloombergtax.com/daily-tax-report-state/washington-to-end-data-center-tax-break-for-replacing-servers",
-      "source_title": "Bloomberg Tax — Washington to End Data Center Tax Break for Replacing Servers",
+      "summary": "Effective July 1, 2026, Washington ended the exemption for replacement server equipment and the certificate route for refurbished data centers. Newly constructed facilities may still apply for an exemption certificate for eligible original equipment.",
+      "source_url": "https://dor.wa.gov/sites/default/files/2026-04/2026_Legislative_Report.pdf",
+      "source_title": "Washington Department of Revenue — 2026 legislative report, ESSB 6231 (pp. 15–16)",
       "resources": [
         {
           "url": "https://www.ballardspahr.com/insights/alerts-and-articles/2026/04/washington-state-2026-session-legislature-repeals-and-rolls-back-certain-recently-enacted-taxes",
           "title": "Ballard Spahr — Washington State 2026 Session: Legislature Repeals and Rolls Back Certain Recently Enacted Taxes"
         }
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-15",
       "principles": [
         "incentive_terms"
       ]
