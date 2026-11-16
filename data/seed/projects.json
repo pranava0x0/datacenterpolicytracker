@@ -17,7 +17,7 @@
       "notes": "Confirmed as Google March 3, 2026 (initially 'Project Birch'). The original proposal covered 403 acres adjacent to Minnesota Power's Arrowhead substation. On October 30, the City Council approved a development agreement, special-use permit and decommissioning agreement for a reduced three-building campus; MPR reports expected electricity demand of 500 MW. Minnesota PUC approval of the electric service agreement remained pending in that October 31 report. Google withdrew its tax-abatement request before the council vote.",
       "source_url": "https://www.datacenterdynamics.com/en/news/google-confirms-it-is-behind-403-acre-data-center-campus-in-hermantown-minnesota/",
       "source_title": "Data Center Dynamics — Google confirms 403-acre Hermantown, Minnesota campus",
-      "captured_at": "2026-11-04",
+      "captured_at": "2026-11-15",
       "acreage": 403.0,
       "offtaker": "Google",
       "at_a_glance": {
@@ -46,6 +46,15 @@
           "upcoming": false,
           "source_url": "https://www.northernnewsnow.com/2026/07/07/hermantown-city-council-approves-data-center-reimbursements/",
           "source_title": "Northern News Now — Hermantown City Council approves data center reimbursements"
+        },
+        {
+          "date": "2026-10-19",
+          "kind": "news",
+          "title": "Hermantown outlines neighboring-well protections and revised tax terms",
+          "summary": "The city said the revised development agreement included protections for neighboring wells and that Google would not seek property tax abatement. Its estimate of more than $210 million in city and county taxes over the first 20 years after completion is a projection, not revenue received.",
+          "authority": "City of Hermantown",
+          "source_url": "https://hermantownmn.com/project/",
+          "source_title": "City of Hermantown — Project updates and October 19 council presentation"
         },
         {
           "date": "2026-10-30",

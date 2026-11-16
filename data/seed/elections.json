@@ -3088,29 +3088,29 @@
       "jurisdiction": "Alhambra",
       "title": "Measure DB — Data centers prohibited",
       "election_date": "2026-11-03",
-      "captured_at": "2026-11-04",
+      "captured_at": "2026-11-15",
       "effect": "binding",
       "ballot_evidence": {
         "statement": "affirming the Council adopted ban on \"Data Centers\"",
-        "source_url": "https://ballotpedia.org/Alhambra,_California,_Measure_DB,_Prohibit_Data_Centers_Measure_(November_2026)",
-        "source_title": "Ballotpedia — Measure DB — Data centers prohibited",
-        "captured_at": "2026-11-04"
+        "source_url": "https://results.lavote.gov/text-results/4348",
+        "source_title": "Los Angeles County Registrar-Recorder/County Clerk — Measure DB ballot text",
+        "captured_at": "2026-11-15"
       },
       "legal_effect": "Affirms the council-adopted ban by defining data centers in the municipal code and prohibiting them in every city zone.",
       "result": {
         "status": "reported",
         "outcome": "passed",
         "evidence": {
-          "statement": "It was approved.",
-          "source_url": "https://ballotpedia.org/Alhambra,_California,_Measure_DB,_Prohibit_Data_Centers_Measure_(November_2026)",
-          "source_title": "Ballotpedia — Measure DB — Data centers prohibited",
-          "captured_at": "2026-11-04"
+          "statement": "YES 19,132 83.92% NO 3,667 16.08%",
+          "source_url": "https://results.lavote.gov/text-results/4348",
+          "source_title": "Los Angeles County Registrar-Recorder/County Clerk — November 13 results bulletin, Measure DB",
+          "captured_at": "2026-11-15"
         },
-        "source_type": "news"
+        "source_type": "official"
       },
       "related_moratorium_ids": [],
       "related_policy_ids": [],
-      "notes": "Results are reported, not independently verified as certified. Legal effect is described separately from certification."
+      "notes": "The county’s November 13 results bulletin reports the tally. Certification has not been verified."
     },
     {
       "id": "edgewater-fl-amendment4-2026",

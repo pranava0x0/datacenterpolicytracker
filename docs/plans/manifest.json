@@ -1,0 +1,26 @@
+{
+  "corridor-community-benefits.pdf": {
+    "pdf": "577877abc7f74a934be57fe2a2693d5f2f007d708318f00e9c3a69ad31d91c86",
+    "source": "9153a58b934815547056ec6f84ccdbc90c2306e2824265cfd1ab8d2c94d58cdc"
+  },
+  "county-community-benefits.pdf": {
+    "pdf": "73bc5a5228af2ad79be0551e97f839f32280e88332262e1b4561c9c5df773e7c",
+    "source": "9d13e01dd181de5daf2a44aa60f014ce0fc57900c42f241804e10c7ee770f1ad"
+  },
+  "rural-community-benefits.pdf": {
+    "pdf": "ff9fc7385b759aa72a06ca2799f53b3e5efdc8676787c04a08a0cb5174103c4a",
+    "source": "c25b68518aa526696fac71c7af7a33398fb275684448ea6964bda0830d131262"
+  },
+  "state-community-benefits.pdf": {
+    "pdf": "f980a4e7748004f705ba2e30b9281fd0efe847745ab7c7a964329ca6eec698e8",
+    "source": "55f516caa7fefa9be9d349f0b709385ead0d99fe32b1b52dceb3da5f0fa0ced0"
+  },
+  "town-community-benefits.pdf": {
+    "pdf": "53c23e29572150447403a542e8b12df9e036270e36906d53e4dea860fca570ce",
+    "source": "61f5720e7ff4956d35485b1a265277ccabdcc6e2fe64cf280354a21296aaf2cd"
+  },
+  "urban-community-benefits.pdf": {
+    "pdf": "0c1a26637f885ea1fc73d65050627f79fb219490e49f54ac26b4b686ee3c26e8",
+    "source": "250e9be7ed1ac8367ff3dfc0a7cbc5f3c0f35ee10c02b55ddcb77b2826582118"
+  }
+}

@@ -63,16 +63,19 @@ function markdown(plan) {
   const sections = plan.sections.map(s => `## ${s.title}\n\n${s.clause}\n\n- Owner: ${s.owner}\n- Due: ${s.due}\n- Evidence: ${s.evidence}\n- Remedy: ${s.remedy}`).join("\n\n");
   return `# ${plan.title}\n\n${NOTICE}\n\n${plan.scenario}\n\n${plan.decision}\n\n${sections}\n\n## Before signing\n\nReplace the example numbers. Confirm legal authority and regulator roles. Attach the site impact study, payment schedule, measurement methods, notice and cure rules, security instruments and closure plan. Identify every signatory and any third-party enforcement rights.\n\n## Sources and adaptation\n\nThese clauses are authored proposals, not quotations or a description of either source. New Jersey guidance informs the review topics. The executed Project Jupiter agreement shows dated payments, a water cap, assignment terms and remedies limited to the project leases and guarantee; this draft proposes additional controls. No source establishes that the example dollar amounts or limits are suitable for another project.\n\n${plan.sources.map(k => `- [${SOURCES[k].title}](${SOURCES[k].url})`).join("\n")}\n`;
 }
-export function renderPlans(root) {
+export function renderPlans(root, initialKind = "county", onKindChange = () => {}) {
   root.innerHTML = `<p><a href="community-benefits.html">Community benefits blueprint: drafts by community type</a></p>
     <p class="guide-notice">Illustrative proposals. All example numbers are invented; check local authority before use.</p>
     <div class="guide-controls"><label for="draft-plan-kind">Choose a draft</label>
     <select id="draft-plan-kind"><option value="county">County: 100 MW campus</option><option value="state">State: incentives and large loads</option></select>
-    <button type="button" id="draft-plan-download">Download draft (.md)</button></div>
+    <button type="button" id="draft-plan-download">Download draft (.md)</button>
+    <a id="draft-plan-pdf" download>Download draft (PDF)</a></div>
     <article id="draft-plan-content"></article>`;
   const select = root.querySelector("select");
+  select.value = initialKind;
   function show() {
     const plan = PLANS[select.value];
+    root.querySelector("#draft-plan-pdf").href = 'plans/' + select.value + '-community-benefits.pdf';
     root.querySelector("article").innerHTML = `<h3>${esc(plan.title)}</h3>
       <p id="draft-plan-decision" class="guide-decision">${esc(plan.decision)}</p>
       <details class="guide-clause"><summary>Example and assumptions</summary><p>${esc(plan.scenario)}</p><p>${esc(NOTICE)}</p></details>
@@ -84,7 +87,7 @@ export function renderPlans(root) {
       <p>These are authored proposals. New Jersey guidance informs the review topics. Project Jupiter supplies an executed comparison with dated payments and capped potable water; its remedies are limited to leases and the guarantee. This draft adds controls. Neither source establishes suitable dollar amounts or water limits for another project.</p>
       <p>${links(plan.sources)}</p></details>`;
   }
-  select.addEventListener("change", show);
+  select.addEventListener("change", () => { show(); onKindChange(select.value); });
   root.querySelector("button").addEventListener("click", () => {
     const url = URL.createObjectURL(new Blob([markdown(PLANS[select.value])], {type: "text/markdown;charset=utf-8"}));
     const a = document.createElement("a");

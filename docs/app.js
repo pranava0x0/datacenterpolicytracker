@@ -599,6 +599,7 @@ const state = {
   contestedPageKey: null,
   projectMoratoriums: new Map(),
   activeView: DEFAULT_VIEW_NAME,
+  draftKind: "county",
   selectedCompanySlug: null,
   explorerFilters: {
     q: "",
@@ -853,6 +854,14 @@ function _routeFromLocation(boot) {
   // Read the sub-key BEFORE activating: activateView rewrites the hash.
   const sub = parseSubtabHash(window.location.hash);
   if (sub) {
+    if (sub.agreement === "drafts") {
+      state.draftKind = params.get("p-draft") === "state" ? "state" : "county";
+      const select = document.getElementById("draft-plan-kind");
+      if (select && select.value !== state.draftKind) {
+        select.value = state.draftKind;
+        select.dispatchEvent(new Event("change"));
+      }
+    }
     activateView(sub.view);
     setActiveSubtab(sub.group, sub.key);
     if (sub.key === "agreements") setActiveSubtab("cba", sub.agreement || SUBTAB_GROUPS.cba[0]);
@@ -2410,15 +2419,20 @@ function renderRateCases() {
       li.append(next);
     }
     li.append(el("p", "rc-summary clampable", rc.summary));
+    const references = el("ul", "rc-references");
+    for (const r of rc.resources || []) references.append(_linkLi(r.url, r.title));
+    references.hidden = true;
     const more = el("button", "btn-link rc-more", "Read more");
     more.type = "button";
     more.setAttribute("aria-expanded", "false");
     more.addEventListener("click", () => {
       const open = li.classList.toggle("is-expanded");
+      references.hidden = !open;
       more.textContent = open ? "Show less" : "Read more";
       more.setAttribute("aria-expanded", open ? "true" : "false");
     });
     li.append(more);
+    if (references.childElementCount) li.append(references);
     list.append(li);
   }
   if (!cases.length) {
@@ -3066,6 +3080,7 @@ function writePolicyUrl() {
   }
   if (document.getElementById("policy-cbf-filter")?.checked) params.set("p-cbf", "1");
   if (state.openPolicyId) params.set("policy", state.openPolicyId);
+  if (key === "agreements" && _activeSubtab.cba === "drafts" && state.draftKind === "state") params.set("p-draft", "state");
   const qs = params.toString();
   history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + hash);
 }
@@ -4533,7 +4548,10 @@ function loadPlanningGuide(key) {
   }
   _planningGuidePromise.then((guide) => {
     if (_planningGuidesRendered.has(key)) return;
-    if (key === "drafts") guide.renderPlans(root);
+    if (key === "drafts") guide.renderPlans(root, state.draftKind, (kind) => {
+      state.draftKind = kind;
+      writePolicyUrl();
+    });
     else guide.renderEvidence(root);
     _planningGuidesRendered.add(key);
   }).catch((err) => {

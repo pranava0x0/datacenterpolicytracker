@@ -651,15 +651,43 @@
       "filed_date": "2026-09-30",
       "decided_date": null,
       "effective_date": null,
+      "next_milestone": "Intervenors’ testimony and exhibits are due January 28, 2027 under the November 3 procedural order.",
+      "next_milestone_date": "2027-01-28",
+      "related_tariff_id": null,
+      "related_project_ids": null,
+      "summary": "Tampa Electric Company petitioned the Florida Public Service Commission on September 30, 2026 to approve large load customer tariffs under Section 366.043, Florida Statutes. The petition's tariffs apply to customers with an anticipated monthly peak load of 50 MW or more at a single location. The November 3 procedural order scheduled a hearing for March 30–April 2, 2027. It did not approve the proposed rates.",
+      "source_url": "https://www.floridapsc.com/pscfiles/library/filings/2026/07096-2026/07096-2026.pdf",
+      "source_title": "Florida PSC — Tampa Electric petition for approval of large load customer tariffs, Docket 20260146-EI (filed Sept 30, 2026)",
+      "resources": [
+        {
+          "url": "https://www.floridapsc.com/pscfiles/library/filings/2026/07681-2026/07681-2026.pdf",
+          "title": "Florida PSC — Order PSC-2026-0399-PCO-EI establishing procedure and hearing dates (November 3, 2026)"
+        }
+      ],
+      "captured_at": "2026-11-15"
+    },
+    {
+      "id": "in-iurc-aes-monrovia-2026",
+      "state_code": "IN",
+      "jurisdiction_level": "state",
+      "utility": "AES Indiana (Indianapolis Power & Light Company)",
+      "regulator": "Indiana Utility Regulatory Commission (IURC)",
+      "docket_number": "Cause No. 46394",
+      "title": "AES Indiana: Monrovia data center service and cost recovery",
+      "case_type": "special_contract",
+      "status": "approved",
+      "filed_date": "2026-04-22",
+      "decided_date": "2026-10-07",
+      "effective_date": null,
       "next_milestone": null,
       "next_milestone_date": null,
       "related_tariff_id": null,
       "related_project_ids": null,
-      "summary": "Tampa Electric Company petitioned the Florida Public Service Commission on September 30, 2026 to approve large load customer tariffs under Section 366.043, Florida Statutes. The petition's tariffs apply to customers with an anticipated monthly peak load of 50 MW or more at a single location. No hearing date or order has been verified.",
-      "source_url": "https://www.floridapsc.com/pscfiles/library/filings/2026/07096-2026/07096-2026.pdf",
-      "source_title": "Florida PSC — Tampa Electric petition for approval of large load customer tariffs, Docket 20260146-EI (filed Sept 30, 2026)",
+      "summary": "The IURC approved AES Indiana’s customer-specific service agreements and cost recovery for its Monrovia data center project. The commission found that the financial assurances secure at least 80% of the project costs reasonably allocable to this customer even if its electricity use grows more slowly than forecast. The agreement includes a minimum demand commitment, credit support and an early-exit fee; actual costs remain subject to review. The order does not report measured changes in household bills.",
+      "source_url": "https://www.in.gov/iurc/files/ord_46394_100726.pdf",
+      "source_title": "IURC — Order approving the Monrovia Project, Cause No. 46394 (October 7, 2026), pp. 17–18, 29–31",
       "resources": [],
-      "captured_at": "2026-11-05"
+      "captured_at": "2026-11-15"
     }
   ]
 }

@@ -6430,6 +6430,9 @@ button.depth-chip:focus-visible {
   min-height: 44px; padding: 8px 12px; border: 1px solid var(--border);
   border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit;
 }
+@media (pointer: coarse) {
+  .guide-controls a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: .5rem; }
+}
 .home-tasks button, .guide-controls button { cursor: pointer; }
 .home-tasks button:hover, .guide-controls button:hover { border-color: var(--accent); }
 .home-tasks button:focus-visible, .guide-controls :focus-visible, .guide-clause summary:focus-visible {

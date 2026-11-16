@@ -1298,9 +1298,9 @@ come first, then locations, companies and sites.
 - (2026-11-11, 2026 pass) Crusoe Jayton spur campus (Kent County): trade press only; fetch the Kent County hearing notice. **low**
 
 #### state:IN
-- (2026-11-11, 2026 pass) IURC approval of AES Indiana service to Google's 390 MW Monrovia data center (Cause No. 46394, reportedly Oct. 7, 2026; Microgrid Knowledge headline verified). Needs the IURC order before a rate-case record. **medium**
 
 #### state:ME
+- (2026-11-15) Wiscasset: replace the expired municipal results-page URL with a durable clerk’s return before treating the November vote as certified. The ordinance text independently establishes the study and publication requirements. **medium**
 - (2026-11-11, 2026 pass) Gorham town council passed a six-month data center moratorium 7-0 (Gorham Times, https://www.gorhamtimes.com/town-council-meeting-june-2/, probe HIT) but the page gives no year; a later extension is reported (newscentermaine). Confirm year and extension. **medium**
 
 #### state:MA
