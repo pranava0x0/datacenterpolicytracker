@@ -741,3 +741,12 @@ reviews should check where a record is discoverable, not only its text.
 | Packet re-review | Yes | Extracted and followed the actual PDF return URL; verified switch, reload, both formats and printed addresses. Tokens unmetered. | Follow the shipped artifact’s link, not a URL typed from memory. |
 | Evidence re-review | Yes | On mobile, followed Memphis map → ordinance → site; checked the displayed Tampa order and dates. Tokens unmetered. | Confirm navigation and the legal meaning together. |
 | GitHub code review | Yes | Flagged the policy draft PDF link’s short touch target. Confirmed and fixed at 44px on a coarse-pointer phone. Tokens unavailable. | Measure new anchors alongside neighboring buttons. |
+
+### November 15, 2026 — announcement refresh and citation validation
+
+| Run | Worked | Result and cost | Next time |
+| --- | --- | --- | --- |
+| Operator announcements | Yes | Two new dated site developments; unmetered. | Compare site metrics and attached claims with the geography of the announcement. |
+| County policy announcements | Yes | One meeting packet supported two distinct agreements; unmetered. | Share sources across records, not payment schedules. |
+| Independent accuracy review | Yes | Spotted the remaining two-campus description in Salem; unmetered. | Check the record title and historical notes after fixing totals. |
+| Policy term review | Yes | Triaged 28 partial/nonmatches and identified two substantive corrections; unmetered. | Compare actual text with the earlier audit before researching a paraphrase again. |

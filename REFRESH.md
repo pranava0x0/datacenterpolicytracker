@@ -1392,3 +1392,7 @@ inventory, not a new state-by-state search or a recertification of every status.
 ### 2026-11-15 — Community plan packets
 
 After changing a community draft or its source notes, run `python tools/build_plan_pdfs.py` and commit the regenerated files in `docs/plans/`. The builder reads the selected HTML, includes shared terms and absolute public evidence links, and also renders the county/state drafts. `--check` verifies the printable content and file digests. A budget allocation, an executed obligation and a service already operating belong at different stages on the same worksheet.
+
+### 2026-11-15 — validating company profiles and regional figures
+
+A source sweep that collected only links named source_url or url silently skipped company impact and campus pages. Count records as well as URLs and explain the fallback for companies without a dedicated page. A blank text extraction from a scanned order is inconclusive; the November 15 audit recovered three such orders or meeting records with OCR. Check both the numeric project fields and the attached claims before assigning a statewide investment to an individual campus.
