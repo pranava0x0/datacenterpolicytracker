@@ -4927,6 +4927,16 @@
       "captured_at": "2026-11-11",
       "published_at": "2026-07-01",
       "project_id": "qts-bessemer-al"
+    },
+    {
+      "id": "meta-future-is-for-everyone-us-fund",
+      "company_slug": "meta",
+      "theme": "community_grants",
+      "statement": "The Future is for Everyone Fund is Meta’s $1 billion commitment to invest directly in the U.S. communities that are home to a Meta data center.",
+      "source_url": "https://datacenters.atmeta.com/the-future-is-for-everyone-fund/",
+      "source_title": "Meta Data Centers — The Future is for Everyone Fund",
+      "captured_at": "2026-11-15",
+      "country": "US"
     }
   ]
 }

@@ -3435,14 +3435,14 @@
       "city": "Tallaght",
       "country": "IE",
       "status": "operational",
-      "source_url": "https://www.sdcc.ie/en/climate-action/latest-news/tallaght-district-heating-network-and-energy-centre-officially-opened.html",
-      "captured_at": "2026-10-19",
+      "source_url": "https://www.sdcc.ie/en/climate-action/spotlight-tallaght-district-heating-scheme/tallaght-district-heating-scheme.html",
+      "captured_at": "2026-11-15",
       "source_lang": "en",
       "subdivision": "IE-D",
       "locality": "Tallaght, South Dublin",
       "announced_year": 2020,
-      "source_title": "South Dublin County Council — Tallaght District Heating Network and Energy Centre officially opened",
-      "notes": "Excess heat from an Amazon Web Services data centre feeds the council-owned Tallaght District Heating Scheme, which AWS says it supplies free of charge. The council page says the scheme was officially opened; it shows no opening date. announced_year is 2020, the year of AWS's earliest dated statement captured. Trade press (DCD) reports a groundbreaking that conflicts with the operating account; the operating account is used. Site capacity is not disclosed."
+      "source_title": "South Dublin County Council — Tallaght District Heating Scheme",
+      "notes": "South Dublin County Council owns Heat Works, the not-for-profit utility that uses waste heat from a nearby AWS data centre. The council reports service to County Hall, Tallaght Library and TU Dublin buildings since April 2023. In 2024 the network expanded to Work IQ and 133 cost-rental apartments at Innovation Square. The council reports 1,421.84 tonnes of CO₂ savings in 2025; it does not report household bill savings here. Further customers are under consideration. AWS says it supplies recycled heat free to the scheme; this does not mean end users receive free heat. The announcement year is 2020, the earliest dated AWS statement captured. Site capacity is not disclosed."
     },
     {
       "id": "ie-aws-cruiserath-road",

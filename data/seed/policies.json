@@ -1758,16 +1758,20 @@
         "We've invested over $550 million in water and wastewater infrastructure supporting communities where our data centers are based.",
         "We support local small businesses through Community Accelerator events that build digital skills and teach small businesses how to leverage AI tools, including Meta AI, to help them grow."
       ],
-      "summary": "Meta operates a standing community-benefits program for its data center host communities: annual Community Action Grants to schools/nonprofits, electricity bill assistance for low-income households, and over $550 million in water/wastewater infrastructure investment. Meta separately announced a $1 billion 'Future Is for Everyone Fund' in August 2026 for data center communities, reported by AL.com, though the fund was not directly documented on this Meta newsroom page.",
+      "summary": "Meta operates a standing community-benefits program for its data center host communities: annual Community Action Grants to schools/nonprofits, electricity bill assistance for low-income households, and over $550 million in water/wastewater infrastructure investment. Meta now describes its $1 billion Future is for Everyone Fund as a U.S.-wide commitment; eligibility for annual grants depends on the host community. The national commitment is not a site allocation.",
       "source_url": "https://about.fb.com/news/2026/03/meta-data-centers-support-energy-jobs-environment-local-communities/",
       "source_title": "Meta Newsroom — How Meta's Data Centers Support American Energy, Jobs, the Environment, and Local Communities",
       "resources": [
         {
           "url": "https://www.alreporter.com/2026/08/11/meta-launches-1-billion-fund-supporting-data-center-communities/",
           "title": "Alabama Reporter — Meta launches $1 billion fund supporting data center communities"
+        },
+        {
+          "url": "https://datacenters.atmeta.com/the-future-is-for-everyone-fund/",
+          "title": "Meta Data Centers — The Future is for Everyone Fund (U.S. grant eligibility and administration)"
         }
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-15",
       "principles": [
         "community_benefits",
         "pay_own_way"
@@ -5609,7 +5613,7 @@
         "ratepayer_protection",
         "dollar_commitment"
       ],
-      "summary": "Mason County's summary of the development and community revenue agreement for the Crisham LLC campus lists a $15 million public safety impact fee, $2 million per building in annual payments to the school board, at least $130 million in infrastructure commitments, a term keeping power-supply costs out of other customers' rates, and a hiring plan. Baxtel reports the Fiscal Court approved the agreements unanimously on October 13 for Meta's campus.",
+      "summary": "Mason County's summary of the development and community revenue agreement for the Crisham LLC campus lists a $15 million public safety impact fee, $2 million per building in annual payments to the school board, at least $130 million in infrastructure commitments, a term keeping power-supply costs out of other customers' rates, and a hiring plan. Baxtel reports the Fiscal Court approved the agreements unanimously on October 13 for Meta's campus. The county summary places the public safety fee within the infrastructure commitment and lists $750,000 separately for the county’s costs of approving, negotiating and implementing the project (section V.12). These are terms, not receipts.",
       "source_url": "https://cms3.revize.com/revize/masoncountyky/Summary%20-%20Development%20%26%20Community%20Benefits%20Agreement%20-%20Mason%20Co.%20Fiscal%20Court%20Meeting%20%2810.05.2026%29%20%5BFINAL%5D.pdf",
       "source_title": "Mason County Fiscal Court — Summary: Development and Community Revenue Agreement (Oct. 6, 2026)",
       "resources": [
@@ -5621,7 +5625,7 @@
       "related_project_ids": [
         "meta-mason-county-ky"
       ],
-      "captured_at": "2026-11-09"
+      "captured_at": "2026-11-15"
     },
     {
       "id": "taylor-tx-big-watt-annexation-agreement-2026",
@@ -5805,6 +5809,39 @@
       "source_url": "https://cardinalnews.org/2026/08/26/stricter-data-center-regulations-approved-in-henry-county/",
       "source_title": "Cardinal News — Stricter data center regulations approved in Henry County",
       "captured_at": "2026-11-11"
+    },
+    {
+      "id": "memphis-tn-community-benefits-fund-5953",
+      "title": "Memphis Community Benefits Fund — Colossus I property-tax revenue",
+      "instrument": "local_ordinance",
+      "status": "in_effect",
+      "scope": "city",
+      "jurisdiction": "Memphis, TN",
+      "state_code": "TN",
+      "identifier": "Ordinance 5953",
+      "date": "2025-09-22",
+      "benefit_themes": [
+        "tax_revenue",
+        "community_grants"
+      ],
+      "principles": [
+        "community_benefits"
+      ],
+      "community_benefits_framework": true,
+      "key_terms": [
+        "$2 million for home repair assistance",
+        "$309,282 for community grants supporting public safety, youth, workforce development, and other services"
+      ],
+      "summary": "Memphis directs part of the Colossus I property-tax revenue to eligible programs within five miles of the facility. On November 13, 2026, the city reported a council-approved allocation of $3,259,282, including $2 million for the Memphis HOPE home repair program. These are public budget allocations, not separate developer grants or evidence that repairs have been completed.",
+      "source_url": "https://memphistn.gov/city-of-memphis-directs-3-26-million-in-data-center-revenue-back-to-south-memphis-neighborhoods/",
+      "source_title": "City of Memphis — Community Benefits Fund allocations, November 13, 2026",
+      "resources": [
+        {
+          "url": "https://memphistn.gov/wp-content/uploads/2026/11/Regular-Agenda-Documents-11.10.26.pdf",
+          "title": "November 10 City Council packet — resolution and ordinance history"
+        }
+      ],
+      "captured_at": "2026-11-15"
     }
   ]
 }
