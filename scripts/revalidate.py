@@ -84,10 +84,11 @@ Fetcher = Callable[[str], "tuple[int, str, str]"]
 # --------------------------------------------------------------------------
 
 def _iter_urls(node: Any) -> Iterator[str]:
-    """Every http(s) URL held under a `source_url` or `url` key, at any depth."""
+    """Evidence links, including dedicated operator, project and coordinate pages."""
     if isinstance(node, dict):
         for k, v in node.items():
-            if k in ("source_url", "url") and isinstance(v, str) and v.startswith("http"):
+            if k in ("source_url", "url", "dedicated_page_url", "project_page_url",
+                     "coordinate_source_url") and isinstance(v, str) and v.startswith(("http://", "https://")):
                 yield v
             else:
                 yield from _iter_urls(v)
@@ -149,7 +150,7 @@ def enumerate_sources(seed_dir: Optional[Path] = None,
                 quotes = [rec["statement"]]
             elif list_key == "policies":
                 quotes = [t for t in rec.get("key_terms") or [] if isinstance(t, str)]
-            primary = rec.get("source_url")
+            primary = rec.get("source_url") or rec.get("dedicated_page_url")
             seen = set()
             for url in _iter_urls(rec):
                 if url in seen:

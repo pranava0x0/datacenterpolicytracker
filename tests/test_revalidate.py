@@ -52,6 +52,23 @@ def test_enumeration_collects_nested_urls_and_quotes(tmp_path):
     assert by[("p1", "https://b.test/r")]["quotes"] == []
 
 
+def test_operator_and_site_evidence_urls_are_in_scope(tmp_path: Path) -> None:
+    site = {"id": "campus", "source_url": "https://town.test/vote",
+            "project_page_url": "https://operator.test/campus",
+            "coordinate_source_url": "https://town.test/map",
+            "resources": [{"url": "https://operator.test/campus"}]}
+    (tmp_path / "projects.json").write_text(json.dumps({"projects": [site]}))
+    companies = [{"slug": "operator", "dedicated_page_url": "https://operator.test/impact"},
+                 {"slug": "undocumented", "dedicated_page_url": None}]
+    (tmp_path / "companies.json").write_text(json.dumps({"companies": companies}))
+    rows = rv.enumerate_sources(tmp_path, ["companies", "projects"])
+    assert [(r["id"], r["url"], r["role"]) for r in rows] == [
+        ("operator", "https://operator.test/impact", "source"),
+        ("campus", "https://town.test/vote", "source"),
+        ("campus", "https://operator.test/campus", "resource"),
+        ("campus", "https://town.test/map", "resource")]
+
+
 def test_filter_by_kind_list_and_id():
     rows = rv.enumerate_sources()
     assert {r["kind"] for r in rv.filter_rows(rows, only="claims")} >= {"claims"}
