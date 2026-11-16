@@ -1,0 +1,546 @@
+dataset,collection,record_id,title,primary_role,primary_status,sources,machine_readable,text_screen,label_matches_on_best_source,terms_matched_across_sources,terms_screened,record_status
+companies,companies,adaniconnex,AdaniConneX,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,amazon,Amazon (AWS),source,live,1,1,company name,1,,,
+companies,companies,anthropic,Anthropic,source,live,1,1,company name,1,,,
+companies,companies,brookfield,Brookfield,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,cloudhq,CloudHQ,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,colt-dcs,Colt Data Centre Services,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,coreweave,CoreWeave,source,live,1,1,company name,1,,,
+companies,companies,crusoe,Crusoe,source,live,1,1,company name,1,,,
+companies,companies,ecodatacenter,EcoDataCenter,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,goodman,Goodman Group,site citation (no dedicated page or attributed claim),live,1,1,company name,1,,,
+companies,companies,google,Google,source,live,1,1,company name,1,,,
+companies,companies,kakao,Kakao Corp,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,lg-uplus,LG Uplus,site citation (no dedicated page or attributed claim),live,1,1,company name,0,,,
+companies,companies,meta,Meta,source,live,1,1,company name,1,,,
+companies,companies,microsoft,Microsoft,source,live,1,1,company name,1,,,
+companies,companies,mitsui-fudosan,Mitsui Fudosan,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,naver,NAVER,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,nextdc,NEXTDC,site citation (no dedicated page or attributed claim),live,1,1,company name,1,,,
+companies,companies,nscale,Nscale,site citation (no dedicated page or attributed claim),live,1,1,company name,1,,,
+companies,companies,nxtra,Nxtra by Airtel,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,openai,OpenAI,source,blocked,3,2,company name,1,2,1,
+companies,companies,oracle,Oracle,attributed claim (no dedicated page),blocked,3,2,company name,1,2,1,
+companies,companies,pampa-energia,Pampa Energía,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,prologis,Prologis,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,qts,QTS,source,live,1,1,company name,1,,,
+companies,companies,reliance,Reliance Industries,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,sb-energy,SB Energy (SoftBank Group),source,live,1,1,company name,1,,,
+companies,companies,segro,SEGRO,site citation (no dedicated page or attributed claim),live,1,1,company name,1,,,
+companies,companies,sesterce,Sesterce,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,softbank-corp,SoftBank Corp.,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+companies,companies,wonder-valley,Wonder Valley,source,live,1,1,company name,1,,,
+companies,companies,xai,xAI,source,live,1,1,company name,1,,,
+companies,companies,xtx-markets,XTX Markets,attributed claim (no dedicated page),live,1,1,company name,1,1,1,
+doe_sites,sites,doe-ames,Ames National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-argonne,Argonne National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-berkeley,Lawrence Berkeley National Laboratory,source,live,3,3,site name,1,,,
+doe_sites,sites,doe-brookhaven,Brookhaven National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-emcbc-new-york,EMCBC New York Project Office,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-etec,Energy Technology Engineering Center (ETEC),source,live,1,1,site name,0,,,
+doe_sites,sites,doe-fermilab,Fermi National Accelerator Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-hanford,Hanford Field Office,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-idaho,Idaho National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-idaho-cleanup-project,Idaho National Laboratory - Idaho Cleanup Project,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-jefferson,Thomas Jefferson National Accelerator Facility,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-livermore,Lawrence Livermore National Laboratory,source,live,3,3,site name,1,,,
+doe_sites,sites,doe-los-alamos,Los Alamos National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-los-alamos-em-office,Los Alamos National Laboratory - EM Los Alamos Field Office,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-moab,Moab Site,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-netl-albany,National Energy Technology Laboratory — Albany,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-netl-morgantown,National Energy Technology Laboratory — Morgantown,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-netl-pittsburgh,National Energy Technology Laboratory — Pittsburgh,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-nevada-security,Nevada National Security Sites - EM Nevada,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-oak-ridge-lab,Oak Ridge National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-oak-ridge-reservation,Oak Ridge Reservation - Oak Ridge Office of Environmental Management,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-pacific-northwest,Pacific Northwest National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-paducah,Paducah Site,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-portsmouth,Portsmouth Site,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-princeton-plasma,Princeton Plasma Physics Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-rockies-golden,National Laboratory of the Rockies — Golden,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-sandia-albuquerque,Sandia National Laboratories — Albuquerque,source,live,3,3,site name,1,,,
+doe_sites,sites,doe-sandia-livermore,Sandia National Laboratories — Livermore,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-savannah-river,Savannah River,source,live,1,1,site name,1,,,
+doe_sites,sites,doe-savannah-river-lab,Savannah River National Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-slac,SLAC National Accelerator Laboratory,source,live,2,2,site name,1,,,
+doe_sites,sites,doe-west-valley,West Valley Demonstration Project,source,live,1,1,site name,0,,,
+doe_sites,sites,doe-wipp,Waste Isolation Pilot Plant - Carlsbad Field Office,source,live,1,1,site name,0,,,
+international,policies,ar-rigi-ley-27742,"Régimen de Incentivo para Grandes Inversiones (RIGI), Título VII de la Ley 27.742, regulated by Decreto 749/2024",source,live,1,1,policy terms,,2,2,in_effect
+international,policies,ar-super-rigi-2026,"Súper RIGI (bill for a RIGI-style regime for new activities, including data centres)",source,live,2,2,policy terms,,3,3,proposed
+international,policies,au-aemc-data-centre-advice-2026,"AEMC advice to ministers on data-centre grid obligations (bring own firmed clean energy, flexibility, efficient connection)",source,live,1,1,policy terms,,1,1,proposed
+international,policies,au-nsw-data-centre-policy-framework-2026,NSW Data Centre Policy Framework and Guidelines,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,au-nsw-kemps-creek-data-centre-ssd-10101987,"Kemps Creek data centre, Penrith (SSD-10101987): state significant development approval",source,live,2,2,policy terms,,1,1,in_effect
+international,policies,ca-ab-aeso-interim-allocation,"AESO stage-one interim large-load allocation (1,200 MW)",source,live,1,1,policy terms,,2,2,in_effect
+international,policies,ca-ab-bill-12-data-centre-levy,"Alberta data centre levy (Bill 12, Financial Statutes Amendment Act (No. 2), 2025)",source,live,2,2,policy terms,,2,2,in_effect
+international,policies,ca-ab-data-centre-regulation-2026,Alberta Data Centre Regulation (June 2026),source,live,1,1,policy terms,,1,1,in_effect
+international,policies,ca-qc-large-load-authorization,Québec government authorization required to connect projects of 5 MW or more,source,live,1,1,policy terms,,1,1,in_effect
+international,policies,cl-pdata-2024-2030,National Data Centers Plan 2024-2030 (PDATA),source,live,1,1,policy terms,,3,3,in_effect
+international,policies,cl-sea-datacenter-criterion-2026,SEA evaluation criterion: Introduction to data-centre projects (Resolución Exenta 20269910149),source,live,1,1,policy terms,,2,2,in_effect
+international,policies,es-aragon-piga-microsoft-region-2025,"Plan de Interés General de Aragón (PIGA) 'Implantación de la Región Microsoft en Aragón', ORDEN FOM/1520/2025",source,live,1,1,policy terms,,1,1,proposed
+international,policies,es-aragon-piga-rhodes-calatorao-2025,"Plan de Interés General de Aragón (PIGA) 'Proyecto Rhodes', Calatorao, ORDEN FOM/1039/2025",source,live,1,1,policy terms,,2,2,proposed
+international,policies,eu-cada-proposal-2026,Proposal for the Cloud and AI Development Act (CADA),source,live,2,2,policy terms,,2,2,proposed
+international,policies,eu-dc-rating-scheme-2026,Common EU rating scheme and label for data centres (data centre energy efficiency package),source,live,2,2,policy terms,,3,3,proposed
+international,policies,eu-eed-dc-reporting-2024-1364,Energy Efficiency Directive data-centre reporting and Delegated Regulation (EU) 2024/1364,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,fi-datacentre-electricity-tax-2026,Data-centre electricity moved to electricity tax class I from 1 July 2026,source,live,1,1,policy terms,,1,1,in_effect
+international,policies,fr-cre-rte-fast-track-400kv-2025,"CRE approval of RTE 400 kV ""fast track"" connection procedure (very large consumers)",source,live,1,1,policy terms,,1,1,in_effect
+international,policies,fr-idf-siting-strategy-2026,Île-de-France regional strategy for siting data centres,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,fr-senate-data-centre-siting-bill-2026,Proposition de loi visant à encadrer l’implantation des centres de données sur le territoire français (Senate first reading),source,live,2,2,policy terms,,1,1,proposed
+international,policies,gb-ai-growth-zones-2025,Delivering AI Growth Zones (policy paper),source,live,1,1,policy terms,,3,3,in_effect
+international,policies,gb-north-east-ai-growth-zone-2025,North East AI Growth Zone (Blyth and Cobalt Park),source,live,2,2,policy terms,,1,1,in_effect
+international,policies,gb-north-wales-ai-growth-zone-2025,"North Wales AI Growth Zone (Prosperity Parc, Anglesey; Trawsfynydd, Gwynedd)",source,live,1,1,policy terms,,1,1,in_effect
+international,policies,gb-ofgem-curate-dc-connection-consultation-2026,Ofgem Curate consultation: data centre connection reforms,source,live,1,1,policy terms,,1,1,proposed
+international,policies,gr-draft-grid-connection-bill-2026,Draft bill: rules for connecting data centres to the Greek power grid,source,live,1,1,policy terms,,2,2,proposed
+international,policies,gr-microsoft-attica-incentives-2022,Interministerial Decision 74/2022: investment incentives for Microsoft Operations 4733 Hellas data centres (Attica),source,live,1,1,policy terms,,2,2,in_effect
+international,policies,ie-cru-large-energy-users-2025,Large Energy Users Connection Policy (CRU decision CRU/2025236),source,live,3,3,policy terms,,4,4,in_effect
+international,policies,ie-eirgrid-dccopp-v3-2026,"EirGrid Data Centre Connection Offer Process and Policy, Version 3 (DCCOPP v3)",source,live,1,1,policy terms,,2,2,in_effect
+international,policies,in-cea-dc-grid-committee-2026-10,CEA committee on the impact of data centres on grid stability,source,live,1,1,policy terms,,1,1,proposed
+international,policies,in-ka-sustainable-dc-policy-2026-2031,Karnataka Sustainable Data Centre Policy 2026-2031,source,live,2,2,policy terms,,2,2,in_effect
+international,policies,in-maharashtra-green-dc-parks-amendment-2026,"Maharashtra Integrated Green Data Centre Parks policy, amended",source,live,1,1,policy terms,,1,1,in_effect
+international,policies,in-mh-dc-policy-proposed-2026-09,"Maharashtra Data Centre Policy (proposed, with SOPs)",source,live,1,1,policy terms,,1,1,proposed
+international,policies,in-niti-dc-evaluation-framework-2026,NITI Aayog framework for evaluating data-centre proposals,source,live,1,1,policy terms,,1,1,in_effect
+international,policies,in-up-dc-policy-2026-go-536,Uttar Pradesh Data Centre Policy 2026,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,in-up-gnida-dc-plot-scheme-2023-06,Greater Noida data-centre plot allotment scheme (GNIDA),source,live,1,1,policy terms,,1,1,in_effect
+international,policies,in-up-yeida-sector28-allotment-2023-11,"YEIDA Sector 28 data-centre plot allotments, near Noida International Airport",source,live,1,1,policy terms,,1,1,in_effect
+international,policies,jp-ishikari-dc-consortium-2026,"Ishikari Data Centre Consortium (石狩DCC), established by the City of Ishikari",source,live,1,1,policy terms,,2,2,in_effect
+international,policies,jp-utsunomiya-shin-tochigi-dc-solicitation-2026,「新栃木変電所」南側エリア データセンター整備事業 募集要項,source,live,1,1,policy terms,,1,1,proposed
+international,policies,jp-watt-bit-council-2025,Public-Private Advisory Council on Watt-Bit Collaboration,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,kr-ai-datacenter-special-act-2026,AI Data Center Special Act (passed National Assembly 7 May 2026; not yet in force),source,live,2,2,policy terms,,2,2,proposed
+international,policies,kr-busan-egis-ai-dc-mou-2025,Busan–Egis Asset Management AI data centre investment MOU (Myeongji-Noksan),source,live,1,1,policy terms,,1,1,in_effect
+international,policies,kr-changwon-defense-ai-dc-investment-2026,"Changwon defence-dedicated AI data centre investment agreement (Gyeongnam Province, Changwon City, Dinotitia, Dinocore, Shinhwa Steel)",source,live,1,1,policy terms,,2,2,in_effect
+international,policies,kr-gangwon-kepco-mou-2026,Gangwon State–KEPCO memorandum of understanding on the Gangwon AI Data Center and national backbone grid,source,live,1,1,policy terms,,2,2,in_effect
+international,policies,kr-geumcheon-gu-200m-consent-2026,Geumcheon-gu data-centre resident-participation review system (head's first decision),source,live,1,1,policy terms,,2,2,in_effect
+international,policies,kr-grid-impact-assessment-2024,"Grid impact assessment for data centres of 10 MW or more (MOTIE draft rules, re-notified December 2024)",source,live,1,1,policy terms,,2,2,proposed
+international,policies,kr-jdc-jeju-public-ai-dc-2026,Jeju Development Center public AI data centre (Jeju Advanced Science & Technology Complex 2),source,live,1,1,policy terms,,1,1,proposed
+international,policies,kr-power-supply-refusal-5mw-2023,"Power-supply refusal for large loads of 5 MW or more (Electricity Business Act enforcement decree amendment, announced March 2023)",source,live,1,1,policy terms,,1,1,proposed
+international,policies,kr-seoul-district-heads-residential-zone-2026,Seoul district heads' resolution to restrict data centres in general residential zones,source,live,1,1,policy terms,,2,2,proposed
+international,policies,se-datorhallar-energy-tax-2023,Abolition of the energy-tax reduction for electricity used in data centres (datorhallar),source,blocked,1,0,policy terms,,,1,in_effect
+international,policies,se-stockholm-data-parks,Stockholm Data Parks (city-led data-centre heat-recovery initiative),source,live,1,1,policy terms,,1,1,in_effect
+international,policies,sg-dc-cfa-pilot-2022,"Data Centre Call for Application (DC-CFA) pilot, 2022",source,live,2,2,policy terms,,2,2,in_effect
+international,policies,sg-dc-cfa2-2026,Data Centre Call for Application 2 (DC-CFA2): provisional allocation of 50 MW each to four operators,source,live,1,1,policy terms,,1,1,in_effect
+international,policies,sg-green-data-centre-roadmap-2024,"Green Data Centre Roadmap (IMDA, 2024)",source,live,1,1,policy terms,,2,2,in_effect
+international,projects,ar-aws-bahia-blanca,"AWS data centre, Bahía Blanca free-trade zone (Tango Sur / Centro / Norte)",source,live,1,1,city and operator,2,,,announced
+international,projects,ar-stargate-argentina,"Stargate Argentina (OpenAI and Sur Energy), letter of intent, site not named",source,live,2,2,city and operator,1,,,announced
+international,projects,au-goodman-project-mars,"Project Mars, Lane Cove",source,live,1,1,city and operator,2,,,withdrawn
+international,projects,au-microsoft-kemps-creek,Microsoft Kemps Creek data centre (Penrith),source,live,1,1,city and operator,2,,,announced
+international,projects,au-nextdc-s7-eastern-creek,NEXTDC S7 (OpenAI AI campus),source,live,1,1,city and operator,2,,,announced
+international,projects,be-google-farciennes,"Google data centre, Farciennes",source,live,1,1,city and operator,2,,,announced
+international,projects,be-google-feluy-ecaussinnes,"Google data centre, Feluy-Écaussinnes zoning",source,live,1,1,city and operator,2,,,announced
+international,projects,be-google-st-ghislain,Google St. Ghislain data center campus expansion,source,live,1,1,city and operator,2,,,announced
+international,projects,ca-google-beauharnois,Google Beauharnois data centre,source,live,1,1,city and operator,2,,,announced
+international,projects,ca-meta-sturgeon-county,Meta Sturgeon Data Centre,source,live,3,3,city and operator,2,,,construction
+international,projects,ca-microsoft-levis,Microsoft Québec data centres (Québec-Lévis economic zone),source,live,1,1,city and operator,2,,,announced
+international,projects,cl-aws-huechuraba,AWS Huechuraba storage data centre (Centro de Almacenamiento Huechuraba),source,live,1,1,city and operator,2,,,announced
+international,projects,cl-google-cerrillos,Cerrillos Data Center,source,live,3,3,city and operator,2,,,announced
+international,projects,cl-google-quilicura,Google Quilicura data center,source,live,1,1,city and operator,2,,,operational
+international,projects,cl-microsoft-santiago,Microsoft Chile Central cloud region,source,live,1,1,city and operator,2,,,operational
+international,projects,es-aws-zaragoza-car,"AWS data center campus, Zaragoza (Aragón)",source,live,1,1,city and operator,2,,,announced
+international,projects,es-meta-talavera-de-la-reina,"Meta Data Center Campus, Talavera de la Reina",source,live,1,1,city and operator,2,,,announced
+international,projects,fi-google-hamina,Google Hamina data centre campus (expansion and heat-recovery project),source,live,1,1,city and operator,2,,,operational
+international,projects,fi-google-muhos,Google Muhos data centre,source,live,2,2,city and operator,2,,,construction
+international,projects,fi-google-vaala,Google Vaala Data Center Campus,source,live,1,1,city and operator,2,,,announced
+international,projects,fi-microsoft-espoo,"Microsoft Finland datacentre region (Espoo and Kirkkonummi), waste heat to Fortum district heating",source,live,1,1,city and operator,2,,,construction
+international,projects,fi-microsoft-vaasa-mustasaari,Microsoft Vaasa and Mustasaari land (GigaVaasa),source,live,1,1,city and operator,2,,,announced
+international,projects,fi-sesterce-jamsa-kaipola,Sesterce Jämsä / Kaipola AI Campus,source,live,1,1,city and operator,2,,,announced
+international,projects,fi-xtx-kajaani,XTX Markets Kajaani data centre complex,source,live,1,1,city and operator,2,,,construction
+international,projects,fr-google-ozans-chateauroux,"Ozans-Châteauroux data centre and grid connection (Etrechet, Indre)",source,live,1,1,city and operator,2,,,announced
+international,projects,fr-microsoft-petit-landau,"Microsoft data centre, Petit-Landau and Hombourg (Haut-Rhin)",source,live,2,2,city and operator,2,,,announced
+international,projects,fr-segro-le-bourget,Segro Le Bourget data centre (former H&M warehouse),source,live,2,2,city and operator,2,,,announced
+international,projects,fr-sesterce-alixan-rovaltain,"Sesterce AI data centre, Rovaltain site (Alixan, Drôme)",source,live,2,2,city and operator,2,,,announced
+international,projects,fr-sesterce-bosquel,SoftBank Group / Sesterce Bosquel AI Campus,source,live,1,1,city and operator,2,,,announced
+international,projects,gb-google-north-weald-outline,"North Weald Airfield data centre (outline permission, Essex)",source,live,1,1,city and operator,2,,,announced
+international,projects,gb-google-thurrock-arena-essex,"Google data centre campus, Arena Essex (Lakeside, Thurrock)",source,live,1,1,city and operator,2,,,announced
+international,projects,gb-google-waltham-cross,Google Waltham Cross data centre (Hertfordshire),source,live,1,1,city and operator,2,,,operational
+international,projects,gb-nscale-loughton,Nscale Loughton data centre,source,live,2,2,city and operator,2,,,announced
+international,projects,gb-qts-cambois,QTS Cambois data centre campus,source,live,1,1,city and operator,2,,,announced
+international,projects,gr-microsoft-attica,Microsoft Attica data centres (Spata Site 6; Kropia Sites 27 and 28),source,live,2,2,city and operator,2,,,announced
+international,projects,ie-aws-cruiserath-road,"AWS Cruiserath Road data centres E, F and G (Fingal)",source,live,1,1,city and operator,0,,,announced
+international,projects,ie-aws-tallaght,AWS Tallaght data centre (waste heat to Tallaght District Heating Scheme),source,live,1,1,city and operator,1,,,operational
+international,projects,ie-google-grange-castle,Google Grange Castle data centre (Clondalkin),source,live,2,2,city and operator,2,,,announced
+international,projects,ie-meta-clonee,Meta Clonee data centre (Meath),source,live,2,2,city and operator,2,,,operational
+international,projects,ie-microsoft-naas-jigginstown,"Jigginstown campus, Naas (Co. Kildare)",source,live,1,1,city and operator,2,,,announced
+international,projects,in-amazon-hyderabad-telangana,AWS Hyderabad (Telangana) cloud region expansion,source,live,1,1,city and operator,2,,,construction
+international,projects,in-amazon-maharashtra-mumbai-region,AWS Mumbai region investment (Maharashtra),source,live,1,1,city and operator,2,,,announced
+international,projects,in-amazon-thane-balkum,"Amazon data centre, Balkum, Thane",source,live,1,1,city and operator,1,,,announced
+international,projects,in-colt-navi-mumbai-3,"Colt DCS Mumbai 3, Navi Mumbai campus",source,live,1,1,city and operator,2,,,construction
+international,projects,in-coreweave-navi-mumbai-taloja,"CoreWeave campus at AdaniConneX Taloja, Navi Mumbai",source,live,1,1,city and operator,2,,,announced
+international,projects,in-google-visakhapatnam,"Google AI hub, Visakhapatnam (1 GW)",source,live,6,6,city and operator,2,,,construction
+international,projects,in-microsoft-hyderabad-south-central-region,India South Central cloud region (Hyderabad),source,live,1,1,city and operator,2,,,announced
+international,projects,in-reliance-jamnagar-meta,Reliance Jamnagar data centre (Meta lease),source,live,1,1,city and operator,2,,,announced
+international,projects,in-reliance-vizianagaram,"Reliance AI data centre, Vizianagaram district (Andhra Pradesh land allotment)",source,live,1,1,city and operator,2,,,announced
+international,projects,jp-google-inzai,Google Inzai Data Center,source,live,2,2,city and operator,2,,,operational
+international,projects,jp-mitsui-kobe-tunnel,Kobe underground data centre in a former conveyor-belt tunnel (Nishi Ward),source,live,1,1,city and operator,1,,,announced
+international,projects,jp-softbank-sakai,"SoftBank Sakai AI data centre (former Sharp LCD plant), Osaka",source,live,1,1,city and operator,2,,,announced
+international,projects,jp-softbank-tomakomai,Hokkaido Tomakomai AI Data Center,source,live,1,1,city and operator,2,,,construction
+international,projects,kr-aws-ulsan-ai-zone,"AWS AI Zone, Ulsan (SK Group build-out)",source,live,1,1,city and operator,2,,,announced
+international,projects,kr-kakao-ansan,"Kakao data centre, Hanyang University ERICA Campus Innovation Park (Ansan)",source,live,1,1,city and operator,1,,,announced
+international,projects,kr-lguplus-paju-aidc,LG Uplus Paju AI data centre (AIDC),source,live,1,1,city and operator,0,,,construction
+international,projects,kr-naver-sejong,NAVER Sejong AI data center campus,source,live,2,2,city and operator,2,,,announced
+international,projects,kr-stargate-korea,Stargate Korea (OpenAI with Samsung SDS and SK Telecom),source,live,1,1,city and operator,1,,,announced
+international,projects,mx-aws-queretaro,"AWS Mexico (Central) Region, Querétaro",source,live,1,1,city and operator,1,,,operational
+international,projects,mx-cloudhq-queretaro,"CloudHQ data centre campus, Querétaro (six data centres)",source,live,1,1,city and operator,2,,,announced
+international,projects,mx-google-queretaro,"Google Cloud region, Querétaro",source,live,1,1,city and operator,2,,,operational
+international,projects,mx-microsoft-queretaro,"Microsoft data centers, Querétaro",source,live,2,2,city and operator,2,,,construction
+international,projects,se-brookfield-strangnas,"Brookfield AI data centre, Strängnäs",source,live,1,1,city and operator,2,,,announced
+international,projects,se-ecodatacenter-smedjebacken,"EcoDataCenter third campus, Smedjebacken",source,live,1,1,city and operator,2,,,announced
+international,projects,se-google-horndal,"Google Horndal data centre (Avesta, Dalarna)",source,live,2,2,city and operator,2,,,construction
+international,projects,se-meta-lulea,Meta Luleå data centre,source,live,2,2,city and operator,2,,,operational
+international,projects,se-microsoft-sandviken,Microsoft Sandviken datacentre (three planned facilities),source,live,1,1,city and operator,2,,,announced
+international,projects,sg-google-jurong-west,Google Singapore Data Centers,source,live,2,2,city and operator,2,,,operational
+international,projects,sg-meta-tanjong-kling,Meta Singapore Data Centre,source,live,3,2,city and operator,2,,,construction
+policies,policies,ak-sb250-2026-failed,"Senate Bill 250 — data center utility service, ratepayer cost protection, and community benefit agreement requirement (passed Senate, died at sine die)",source,live,2,2,policy terms,,0,6,failed
+policies,policies,al-sb270-act2026-610-2026,Act 2026-610 (SB 270) — large-load data center utility contract review,source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,amazon-company-plan-aws-data-center-communities-2026,AWS data center community impact program,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,amazon-company-plan-built-together-2026,Built Together — Amazon's $1B data center community investment framework,source,live,2,2,policy terms,,7,7,in_effect
+policies,policies,anthropic-company-plan-electricity-price-coverage-2026,Anthropic: covering electricity price increases from our data centers,source,live,1,1,policy terms,,5,5,in_effect
+policies,policies,ar-hb1444-2025-act548,House Bill 1444 (Act 548) — Qualified Data Center sales/use tax exemption expansion,source,live,3,2,policy terms,,0,5,in_effect
+policies,policies,ashville-oh-edgeconnex-term-summary-resolution-2026,Ashville–EdgeConneX development and supply agreement term summary (Resolution 06-2026),source,live,2,2,policy terms,,4,4,proposed
+policies,policies,aurora-co-mui-data-centers-2026-10,"Aurora, CO zoning amendment removing data centers as a permitted use in the mixed-use office institutional zone",source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,az-acc-cooperative-large-load-framework-2026,Arizona Corporation Commission approves joint cooperative framework for large-load electric service agreements,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,az-hb2756-2026,Chapter 111 (HB 2756) — extra high load factor customer reporting and contract terms,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,az-hb4168-2026,"House Bill 4168 (Laws 2026, Ch. 140) — three-year pause on new Computer Data Center Program applications",source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,barber-county-ks-google-project-helium-2026,Barber County–Google Project Helium agreements (community benefit payments),source,live,1,1,policy terms,,7,7,in_effect
+policies,policies,blakely-ga-qts-community-betterment-agreement-2026,Blakely and Early County–QTS Community Betterment Agreement,source,live,2,2,policy terms,,6,6,in_effect
+policies,policies,boston-ma-datacenter-prohibited-use-order-2026-09,Boston councilor files order to bar data centers in every zoning district,source,live,1,1,policy terms,,1,1,proposed
+policies,policies,bowling-green-ky-datacenter-zoning-2026,"Bowling Green, KY — zoning ordinance restricting data centers",source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,ca-ab1577-2026,Assembly Bill 1577 — data center reporting,source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,ca-ab2383-2026,Assembly Bill 2383 — electricity: data centers,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,ca-ab2469-2026,Assembly Bill 2469 — data center water use disclosures,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,ca-ab2619-2026,Assembly Bill 2619 — water resources: data centers,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,ca-sb1168-2026,Senate Bill 1168 — data centers: rate structures,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,ca-sb886-2026,Senate Bill 886 — California Technology Innovation and Ratepayer Protection Act,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,ca-sb887-2026,Senate Bill 887 — CEQA streamlining and data centers,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,cedar-rapids-ia-qts-amended-development-agreement-2025,Cedar Rapids–QTS amended development agreement (community betterment fund),source,live,2,2,policy terms,,5,5,in_effect
+policies,policies,charles-county-md-zta-25-187-2026-07,Charles County withdraws data center zoning text amendment ZTA 25-187,source,live,2,2,policy terms,,2,2,failed
+policies,policies,cheyenne-wy-microsoft-cba-rejected-2026,"Cheyenne, WY – rejected $50 million Microsoft community benefits agreement proposal",source,live,1,1,policy terms,,3,3,failed
+policies,policies,chicago-il-executive-order-2026-5,Chicago Executive Order No. 2026-5 — enhanced review of data centers,source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,cincinnati-oh-2026-02-framework,Cincinnati data-center interim development-control overlay,source,live,1,1,policy terms,,0,3,in_effect
+policies,policies,clearfield-ut-2026-09-framework,Clearfield temporary data-center land-use study,source,blocked,1,0,policy terms,,,2,in_effect
+policies,policies,coeur-dalene-id-datacenter-non-approval-2026,Coeur d'Alene council announces it will not approve data center proposals pending study,source,live,1,1,policy terms,,1,1,proposed
+policies,policies,columbia-county-ga-google-kinetic-agreement-2026,"Columbia County, GA – Google (Kinetic Infrastructure Solutions) data center agreement",source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,coreweave-company-plan-community-2026,CoreWeave: community benefits philosophy and Ratepayer Protection Pledge,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,crusoe-company-plan-communities-2026,Crusoe: How Data Centers Benefit Local Communities,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,dane-county-wi-qts-community-commitment-2025,QTS initial $50 million Dane County community commitment,source,live,1,1,policy terms,,3,3,proposed
+policies,policies,de-hb233-2026,"House Bill 233 — separate utility rate class for large data centers, developer-pays infrastructure costs",source,live,3,2,policy terms,,2,2,in_effect
+policies,policies,de-hb310-2026,House Bill 310 — excludes large energy-use facilities from job-creation tax credits,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,de-hb445-2026,"House Bill 445 — ""Bring Your Own Generation"" mandate for large energy-use facilities",source,live,2,1,policy terms,,2,2,in_effect
+policies,policies,dona-ana-county-nm-oracle-project-jupiter-pilot-2025,Project Jupiter (Oracle) PILOT / Industrial Revenue Bond agreement,source,live,3,3,policy terms,,3,3,in_effect
+policies,policies,dona-ana-county-nm-project-jupiter-cba-2025,Project Jupiter Community Benefits Agreement (executed),source,live,3,3,policy terms,,8,9,in_effect
+policies,policies,effingham-county-ga-openai-camellia-community-benefits-2026,"Effingham County, GA – OpenAI 'Project Camellia' community benefits commitment",source,blocked,4,3,policy terms,,0,6,proposed
+policies,policies,eugene-or-hynix-datacenter-use-determination-2026,"Eugene, OR — use determination: data centers not an allowed use at the former Hyundai/Hynix site",source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,fairbanks-north-star-borough-2027-priorities-datacenter-moratorium-2026-08,Fairbanks North Star Borough Assembly 2027 legislative priorities request a data center moratorium,source,live,1,1,policy terms,,1,1,proposed
+policies,policies,fayette-county-ga-qts-resilience-program-2026,QTS Fayette County Community Resilience Program,source,live,1,1,policy terms,,0,2,in_effect
+policies,policies,fayetteville-ga-data-center-zoning-prohibition-2026,Fayetteville zoning prohibition on new data centers,source,blocked,1,0,policy terms,,,2,in_effect
+policies,policies,fayetteville-ga-qts-station93-2026,QTS contribution for Fayetteville Fire Station 93,source,live,1,1,policy terms,,0,2,in_effect
+policies,policies,festus-mo-crg-data-center-ordinance-2026,Festus–CRG data center ordinance and development agreement framework,source,live,2,2,policy terms,,4,4,in_effect
+policies,policies,fl-hb7031-2025,House Bill 7031 — data center sales tax exemption threshold increase (15 MW to 100 MW),source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,fl-sb484-large-load-tariffs-2026,Florida CS/CS/SB 484 — large-load tariffs so data centers pay their own cost of service,source,live,2,2,policy terms,,5,5,in_effect
+policies,policies,fort-wayne-in-council-datacenter-pause-2026-09,Fort Wayne council ordinances to pause its own data center actions for one year,source,live,2,2,policy terms,,2,2,failed
+policies,policies,frederick-county-md-quantum-cba-rejected-2026,"Frederick County, MD – rejected $110M Quantum Frederick community benefits agreement",source,live,2,2,policy terms,,5,5,failed
+policies,policies,front-royal-va-datacenter-ban-proposal-2026,"Front Royal, VA — proposed zoning ban on data centers in industrial districts",source,live,1,1,policy terms,,2,2,proposed
+policies,policies,ga-sb410-2026,Senate Bill 410 — repeal of sales tax exemption for new data centers,source,blocked,3,1,policy terms,,0,3,failed
+policies,policies,google-company-plan-data-center-communities-2026,"Google data center community benefits (grants, STAR program, infrastructure)",source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,google-company-plan-responsible-growth-2026,"Google data-center power costs, taxes and disclosure commitments",source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,hammond-in-coreweave-development-agreement-2025,Hammond–CoreWeave development agreement (Community Impact Payments),source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,hawaii-county-bill-170-2026-07,Hawaii County Bill 170 to exclude industrial-scale data centers from permitted uses,source,live,1,1,policy terms,,1,1,proposed
+policies,policies,hays-county-tx-water-review-resolution-2026-06,Hays County water review board and temporary suspension of discretionary approvals for data centers,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,hazle-township-pa-2026-06-framework,Hazle Township data-center curative-amendment process,source,blocked,1,0,policy terms,,,2,in_effect
+policies,policies,henry-county-va-data-center-zoning-2026,"Henry County — data center zoning ordinance (Data Center District, three public hearings, six impact studies)",source,live,1,1,policy terms,,4,4,in_effect
+policies,policies,huntsville-al-meta-project-agreement-2022,"Huntsville, AL – Meta North Huntsville expansion project agreement",source,live,1,1,policy terms,,1,4,in_effect
+policies,policies,ia-hf976-2025,"House File 976 — time limits, registration, and reporting on the data center electricity/backup-power sales tax exemption",source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,id-hb895-2026,House Bill 895 — limitations on consumptive water use for data center cooling,source,live,3,2,policy terms,,1,1,in_effect
+policies,policies,id-hb897-2026-failed,"House Bill 897 — data center tax exemption limits, water notice, cost-recovery electric service (stalled after Senate amendment)",source,live,3,2,policy terms,,0,4,failed
+policies,policies,id-hb911-2026,"House Bill 911 — new large electric loads (interconnection, cost allocation, no-harm test)",source,live,3,2,policy terms,,0,5,in_effect
+policies,policies,il-datacenter-tax-exemption-2019,Data Center Investment Tax Exemption Program (20 ILCS 605/605-1025),source,live,1,1,policy terms,,6,6,in_effect
+policies,policies,il-tax-exemption-pause-2026,Governor Pritzker directive pausing new Data Center Investment Program agreements,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,in-hea1210-2026,House Enrolled Act 1210 — data center local sales/use tax revenue sharing,source,live,2,2,policy terms,,0,4,in_effect
+policies,policies,independence-mo-udo-datacenter-bess-2026,"Independence, MO — Unified Development Ordinance changes for data center and battery storage projects",source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,iron-county-ut-draft-large-load-ordinance-2026-10,"Iron County planning commission recommends noise, water and outreach rules for data centers and power plants",source,live,1,1,policy terms,,1,1,proposed
+policies,policies,ks-sb98-2025,Senate Bill 98 — data center sales and use tax exemption,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,ky-eo-2026-494,"Executive Order 2026-494 — Data Center Ratepayer, Environmental, Tax, and Community Commitments",source,blocked,2,0,policy terms,,,5,in_effect
+policies,policies,ky-hb775-2025,House Bill 775 — statewide data center sales and use tax exemption expansion,source,live,3,3,policy terms,,1,1,in_effect
+policies,policies,la-act730-2024,Act 730 (HB 827) — data center sales and use tax rebate,source,live,3,3,policy terms,,1,2,in_effect
+policies,policies,la-eo-26-058-2026,Executive Order 26-058 — Louisiana Ratepayer and Community Protection Initiative for Data Center and Large-Load Investments,source,live,3,2,policy terms,,2,2,in_effect
+policies,policies,la-ratepayer-community-framework-2026-10,Louisiana Ratepayer and Community Protection Framework — tax-exemption application requirements,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,lancaster-pa-coreweave-cba-2025,"Lancaster, PA – CoreWeave community benefits agreement",source,live,1,1,policy terms,,5,5,in_effect
+policies,policies,loudoun-county-va-data-center-special-exception,Loudoun County special-exception review for data centers,source,live,2,2,policy terms,,0,3,in_effect
+policies,policies,lowndes-county-al-project-red-clay-2026,Lowndes County — Project Red Clay development and tax agreements (Cloverleaf Infrastructure),source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,ma-eo658-2026,Executive Order 658 — data center development framework,source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,mason-county-ky-meta-development-agreement-2026,Mason County — Development and Community Revenue Agreement for the Crisham LLC (Meta) campus,source,live,2,2,policy terms,,5,5,in_effect
+policies,policies,md-eo-01.01.2026.16-2026,Executive Order 01.01.2026.16 — Responsible Data Center Development in Maryland,source,live,5,5,policy terms,,5,5,in_effect
+policies,policies,md-hb1532-2026,Utility RELIEF Act (House Bill 1532 / Chapter 353) — large-load/data-center grid cost provisions,source,live,2,2,policy terms,,1,4,in_effect
+policies,policies,me-eo5-2026,Executive Order 5 — Maine Data Center Advisory Council,source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,me-ld713-2026,LD 713 — An Act to Exclude Data Centers from the Business Equipment Tax Exemption and the Dirigo Business Incentives Program,source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,memphis-tn-community-benefits-fund-5953,Memphis Community Benefits Fund — Colossus I property-tax revenue,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,memphis-tn-mayor-eo-data-center-review-2026-10,Memphis mayor's executive order for a 90-day data center policy review,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,memphis-tn-xai-our-commitment-2026,xAI — 'Our Commitment to Memphis' (site pledge),source,blocked,1,0,policy terms,,,4,in_effect
+policies,policies,meta-company-plan-data-center-community-support-2026,Meta data center community benefits programs,source,live,3,3,policy terms,,4,4,in_effect
+policies,policies,microsoft-company-plan-community-first-2026,Microsoft Community-First AI Infrastructure,source,live,1,1,policy terms,,4,4,in_effect
+policies,policies,mn-hf16-ch12-2025,Chapter 12 (H.F. 16) — data center water permitting and annual fee,source,live,1,1,policy terms,,6,6,in_effect
+policies,policies,mo-eo-26-02-2026,Executive Order 26-02 — Missouri AI Strategy and Data Center Ratepayer/Energy Review,source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,mo-sb4-2025,Senate Bill 4 — large-load customer tariffs and utility-regulatory omnibus,source,live,3,3,policy terms,,2,2,in_effect
+policies,policies,montgomery-county-mo-amazon-community-contributions-2026,"Montgomery County, MO – Amazon community contributions",source,live,2,2,policy terms,,6,6,in_effect
+policies,policies,morton-county-nd-datacenter-ordinance-2026-08,Morton County revised data center zoning ordinance advances with a noise setback,source,live,1,1,policy terms,,2,2,proposed
+policies,policies,mount-pleasant-wi-microsoft-development-agreement-2024,"Mount Pleasant, WI – Microsoft data center development agreement",source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,ms-sb3168-2025-failed,Senate Bill 3168 — Data Center Enterprise (DCE) program revisions (failed),source,live,2,2,policy terms,,2,2,failed
+policies,policies,mt-hb424-2025,House Bill 424 — Class 17 data center property tax revisions,source,live,2,2,policy terms,,0,5,in_effect
+policies,policies,nc-budget2026-electricity-exemption-repeal-2026,2026 state budget — repeal of data center electricity sales tax exemption,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,nc-eo-23-2025,Executive Order No. 23 — Establishing the North Carolina Energy Policy Task Force,source,live,2,2,policy terms,,2,3,in_effect
+policies,policies,nd-sb2406-2026-failed,Senate Bill 2406 — ban on nondisclosure agreements for data center/industrial siting (failed),source,live,3,3,policy terms,,2,2,failed
+policies,policies,ne-eo26-17-2026,Executive Order 26-17 — data center incentive and resource review,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,nehawka-ne-datacenter-prohibition-2026-08,Village of Nehawka votes to prohibit data centers in its zoning jurisdiction,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,nh-sb439-2026-failed,"Senate Bill 439 — municipal data center zoning (weakened by amendment, tabled by House)",source,live,3,2,policy terms,,1,1,failed
+policies,policies,nj-aspire-cba-2021,Aspire Program — community benefits agreement condition,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,nj-eo-2-2026,Executive Order No. 2 — New Jersey Electricity Emergency: Large-Load/Data-Center Interconnection Monitoring & Generation Acceleration,source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,nj-pl2026-c32,"Data Center Fair Share Act (P.L. 2026, c.32) — large data center rate class",source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,nj-s4304-data-center-nda-ban-2026,New Jersey S4304 — prohibits agreements that conceal data center development details,source,live,1,1,policy terms,,2,2,proposed
+policies,policies,nm-sb235-2026-failed,"Senate Bill 235 — Microgrid Oversight Act (failed, died in House)",source,live,2,2,policy terms,,0,4,failed
+policies,policies,nv-eo2026-005-2026,Executive Order 2026-005 — Nevada Standard for Responsible Data Center Development,source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,ny-eo62-data-center-review-community-framework-2026,New York EO 62 — environmental review and Community Investment Framework direction,source,blocked,1,0,policy terms,,,3,in_effect
+policies,policies,oh-hb15-2025,House Bill 15 — mercantile customer self-power systems (behind-the-meter generation),source,live,2,2,policy terms,,0,5,in_effect
+policies,policies,oh-tax-exemption-pause-2026,Governor DeWine directive pausing new data center tax exemption requests,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,ok-hb2992-2026,House Bill 2992 — Data Center Customer Ratepayer Protection Act of 2026,source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,openai-company-plan-stargate-community-2026,OpenAI Stargate Community,source,blocked,1,0,policy terms,,,4,in_effect
+policies,policies,openai-grid-protectors-company-plan-2026,OpenAI Grid Protectors Program,source,blocked,1,0,policy terms,,,2,in_effect
+policies,policies,or-data-center-advisory-committee-2026,Oregon Statewide Data Center Advisory Committee,source,live,2,2,policy terms,,0,2,in_effect
+policies,policies,or-hb3546-2025,House Bill 3546 — POWER Act (large energy use facility rate class),source,live,2,2,policy terms,,5,5,in_effect
+policies,policies,oracle-jupiter-epe-credit-proposal-2026,Oracle Project Jupiter proposed utility payments and customer credits,source,live,1,1,policy terms,,3,3,proposed
+policies,policies,pa-eo2026-05-2026,Executive Order 2026-05 — Protecting Pennsylvania Consumers from Data Center Impacts,source,live,3,3,policy terms,,1,1,in_effect
+policies,policies,pa-hb2198-2026,House Bill 2198 — repeal of Computer Data Center Equipment Incentive Program,source,live,2,2,policy terms,,1,1,proposed
+policies,policies,paducah-ky-brookfield-doe-site-2026,"Paducah, KY – Brookfield DOE Paducah Site data center campus commitments",source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,piketon-oh-sb-energy-openai-community-benefits-2026,"PORTS-Pike (Piketon, OH) – SB Energy / OpenAI community benefits funds",source,live,3,3,policy terms,,3,3,in_effect
+policies,policies,pima-county-az-beale-project-blue-moa-2025,"Pima County, AZ – Beale Infrastructure Project Blue Memorandum of Agreement",source,live,3,3,policy terms,,3,3,in_effect
+policies,policies,prince-william-county-va-overlay-zta-2026-09,Prince William County shrinks its by-right data center overlay district,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,prologis-company-plan-responsible-development-2026,Prologis Responsible Data Center Development Commitments,source,blocked,1,0,policy terms,,,8,in_effect
+policies,policies,pulaski-county-ar-ord-26-i-56b,Pulaski County Ordinance 26-I-56B on data centers (vetoed),source,live,1,1,policy terms,,1,1,failed
+policies,policies,qts-company-plan-commitment-to-communities-2026,QTS Commitment to Communities,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,raleigh-nc-major-data-center-special-use-zoning,Raleigh — major-data-center zoning and special-use permits,source,blocked,1,0,policy terms,,,4,in_effect
+policies,policies,salem-township-pa-amazon-nepa-community-fund-2025,"Salem Township, PA – Amazon Northeastern Pennsylvania Community Fund",source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,saline-township-mi-openai-oracle-settlement-2025,"Saline Township, MI – Related Digital/OpenAI-Oracle rezoning lawsuit consent judgment",source,live,3,3,policy terms,,1,8,in_effect
+policies,policies,san-marcos-tx-datacenter-prohibition-2026,San Marcos Ordinance 2026-08 — data centers prohibited in every zoning district,source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,scioto-county-oh-google-franklin-furnace-pilot-2026,"Scioto County, OH – Google Franklin Furnace PILOT / tax abatement",source,live,1,1,policy terms,,1,1,in_effect
+policies,policies,sd-sb135-2026,Senate Bill 135 — Data Center Bill of Rights for Citizens,source,live,2,1,policy terms,,3,3,in_effect
+policies,policies,spartanburg-county-sc-300-jones-road-development-agreement-2026,Spartanburg County — proposed 300 Jones Road Associates LLC agreement (430 Jones Road),source,live,2,1,policy terms,,2,2,proposed
+policies,policies,spartanburg-county-sc-aib-development-agreement-2026,Spartanburg County — proposed AIB CLT1 LLC agreement (389 Tyger River Industrial Drive),source,live,2,1,policy terms,,1,1,proposed
+policies,policies,spartanburg-county-sc-valara-development-agreement-2026,Spartanburg County — Valara data center development agreement ordinance (S. Pine Street),source,live,2,2,policy terms,,3,3,proposed
+policies,policies,st-joseph-county-in-aws-community-enhancement-agreement-2024,"St. Joseph County, IN – AWS Community Enhancement Agreement (Project Rainier)",source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,st-louis-mo-ordinance-72181-2026,St. Louis data-center zoning and Public Impact Agreements,source,live,2,2,policy terms,,0,5,in_effect
+policies,policies,st-louis-mo-terrawatt-armory-community-benefit-plan-2026,St. Louis–TerraWatt community benefit plan (Armory Innovation Data Center),source,live,2,2,policy terms,,6,6,in_effect
+policies,policies,swatara-township-pa-corscale-cba-2026,Swatara Township–Corscale Data Centers community benefits agreements (Highlands East and West),source,live,2,2,policy terms,,3,3,proposed
+policies,policies,taylor-tx-big-watt-annexation-agreement-2026,Taylor — annexation agreement for the Big Watt Digital / PowerHouse data center and power campus,source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,tn-pc961-2026,Public Chapter 961 (HB1847/SB2128) — data center electrical infrastructure cost allocation,source,live,2,2,policy terms,,1,2,in_effect
+policies,policies,tulsa-ok-meta-pilot-tax-incentive-district-2026,"Tulsa, OK – Meta Tax Incentive District / PILOT agreement",source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,turkey-tx-qts-lancium-community-agreement-2026,QTS / Lancium – Turkey infrastructure and community agreement,source,live,1,1,policy terms,,1,3,in_effect
+policies,policies,tuscaloosa-county-al-applied-digital-delta-forge-2-2026,Applied Digital Delta Forge 2 (Brookwood) community benefits payments,source,live,2,2,policy terms,,4,4,proposed
+policies,policies,tx-data-center-audit-permit-directives-2026,Texas data-center audit and permit directives,source,live,1,1,policy terms,,0,3,in_effect
+policies,policies,tx-sb6-2025,Senate Bill 6 — large-load interconnection and cost allocation,source,live,2,2,policy terms,,5,5,in_effect
+policies,policies,ut-eo2026-03-2026,Executive Order 2026-03 — Higher Bar for Data Center Development,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,va-eo-22-2026,Executive Order 22 — Virginia Data Center Accountability Framework & AI Task Force,source,live,3,3,policy terms,,0,5,in_effect
+policies,policies,va-hb153-sb94-2026,HB 153 / SB 94 — data center siting sound-profile assessment,source,live,1,1,policy terms,,3,3,in_effect
+policies,policies,va-hb496-2026,House Bill 496 — data center water use reporting and disclosure,source,live,2,1,policy terms,,1,1,in_effect
+policies,policies,volusia-county-fl-ban-2026,Volusia County ordinance prohibiting large-scale data centers in unincorporated areas,source,live,2,2,policy terms,,4,4,in_effect
+policies,policies,vt-h727-2026-failed,"H.727 — Vermont Sustainable Data Centers Act (vetoed, veto sustained)",source,live,3,3,policy terms,,2,2,failed
+policies,policies,wa-eo-25-05-2025,Executive Order 25-05 — Data Center Workgroup,source,live,2,2,policy terms,,0,5,in_effect
+policies,policies,wa-essb6231-2026,Washington ESSB 6231 — data center refurbishment and replacement equipment tax exemptions,source,live,2,2,policy terms,,2,2,in_effect
+policies,policies,warren-county-ms-amazon-community-fund-2025,"Warren County (Vicksburg), MS – Amazon Warren County Community Fund",source,live,1,1,policy terms,,2,2,in_effect
+policies,policies,west-memphis-ar-google-entergy-energy-impact-fund-2025,"West Memphis, AR – Google/Entergy Energy Impact Fund",source,live,2,2,policy terms,,3,3,in_effect
+policies,policies,west-vincent-twp-pa-ordinance-227-2026,West Vincent Township Ordinance 227-2026 to define and add data centers and accessory uses (hearing notice),source,live,1,1,policy terms,,1,1,proposed
+policies,policies,wi-ab840-2026-failed,"Assembly Bill 840 — data center regulation (cost-shift, closed-loop cooling, renewable co-location, reclamation bonds) (failed)",source,live,3,1,policy terms,,0,5,failed
+policies,policies,wi-act19-2023-dcste,2023 Wisconsin Act 19 — Data Center Sales and Use Tax Exemption,source,live,3,3,policy terms,,2,2,in_effect
+policies,policies,wilmington-oh-aws-cra-compensation-agreement-2025,"Wilmington, OH – AWS Community Reinvestment Area / compensation agreement",source,live,2,1,policy terms,,3,3,in_effect
+policies,policies,wv-hb2014-2025,House Bill 2014 — Power Generation and Consumption Act,source,live,2,2,policy terms,,1,1,in_effect
+policies,policies,wy-eo2026-03,Executive Order 2026-03 — Data Centers the Wyoming Way,source,live,3,3,policy terms,,3,3,in_effect
+projects,projects,amazon-boardman-or,AWS Boardman / Columbia River Land Acquisition,source,blocked,1,0,city and operator,,,,announced
+projects,projects,amazon-bossier-parish-la,AWS Bossier Parish Campus,source,live,1,1,city and operator,2,,,construction
+projects,projects,amazon-caddo-parish-la,AWS Caddo Parish Campus,source,live,2,2,city and operator,2,,,construction
+projects,projects,amazon-canton-ms,AWS Madison County (Canton) Data Centers,source,live,3,3,city and operator,2,,,construction
+projects,projects,amazon-clinton-ms,AWS Hinds County (Clinton) Data Center,source,live,3,3,city and operator,2,,,announced
+projects,projects,amazon-falls-twp-pa,AWS Falls Township Data Center Campus,source,live,3,3,city and operator,2,,,construction
+projects,projects,amazon-floydada-tx,AWS Horizon Junction Campus (Floydada),source,live,1,1,city and operator,2,,,announced
+projects,projects,amazon-fort-stockton-tx,AWS Pecos County Data Center Campus,source,live,3,3,city and operator,2,,,announced
+projects,projects,amazon-montgomery-city-mo,Amazon Montgomery City Data Center Campus,source,live,4,4,city and operator,2,,,announced
+projects,projects,amazon-richmond-county-nc,AWS Richmond County (Hamlet-Rockingham) Campus,source,blocked,2,1,city and operator,2,,,construction
+projects,projects,amazon-shreveport-la,AWS Shreveport Campus (Resilient Technology Park),source,live,1,1,city and operator,2,,,announced
+projects,projects,amazon-vicksburg-ms,AWS Warren County Data Center,source,live,3,3,city and operator,2,,,announced
+projects,projects,amazon-wheatfield-in,AWS Wheatfield Data Center Campus,source,blocked,2,1,city and operator,2,,,announced
+projects,projects,anthropic-hawesville-ky,TeraWulf Hawesville Campus (Anthropic lease),source,live,2,2,city and operator,2,,,announced
+projects,projects,anthropic-xai-infrastructure-partnership,Anthropic-xAI/SpaceX Infrastructure Partnership,source,live,1,1,city and operator,1,,,announced
+projects,projects,aws-ashburn-gwu-va,Bridgefield Tech Center (GWU Virginia campus),source,blocked,5,4,city and operator,2,,,withdrawn
+projects,projects,aws-boling-tx,Project Eagle (Boling Campus),source,blocked,2,1,city and operator,2,,,announced
+projects,projects,aws-butts-county-ga,AWS Butts County data centers,source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-calvert-cliffs-md,Calvert Technology Center (Calvert Cliffs),source,live,2,2,city and operator,2,,,withdrawn
+projects,projects,aws-caroline-va,AWS Caroline County Data Center Campus (Mattermeade),source,blocked,2,1,city and operator,1,,,construction
+projects,projects,aws-cumberland-pa,Salem Township Innovation Campus,source,live,3,2,city and operator,2,,,construction
+projects,projects,aws-douglas-county-ga,AWS Douglas County data centers,source,live,1,1,city and operator,1,,,announced
+projects,projects,aws-homer-city-pa,AWS Homer City Energy Campus (36 buildings),source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-king-george-va,AWS King George data center campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-kline-township-pa,"Amazon data center campus, Kline Township (Route 309 / I-81)",source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-loudoun-va,AWS US-East-1 (Northern Virginia),source,live,3,2,city and operator,2,,,operational
+projects,projects,aws-louisa-county-va,AWS Louisa County data center campuses (Technology Overlay District),source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-new-carlisle-in,Project Rainier (New Carlisle),source,live,5,5,city and operator,2,,,operational
+projects,projects,aws-ridgeland-ms,AWS Madison County Campus (Ridgeland Expansion),source,live,2,2,city and operator,2,,,construction
+projects,projects,aws-somervell-tx,Amazon Somervell County Data Center Campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-umatilla-or,Umatilla County (Hermiston) Data Centers,source,live,1,1,city and operator,2,,,operational
+projects,projects,aws-wallula-wa,Amazon Attalia Data Center Campus (Wallula Gap),source,live,1,1,city and operator,2,,,announced
+projects,projects,aws-wilmington-oh,AWS Clinton County Campus (Wilmington),source,blocked,6,5,city and operator,2,,,announced
+projects,projects,brookfield-paducah-ky,Paducah Data Center Campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,coreweave-cedar-creek-tx,CoreWeave at EdgeConneX Cedar Creek (Building 1),source,live,1,1,city and operator,2,,,construction
+projects,projects,coreweave-ellendale-nd,Polaris Forge 1 Campus (Applied Digital lease),source,live,1,1,city and operator,2,,,construction
+projects,projects,coreweave-hammond-in,CoreWeave Hammond Data Center (Digital Crossroads),source,live,1,1,city and operator,2,,,announced
+projects,projects,coreweave-kenilworth-nj,Kenilworth NEST Campus,source,blocked,3,2,city and operator,2,,,construction
+projects,projects,coreweave-lancaster-pa,Lancaster Data Center,source,live,1,1,city and operator,2,,,announced
+projects,projects,coreweave-muskogee-ok,CoreWeave / Core Scientific Muskogee,source,live,1,1,city and operator,2,,,construction
+projects,projects,crusoe-abilene-tx,Stargate Abilene AI Factory Campus (Crusoe),source,live,2,2,city and operator,2,,,construction
+projects,projects,crusoe-cheyenne-wy,Project Jade (Switchgrass Industrial Park),source,live,5,5,city and operator,2,,,withdrawn
+projects,projects,crusoe-childress-tx,Crusoe Project Hyper (Lancium Childress campus),source,live,1,1,city and operator,2,,,announced
+projects,projects,crusoe-goodnight-tx,Goodnight Campus (Project Llano),source,blocked,3,2,city and operator,2,,,construction
+projects,projects,crusoe-inl-id,Crusoe Spark at Idaho National Laboratory (Aalo SMR),source,blocked,1,0,city and operator,,,,announced
+projects,projects,crusoe-springfield-oh,Springfield Data Center,source,live,2,2,city and operator,2,,,announced
+projects,projects,crusoe-sweetwater-tx,Sweetwater Data Center,source,live,1,1,city and operator,2,,,announced
+projects,projects,crusoe-warrenton-mo,Crusoe Warrenton Campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,goodman-lax01-vernon-ca,Goodman LAX01 Vernon (Los Angeles),source,live,1,1,city and operator,2,,,construction
+projects,projects,google-armstrong-tx,Google Armstrong County Data Center,source,live,1,1,city and operator,2,,,construction
+projects,projects,google-barber-county-ks,"Google 'Project Helium', Sharon",source,live,1,1,city and operator,2,,,announced
+projects,projects,google-berkeley-county-sc,Berkeley County Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-botetourt-va,Google Botetourt County Data Center Campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,google-cedar-rapids-ia,Google Cedar Rapids Data Center Campus,source,live,2,2,city and operator,2,,,announced
+projects,projects,google-chesterfield-va,Chesterfield Data Center (Project Peanut),source,live,3,3,city and operator,1,,,construction
+projects,projects,google-cheyenne-tembo-wy,"Project Tembo (formerly Project Jade), Switchgrass Industrial Park",source,live,2,2,city and operator,2,,,announced
+projects,projects,google-clay-county-mo,Google Kansas City Data Center (Project Mica),source,blocked,2,1,city and operator,2,,,construction
+projects,projects,google-columbia-county-ga,Google Columbia County Data Center,source,live,2,2,city and operator,2,,,announced
+projects,projects,google-columbus-oh,Google Columbus Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-council-bluffs-ia,Council Bluffs Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-douglas-county-ga,Google Douglas County Data Center,source,live,1,1,city and operator,1,,,operational
+projects,projects,google-ellis-county-tx,Ellis County (Midlothian) Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-fort-wayne-in,Google Fort Wayne Data Center,source,live,4,4,city and operator,2,,,operational
+projects,projects,google-franklin-furnace-oh,Scioto County Data Center,source,blocked,2,1,city and operator,2,,,announced
+projects,projects,google-goochland-va,Google West Creek Campus (under evaluation),source,live,1,1,city and operator,2,,,announced
+projects,projects,google-gray-county-tx,Google Meitner Energy Center (Gray County / Texas Panhandle),source,live,1,1,city and operator,1,,,construction
+projects,projects,google-haskell-tx,Google Haskell County Data Center,source,live,1,1,city and operator,2,,,construction
+projects,projects,google-henderson-nv,Henderson Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-hermantown-mn,Google Hermantown Data Center,source,blocked,4,3,city and operator,2,,,announced
+projects,projects,google-jackson-county-al,Google Jackson County Data Center Campus (2026 Expansion),source,live,1,1,city and operator,1,,,construction
+projects,projects,google-lagrange-ga,LaGrange Data Center (Project Pegasus),source,live,2,2,city and operator,2,,,construction
+projects,projects,google-lancaster-oh,Google Lancaster Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-lea-county-nm,Google Lea County Data Center (prospective site near Hobbs),source,live,2,2,city and operator,2,,,announced
+projects,projects,google-lenoir-nc,Lenoir Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-lima-oh,Lima Data Center (Project BOSC),source,blocked,2,1,city and operator,1,,,announced
+projects,projects,google-lincoln-ne,Google Lincoln Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-linn-county-ia,Linn County (Duane Arnold) Campus,source,blocked,6,5,city and operator,2,,,announced
+projects,projects,google-little-rock-ar,Port of Little Rock Data Center,source,blocked,1,0,city and operator,,,,announced
+projects,projects,google-loudoun-county-va,Google Loudoun County Data Centers,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-mayes-county-ok,Mayes County Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-mesa-az,Mesa Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-michigan-city-in,Project Maize (Michigan City),source,blocked,3,2,city and operator,2,,,construction
+projects,projects,google-montgomery-county-tn,Google Montgomery County Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-morgan-county-in,Google Morgan County Data Center,source,live,1,1,city and operator,2,,,construction
+projects,projects,google-muskogee-county-ok,Google Muskogee County Data Center Campuses,source,live,2,2,city and operator,2,,,construction
+projects,projects,google-new-albany-oh,Google New Albany Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-new-florence-mo,Google New Florence Data Center,source,live,2,2,city and operator,2,,,announced
+projects,projects,google-omaha-ne,Google Omaha Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-owasso-ok,Google Owasso Data Center (Project Clydesdale),source,live,1,1,city and operator,2,,,construction
+projects,projects,google-papillion-ne,Google Papillion Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-pine-hill-ridgeville-sc,Google Pine Hill Campus,source,blocked,2,1,city and operator,1,,,construction
+projects,projects,google-pine-island-mn,Google Pine Island Data Center,source,live,3,3,city and operator,2,,,announced
+projects,projects,google-putnam-county-wv,Putnam County Data Center,source,live,4,4,city and operator,2,,,announced
+projects,projects,google-red-oak-tx,Google Red Oak Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,google-roanoke-county-va,Google Wood Haven Technology Park data center (Roanoke County),source,live,1,1,city and operator,2,,,announced
+projects,projects,google-sand-springs-ok,Google Sand Springs Data Center (Project Spring),source,blocked,1,0,city and operator,,,,announced
+projects,projects,google-spacex-gpu-partnership,Google-SpaceX GPU Capacity Partnership,source,blocked,1,0,city and operator,,,,announced
+projects,projects,google-stillwater-ok,Stillwater Data Center,source,live,3,3,city and operator,2,,,announced
+projects,projects,google-storey-county-nv,Google Storey County Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,google-the-dalles-or,The Dalles Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,google-van-buren-mi,Google Van Buren Township Data Center,source,live,3,3,city and operator,2,,,announced
+projects,projects,google-west-memphis-ar,West Memphis Campus (Project Pyramid),source,live,2,2,city and operator,2,,,construction
+projects,projects,google-wilbarger-tx,Google Wilbarger County Data Center,source,live,1,1,city and operator,1,,,announced
+projects,projects,google-winding-woods-st-george-sc,Google Winding Woods Campus,source,blocked,2,1,city and operator,2,,,construction
+projects,projects,meta-aiken-sc,Meta Aiken Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,meta-altoona-ia,Meta Altoona Data Center,source,live,3,3,city and operator,2,,,operational
+projects,projects,meta-beaver-dam-wi,Beaver Dam Data Center,source,live,1,1,city and operator,2,,,construction
+projects,projects,meta-bowling-green-oh,Meta Bowling Green Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,meta-cheyenne-wy,Meta Cheyenne Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,meta-dekalb-il,Meta DeKalb Data Center,source,live,3,3,city and operator,2,,,operational
+projects,projects,meta-eagle-mountain-ut,Eagle Mountain Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-el-paso-tx,El Paso Data Center,source,live,3,2,city and operator,2,,,construction
+projects,projects,meta-forest-city-nc,Meta Forest City Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-fort-worth-tx,Meta Fort Worth Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-gallatin-tn,Meta Gallatin Data Center,source,live,3,3,city and operator,2,,,operational
+projects,projects,meta-henrico-va,Meta Henrico Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-huntsville-al,Huntsville Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-jeffersonville-in,Meta Jeffersonville Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,meta-kansas-city-mo,Meta Kansas City Data Center,source,live,3,3,city and operator,2,,,operational
+projects,projects,meta-kuna-id,Kuna Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,meta-lebanon-in,Lebanon Data Center,source,live,1,1,city and operator,2,,,construction
+projects,projects,meta-los-lunas-nm,Los Lunas Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,meta-mason-county-ky,"Meta data center campus, Mason County (Chrisham LLC)",source,live,2,2,city and operator,2,,,announced
+projects,projects,meta-mesa-az,Meta Mesa Data Center,source,live,3,3,city and operator,2,,,operational
+projects,projects,meta-montgomery-al,Montgomery Data Center Campus,source,live,1,1,city and operator,2,,,construction
+projects,projects,meta-new-albany-oh,Meta New Albany Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-newton-ga,Newton County Data Center (Stanton Springs),source,live,4,4,city and operator,1,,,operational
+projects,projects,meta-prineville-or,Prineville Data Center,source,live,2,2,city and operator,2,,,operational
+projects,projects,meta-richland-la,Richland Parish Data Center,source,live,3,3,city and operator,2,,,construction
+projects,projects,meta-rosemount-mn,Meta Rosemount Data Center,source,live,2,2,city and operator,2,,,construction
+projects,projects,meta-sarpy-ne,Sarpy Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,meta-temple-tx,Temple Data Center,source,live,1,1,city and operator,2,,,operational
+projects,projects,meta-tulsa-ok,Tulsa Data Center (Project Anthem),source,live,2,2,city and operator,2,,,construction
+projects,projects,microsoft-boydton-va,Boydton (Mecklenburg County) Datacenter,source,live,2,2,city and operator,2,,,operational
+projects,projects,microsoft-castroville-tx,Microsoft Castroville Datacenter Campus (SAT 82),source,blocked,1,0,city and operator,,,,announced
+projects,projects,microsoft-cheyenne-wy,Microsoft Cheyenne Datacenter Campus (2026 Expansion),source,live,4,4,city and operator,2,,,announced
+projects,projects,microsoft-dorr-township-mi,Microsoft Dorr Township data center (US-131),source,live,1,1,city and operator,2,,,announced
+projects,projects,microsoft-douglasville-ga,Microsoft Douglasville Datacenter Campus (East US 3),source,live,1,1,city and operator,2,,,construction
+projects,projects,microsoft-el-mirage-az,El Mirage (West Valley) Datacenter,source,live,1,1,city and operator,2,,,operational
+projects,projects,microsoft-fayetteville-ga,Fairwater Atlanta (Azure AI Superfactory),source,live,1,1,city and operator,1,,,operational
+projects,projects,microsoft-gaines-township-mi,Microsoft Gaines Township data center campus (Patterson Ave SE / 76th St SE),source,live,1,1,city and operator,2,,,announced
+projects,projects,microsoft-gainesville-va,"Wellington Datacenter (MNZ07), Prince William County",source,live,1,1,city and operator,2,,,announced
+projects,projects,microsoft-heath-oh,Heath Data Center Campus,source,live,1,1,city and operator,2,,,construction
+projects,projects,microsoft-hebron-oh,Hebron Data Center Campus,source,blocked,2,1,city and operator,2,,,construction
+projects,projects,microsoft-la-porte-in,Microsoft La Porte Data Center (2nd Campus),source,blocked,3,2,city and operator,2,,,construction
+projects,projects,microsoft-lowell-township-mi,Microsoft Covenant Business Park (Lowell Township),source,live,3,3,city and operator,2,,,announced
+projects,projects,microsoft-new-albany-oh,New Albany Data Center Campus,source,live,2,2,city and operator,2,,,construction
+projects,projects,microsoft-pecos-tx,Microsoft Pecos AI Data Center (Reeves County),source,live,1,1,city and operator,2,,,announced
+projects,projects,microsoft-person-county-nc,Person County Datacenter (Woodsdale),source,live,1,1,city and operator,1,,,announced
+projects,projects,microsoft-san-antonio-tx,San Antonio (Westover Hills) Datacenters,source,live,1,1,city and operator,2,,,operational
+projects,projects,microsoft-tyrone-ga,Microsoft Tyrone data center (N. Highway 74),source,live,1,1,city and operator,2,,,announced
+projects,projects,microsoft-union-city-ga,Union City Campus (East US 3 anchor),source,live,2,2,city and operator,2,,,construction
+projects,projects,microsoft-west-des-moines-ia,West Des Moines Campus (5 operational + 6th in construction),source,live,1,1,city and operator,2,,,operational
+projects,projects,microsoft-woodward-ia,Microsoft Woodward Data Center (Eco Business Park),source,live,1,1,city and operator,2,,,announced
+projects,projects,ms-goodyear-az,Goodyear Datacenter Campus,source,live,1,1,city and operator,2,,,operational
+projects,projects,ms-mt-pleasant-wi,Mount Pleasant Datacenter Campus,source,live,3,3,city and operator,2,,,operational
+projects,projects,ms-quincy-wa,Quincy Datacenter Campus,source,live,2,2,city and operator,2,,,operational
+projects,projects,nscale-madison-nc,Nscale Madison at WhiteFiber NC-1,source,live,2,2,city and operator,2,,,construction
+projects,projects,nscale-monarch-mason-wv,Monarch Compute Campus (acquired via American Intelligence & Power Corporation),source,live,2,2,city and operator,2,,,announced
+projects,projects,nscale-ward-county-tx,Nscale Ward County AI Campus,source,live,3,3,city and operator,2,,,operational
+projects,projects,openai-abilene-tx,Stargate Abilene Campus,source,blocked,2,1,city and operator,2,,,construction
+projects,projects,openai-effingham-county-ga,Project Camellia (Effingham County),source,blocked,3,2,city and operator,1,,,announced
+projects,projects,openai-lordstown-oh,OpenAI Stargate Lordstown,source,blocked,1,0,city and operator,,,,construction
+projects,projects,openai-milam-county-tx,Stargate Milam County (Freebird),source,blocked,3,2,city and operator,1,,,construction
+projects,projects,openai-port-washington-wi,Stargate Wisconsin (Lighthouse) — OpenAI,source,live,1,1,city and operator,2,,,construction
+projects,projects,openai-saline-mi,Stargate Michigan (Saline Township),source,blocked,3,2,city and operator,1,,,construction
+projects,projects,openai-shackelford-tx,Stargate Frontier (Shackelford County),source,live,1,1,city and operator,0,,,construction
+projects,projects,oracle-abilene-tx,OCI Stargate Capacity (Abilene),source,live,2,2,city and operator,2,,,construction
+projects,projects,oracle-dona-ana-nm,Stargate Doña Ana (Project Jupiter),source,live,4,4,city and operator,2,,,construction
+projects,projects,oracle-port-washington-wi,Stargate Wisconsin (Lighthouse),source,live,4,4,city and operator,2,,,construction
+projects,projects,prologis-coweta-ga,Project Sail (Coweta Campus),source,live,2,2,city and operator,2,,,announced
+projects,projects,prologis-san-jose-ca,Silver Creek Valley Data Center,source,live,1,1,city and operator,2,,,announced
+projects,projects,prologis-shelbyville-in,Prologis Shelbyville campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,prologis-yorkville-il,Prologis Project Steel (Yorkville),source,live,1,1,city and operator,2,,,announced
+projects,projects,qts-aurora-co,QTS Aurora-Denver Campus,source,live,1,1,city and operator,2,,,construction
+projects,projects,qts-bessemer-al,QTS Project Marvel (Bessemer),source,live,2,2,city and operator,2,,,construction
+projects,projects,qts-blakely-ga,Project Blue Hole (Blakely Campus),source,blocked,2,1,city and operator,2,,,announced
+projects,projects,qts-cedar-rapids-ia,QTS Cedar Rapids Data Center Campus,source,live,2,2,city and operator,2,,,construction
+projects,projects,qts-clinton-ia,Clinton Data Center Campus (proposed),source,live,1,1,city and operator,2,,,announced
+projects,projects,qts-dane-county-wi,QTS Dane County Data Center Campus,source,blocked,4,3,city and operator,2,,,announced
+projects,projects,qts-eagle-mountain-ut,Eagle Mountain Data Center (SLC1),source,live,2,2,city and operator,2,,,construction
+projects,projects,qts-east-windsor-nj,East Windsor Data Center Expansion,source,blocked,2,1,city and operator,2,,,announced
+projects,projects,qts-fayetteville-ga,ATL2 East (Fayetteville Expansion),source,blocked,5,4,city and operator,2,,,announced
+projects,projects,qts-hall-county-tx,QTS / Lancium Hall County Data Center Campus,source,live,1,1,city and operator,2,,,announced
+projects,projects,qts-manassas-va,QTS Manassas Data Center Campus,source,live,2,2,city and operator,2,,,operational
+projects,projects,qts-richmond-va,QTS Richmond Technology Park Data Center 5 (RIC5),source,live,3,2,city and operator,1,,,construction
+projects,projects,qts-salem-twp-pa,Salem Township Campus (PA),source,blocked,2,1,city and operator,2,,,announced
+projects,projects,qts-van-wert-oh,QTS Van Wert Data Center Campus,source,blocked,2,1,city and operator,2,,,announced
+projects,projects,qts-wilmer-tx,DFW2 Campus (Wilmer),source,blocked,1,0,city and operator,,,,construction
+projects,projects,qts-york-county-sc,York County (Clover) Data Center,source,live,3,3,city and operator,2,,,construction
+projects,projects,sb-energy-piketon-oh,PORTS Technology Campus,source,live,2,2,city and operator,2,,,construction
+projects,projects,wonder-valley-box-elder-ut,Wonder Valley Utah Data Center Campus,source,live,5,5,city and operator,2,,,announced
+projects,projects,xai-cochise-az,Proposed Cochise County Supercompute Campus (191 Data Center),source,live,2,1,city and operator,1,,,announced
+projects,projects,xai-memphis-tn,Colossus Supercomputer (Memphis),source,blocked,6,5,city and operator,2,,,operational
+projects,projects,xai-southaven-ms,Southaven (Colossus 3 / MACROHARD),source,blocked,5,4,city and operator,2,,,construction

@@ -200,20 +200,24 @@
       "key_terms": [
         "investment threshold for standard qualified data center lowered to $100 million",
         "new 'Qualified Large Data Center' tier requires $2 billion investment within 10 years",
-        "$3 million minimum annualized in-state compensation in first two years",
+        "$3 million minimum aggregate annualized in-state compensation for the large-center tier, over the two calendar years after the year operations begin",
         "cryptocurrency mining explicitly excluded",
         "oversight shifted to Dept. of Finance and Administration"
       ],
-      "summary": "Arkansas Act 548 of 2025 (HB1444) revised the state's qualified-data-center sales and use tax exemption program: it lowered the standard qualified-data-center investment threshold from $500 million to $100 million, created a new 'Qualified Large Data Center' tier requiring at least $2 billion in investment within ten years and at least $3 million in aggregate annualized compensation to Arkansas-based workers within the first two years of operation, broadened exempt equipment/services to include construction-related services and electricity consumption, explicitly excluded cryptocurrency mining from eligibility, and shifted program administration from the Arkansas Economic Development Commission to the Department of Finance and Administration (with AEDC still performing a cost-benefit analysis). Governor Sanders signed it April 10, 2025, effective July 1, 2025.",
+      "summary": "Arkansas Act 548 of 2025 (HB1444) revised the state's qualified-data-center sales and use tax exemption program: it lowered the standard qualified-data-center investment threshold from $500 million to $100 million, created a new 'Qualified Large Data Center' tier requiring at least $2 billion in investment within ten years and at least $3 million in aggregate annualized compensation to Arkansas-based workers over the two calendar years following the calendar year operations begin, broadened exempt equipment/services to include construction-related services and electricity consumption, explicitly excluded cryptocurrency mining from eligibility, and shifted program administration from the Arkansas Economic Development Commission to the Department of Finance and Administration (with AEDC still performing a cost-benefit analysis). Governor Sanders signed it April 10, 2025, effective July 1, 2025.",
       "source_url": "https://arkleg.state.ar.us/Bills/Detail?Search=&ddBienniumSession=2025%2F2025R&id=hb1444",
       "source_title": "Arkansas State Legislature — HB1444 (2025) bill detail",
       "resources": [
+        {
+          "url": "https://arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2025R%2FPublic%2FACT548.pdf",
+          "title": "Arkansas General Assembly — Act 548, qualified large data center definition"
+        },
         {
           "url": "https://www.salestaxinstitute.com/resources/arkansas-data-center-tax-exemption-expansion-2025",
           "title": "Sales Tax Institute — Arkansas Expands Sales & Use Tax Exemption for Data Centers Under Act 548"
         }
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-15",
       "principles": [
         "incentive_terms"
       ]
@@ -2932,11 +2936,11 @@
         "$2 million community investment fund",
         "$8 million for area fire services",
         "A facility decommissioning fund",
-        "~200 acres of wetlands/open space/agricultural land preserved for agricultural use, with 47.5 of those acres under a permanent conservation easement",
-        "No water cooling at the facility; the site uses its own well and waste treatment system; noise capped at 55 decibels",
+        "About 200 acres preserved; 47.5 acres of wetlands under a conservation easement are excepted from agricultural use",
+        "A 55-decibel noise cap and on-site well and waste treatment. The developer describes closed-loop cooling with no evaporative cooling.",
         "$7 billion data center project (Oracle/OpenAI)"
       ],
-      "summary": "After Saline Township's board rejected a rezoning request for a $7 billion OpenAI/Oracle data center in September 2025, developer Related Digital sued for exclusionary zoning; the parties reached a court-approved consent judgment on October 1, 2025 totaling roughly $14 million in community benefits — $4 million for a farmland preservation trust, $2 million for a community investment fund, $8 million for fire services, plus a decommissioning fund, ~200 acres of preserved agricultural land (47.5 acres under permanent conservation easement), a no-water-cooling requirement, and a 55-decibel noise cap. The settlement itself later drew a legal challenge from a resident (denied by a judge in February 2026) over Michigan open-meetings compliance.",
+      "summary": "After Saline Township denied rezoning, Related Digital sued. An October 2025 consent judgment provided for $4 million for farmland preservation, $2 million for community investment, $8 million for fire services and a separate decommissioning fund. Of roughly 200 preserved acres, 47.5 are wetlands protected by an easement rather than reserved for agriculture. Initial reporting said site water would not be used for cooling; the developer later described a closed-loop system without evaporative cooling. In February 2026 a judge denied a resident’s motion to intervene; that ruling did not decide the open-meetings challenge on its merits.",
       "source_url": "https://planetdetroit.org/2025/12/saline-data-center-settlement-challenge/",
       "source_title": "Planet Detroit — Saline Township resident alleges data center settlement was improper: Township attorney says 'everybody saw them vote'",
       "resources": [
@@ -2952,14 +2956,13 @@
       "related_project_ids": [
         "openai-saline-mi"
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-15",
       "principles": [
         "community_benefits",
         "local_control"
       ],
       "agreement_features": [
-        "dollar_commitment",
-        "water_limit"
+        "dollar_commitment"
       ]
     },
     {
@@ -3421,7 +3424,7 @@
     },
     {
       "id": "wa-essb6231-2026",
-      "title": "Engrossed Substitute Senate Bill 6231 — repeal of data center replacement/refurbished equipment tax exemption",
+      "title": "Washington ESSB 6231 — data center refurbishment and replacement equipment tax exemptions",
       "instrument": "legislation",
       "status": "in_effect",
       "scope": "state",
@@ -3433,18 +3436,19 @@
       ],
       "community_benefits_framework": false,
       "key_terms": [
-        "The Washington bill removes a retail sales and use tax exemption for replacing server equipment at existing data centers starting July 1."
+        "Newly constructed data centers may still apply for an exemption certificate",
+        "making replacement server equipment subject to retail sales and use taxes"
       ],
-      "summary": "Washington's ESSB 6231, signed by Gov. Bob Ferguson in early April 2026 and effective July 1, 2026, narrows the state's data center sales-tax exemption by removing replacement and refurbished server equipment from eligibility, part of a broader 2026 rollback of recently enacted tax preferences.",
-      "source_url": "https://news.bloombergtax.com/daily-tax-report-state/washington-to-end-data-center-tax-break-for-replacing-servers",
-      "source_title": "Bloomberg Tax — Washington to End Data Center Tax Break for Replacing Servers",
+      "summary": "Effective July 1, 2026, Washington ended the exemption for replacement server equipment and the certificate route for refurbished data centers. Newly constructed facilities may still apply for an exemption certificate for eligible original equipment.",
+      "source_url": "https://dor.wa.gov/sites/default/files/2026-04/2026_Legislative_Report.pdf",
+      "source_title": "Washington Department of Revenue — 2026 legislative report, ESSB 6231 (pp. 15–16)",
       "resources": [
         {
           "url": "https://www.ballardspahr.com/insights/alerts-and-articles/2026/04/washington-state-2026-session-legislature-repeals-and-rolls-back-certain-recently-enacted-taxes",
           "title": "Ballard Spahr — Washington State 2026 Session: Legislature Repeals and Rolls Back Certain Recently Enacted Taxes"
         }
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-15",
       "principles": [
         "incentive_terms"
       ]
@@ -5845,6 +5849,87 @@
       "related_project_ids": [
         "xai-memphis-tn"
       ]
+    },
+    {
+      "id": "spartanburg-county-sc-aib-development-agreement-2026",
+      "title": "Spartanburg County — proposed AIB CLT1 LLC agreement (389 Tyger River Industrial Drive)",
+      "instrument": "local_ordinance",
+      "status": "proposed",
+      "scope": "county",
+      "jurisdiction": "Spartanburg County, SC",
+      "state_code": "SC",
+      "counterparties": [
+        "Spartanburg County",
+        "AIB CLT1 LLC"
+      ],
+      "benefit_themes": [
+        "community_grants",
+        "education"
+      ],
+      "principles": [
+        "community_benefits"
+      ],
+      "community_benefits_framework": true,
+      "value_usd": 12600000,
+      "key_terms": [
+        "at least $12.6 million during the Initial Term"
+      ],
+      "summary": "The draft calls for at least $12.6 million over 12 years. AIB would make $6 million available within 30 days after receiving all required project approvals, then $600,000 annually in years 2–12. Eligible uses include workforce training, scholarships, and watershed conservation. County Council approved the second reading on November 3; the ordinance has not received final approval.",
+      "source_url": "https://sc-spartanburgcounty.civicplus.com/AgendaCenter/ViewFile/Agenda/_11032026-2054",
+      "source_title": "Spartanburg County Council — November 3, 2026 packet, AIB CLT1 LLC draft agreement, Article VII and Exhibit C",
+      "resources": [
+        {
+          "url": "https://www.spartanburgcounty.gov/1452/Data-Center-Information-Resources",
+          "title": "Spartanburg County — second-reading decisions on the three separate development agreements"
+        }
+      ],
+      "agreement_features": [
+        "dollar_commitment"
+      ],
+      "captured_at": "2026-11-15",
+      "date": "2026-11-03",
+      "related_moratorium_id": "spartanburg-county-sc-2026-06"
+    },
+    {
+      "id": "spartanburg-county-sc-300-jones-road-development-agreement-2026",
+      "title": "Spartanburg County — proposed 300 Jones Road Associates LLC agreement (430 Jones Road)",
+      "instrument": "local_ordinance",
+      "status": "proposed",
+      "scope": "county",
+      "jurisdiction": "Spartanburg County, SC",
+      "state_code": "SC",
+      "counterparties": [
+        "Spartanburg County",
+        "300 Jones Road Associates LLC"
+      ],
+      "benefit_themes": [
+        "community_grants",
+        "education"
+      ],
+      "principles": [
+        "community_benefits"
+      ],
+      "community_benefits_framework": true,
+      "value_usd": 9000000,
+      "key_terms": [
+        "to a community foundation model or similar public charity as fiduciary",
+        "$9.0 million: Total Payments"
+      ],
+      "summary": "The draft directs $9 million through a community foundation or similar public charity. Its schedule starts with $1.5 million within 30 days after all required project approvals, followed by five annual installments of $1.5 million. Eligible uses include housing, technical education, and road improvements. County Council approved the second reading on November 3; the ordinance has not received final approval.",
+      "source_url": "https://sc-spartanburgcounty.civicplus.com/AgendaCenter/ViewFile/Agenda/_11032026-2054",
+      "source_title": "Spartanburg County Council — November 3, 2026 packet, 300 Jones Road Associates LLC draft agreement, Article VII and Exhibit C",
+      "resources": [
+        {
+          "url": "https://www.spartanburgcounty.gov/1452/Data-Center-Information-Resources",
+          "title": "Spartanburg County — second-reading decisions on the three separate development agreements"
+        }
+      ],
+      "agreement_features": [
+        "dollar_commitment"
+      ],
+      "captured_at": "2026-11-15",
+      "date": "2026-11-03",
+      "related_moratorium_id": "spartanburg-county-sc-2026-06"
     }
   ]
 }

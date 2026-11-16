@@ -1,14 +1,15 @@
 # ISSUES.md — Data Audit Report
 Generated: 2026-11-15
-Total projects needing attention: 165
+Total projects needing attention: 166
 
 ## Critical Missing Commitment Details
-(70 projects)
+(71 projects)
 
 Projects missing required fields based on status:
 - **amazon-bossier-parish-la** (construction): claimed_investment_usd
 - **amazon-falls-twp-pa** (construction): claimed_investment_usd
 - **aws-caroline-va** (construction): claimed_investment_usd
+- **aws-cumberland-pa** (construction): claimed_investment_usd
 - **aws-umatilla-or** (operational): power_mw
 - **coreweave-ellendale-nd** (construction): claimed_investment_usd
 - **coreweave-muskogee-ok** (construction): claimed_investment_usd
@@ -133,7 +134,7 @@ Projects with important gaps:
 - **google-putnam-county-wv** (announced): claimed_investment_usd, claimed_jobs, power_mw
 - **google-roanoke-county-va** (announced): claimed_investment_usd, claimed_jobs, power_mw, at_a_glance
 - **google-sand-springs-ok** (announced): claimed_investment_usd, power_mw
-- **google-spacex-gpu-partnership** (announced): claimed_jobs, power_mw
+- **google-spacex-gpu-partnership** (announced): claimed_investment_usd, claimed_jobs, power_mw
 - **google-stillwater-ok** (announced): claimed_jobs, power_mw
 - **google-van-buren-mi** (announced): claimed_investment_usd, claimed_jobs
 - **google-wilbarger-tx** (announced): claimed_investment_usd, power_mw
