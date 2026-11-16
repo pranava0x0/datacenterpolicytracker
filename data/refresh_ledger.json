@@ -35,6 +35,14 @@
       "last_reviewed": "2026-11-15",
       "summary": "Newsroom RSS checked: no new sites since Effingham. New Nov 5 National Community Compact not yet recorded; openai.com + Wayback blocked, coverage paraphrases only. BACKLOG lead (high). last_reviewed bumped."
     },
+    "company:oracle": {
+      "last_reviewed": "2026-11-16",
+      "summary": "Checked for new sites (Stargate sites tracked under openai) and the Jan 26 2026 community blog (live at /news/announcement/blog/...; old 404 lead resolved). Verified 'paying our own way on energy' claim; held in BACKLOG (claims payload budget). Bumped last_reviewed."
+    },
+    "company:qts": {
+      "last_reviewed": "2026-11-16",
+      "summary": "Checked q.com/news: the six latest items (Maricopa partnership, Fayette $14M weatherization, Station 93, Lancium Turkey, Towaliga, co-CEO interview) are all already in the seed. Fetched the Jul 23 2026 statement (Eagle Mountain road claim added under that site). 24-campus lead in BACKLOG left open."
+    },
     "country:GB": {
       "last_check": {
         "date": "2026-10-21",
@@ -229,11 +237,27 @@
       "last_reviewed": "2026-11-01",
       "summary": "Checked Epoch + search; appended note on QTS late-2026 phase-1 target vs record's late-2028; status unchanged."
     },
+    "site:qts-eagle-mountain-ut": {
+      "last_reviewed": "2026-11-16",
+      "summary": "Checked QTS project page + Utah Business source and news since May. Corrected notes: five buildings planned (was 'three-building'), Buildings 1-3 under construction. Verified QTS Jul 23 2026 road/traffic cost claim; held in BACKLOG (claims payload budget). Not ratepayer-eligible (announced 2025)."
+    },
     "site:qts-richmond-va": {
       "blocked": {
         "date": "2026-10-18",
         "reason": "Only FAST-41 dashboard listing and Oct 2025 DEQ item found; RIC5 acreage/MW figures conflict across trackers. Unblock: fetch Henrico County / Army Corps Norfolk District notices."
       }
+    },
+    "site:qts-salem-twp-pa": {
+      "last_reviewed": "2026-11-16",
+      "summary": "QTS PA page (q.com/data-centers/qts-pennsylvania/) now carries a site-specific PPL no-cost-impact commitment; affirmed upgrade held in BACKLOG (claims payload budget). Set project_page_url, $10B investment, 12 buildings/early-planning note; added Times Leader Jul 15 2026 final master plan + road vacation approval (response + timeline)."
+    },
+    "site:qts-wilmer-tx": {
+      "last_reviewed": "2026-11-16",
+      "summary": "Searched news/permits since May. Added Feb 20 2026 TDLR registrations for DFW2-DC5 and DC6 at 421 Mason Rd ($290M est. each, 363,500 sq ft, 7/1/2026-9/1/2027). Status stays construction; DCD source_url is bot-walled (403), not dead. QTS signed after 2025 announcement, so no ratepayer assessment."
+    },
+    "site:qts-york-county-sc": {
+      "last_reviewed": "2026-11-16",
+      "summary": "Fixed May 12 venue (Oakridge Elementary per Post and Courier). QTS York page: 9 buildings, 2 under construction, none operational; ~1,000 construction + ~100 permanent jobs (claimed_jobs 1200->1100). No Oct-Nov 2026 news found. Pre-pledge site (2023), no ratepayer assessment."
     },
     "site:xai-memphis-tn": {
       "last_reviewed": "2026-10-27",
@@ -375,13 +399,13 @@
     },
     "state:KS": {
       "last_check": {
-        "date": "2026-11-07",
-        "summary": "KCTV5: Holscher declared victory, Masterson not conceded, unofficial lead ~5,500, outcome not finalized; no wire call found. Emporia commencement not re-checked."
+        "date": "2026-11-16",
+        "summary": "Governor: KCTV5 Nov 10 says no winner officially declared, county audits ongoing. Emporia Q2: Newsweek reports the Aug 20 court order stays the ordinance's legal effect pending the city's declaratory case; no ruling lifting it found."
       },
       "follow_ups": [
         {
-          "due": "2026-11-16",
-          "what": "Check Kansas governor canvass/concession and Emporia ban commencement."
+          "due": "2026-12-07",
+          "what": "Re-check Kansas governor certification and the Emporia declaratory-judgment case (Lyon County District Court)."
         }
       ]
     },

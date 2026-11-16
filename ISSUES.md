@@ -172,7 +172,7 @@ Projects with important gaps:
 - **qts-eagle-mountain-ut** (construction): power_mw
 - **qts-fayetteville-ga** (announced): claimed_investment_usd, power_mw
 - **qts-hall-county-tx** (announced): power_mw, at_a_glance
-- **qts-salem-twp-pa** (announced): claimed_investment_usd, claimed_jobs, power_mw
+- **qts-salem-twp-pa** (announced): claimed_jobs, power_mw
 - **qts-wilmer-tx** (construction): claimed_jobs
 - **qts-york-county-sc** (construction): power_mw
 - **xai-cochise-az** (announced): claimed_investment_usd, claimed_jobs, at_a_glance

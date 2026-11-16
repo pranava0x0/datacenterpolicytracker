@@ -2574,6 +2574,17 @@
       "source_url": "https://www.ajc.com/news/business/fulton-board-approves-75m-tax-break-for-microsoft-data-center/Q3K2XGXZD5DGRJUPUB3ENQGB4A",
       "source_title": "AJC — Fulton board approves $75M tax break for Microsoft data center",
       "single_source": true
+    },
+    {
+      "id": "resp-qts-salem-twp-master-plan-approved",
+      "project_id": "qts-salem-twp-pa",
+      "date": "2026-07-15",
+      "stance": "mixed",
+      "constituency": "local_government",
+      "summary": "The Times Leader reported that Salem Township supervisors approved the final master plan for the QTS campus, a 1,700-acre lot consolidation and the vacation of portions of North Market Street and Moskaluk Road, with an amendment keeping North Market Street open until a new connecting road is built; residents raised emergency-access concerns at the meeting.",
+      "source_url": "https://www.timesleader.com/news/1749147/salem-twp-approves-road-vacations-final-master-plan-for-qts-data-center-campus",
+      "source_title": "Times Leader — Salem Twp. approves road vacations, final master plan for QTS Data Center campus",
+      "single_source": true
     }
   ]
 }

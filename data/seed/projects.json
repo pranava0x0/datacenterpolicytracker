@@ -417,12 +417,12 @@
       "lon": -76.1453,
       "status": "announced",
       "announced_year": 2026,
-      "claimed_investment_usd": null,
+      "claimed_investment_usd": 10000000000,
       "claimed_jobs": null,
-      "notes": "1,700-acre QTS / Blackstone land acquisition in Luzerne County PA closed March 2026; 96 landowners participated in $500M+ sale. Could host 12-17 data centers per local reporting. Construction begins fall 2026. Distinct from but adjacent to the AWS Salem Township (Cumberland Valley) campus already tracked.",
+      "notes": "1,700-acre QTS / Blackstone land acquisition in Luzerne County PA closed March 2026; 96 landowners participated in $500M+ sale. Could host 12-17 data centers per local reporting. Construction begins fall 2026. Distinct from but adjacent to the AWS Salem Township (Cumberland Valley) campus already tracked. Nov 16 2026: QTS's Pennsylvania campus page says it expects to build 12 data center buildings across approximately 1,700 acres in a phased plan, calls the project a $10 billion QTS investment, estimates hundreds of construction jobs and nearly 100 permanent jobs, and says it is still in the early planning stages.",
       "source_url": "https://www.datacenterdynamics.com/en/news/qts-acquires-1700-acres-of-land-in-pennsylvania-for-data-center-development/",
       "source_title": "Data Center Dynamics — QTS acquires 1,700 acres in Pennsylvania",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-16",
       "acreage": 1700,
       "offtaker": "QTS",
       "at_a_glance": {
@@ -450,7 +450,8 @@
           "source_url": "https://www.timesleader.com/news/1736785/salem-twp-planning-commission-tables-data-center-plan-solar-facility-application",
           "source_title": "Times Leader — Salem Twp. planning commission tables data center plan"
         }
-      ]
+      ],
+      "project_page_url": "https://q.com/data-centers/qts-pennsylvania/"
     },
     {
       "id": "qts-van-wert-oh",
@@ -2364,15 +2365,15 @@
       "announced_year": 2025,
       "claimed_investment_usd": 6000000000,
       "claimed_jobs": 2100,
-      "notes": "193-acre, three-building QTS campus (~580K sq ft each). Topping-out ceremony April 18, 2026 with ~2,000 peak construction workers; ~100 permanent operational FTEs. Closed-loop zero-water cooling. QTS publicly commits no impact on local utility rates per its Ratepayer Protection Pledge.",
+      "notes": "193-acre QTS campus; QTS's project page says it expects to build five data center buildings, with first-phase buildings of 579K–592K sq ft and Buildings 1–3 under construction (page checked 2026-11-16). Topping-out ceremony April 18, 2026 with ~2,000 peak construction workers; ~100 permanent operational FTEs. Closed-loop zero-water cooling. QTS publicly commits no impact on local utility rates per its Ratepayer Protection Pledge.",
       "source_url": "https://www.utahbusiness.com/press-releases/2026/04/20/layton-construction-qts-data-centers-campus-eagle-mountain/",
       "source_title": "Utah Business — QTS Eagle Mountain topping out (Apr 20 2026)",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-16",
       "project_page_url": "https://q.com/data-centers/eagle-mountain/",
       "acreage": 193,
       "offtaker": "QTS",
       "at_a_glance": {
-        "jobs": "$6B / 193 ac / 3-building campus",
+        "jobs": "$6B / 193 ac / five buildings planned",
         "energy": "Ratepayer Protection Pledge: no impact on local utility rates",
         "water": "Zero-water closed-loop cooling"
       }
@@ -2389,15 +2390,15 @@
       "status": "construction",
       "announced_year": 2023,
       "claimed_investment_usd": 8000000000,
-      "claimed_jobs": 1200,
-      "notes": "$8B QTS campus on Hands Mill Hwy / Campbell Rd. ~9 buildings approved with future expansion under evaluation. ~200 permanent jobs / ~1,000 peak construction. $40M in projected tax revenue earmarked for local schools, $16M for York County. May 12, 2026 community Q&A at Oakridge Middle School amid growing residential opposition.",
+      "claimed_jobs": 1100,
+      "notes": "$8B QTS campus on Hands Mill Hwy / Campbell Rd. ~9 buildings approved with future expansion under evaluation. ~200 permanent jobs / ~1,000 peak construction. $40M in projected tax revenue earmarked for local schools, $16M for York County. May 12, 2026 community Q&A at Oakridge Elementary School amid growing residential opposition. Nov 16 2026: QTS's York County page says the current project is 9 buildings, 2 of them under construction and none completed or operational, and estimates around 1,000 construction jobs and around 100 permanent jobs (the ~200 permanent figure above is from earlier coverage).",
       "source_url": "https://www.postandcourier.com/york-county/news/qts-data-centers-clover-york-utilities-noise/article_b786fc3b-6416-4e0d-9414-a8f0add5facb.html",
       "source_title": "Post and Courier — QTS meets with York County residents about $8B plant (May 2026)",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-16",
       "project_page_url": "https://q.com/data-centers/york/",
       "offtaker": "QTS",
       "at_a_glance": {
-        "jobs": "$8B / 1,200 jobs (Clover campus)"
+        "jobs": "$8B / ~1,000 construction + ~100 permanent jobs"
       },
       "updates": [
         {
@@ -3729,10 +3730,10 @@
       "announced_year": 2025,
       "claimed_investment_usd": 650000000,
       "claimed_jobs": null,
-      "notes": "303 Mason Rd at the Wilmer/Lancaster border (Dallas County). DC2 470,000 sq ft (June 2026 completion); DC3 560,000 sq ft (Jan 2027 completion). Combined DC1+DC2 critical load 75.2 MW. $300M (DC2) + $350M (DC3) capex.",
+      "notes": "303 Mason Rd at the Wilmer/Lancaster border (Dallas County). DC2 470,000 sq ft (June 2026 completion); DC3 560,000 sq ft (Jan 2027 completion). Combined DC1+DC2 critical load 75.2 MW. $300M (DC2) + $350M (DC3) capex. Feb 20 2026: QTS Dallas I, LLC registered two more DFW2 buildings, DC5 (TDLR TABS2026013132) and DC6 (TABS2026013130), at 421 Mason Rd with the Texas Department of Licensing and Regulation — each a new 363,500 sq ft two-story building with an estimated cost of $290,000,000, a 7/1/2026 start date and a 9/1/2027 completion date.",
       "source_url": "https://www.datacenterdynamics.com/en/news/qts-files-to-expand-upcoming-data-center-campus-in-dallas-texas/",
       "source_title": "Data Center Dynamics — QTS files to expand Dallas DFW2 campus",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-16",
       "power_mw": 75.2,
       "offtaker": "QTS",
       "at_a_glance": {
