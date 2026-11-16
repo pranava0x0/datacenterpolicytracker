@@ -316,6 +316,52 @@ class _StrictBase(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
 
+# v7 (2026-11-16): one typed cross-reference shape for every record that links
+# to another. Links are stored ONE way, on whichever record the curator was
+# editing; refresh.py derives the inverse into docs/data/links.json so both
+# ends show it. Storing both directions by hand is the mirrored-list failure.
+RECORD_KINDS: tuple[str, ...] = (
+    "policy", "moratorium", "tariff", "rate_case", "project", "company", "election",
+)
+RecordKind = Literal["policy", "moratorium", "tariff", "rate_case", "project", "company", "election"]
+RECORD_RELATIONS: tuple[str, ...] = (
+    "related", "authorizes", "implements", "replaces", "replaced_by", "challenges", "challenged_by",
+)
+RecordRelation = Literal[
+    "related", "authorizes", "implements", "replaces", "replaced_by", "challenges", "challenged_by",
+]
+# The reverse reading of each relation, as seen from the target record.
+RELATION_INVERSE: dict[str, str] = {
+    "related": "related",
+    "authorizes": "implements",
+    "implements": "authorizes",
+    "replaces": "replaced_by",
+    "replaced_by": "replaces",
+    "challenges": "challenged_by",
+    "challenged_by": "challenges",
+}
+RELATION_LABELS: dict[str, str] = {
+    "related": "Related",
+    "authorizes": "Authorizes",
+    "implements": "Implements",
+    "replaces": "Replaces",
+    "replaced_by": "Replaced by",
+    "challenges": "Challenges",
+    "challenged_by": "Challenged by",
+}
+
+
+class RecordRef(_StrictBase):
+    """A link from one record to another, by kind and id."""
+
+    kind: RecordKind
+    id: str = Field(min_length=1)
+    relation: RecordRelation = "related"
+    note: Optional[str] = Field(
+        default=None, description="Optional one-line reason for the link."
+    )
+
+
 # ---------------------------------------------------------------------------
 # International (v6, 2026-10-19) — notes/specs/SPEC_INTERNATIONAL.md
 # ---------------------------------------------------------------------------
@@ -1215,6 +1261,10 @@ class Moratorium(_StrictBase):
         default=None,
         description="Legislative session year (e.g., '2024', '2026'). Optional.",
     )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
+    )
     captured_at: Date = Field(
         description="Date this record was curated / moratorium status was verified."
     )
@@ -1515,6 +1565,11 @@ class TariffParameter(_StrictBase):
 class TariffLegislation(_StrictBase):
     """A state law / bill that authorizes or influenced this tariff."""
 
+    policy_id: Optional[str] = Field(
+        default=None,
+        description="v7: the Policy record for this law, when one is tracked. Renders as an internal link.",
+    )
+
     title: str = Field(
         min_length=1, description="e.g., 'Ohio HB 15 (2025)' or 'Texas SB 6 (2025)'."
     )
@@ -1634,6 +1689,10 @@ class Tariff(_StrictBase):
             "Additional reputable {url, title} sources. Prioritize government "
             "(PUC / legislature) links, then major trade press."
         ),
+    )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
     )
     captured_at: Date = Field(
         description="Date this record was curated / the tariff status was verified."
@@ -1755,6 +1814,10 @@ class RateCase(_StrictBase):
     source_url: HttpUrl
     source_title: str = Field(min_length=1)
     resources: Optional[list[SourceResource]] = Field(default=None)
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
+    )
     captured_at: Date
 
     @field_validator("state_code")
@@ -1833,6 +1896,7 @@ POLICY_INSTRUMENTS: tuple[str, ...] = (
     "benefit_agreement",
     "company_plan",
     "government_framework",
+    "commission_order",
 )
 PolicyInstrument = Literal[
     "executive_order",
@@ -1842,6 +1906,7 @@ PolicyInstrument = Literal[
     "benefit_agreement",
     "company_plan",
     "government_framework",
+    "commission_order",
 ]
 POLICY_INSTRUMENT_LABELS: dict[str, str] = {
     "executive_order": "Executive order",
@@ -1854,6 +1919,10 @@ POLICY_INSTRUMENT_LABELS: dict[str, str] = {
     # framework, UK AI Growth Zones). Filing these as regulation would claim
     # legal force they lack.
     "government_framework": "Government framework",
+    # v7: a utility commission (PUC/PSC/FERC) order or rule that sets large-load
+    # terms beyond one tariff (generic proceedings, interconnection rules).
+    # A tariff itself stays a Tariff record.
+    "commission_order": "Commission order",
 }
 
 # in_effect = signed / enacted / published; proposed = introduced, passed one
@@ -2042,6 +2111,10 @@ class Policy(_StrictBase):
         description="Independent evidence of whether an agreement's committed "
         "benefits were actually paid / awarded / built. Same rules as "
         "Claim.delivered: absent = not yet assessed, never implied delivery.",
+    )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
     )
     captured_at: Date
     country: str = Field(default="US", description="ISO 3166-1 alpha-2, or 'EU' (v6).")

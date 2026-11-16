@@ -163,6 +163,7 @@ const POLICY_INSTRUMENTS = [
   "benefit_agreement",
   "company_plan",
   "government_framework",
+  "commission_order",
 ];
 const POLICY_INSTRUMENT_LABELS = {
   executive_order: "Executive order",
@@ -172,6 +173,19 @@ const POLICY_INSTRUMENT_LABELS = {
   benefit_agreement: "Benefit agreement",
   company_plan: "Company plan",
   government_framework: "Government framework",
+  commission_order: "Commission order",
+};
+// v7 cross-record links. Mirrors RECORD_KINDS / RELATION_LABELS in schema.py
+// (parity-tested). links.json carries both directions, derived at refresh.
+const RECORD_KINDS = ["policy", "moratorium", "tariff", "rate_case", "project", "company", "election"];
+const RELATION_LABELS = {
+  related: "Related",
+  authorizes: "Authorizes",
+  implements: "Implements",
+  replaces: "Replaces",
+  replaced_by: "Replaced by",
+  challenges: "Challenges",
+  challenged_by: "Challenged by",
 };
 const POLICY_STATUSES = ["in_effect", "proposed", "failed"];
 const POLICY_STATUS_LABELS = {

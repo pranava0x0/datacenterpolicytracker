@@ -1923,6 +1923,13 @@
       "captured_at": "2026-09-23",
       "principles": [
         "pay_own_way"
+      ],
+      "related": [
+        {
+          "kind": "rate_case",
+          "id": "mo-psc-ameren-large-load-2025",
+          "relation": "authorizes"
+        }
       ]
     },
     {
@@ -4699,6 +4706,14 @@
         {
           "url": "https://www.kuer.org/business-economy/2026-10-09/box-elder-iron-county-data-center-moratoriums-new-regulations",
           "title": "KUER — Box Elder, Iron County data center moratoriums, new regulations"
+        }
+      ],
+      "related": [
+        {
+          "kind": "moratorium",
+          "id": "iron-county-ut-2026-06",
+          "relation": "replaces",
+          "note": "The county lifted the moratorium when this ordinance took effect."
         }
       ]
     },

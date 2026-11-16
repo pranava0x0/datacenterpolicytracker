@@ -126,7 +126,8 @@
           "url": "https://www.njleg.state.nj.us/bill-search/2026/S731",
           "citation": "A796/S731",
           "status": "Enacted 2026-07-07",
-          "summary": "The enabling legislation — creates the data-center rate class directly and directs BPU implementation. (Note: an alternate njleg.gov bill-text URL found in an earlier draft of this record resolved to an unrelated homepage on direct verification and referenced a mismatched bill number in its own query string — dropped rather than kept unverified.)"
+          "summary": "The enabling legislation — creates the data-center rate class directly and directs BPU implementation. (Note: an alternate njleg.gov bill-text URL found in an earlier draft of this record resolved to an unrelated homepage on direct verification and referenced a mismatched bill number in its own query string — dropped rather than kept unverified.)",
+          "policy_id": "nj-pl2026-c32"
         }
       ],
       "source_url": "https://www.nj.gov/governor/news/2026/20260707a.shtml",
@@ -218,7 +219,8 @@
           "url": "https://ohiohouse.gov/committees/energy/bills/hb15",
           "citation": "HB 15, 136th General Assembly",
           "status": "Signed; effective Aug 14, 2025",
-          "summary": "Restructured Ohio's electricity market (removed Electric Security Plans, enabled behind-the-meter self-power) to attract data centers while protecting ratepayers."
+          "summary": "Restructured Ohio's electricity market (removed Electric Security Plans, enabled behind-the-meter self-power) to attract data centers while protecting ratepayers.",
+          "policy_id": "oh-hb15-2025"
         }
       ],
       "source_url": "https://puco.ohio.gov/news/puco-orders-aep-ohio-to-create-data-center-specific-tariff",
@@ -800,7 +802,8 @@
           "url": "https://capitol.texas.gov/tlodocs/89R/billtext/pdf/SB00006H.pdf",
           "citation": "SB 6, 89th Legislature",
           "status": "Signed June 20, 2025",
-          "summary": "Overhauls large-load interconnection, transmission cost allocation and co-location rules in ERCOT."
+          "summary": "Overhauls large-load interconnection, transmission cost allocation and co-location rules in ERCOT.",
+          "policy_id": "tx-sb6-2025"
         }
       ],
       "source_url": "https://www.lrl.texas.gov/legis/billsearch/BillDetails.cfm?legSession=89-0&billTypeDetail=SB&billnumberDetail=6",
@@ -1017,7 +1020,8 @@
           "url": "https://olis.oregonlegislature.gov/liz/2025R1/Measures/Overview/HB3546",
           "citation": "HB 3546, Chapter 323 (2025)",
           "status": "Enacted as Chapter 323 (2025), emergency clause; sunsets Jan 2, 2035",
-          "summary": "Directs the Oregon PUC to create a new service classification for large energy use facilities that allocates serving costs to those facilities and mitigates risk to other customer classes — the basis for PGE's Schedule 96. Widely referred to as the POWER Act."
+          "summary": "Directs the Oregon PUC to create a new service classification for large energy use facilities that allocates serving costs to those facilities and mitigates risk to other customer classes — the basis for PGE's Schedule 96. Widely referred to as the POWER Act.",
+          "policy_id": "or-hb3546-2025"
         }
       ],
       "source_url": "https://www.utilitydive.com/news/oregon-puc-approves-pges-large-load-tariff-framework-for-data-centers/821361/",
@@ -1610,7 +1614,8 @@
           "url": "https://olis.oregonlegislature.gov/liz/2025R1/Measures/Overview/HB3546",
           "citation": "HB 3546, Chapter 323 (2025)",
           "status": "Enacted 2025 (effective June 16, 2025)",
-          "summary": "Requires the Oregon PUC to create a separate service classification for large energy use facilities (20 MW+) that assigns serving costs to them — the POWER Act, which Schedule 401 implements for PacifiCorp."
+          "summary": "Requires the Oregon PUC to create a separate service classification for large energy use facilities (20 MW+) that assigns serving costs to them — the POWER Act, which Schedule 401 implements for PacifiCorp.",
+          "policy_id": "or-hb3546-2025"
         }
       ],
       "source_url": "https://apps.puc.state.or.us/edockets/DocketNoLayout.asp?DocketID=24856",

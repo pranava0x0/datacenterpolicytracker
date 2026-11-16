@@ -25,6 +25,7 @@ Last refreshed 2026-11-16. Record counts: 195 sites (60 contested), 17 companies
 - [elections.json](https://pranava0x0.github.io/datacenterpolicytracker/data/elections.json)
 - [home.json](https://pranava0x0.github.io/datacenterpolicytracker/data/home.json)
 - [international.json](https://pranava0x0.github.io/datacenterpolicytracker/data/international.json)
+- [links.json](https://pranava0x0.github.io/datacenterpolicytracker/data/links.json)
 - [map_geography.json](https://pranava0x0.github.io/datacenterpolicytracker/data/map_geography.json)
 - [moratoriums.json](https://pranava0x0.github.io/datacenterpolicytracker/data/moratoriums.json)
 - [policies.json](https://pranava0x0.github.io/datacenterpolicytracker/data/policies.json)
