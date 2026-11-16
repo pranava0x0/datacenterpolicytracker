@@ -9539,6 +9539,9 @@ const COUNTRY_NAMES = {
   MX: "Mexico",
   ES: "Spain",
   BE: "Belgium",
+  NO: "Norway",
+  MY: "Malaysia",
+  DK: "Denmark",
 };
 const SUPRANATIONAL_NAMES = { EU: "European Union" };
 const EU_MEMBERS = [
@@ -9612,6 +9615,7 @@ const CURRENCIES = ["USD", "EUR", "GBP", "SEK", "AUD", "SGD", "CAD", "CLP", "ARS
 const LANGUAGE_NAMES = {
   en: "English", fr: "French", sv: "Swedish", fi: "Finnish", el: "Greek", ga: "Irish", es: "Spanish",
   ja: "Japanese", ko: "Korean", hi: "Hindi", nl: "Dutch",
+  nb: "Norwegian Bokmål", nn: "Norwegian Nynorsk", ms: "Malay", da: "Danish",
 };
 const TRANSLATION_SOURCE_LABELS = {
   official: "Official English version",
