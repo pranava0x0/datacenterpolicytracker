@@ -103,3 +103,14 @@ def test_links_json_is_built_and_current(payloads):
     built = json.loads((ROOT / "docs" / "data" / "links.json").read_text())["links"]
     graph, _ = refresh._build_links(payloads)
     assert built == json.loads(json.dumps(graph)), "links.json is stale — re-run refresh.py"
+
+
+def test_power_brief_refs_resolve_and_cite_sources(payloads):
+    brief = payloads["tariffs"].brief
+    assert brief is not None, "Power Costs needs its brief"
+    index = refresh._record_index(payloads)
+    for para in brief.paragraphs:
+        assert para.sources
+        for ref in para.record_refs:
+            assert ref.id in index[ref.kind], (para.heading, ref.id)
+            assert ref.note, "brief links carry their own display name"

@@ -1124,6 +1124,13 @@ def refresh(*, check_only: bool = False, pretty: bool = False, audit: bool = Fal
     cross_errors += _check_map_refs(payloads["map_geography"], payloads["moratoriums"], payloads["policies"])
     # v7: every typed `related` link (and legacy link field) must resolve.
     cross_errors += [f"links: {e}" for e in _build_links(payloads)[1]]
+    brief = payloads["tariffs"].brief
+    if brief is not None:
+        index = _record_index(payloads)
+        for para in brief.paragraphs:
+            for ref in para.record_refs:
+                if ref.id not in index.get(ref.kind, set()):
+                    cross_errors.append(f"tariffs.json brief {para.heading!r}: unknown {ref.kind} {ref.id!r}")
     if cross_errors:
         for err in cross_errors:
             logger.error(err)

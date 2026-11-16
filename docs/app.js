@@ -2571,6 +2571,7 @@ async function loadTariffsData() {
     ),
   ]);
   state.tariffs = payload.tariffs || [];
+  state.powerBrief = payload.brief || null;
   state.tariffsLoaded = true;
   renderTariffsView();
 }
@@ -2752,6 +2753,7 @@ function renderTariffsView() {
 
   // Stats + LBL coverage use the FULL set (not the filtered table).
   renderTariffStats(state.tariffs);
+  renderPowerBrief(state.powerBrief);
   renderTariffCoverage(state.tariffs);
   renderTariffsTable();
   renderRateCases();
@@ -2765,25 +2767,63 @@ function isFederalTariff(t) {
   return t.jurisdiction_level === "federal";
 }
 
+// v7: the curated "what to watch" brief at the top of Power Costs. Every
+// paragraph carries its sources; record_refs become internal links.
+function renderPowerBrief(brief) {
+  const box = document.getElementById("power-brief");
+  if (!box) return;
+  if (!brief || !(brief.paragraphs || []).length) { box.hidden = true; return; }
+  document.getElementById("power-brief-asof").textContent = `As of ${formatAsOf(brief.as_of)}`;
+  const body = document.getElementById("power-brief-body");
+  body.replaceChildren(...brief.paragraphs.map((para) => {
+    const item = el("div", "pbf-item");
+    item.append(el("h4", "pbf-heading", para.heading));
+    item.append(el("p", "pbf-text", para.text));
+    const links = el("p", "pbf-links");
+    for (const ref of para.record_refs || []) {
+      // The brief names its own links (`note`): the policy payload is not
+      // loaded on this tab, and a de-slugged id is not a name.
+      const a = el("a", "pbf-record", ref.note || recordLabel(ref.kind, ref.id));
+      a.href = recordHref(ref.kind, ref.id);
+      links.append(a);
+    }
+    // Sources as short numbered links (full title on hover and for screen
+    // readers): four full titles per paragraph doubled the brief's height.
+    const srcs = para.sources || [];
+    if (srcs.length) {
+      const wrap = el("span", "pbf-srcs", "Sources:");
+      srcs.forEach((src, i) => {
+        const a = el("a", "pbf-src", `${i + 1}`);
+        a.href = String(src.url);
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.title = src.title;
+        a.setAttribute("aria-label", `Source: ${src.title}`);
+        wrap.append(" ", a);
+      });
+      links.append(wrap);
+    }
+    item.append(links);
+    return item;
+  }));
+  box.hidden = false;
+}
+
 function renderTariffStats(tariffs) {
   const ul = document.getElementById("tariff-stats");
   if (!ul) return;
   const stateTariffs = tariffs.filter((t) => !isFederalTariff(t));
-  const federal = tariffs.filter(isFederalTariff);
   const by = (s) => stateTariffs.filter((t) => t.status === s).length;
   const statesCovered = new Set(stateTariffs.map((t) => t.state)).size;
   // [value, label, showWhenZero]. Status counts are STATE-only; federal cases
   // get their own tile; zero-count status tiles are hidden.
   const rateCases = state.rateCases || [];
+  // v7: three numbers, each answering one question. The full counts live in
+  // the sub-tab pills and filters; eight tiles read as noise.
   const tiles = [
-    [rateCases.length, "Rate cases", true],
-    [rateCases.filter((rc) => rc.status === "pending").length, "Pending", false],
-    [tariffs.length, "Tariffs", true],
-    [by("approved"), "Tariffs approved", false],
-    [by("proposed"), "Proposed", false],
-    [by("rejected"), "Rejected / Withdrawn", false],
-    [federal.length, "Federal cases", false],
-    [statesCovered, "States covered", true],
+    [rateCases.filter((rc) => rc.status === "pending").length, "Rate cases pending", true],
+    [by("approved"), "State tariffs approved", true],
+    [statesCovered, "States with a tariff", true],
   ];
   ul.innerHTML = tiles
     .filter(([n, , showZero]) => showZero || n > 0)

@@ -1641,12 +1641,16 @@ class TestTariffsView:
     ):
         self._open(page, base_url)
         # The FERC co-location case carries a FED badge so it doesn't read as a
-        # state tariff, and a "Federal cases" stat tile surfaces it separately.
+        # state tariff, and the approved-tariff tile counts state tariffs only
+        # (v7 cut the separate "Federal cases" tile).
         assert page.locator("#tariffs-tbody .badge-tariff-federal").count() >= 1
-        stat_labels = page.eval_on_selector_all(
-            "#tariff-stats .rp-stat-label", "els => els.map(e => e.textContent)"
+        expected = page.evaluate(
+            "() => state.tariffs.filter(t => !isFederalTariff(t) && t.status === 'approved').length"
         )
-        assert "Federal cases" in stat_labels, stat_labels
+        tiles = page.eval_on_selector_all(
+            "#tariff-stats .rp-stat", "els => els.map(e => e.textContent.replace(/\\s+/g, ' ').trim())"
+        )
+        assert f"{expected} State tariffs approved" in tiles, tiles
 
 
 # ---------------------------------------------------------------------------
@@ -1815,12 +1819,16 @@ class TestSubtabDeepLinks:
 
     def test_rate_cases_lead_the_tariffs_tab(self, page: Page, base_url: str):
         # The owner: "too long to get to the meat". Rate cases are the
-        # default pane, so the first proceeding is above the fold.
+        # default pane. v7 (owner): a "what to watch" brief now leads the
+        # tab, so the brief starts above the fold and the first proceeding
+        # sits within one more screen, not three.
         page.set_viewport_size({"width": 1366, "height": 900})
         page.goto(base_url + "/#tariffs")
         page.wait_for_selector("#rate-cases-list .rc-item", timeout=E2E_WAIT)
+        expect(page.locator("#power-brief")).to_be_visible()
+        assert page.locator("#power-brief").bounding_box()["y"] < 450
         top = page.locator("#rate-cases-list .rc-item").first.bounding_box()["y"]
-        assert top < 900, f"first rate case starts at y={top}"
+        assert top < 1350, f"first rate case starts at y={top}"
 
 
 class TestUrlState:

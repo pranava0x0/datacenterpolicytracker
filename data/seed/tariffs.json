@@ -2763,5 +2763,131 @@
       ],
       "captured_at": "2026-11-16"
     }
-  ]
+  ],
+  "brief": {
+    "as_of": "2026-11-16",
+    "paragraphs": [
+      {
+        "heading": "Decisions due next",
+        "text": "Arizona's administrative law judge is expected to recommend an order in the APS rate case by late November, and the Corporation Commission must vote by December 31. Duke's North Carolina large-load settlement, filed October 6 with Amazon, Google and Microsoft among the signers, asks for rates to start January 1, 2027. Colorado's PUC has held Xcel's large-load tariff until January 8, 2027 while it hears the case. Pennsylvania's PUC holds a technical conference on how to split large-load costs on November 17.",
+        "record_refs": [
+          {
+            "kind": "rate_case",
+            "id": "az-acc-aps-rate-case-2025",
+            "note": "APS rate case"
+          },
+          {
+            "kind": "tariff",
+            "id": "duke-nc-large-load-rate-case-2025",
+            "note": "Duke NC large-load tariff"
+          },
+          {
+            "kind": "tariff",
+            "id": "xcel-colorado-large-load-tariff",
+            "note": "Xcel Colorado tariff"
+          },
+          {
+            "kind": "rate_case",
+            "id": "pa-puc-large-load-cost-allocation-2026",
+            "note": "PA cost-allocation proceeding"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://azcc.gov/news/home/2026/02/19/what-s-next-in-the-aps-rate-case",
+            "title": "Arizona Corporation Commission — What's next in the APS rate case"
+          },
+          {
+            "url": "https://www.selc.org/wp-content/uploads/2026/10/2026-10-06-Duke-Energy-LLT-Settlement.pdf",
+            "title": "Duke Energy large load tariff settlement, Oct 6, 2026 (NCUC filing)"
+          },
+          {
+            "url": "https://www.dora.state.co.us/pls/efi/EFI.Show_Docket?p_session_id=&p_docket_id=26AL-0137E",
+            "title": "Colorado PUC — Proceeding 26AL-0137E"
+          },
+          {
+            "url": "https://www.puc.pa.gov/press-release/2026/puc-moves-to-address-data-center-impacts-on-electric-reliability-and-consumer-costs-09102026",
+            "title": "Pennsylvania PUC — large-load cost allocation proceeding"
+          }
+        ]
+      },
+      {
+        "heading": "Regulators pushing back",
+        "text": "Florida's Public Service Commission denied Duke Energy Florida's large-load tariffs on November 3, finding the proposal left out customers the new state law covers and did not show those customers would pay their full cost of service. In Wisconsin, Oracle is suing the PSC over the credit-rating requirement in We Energies' Very Large Customer tariff, and the PSC has declined to loosen it.",
+        "record_refs": [
+          {
+            "kind": "rate_case",
+            "id": "fl-psc-duke-large-load-tariff-2026",
+            "note": "Duke Florida case"
+          },
+          {
+            "kind": "tariff",
+            "id": "we-energies-very-large-customer-tariff",
+            "note": "We Energies tariff"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.wusf.org/politics-issues/2026-11-04/regulators-reject-dukes-data-center-rate-structure",
+            "title": "WUSF — Regulators reject Duke's data center rate structure"
+          },
+          {
+            "url": "https://wisconsinwatch.org/2026/07/wisconsin-regulators-refuse-to-loosen-data-center-credit-rules-setting-up-oracle-court-fight/",
+            "title": "Wisconsin Watch — Regulators refuse to loosen data center credit rules"
+          }
+        ]
+      },
+      {
+        "heading": "Laws setting the terms",
+        "text": "New Jersey's Data Center Fair Share Act, signed July 7, has the Board of Public Utilities create a separate rate class for large data centers; the board sets standards first, then utilities file tariffs. Oregon's POWER Act (HB 3546) has now produced two approved tariffs: Portland General Electric's Schedule 96 in May and PacifiCorp's Schedule 401 on November 13.",
+        "record_refs": [
+          {
+            "kind": "policy",
+            "id": "nj-pl2026-c32",
+            "note": "NJ Fair Share Act"
+          },
+          {
+            "kind": "policy",
+            "id": "or-hb3546-2025",
+            "note": "Oregon HB 3546"
+          },
+          {
+            "kind": "tariff",
+            "id": "pge-oregon-schedule-96-large-load",
+            "note": "PGE Schedule 96"
+          },
+          {
+            "kind": "tariff",
+            "id": "pacificorp-oregon-schedule-401-ue463",
+            "note": "PacifiCorp Schedule 401"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.nj.gov/governor/news/2026/20260707a.shtml",
+            "title": "Office of the Governor of New Jersey — July 7, 2026"
+          },
+          {
+            "url": "https://apps.puc.state.or.us/orders/2026ords/26-154.pdf",
+            "title": "Oregon PUC Order No. 26-154 (PGE Schedule 96)"
+          },
+          {
+            "url": "https://apps.puc.state.or.us/orders/2026ords/26-443.pdf",
+            "title": "Oregon PUC Order No. 26-443 (PacifiCorp Schedule 401)"
+          }
+        ]
+      },
+      {
+        "heading": "What new tariffs have in common",
+        "text": "Berkeley Lab's August 2026 review of 55 large-load tariffs found a minimum demand threshold in nearly all of them, with a median of 25 MW, and a minimum contract term in nearly all of them too. The elements it calls emerging, meaning they appear more often in tariffs proposed since January 2025, are study requirements, load ramp periods, hold-harmless provisions, rules for resizing contracted capacity, and exit fees.",
+        "record_refs": [],
+        "sources": [
+          {
+            "url": "https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf",
+            "title": "Berkeley Lab — Electricity Rate Designs for Large Loads, 2026 Update"
+          }
+        ]
+      }
+    ]
+  }
 }
