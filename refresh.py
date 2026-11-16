@@ -896,6 +896,12 @@ def _build_links(payloads) -> tuple[dict[str, list[dict]], list[str]]:
     errors: list[str] = []
 
     def add(src_kind, src_id, dst_kind, dst_id, relation, note=None):
+        # Both ends: a tariff-legislation link is emitted with the policy as
+        # its SOURCE, so checking only the destination let a typo through
+        # (Codex review of #137).
+        if src_id not in index.get(src_kind, set()):
+            errors.append(f"{dst_kind} {dst_id!r} links to unknown {src_kind} {src_id!r}")
+            return
         if dst_id not in index.get(dst_kind, set()):
             errors.append(f"{src_kind} {src_id!r} links to unknown {dst_kind} {dst_id!r}")
             return

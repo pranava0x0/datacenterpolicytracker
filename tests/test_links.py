@@ -114,3 +114,15 @@ def test_power_brief_refs_resolve_and_cite_sources(payloads):
         for ref in para.record_refs:
             assert ref.id in index[ref.kind], (para.heading, ref.id)
             assert ref.note, "brief links carry their own display name"
+
+
+def test_unknown_tariff_legislation_policy_is_an_error(payloads):
+    t = next(x for x in payloads["tariffs"].tariffs if x.legislation)
+    leg = t.legislation[0]
+    original = leg.policy_id
+    leg.policy_id = "no-such-policy"
+    try:
+        _, errors = refresh._build_links(payloads)
+        assert any("no-such-policy" in e for e in errors)
+    finally:
+        leg.policy_id = original

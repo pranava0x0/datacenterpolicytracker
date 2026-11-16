@@ -1060,6 +1060,28 @@ function setPermalink(elId, kind, id) {
 async function openRecordRoute(prefix, rawId) {
   const route = RECORD_ROUTES[prefix];
   const id = decodeURIComponent(rawId);
+  // A non-US site or policy lives in international.json; its home is the
+  // country page, not the US Sites or Policy tab (Codex review of #137).
+  if (prefix === "site" || prefix === "policy") {
+    const gen0 = state.navGen;
+    try {
+      const usList = prefix === "site"
+        ? (await loadProjectData(), state.projects)
+        : (await loadPoliciesData(), state.policies);
+      if (!(usList || []).some((x) => x.id === id)) {
+        const intl = await loadInternationalData();
+        const rec = (prefix === "site" ? intl.projects : intl.policies || []).find((x) => x.id === id);
+        if (rec && state.navGen === gen0) {
+          setActiveSubtab("world", "countries");
+          activateView("world");
+          openCountry(rec.country);
+          return;
+        }
+      }
+    } catch (err) {
+      console.error(`Could not resolve ${prefix} ${id}:`, err);
+    }
+  }
   if (prefix === "site") {
     history.replaceState(null, "", `${window.location.pathname}?project=${encodeURIComponent(id)}#explorer`);
     readFiltersFromUrl();

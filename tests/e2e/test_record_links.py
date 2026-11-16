@@ -90,3 +90,15 @@ def test_related_links_render_both_directions(page: Page, base_url):
     link.click()
     expect(page.locator("#policy-modal")).to_be_visible()
     expect(page.locator(f'#pd-related-list a[href="#tariff/{tid}"]')).to_be_visible()
+
+
+def test_international_site_and_policy_urls_open_their_country(page: Page, base_url):
+    intl = json.loads((DATA / "international.json").read_text())
+    site = intl["projects"][0]
+    page.goto(f"{base_url}/?i=is#site/{site['id']}")
+    expect(page.locator("#view-world")).to_be_visible()
+    page.wait_for_function("(c) => state.openCountry === c", arg=site["country"])
+    pol = intl["policies"][0]
+    page.goto(f"{base_url}/?i=ip#policy/{pol['id']}")
+    expect(page.locator("#view-world")).to_be_visible()
+    page.wait_for_function("(c) => state.openCountry === c", arg=pol["country"])
