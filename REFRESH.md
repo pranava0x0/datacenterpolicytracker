@@ -1400,3 +1400,9 @@ A source sweep that collected only links named source_url or url silently skippe
 ### 2026-11-16 — writing plan examples
 
 Put the place and subject in the heading when a section covers more than one jurisdiction. Keep local figures with their source and identify projections as projections. The plan download buttons use the community heading; they do not need a separate line above it.
+
+### 2026-11-16 — stale pending re-check
+
+Three Haiku researchers re-checked all 42 records past `STALE_PENDING_DAYS`. Eighteen changes were applied, and every quote was a probe HIT. Status changes: Oregon UE 463 approved (Order 26-443), Martin County FL enacted, Davidson County NC failed, Iron County UT rules in effect with its moratorium lifted. The other 19 records had no source newer than their capture date, so their `captured_at` was left alone and they stay flagged. Among them: FERC RM26-4 (ferc.gov 403), the NV dockets, Knoxville, Ashville OH, Hastings MN, Agawam MA, Morton County ND, Front Royal, Coeur d'Alene, McHenry County, Chicago, Virginia LIS (JavaScript) and Congress.gov (403).
+
+Agents set a record's status from a docket-sheet line or a "Tuesday" in an article. Before changing a status, read the order or find a dated page. The OPUC order PDF sits at `apps.puc.state.or.us/orders/<yyyy>ords/<nn-nnn>.pdf`, and CBS12 prints a full dateline. A PA PUC document that returns 503 to scripts can still be read: WebFetch saves the PDF, and `scripts/pdftext.js` extracts its text. That is how the PPL scheduling order's July 29, 2027 decision target was confirmed. A moratorium that now has a real `source_url` must come out of `HOMEPAGE_SOURCED_MORATORIUMS` in tests/test_policies.py, which the ratchet test enforces.

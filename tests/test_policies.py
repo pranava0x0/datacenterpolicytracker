@@ -374,7 +374,7 @@ HOMEPAGE_SOURCED_MORATORIUMS = {  # audit these; remove ids as they are fixed
     "baltimore-city-2026-05",
     "cheyenne-wy-2026-06", "dubuque-county-ia-2026-06", "hawaii-state-2026-01",
     "indianapolis-in-2024-10",
-    "iron-county-ut-2026-06", "loudoun-county-leesburg-va-2026-06", 
+    "loudoun-county-leesburg-va-2026-06", 
     "manitowoc-county-wi-2026-06", "meridian-township-mi-2024-11", "minneapolis-city-2026-05",
     "oklahoma-county-ok-2026-04", "philadelphia-pa-2026-05", "pulaski-county-ar-2024-07",
     "reno-city-2026-05", "smithfield-town-2026-05", 
