@@ -1159,7 +1159,7 @@
       "office": "Governor",
       "level": "governor",
       "election_date": "2026-11-03",
-      "captured_at": "2026-11-04",
+      "captured_at": "2026-11-16",
       "candidates": [
         {
           "name": "Cindy Holscher",
@@ -1195,7 +1195,7 @@
       },
       "related_moratorium_ids": [],
       "related_policy_ids": [],
-      "notes": "No winner verified; a preliminary vote lead is not treated as a race call."
+      "notes": "No winner verified; a preliminary vote lead is not treated as a race call. On Nov. 10 KCTV5 reported that a winner had not been officially declared while counties audited close races."
     },
     {
       "id": "me-governor-2026",
@@ -3458,7 +3458,7 @@
       "jurisdiction": "Emporia",
       "title": "Question 2 — High impact data centers",
       "election_date": "2026-11-03",
-      "captured_at": "2026-11-04",
+      "captured_at": "2026-11-16",
       "effect": "binding",
       "ballot_evidence": {
         "statement": "An Ordinance of the City of Emporia, Kansas Prohibiting the Installation and Operation of High Impact Data Centers",
@@ -3466,7 +3466,7 @@
         "source_title": "Ballotpedia — Emporia ballot text",
         "captured_at": "2026-11-04"
       },
-      "legal_effect": "Approves an ordinance prohibiting high impact data centers across city zoning districts, defined by peak load exceeding 10 MW OR daily water draw exceeding 100,000 gallons. Current enforceability and any litigation were not verified in this pass.",
+      "legal_effect": "Approves an ordinance prohibiting high impact data centers across city zoning districts, defined by peak load exceeding 10 MW OR daily water draw exceeding 100,000 gallons. Newsweek reports that the Lyon County District Court's Aug. 20 order placing the measure on the ballot also stays the ordinance's publication, implementation, enforcement and legal effect while the city's declaratory-judgment case remains pending.",
       "result": {
         "status": "reported",
         "outcome": "passed",
@@ -3480,7 +3480,7 @@
       },
       "related_moratorium_ids": [],
       "related_policy_ids": [],
-      "notes": "Official county document is labeled Unofficial Final. Held from the enacted moratorium feed pending verification of commencement and any court orders."
+      "notes": "Official county document is labeled Unofficial Final. Held from the enacted moratorium feed: Newsweek's pre-election reporting describes the court-ordered stay on legal effect, and no later ruling lifting it was found on 2026-11-16."
     }
   ],
   "coverage_notes": [
