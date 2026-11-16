@@ -5845,6 +5845,87 @@
       "related_project_ids": [
         "xai-memphis-tn"
       ]
+    },
+    {
+      "id": "spartanburg-county-sc-aib-development-agreement-2026",
+      "title": "Spartanburg County — proposed AIB CLT1 LLC agreement (389 Tyger River Industrial Drive)",
+      "instrument": "local_ordinance",
+      "status": "proposed",
+      "scope": "county",
+      "jurisdiction": "Spartanburg County, SC",
+      "state_code": "SC",
+      "counterparties": [
+        "Spartanburg County",
+        "AIB CLT1 LLC"
+      ],
+      "benefit_themes": [
+        "community_grants",
+        "education"
+      ],
+      "principles": [
+        "community_benefits"
+      ],
+      "community_benefits_framework": true,
+      "value_usd": 12600000,
+      "key_terms": [
+        "at least $12.6 million during the Initial Term"
+      ],
+      "summary": "The draft calls for at least $12.6 million over 12 years. AIB would make $6 million available within 30 days after receiving all required project approvals, then $600,000 annually in years 2–12. Eligible uses include workforce training, scholarships, and watershed conservation. County Council approved the second reading on November 3; the ordinance has not received final approval.",
+      "source_url": "https://sc-spartanburgcounty.civicplus.com/AgendaCenter/ViewFile/Agenda/_11032026-2054",
+      "source_title": "Spartanburg County Council — November 3, 2026 packet, AIB CLT1 LLC draft agreement, Article VII and Exhibit C",
+      "resources": [
+        {
+          "url": "https://www.spartanburgcounty.gov/1452/Data-Center-Information-Resources",
+          "title": "Spartanburg County — second-reading decisions on the three separate development agreements"
+        }
+      ],
+      "agreement_features": [
+        "dollar_commitment"
+      ],
+      "captured_at": "2026-11-15",
+      "date": "2026-11-03",
+      "related_moratorium_id": "spartanburg-county-sc-2026-06"
+    },
+    {
+      "id": "spartanburg-county-sc-300-jones-road-development-agreement-2026",
+      "title": "Spartanburg County — proposed 300 Jones Road Associates LLC agreement (430 Jones Road)",
+      "instrument": "local_ordinance",
+      "status": "proposed",
+      "scope": "county",
+      "jurisdiction": "Spartanburg County, SC",
+      "state_code": "SC",
+      "counterparties": [
+        "Spartanburg County",
+        "300 Jones Road Associates LLC"
+      ],
+      "benefit_themes": [
+        "community_grants",
+        "education"
+      ],
+      "principles": [
+        "community_benefits"
+      ],
+      "community_benefits_framework": true,
+      "value_usd": 9000000,
+      "key_terms": [
+        "to a community foundation model or similar public charity as fiduciary",
+        "$9.0 million: Total Payments"
+      ],
+      "summary": "The draft directs $9 million through a community foundation or similar public charity. Its schedule starts with $1.5 million within 30 days after all required project approvals, followed by five annual installments of $1.5 million. Eligible uses include housing, technical education, and road improvements. County Council approved the second reading on November 3; the ordinance has not received final approval.",
+      "source_url": "https://sc-spartanburgcounty.civicplus.com/AgendaCenter/ViewFile/Agenda/_11032026-2054",
+      "source_title": "Spartanburg County Council — November 3, 2026 packet, 300 Jones Road Associates LLC draft agreement, Article VII and Exhibit C",
+      "resources": [
+        {
+          "url": "https://www.spartanburgcounty.gov/1452/Data-Center-Information-Resources",
+          "title": "Spartanburg County — second-reading decisions on the three separate development agreements"
+        }
+      ],
+      "agreement_features": [
+        "dollar_commitment"
+      ],
+      "captured_at": "2026-11-15",
+      "date": "2026-11-03",
+      "related_moratorium_id": "spartanburg-county-sc-2026-06"
     }
   ]
 }
