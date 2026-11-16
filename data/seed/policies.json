@@ -761,7 +761,7 @@
         "A future 'Georgia Community Compact' will translate community priorities into specific commitments with an annual independent public audit",
         "$20 billion, four-building campus at the Savannah Gateway Industrial Hub near Rincon"
       ],
-      "summary": "OpenAI announced $80 million in community benefits (schools, public safety, healthcare, workforce training, housing, veterans services, small business support) plus up to $71 million in Codex credits for Georgia students, tied to its $20 billion 'Project Camellia' data center campus near Rincon in Effingham County. OpenAI commits to paying the full cost of the 3.2 GW Georgia Power infrastructure so residential rates don't rise, and plans a forthcoming 'Georgia Community Compact' with an annual independent audit to formalize specific commitments, so the framework is announced but not yet a finalized, itemized agreement. Later developments: WSB-TV reported on August 27, 2026 that the Georgia Public Service Commission approved the Georgia Power-OpenAI contract, which includes up to 1,000 MW of flexible demand response; on September 21, 2026 the Southern Environmental Law Center sued the Effingham County Industrial Development Authority on behalf of One Hundred Miles and residents, alleging Open Meetings Act and Open Records Act violations.",
+      "summary": "OpenAI announced $80 million in community benefits (schools, public safety, healthcare, workforce training, housing, veterans services, small business support) plus up to $71 million in Codex credits for Georgia students, tied to its $20 billion 'Project Camellia' data center campus near Rincon in Effingham County. OpenAI commits to paying the full cost of the 3.2 GW Georgia Power infrastructure so residential rates don't rise, and plans a forthcoming 'Georgia Community Compact' with an annual independent audit to formalize specific commitments, so the framework is announced but not yet a finalized, itemized agreement. Later developments: WSB-TV reported on August 27, 2026 that the Georgia Public Service Commission approved the Georgia Power-OpenAI contract, which includes up to 1,000 MW of flexible demand response; on September 21, 2026 the Southern Environmental Law Center sued the Effingham County Industrial Development Authority on behalf of One Hundred Miles and residents, alleging Open Meetings Act and Open Records Act violations. On November 6, 2026 residents filed a separate suit in Effingham County State Court against OpenAI, the development authority and county officials, alleging the project and its land deal were kept secret; the allegations are unproven.",
       "source_url": "https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community/",
       "source_title": "OpenAI — Building AI infrastructure with the Effingham County community",
       "resources": [
@@ -776,12 +776,16 @@
         {
           "url": "https://www.selc.org/press-release/residents-conservation-groups-sue-effingham-county-development-authority-over-secretive-approval-of-openai-data-center/",
           "title": "Southern Environmental Law Center — Residents, conservation groups sue Effingham County Development Authority over secretive approval of OpenAI data center (Sept. 21, 2026)"
+        },
+        {
+          "url": "https://www.wtoc.com/2026/11/09/effingham-county-residents-sue-openai-county-officials-over-project-camellia-data-center/",
+          "title": "WTOC — Effingham County residents sue OpenAI, county officials over Project Camellia data center"
         }
       ],
       "related_project_ids": [
         "openai-effingham-county-ga"
       ],
-      "captured_at": "2026-10-21",
+      "captured_at": "2026-11-16",
       "principles": [
         "community_benefits"
       ],
@@ -2635,7 +2639,7 @@
           "title": "City & State PA — In bipartisan fashion, PA lawmakers vote to repeal tax incentives for data centers"
         }
       ],
-      "captured_at": "2026-09-23",
+      "captured_at": "2026-11-16",
       "principles": [
         "incentive_terms"
       ]
@@ -4667,14 +4671,14 @@
     },
     {
       "id": "iron-county-ut-draft-large-load-ordinance-2026-10",
-      "title": "Iron County planning commission recommends noise, water and outreach rules for data centers and power plants",
+      "title": "Iron County adopts noise, water and outreach rules for data centers and power plants",
       "instrument": "local_ordinance",
-      "status": "proposed",
+      "status": "in_effect",
       "scope": "county",
       "jurisdiction": "Iron County",
       "state_code": "UT",
-      "identifier": "Planning commission recommendation",
-      "date": null,
+      "identifier": "County ordinance (adopted Oct. 26, 2026)",
+      "date": "2026-10-26",
       "benefit_themes": [
         "water"
       ],
@@ -4684,12 +4688,19 @@
       ],
       "community_benefits_framework": false,
       "key_terms": [
-        "Iron County's planning commission recommended new restrictions in early October"
+        "Notably, the new rules do not set hard limits on water use for data centers.",
+        "data center sites that would use more than 50,000 gallons of water per day would have to submit a plan"
       ],
-      "summary": "Iron County's planning commission recommended new restrictions in early October 2026 covering noise, water use and public outreach for data centers, power plants, battery storage and industrial campuses above a 50 MW cutoff. KUER's report gives a water-use limit of 50,000 gallons a day and a closed-loop, dry or other efficient cooling requirement. The county's 180-day moratorium continues while the draft is reviewed.",
-      "source_url": "https://www.kuer.org/business-economy/2026-10-09/box-elder-iron-county-data-center-moratoriums-new-regulations",
-      "source_title": "KUER — Box Elder, Iron County data center moratoriums, new regulations",
-      "captured_at": "2026-10-19"
+      "summary": "The Iron County Commission unanimously approved new rules for data centers on Monday, October 26, 2026, after the planning commission recommended them in early October. The adopted rules do not set hard limits on water use: sites that would use more than 50,000 gallons of water per day must submit a plan. In another vote the same day the commission repealed the county's earlier data center moratorium. KUER's October 9 report on the draft had described a 50,000 gallon-a-day limit and a closed-loop or dry cooling requirement; the adopted rules as reported by the Salt Lake Tribune do not include them.",
+      "source_url": "https://www.sltrib.com/news/2026/10/27/iron-county-adopts-new-rules-data/",
+      "source_title": "Salt Lake Tribune — Iron County adopts new rules for data centers",
+      "captured_at": "2026-11-16",
+      "resources": [
+        {
+          "url": "https://www.kuer.org/business-economy/2026-10-09/box-elder-iron-county-data-center-moratoriums-new-regulations",
+          "title": "KUER — Box Elder, Iron County data center moratoriums, new regulations"
+        }
+      ]
     },
     {
       "id": "hawaii-county-bill-170-2026-07",
@@ -4711,10 +4722,16 @@
       "key_terms": [
         "voted to forward Bill 170 to the Hawaiʻi County planning commissions"
       ],
-      "summary": "A Hawaii County Council committee voted on July 7, 2026 to forward Bill 170 to the Hawaii County planning commissions. The bill, sponsored by Councilmember Heather Kimball, would define data centers and exclude industrial-scale ones from the county's permitted uses. It is a zoning bill, not a moratorium. The vote tally and later steps were not confirmed.",
+      "summary": "A Hawaii County Council committee voted on July 7, 2026 to forward Bill 170 to the Hawaii County planning commissions. The bill, sponsored by Councilmember Heather Kimball, would define data centers and exclude industrial-scale ones from the county's permitted uses. It is a zoning bill, not a moratorium. The vote tally and later steps were not confirmed. On October 1, 2026 the Windward Planning Commission submitted a non-binding unfavorable recommendation on the bill; the Leeward Planning Commission was to take it up next, before the County Council decides.",
       "source_url": "https://www.bigislandvideonews.com/2026/07/08/hawai%CA%BBi-county-council-forwards-data-center-bill-to-planning-commissions/",
       "source_title": "Big Island Video News — Hawaii County Council forwards data center bill to planning commissions",
-      "captured_at": "2026-10-19"
+      "captured_at": "2026-11-16",
+      "resources": [
+        {
+          "url": "https://www.civilbeat.org/2026/10/big-island-wants-to-ban-big-data-centers-once-they-agree-on-what-they-are/",
+          "title": "Civil Beat — Big Island wants to ban big data centers, once they agree on what they are"
+        }
+      ]
     },
     {
       "id": "boston-ma-datacenter-prohibited-use-order-2026-09",
@@ -4736,10 +4753,16 @@
       "key_terms": [
         "designate them as a \"prohibited use in every zoning district and subdistrict\""
       ],
-      "summary": "Boston City Councilor Miniard Culpepper filed an order that would amend the city's zoning code to define data centers and make them a prohibited use in every zoning district and subdistrict. It is a proposal only. The report says only that the order was filed in the week of September 15, 2026.",
+      "summary": "Boston City Councilor Miniard Culpepper filed an order that would amend the city's zoning code to define data centers and make them a prohibited use in every zoning district and subdistrict. It is a proposal only. The report says only that the order was filed in the week of September 15, 2026. A City Council committee hearing on the text amendment (Docket #1718) was noticed for October 19, 2026; no vote had been found as of November 16, 2026.",
       "source_url": "https://www.boston.com/news/local-news/2026/09/15/boston-city-council-to-consider-zoning-changes-that-would-bar-data-center-construction/",
       "source_title": "Boston.com — Boston City Council to consider zoning changes that would bar data center construction",
-      "captured_at": "2026-10-19"
+      "captured_at": "2026-11-16",
+      "resources": [
+        {
+          "url": "https://www.boston.gov/public-notices/16629801",
+          "title": "City of Boston — public notice, hearing on Docket #1718"
+        }
+      ]
     },
     {
       "id": "fairbanks-north-star-borough-2027-priorities-datacenter-moratorium-2026-08",
@@ -4761,10 +4784,16 @@
       "key_terms": [
         "The Assembly resolution asks for a moratorium on the permitting, leasing, or construction of new commercial data centers"
       ],
-      "summary": "The Borough Assembly's 2027 state and federal legislative priorities include a requested moratorium on the permitting, leasing or construction of new commercial data centers. It is a request to other governments, not a borough moratorium, so it is recorded as proposed. KUAC notes the resolution text refers to state-owned and municipal lands while the presiding officer said federal lands were intended. The date is the Thursday approval reported on August 31.",
+      "summary": "The Borough Assembly's 2027 state and federal legislative priorities include a requested moratorium on the permitting, leasing or construction of new commercial data centers. It is a request to other governments, not a borough moratorium, so it is recorded as proposed. KUAC notes the resolution text refers to state-owned and municipal lands while the presiding officer said federal lands were intended. The date is the Thursday approval reported on August 31. Separately, on October 23, 2026 Borough Mayor Grier Hopkins proposed a temporary moratorium on land-use permits for large data centers through December 31, 2027, to be introduced to the Assembly and referred to the Planning Commission.",
       "source_url": "https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request",
       "source_title": "KUAC — Fairbanks North Star Borough Assembly doubles up on AI data center moratorium request",
-      "captured_at": "2026-10-19"
+      "captured_at": "2026-11-16",
+      "resources": [
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/24/fairbanks-borough-mayor-proposes-temporary-data-center-moratorium/",
+          "title": "Alaska's News Source — Fairbanks borough mayor proposes temporary data center moratorium"
+        }
+      ]
     },
     {
       "id": "prince-william-county-va-overlay-zta-2026-09",

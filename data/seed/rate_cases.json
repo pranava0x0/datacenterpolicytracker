@@ -192,11 +192,11 @@
       "filed_date": "2026-06-26",
       "decided_date": null,
       "effective_date": null,
-      "next_milestone": "Procedural schedule (Order Setting Procedural Schedule, July 30, 2026, as amended Aug. 5, 2026): discovery conferences Oct. 8 and Nov. 5, 2026 (the Sept. 10 conference was cancelled by order of Sept. 8); Staff and intervenor revenue-requirement direct testimony Dec. 4, 2026 and rate-design direct Dec. 18, 2026; local public hearings January 2027; rebuttal Jan. 15, 2027; surrebuttal/true-up direct Feb. 16, 2027; settlement conference Feb. 18–19, 2027; position statements Mar. 9, 2027; evidentiary hearing March 15–26, 2027; initial briefs Apr. 6 and reply briefs Apr. 16, 2027. Intervenors include Google LLC, Amazon Data Services, Warrenton DC Owner 1 and 2 LLC, Sierra Club, IBEW Locals 2, 1439 and 1455, MIEC, MECG and Consumers Council of Missouri.",
+      "next_milestone": "Procedural schedule (Order Setting Procedural Schedule, July 30, 2026, as amended Aug. 5, 2026): discovery conference Oct. 8, 2026 (the Nov. 5 conference was cancelled by order of Nov. 4) (the Sept. 10 conference was cancelled by order of Sept. 8); Staff and intervenor revenue-requirement direct testimony Dec. 4, 2026 and rate-design direct Dec. 18, 2026; local public hearings January 2027; rebuttal Jan. 15, 2027; surrebuttal/true-up direct Feb. 16, 2027; settlement conference Feb. 18–19, 2027; position statements Mar. 9, 2027; evidentiary hearing March 15–26, 2027; initial briefs Apr. 6 and reply briefs Apr. 16, 2027. Intervenors include Google LLC, Amazon Data Services, Warrenton DC Owner 1 and 2 LLC, Sierra Club, IBEW Locals 2, 1439 and 1455, MIEC, MECG and Consumers Council of Missouri.",
       "next_milestone_date": "2026-12-04",
       "related_tariff_id": null,
       "related_project_ids": null,
-      "summary": "Ameren Missouri filed to adjust electric revenues (an average residential increase of roughly $13/month per press coverage), its first general rate case since the large-load rate plan took effect. The case number was opened April 24, 2026 on Ameren's notice of intent and the tariff was filed June 26, 2026; the Commission suspended the tariff on July 8, 2026, established contested-case status, and adopted the parties' jointly proposed procedural schedule on July 30, 2026 (amended August 5, 2026); intervenors include consumer advocates, environmental groups, and major data-center operators.",
+      "summary": "Ameren Missouri filed to adjust electric revenues (an average residential increase of roughly $13/month per press coverage), its first general rate case since the large-load rate plan took effect. The case number was opened April 24, 2026 on Ameren's notice of intent and the tariff was filed June 26, 2026; the Commission suspended the tariff on July 8, 2026, established contested-case status, and adopted the parties' jointly proposed procedural schedule on July 30, 2026 (amended August 5, 2026); intervenors include consumer advocates, environmental groups, and major data-center operators. The Commission cancelled the November 5, 2026 discovery conference by order of November 4, 2026.",
       "source_url": "https://efis.psc.mo.gov/Case/Display/105725",
       "source_title": "Missouri PSC EFIS — Case ER-2026-0291 docket sheet",
       "resources": [
@@ -209,7 +209,7 @@
           "title": "Missouri PSC — Order Denying Motion for Reconsideration and Order Amending Procedural Schedule (Aug. 5, 2026)"
         }
       ],
-      "captured_at": "2026-09-25"
+      "captured_at": "2026-11-16"
     },
     {
       "id": "mn-puc-xcel-large-load-2026",
@@ -406,11 +406,11 @@
       "filed_date": null,
       "decided_date": null,
       "effective_date": null,
-      "next_milestone": "PJM's 60-day compliance filing on the June 18, 2026 order was due in mid-August 2026; PJM moved to extend the time for part of it and told stakeholders on July 30, 2026 that it would submit a partial compliance filing, hold stakeholder sessions on July 30, Aug. 18 and Sept. 16, 2026, and — if FERC grants its motions — file the remaining co-located-load compliance around early/mid-November 2026 alongside its large-load Section 205 filing. FERC's review of the May 18, 2026 compliance filing (ER26-1088-001) and of the June 18 order's compliance directives is the next Commission action; no date announced.",
-      "next_milestone_date": null,
+      "next_milestone": "Extended compliance deadline for PJM and the PJM transmission owners under the Co-Located Load Order: November 16, 2026 (FERC notice of extension of time, August 14, 2026). FERC's review of the compliance filings follows; no date announced.",
+      "next_milestone_date": "2026-11-16",
       "related_tariff_id": "ferc-talen-amazon-susquehanna-isa",
       "related_project_ids": null,
-      "summary": "In December 2025 FERC found PJM's tariff unjust and unreasonable for lacking clear rules on co-located load — data centers sited at generators — and ordered transparent rules, the question first raised by the rejected Talen/Amazon Susquehanna amended ISA. In April 2026 FERC partially accepted PJM's compliance filing, keeping interconnection-pathway clarity while rejecting PJM's attempt to redefine 'Co-Located Load' and to alter behind-the-meter application requirements. On June 18, 2026 FERC issued its order on rehearing, clarification, compliance and the paper hearing (195 FERC ¶ 61,209; Docket Nos. EL25-49-002 et al.), setting rates and terms for the new Interim NITS, Firm Contract Demand and Non-Firm Contract Demand services (NITS-based rates, a 50 MW behind-the-meter netting threshold applied to load rather than generator nameplate, a curtailment hierarchy and operational penalties) and directing a further compliance filing within 60 days.",
+      "summary": "In December 2025 FERC found PJM's tariff unjust and unreasonable for lacking clear rules on co-located load — data centers sited at generators — and ordered transparent rules, the question first raised by the rejected Talen/Amazon Susquehanna amended ISA. In April 2026 FERC partially accepted PJM's compliance filing, keeping interconnection-pathway clarity while rejecting PJM's attempt to redefine 'Co-Located Load' and to alter behind-the-meter application requirements. On June 18, 2026 FERC issued its order on rehearing, clarification, compliance and the paper hearing (195 FERC ¶ 61,209; Docket Nos. EL25-49-002 et al.), setting rates and terms for the new Interim NITS, Firm Contract Demand and Non-Firm Contract Demand services (NITS-based rates, a 50 MW behind-the-meter netting threshold applied to load rather than generator nameplate, a curtailment hierarchy and operational penalties) and directing a further compliance filing within 60 days. On August 14, 2026 FERC extended to November 16, 2026 the deadline for PJM and the PJM transmission owners to comply with certain directives of the June 18 Co-Located Load Order.",
       "source_url": "https://www.ferc.gov/news-events/news/ferc-act-large-load-interconnection-docket-june-2026",
       "source_title": "FERC — April 2026 release recapping the December 2025 PJM co-located-load order",
       "resources": [
@@ -429,9 +429,13 @@
         {
           "url": "https://www.pjm.com/-/media/DotCom/committees-groups/workshops/cllsco/2026/20260730/20260730-item-02---co-located-load-and-large-load-show-cause-orders---presentation.pdf",
           "title": "PJM — Overview of June 18 Co-Located Load and Large Load Show Cause Orders (July 30, 2026 stakeholder deck)"
+        },
+        {
+          "url": "https://www.pjm.com/-/media/DotCom/documents/ferc/orders/2026/20260814-el25-49-002-et-al.pdf",
+          "title": "FERC — Notice of extension of time, EL25-49 et al., Aug. 14, 2026 (PJM copy)"
         }
       ],
-      "captured_at": "2026-09-25"
+      "captured_at": "2026-11-16"
     },
     {
       "id": "pa-puc-large-load-cost-allocation-2026",
@@ -542,13 +546,20 @@
       "filed_date": "2026-10-02",
       "decided_date": null,
       "effective_date": null,
-      "next_milestone": "PPL answer due 20 days after the Oct. 6, 2026 e-service, per the docket note 'Complaint e-served to respondent for answer in 20 days.' PPL filed an unopposed motion for extension of time on Oct. 15, 2026; no grant appears on the docket page read.",
+      "next_milestone": "Public input hearings on three days among January 6, 7, 12, 13 or 14, 2027, pending confirmation; Commission decision targeted for the July 29, 2027 public meeting (Scheduling Order, Nov. 10, 2026).",
       "related_tariff_id": null,
       "related_project_ids": null,
-      "summary": "The Office of Consumer Advocate filed a formal complaint against PPL Electric Utilities on Oct. 2, 2026 (PUC docket C-2026-3065756), arguing that PPL's current rates, service classifications and procedures do not adequately protect existing customers. Gov. Josh Shapiro petitioned on Oct. 15, 2026 to intervene and will advocate for PPL to establish a separate customer class for large data centers. His office says it is the first time in at least 15 years a governor has intervened in a PUC proceeding. The PUC has not ruled on the complaint.",
+      "summary": "The Office of Consumer Advocate filed a formal complaint against PPL Electric Utilities on Oct. 2, 2026 (PUC docket C-2026-3065756), arguing that PPL's current rates, service classifications and procedures do not adequately protect existing customers. Gov. Josh Shapiro petitioned on Oct. 15, 2026 to intervene and will advocate for PPL to establish a separate customer class for large data centers. His office says it is the first time in at least 15 years a governor has intervened in a PUC proceeding. The PUC has not ruled on the complaint. At the November 3, 2026 prehearing conference the presiding judges consolidated the complaint with PPL's transmission-rider and default-service petitions, and the November 10 Scheduling Order positions both for Commission decision at the July 29, 2027 public meeting, with public input hearings to be held in January 2027.",
       "source_url": "https://www.pa.gov/governor/newsroom/2026-press-releases/gov--shapiro-protects-customers-and-holds-data-center-developers",
       "source_title": "Pennsylvania Governor's Office — Gov. Shapiro Protects Customers and Holds Data Center Developers Accountable",
-      "captured_at": "2026-10-18"
+      "captured_at": "2026-11-16",
+      "next_milestone_date": null,
+      "resources": [
+        {
+          "url": "https://www.puc.pa.gov/pcdocs/1958554.pdf",
+          "title": "PA PUC — Scheduling Order, C-2026-3065756 et al., Nov. 10, 2026"
+        }
+      ]
     },
     {
       "id": "ferc-pjm-large-load-er26-3515",

@@ -1279,7 +1279,7 @@
       "tariff_name": "Large-Load Customer Class Proposal (NCUC Rate Case E-7, Sub 1329)",
       "tariff_type": "Large-load rate case — cost-of-service and class design",
       "status": "proposed",
-      "status_detail": "A Second Amended Comprehensive Revenue Requirement Agreement and Stipulation of Settlement (Duke Energy Carolinas, NCUC Public Staff, industrial/customer groups, and Microsoft Corporation) was filed July 17, 2026 and amended July 20, 2026 (Andale, LLC later added as a stipulating party), committing Duke and Public Staff to submit a dedicated large-load tariff by the end of September 2026. If approved, residential customers using 1,000 kWh/month would see bills rise $17.22/month (from $144.98 to $162.20) beginning January 1, 2027. As of September 25, 2026 no NCUC order on the settlement has been located (the Commission's docket system blocks automated retrieval). On September 14, 2026 Attorney General Jeff Jackson — who declined to sign the settlement — filed a proposal in Duke's rate-case dockets for a new rate class for data centers and other large-load customers, part of the process the Commission opened after he requested a separate large-load proceeding (NCDOJ release). On October 7, 2026 WUNC and Blue Ridge Public Radio reported that Duke Energy had reached an agreement with data center operators on a large-load tariff; the Utilities Commission must approve some version before it takes effect, and no hearing or decision date had been announced as of October 18, 2026.",
+      "status_detail": "A Second Amended Comprehensive Revenue Requirement Agreement and Stipulation of Settlement (Duke Energy Carolinas, NCUC Public Staff, industrial/customer groups, and Microsoft Corporation) was filed July 17, 2026 and amended July 20, 2026 (Andale, LLC later added as a stipulating party), committing Duke and Public Staff to submit a dedicated large-load tariff by the end of September 2026. If approved, residential customers using 1,000 kWh/month would see bills rise $17.22/month (from $144.98 to $162.20) beginning January 1, 2027. As of September 25, 2026 no NCUC order on the settlement has been located (the Commission's docket system blocks automated retrieval). On September 14, 2026 Attorney General Jeff Jackson — who declined to sign the settlement — filed a proposal in Duke's rate-case dockets for a new rate class for data centers and other large-load customers, part of the process the Commission opened after he requested a separate large-load proceeding (NCDOJ release). On October 7, 2026 WUNC and Blue Ridge Public Radio reported that Duke Energy had reached an agreement with data center operators on a large-load tariff; the Utilities Commission must approve some version before it takes effect, and no hearing or decision date had been announced as of October 18, 2026. The Southern Environmental Law Center reports the large-load settlement was first made public October 6, 2026; no NCUC order on it had been found as of November 16, 2026.",
       "regulator": "North Carolina Utilities Commission (NCUC)",
       "docket_number": "E-7, Sub 1329",
       "filed_date": "2025-11-20",
@@ -1317,9 +1317,13 @@
         {
           "url": "https://ncdoj.gov/attorney-general-jeff-jackson-proposes-framework-to-ensure-data-centers-pay-their-fair-share-for-energy-costs/",
           "title": "NCDOJ — Attorney General Jackson proposes framework to ensure data centers pay their fair share (Sept. 14, 2026)"
+        },
+        {
+          "url": "https://www.selc.org/?p=44685",
+          "title": "SELC — on the Duke Energy large-load settlement"
         }
       ],
-      "captured_at": "2026-10-18"
+      "captured_at": "2026-11-16"
     },
     {
       "id": "virginia-data-center-electricity-consumption-tax",
@@ -1567,15 +1571,15 @@
       "jurisdiction_level": "state",
       "tariff_name": "Schedule 401 — Service to New Large Energy Use Facilities (Advice No. 25-015)",
       "tariff_type": "Data center / large energy use facility rate class (HB 3546 POWER Act implementation)",
-      "status": "proposed",
-      "status_detail": "Docket UE 463 shows status SUSPENDED (under Commission investigation); Order No. 26-310 (Aug. 31, 2026) suspended the tariff sheets' effective date until December 31, 2026. Filed October 2, 2025 as ADV 1790, which the Commission closed December 16, 2025 with all filings moved to UE 463 after AWEC, Amazon and the Data Center Coalition intervened. On September 16, 2026 PacifiCorp filed a motion to admit an executed stipulation among PUC Staff, PacifiCorp, the Citizens' Utility Board and Environmental Intervenors, with joint supporting testimony from Robert Meredith, Bret Stevens, Ryan Tran and Jeremy Fisher. As of September 25, 2026 the docket's own filing log shows no Commission order acting on the stipulation yet; the December 31, 2026 suspension deadline is the next dated step. Docket log through October 20, 2026: on October 1 the Data Center Coalition filed a notice of opposition to the stipulation; on October 16 the Stipulating Parties filed a joint brief; on October 19 an ALJ ruling set the deadline for motions to admit testimony and witness declarations; PacifiCorp (October 19) and AWEC (October 20) filed such motions. No order on the stipulation had issued.",
+      "status": "approved",
+      "status_detail": "Docket UE 463 shows status SUSPENDED (under Commission investigation); Order No. 26-310 (Aug. 31, 2026) suspended the tariff sheets' effective date until December 31, 2026. Filed October 2, 2025 as ADV 1790, which the Commission closed December 16, 2025 with all filings moved to UE 463 after AWEC, Amazon and the Data Center Coalition intervened. On September 16, 2026 PacifiCorp filed a motion to admit an executed stipulation among PUC Staff, PacifiCorp, the Citizens' Utility Board and Environmental Intervenors, with joint supporting testimony from Robert Meredith, Bret Stevens, Ryan Tran and Jeremy Fisher. As of September 25, 2026 the docket's own filing log shows no Commission order acting on the stipulation yet; the December 31, 2026 suspension deadline is the next dated step. Docket log through October 20, 2026: on October 1 the Data Center Coalition filed a notice of opposition to the stipulation; on October 16 the Stipulating Parties filed a joint brief; on October 19 an ALJ ruling set the deadline for motions to admit testimony and witness declarations; PacifiCorp (October 19) and AWEC (October 20) filed such motions. No order on the stipulation had issued. On November 13, 2026 the Commission entered Order No. 26-443 (disposition: stipulation adopted), finding that the stipulation is in the public interest and will result in just and reasonable rates; the docket lists an effective date of January 1, 2027.",
       "regulator": "Public Utility Commission of Oregon (OPUC)",
       "docket_number": "UE 463 (originally ADV 1790 / Advice No. 25-015)",
       "filed_date": "2025-10-02",
-      "decision_date": null,
+      "decision_date": "2026-11-13",
       "min_load_mw": 20,
       "customers": null,
-      "summary": "PacifiCorp's proposed Schedule 401 implements Oregon HB 3546 (the POWER Act) by creating a separate customer class for new Large Energy Use Facilities — facilities that 'use or are able to use 20 megawatts (MW) or more' and are primarily engaged in NAICS 518210 data processing and hosting — and requiring each to sign a Commission-approved service agreement of not less than 10 years with minimum-payment provisions, so that the significant investments needed to serve loads ranging 'from 20 MW to potentially 1 gigawatt or more' are not shifted to residential and other customers. A stipulation resolving the case was filed September 16, 2026 and awaits Commission action.",
+      "summary": "PacifiCorp's proposed Schedule 401 implements Oregon HB 3546 (the POWER Act) by creating a separate customer class for new Large Energy Use Facilities — facilities that 'use or are able to use 20 megawatts (MW) or more' and are primarily engaged in NAICS 518210 data processing and hosting — and requiring each to sign a Commission-approved service agreement of not less than 10 years with minimum-payment provisions, so that the significant investments needed to serve loads ranging 'from 20 MW to potentially 1 gigawatt or more' are not shifted to residential and other customers. A stipulation resolving the case was filed September 16, 2026 and awaits Commission action. The OPUC adopted the stipulation resolving the case in Order No. 26-443 on November 13, 2026; the order describes a direct contracting and direct assignment approach plus a 1-cent per kilowatt-hour surcharge on large data centers.",
       "parameters": {
         "min_load": {
           "status": "included",
@@ -1623,9 +1627,13 @@
         {
           "url": "https://www.oregon.gov/puc/news-events/Documents/PR-202609.pdf",
           "title": "Oregon PUC media release (UM 2377) — Oregon PUC Approves New Rate Structure to Protect Customers Amid Rapid Data Center Growth (notes UE 463 is under consideration)"
+        },
+        {
+          "url": "https://apps.puc.state.or.us/orders/2026ords/26-443.pdf",
+          "title": "OPUC — Order No. 26-443 (UE 463), Nov. 13, 2026"
         }
       ],
-      "captured_at": "2026-10-21"
+      "captured_at": "2026-11-16"
     }
   ]
 }
