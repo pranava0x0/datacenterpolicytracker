@@ -7050,3 +7050,15 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
   min-width: 1.2em;
   text-align: center;
 }
+
+/* Phones: the call-out keeps its counts and link; the latest-three list
+   would push the directory two screens down (interaction budget). */
+@media (max-width: 699px) {
+  .mor-callout-sub,
+  .mor-callout-latest {
+    display: none;
+  }
+  .mor-callout {
+    padding: 0.5rem 0.75rem;
+  }
+}

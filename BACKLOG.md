@@ -411,6 +411,8 @@ come first, then locations, companies and sites.
 - Prologis "Project Steel", Yorkville (see company:prologis).
 
 #### state:IN — Indiana
+- 2026-11-16 lead: **HB 1007 (2025)** large-load provisions; the IGA site is
+  JavaScript and its API needs a key. Verify from the enrolled act PDF.
 - (2026-10-19) Madison County: Indiana Public Radio (Aug 2026) says commissioners voted unanimously to extend the data center moratorium to a full year, but gives no vote date (2026-08-04 is the article date). Get the commissioners' minutes before adding; the original six-month June 2026 passage is also unverified.
 - Jasper County / Amazon "Project Rise": Fortune (2026-07-23) reports a
   "$98 million upfront and $23 million a year for a decade" community benefit
@@ -686,6 +688,11 @@ come first, then locations, companies and sites.
   moratoriums.
 
 #### state:VA — Virginia
+- 2026-11-16 leads (not shipped): **HB 323** (Ch. 591, data center waste
+  heat study by the Department of Energy) needs a US topic that fits before
+  it can ship; **SB 619** (high-load certificate, LIS "Failed") needs the
+  decision point (floor vote) confirmed. LIS bill pages are JavaScript; the
+  LIS data service had the text.
 - (2026-10-21) qts-manassas-va: QTS moved its site to q.com and the PWDG page
   (old source_url) is gone; the record now cites the Manassas campus page,
   which doesn't mention the Prince William Digital Gateway. Source the PWDG
@@ -1460,6 +1467,24 @@ navigation.
 ---
 
 ## 6. Data model and schema
+
+- **v7 (2026-11-16) migrated the tariff element taxonomy** from the Jan 2025
+  LBL brief's 17 elements to the Aug 2026 update's 18 elements + 12
+  sub-elements (four practice groups). All 29 tariffs were re-read and every
+  credited element quotes its source. Next migration only if LBL publishes
+  another update. **done**
+- **Old single-purpose link fields** (`Policy.related_moratorium_id`,
+  `related_project_ids`, `RateCase.related_tariff_id`) still exist beside the
+  v7 `related: list[RecordRef]`. links.json reads both. Migrate them into
+  `related` and delete the old fields once nothing else reads them. **low**
+- **18 tariff element quotes are unchecked by script** (bot walls on ICC,
+  Texas PUC, DCD, Axios, SELC, Fresh Energy pages). Spot-check in a browser.
+  The list is `notes/specs/v7_work/probe_B.txt` (BLOCKED lines). **medium**
+- **Seed tariffs whose identity rests on the 2025 LBL brief alone:**
+  `entergy-mississippi-large-power-rate` (no 30 MW schedule on Entergy's
+  current index) and `black-hills-large-power-contract-service` (current
+  tariff uses 5,000 kW, not 35 MW). Find the docket orders or retire the
+  records. **medium**
 
 - **`Moratorium.resources` is an untyped `list[dict]`.** Type it as
   `SourceResource`, like tariffs, policies and rate cases. The renderer
