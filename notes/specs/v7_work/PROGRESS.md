@@ -23,3 +23,5 @@ Steps: [x] RecordRef+links.json  [x] deep links  [x] Policy combine  [ ] apply r
 - We Energies: PSC order 2026-05-21, effective 2026-06-01.
 - NJ: third reprint caps threshold at 50 MW.
 - Batch A quotes not yet probed (run scripts/probe.py --evidence on them).
+
+## Batch A probe: 124 hit, 11 "miss" = scanned NV PUCN PDFs; all 11 quotes found in OCR text of the order/stipulation (agent OCR, lbl/A/txt). Kept.

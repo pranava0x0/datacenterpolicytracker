@@ -3380,11 +3380,6 @@ body.tariff-modal-open {
   color: var(--text-muted);
   margin-top: 0.1rem;
 }
-.tariff-elem-count {
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-  color: var(--text);
-}
 
 /* Status badges + row accent (approved↔green, proposed↔amber, rejected↔red) */
 .badge-tariff-status-approved,

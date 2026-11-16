@@ -1543,8 +1543,10 @@ class TestTariffsView:
         assert page.locator("#tariffs-tbody tr").count() >= 10
         # All 17 LBL elements appear as coverage cards (their own pane) and as
         # options in the directory's element filter.
-        assert page.locator("#tariff-coverage-grid .tariff-coverage-card").count() == 17
-        assert page.locator("#tariff-element-filter option").count() == 18
+        n_params = page.evaluate("() => TARIFF_PARAMETERS.length")
+        assert n_params == 30  # LBL 2026: 18 elements + 12 sub-elements
+        assert page.locator("#tariff-coverage-grid .tariff-coverage-card").count() == n_params
+        assert page.locator("#tariff-element-filter option").count() == n_params + 1
 
     def test_rate_cases_list_populates(self, page: Page, base_url: str):
         """The only prior guard for this section (test_app_js_wires_rate_cases)
@@ -1579,8 +1581,15 @@ class TestTariffsView:
         first.focus()
         page.keyboard.press("Enter")
         expect(page.locator("#tariff-detail")).to_be_visible()
-        # The detail pop-out shows the full 17-element checklist.
-        assert page.locator("#td-params-body .tparam-row").count() == 17
+        # The detail lists every top-level LBL 2026 element, plus the
+        # sub-elements of the parents this tariff has.
+        expected = page.evaluate("""() => {
+          const id = location.hash.split('/')[1];
+          const t = state.tariffs.find((x) => x.id === id);
+          return TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k] || t.parameters[TARIFF_PARAMETER_PARENT[k]]).length;
+        }""")
+        assert page.locator("#td-params-body .tparam-row").count() == expected
+        assert page.locator("#td-params-body .tparam-quote").count() >= 1
 
     def test_detail_opens_as_modal_overlay(self, page: Page, base_url: str):
         # v1.19: the detail promotes from an inline pop-out to a centered modal
