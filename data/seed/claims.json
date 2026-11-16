@@ -763,7 +763,6 @@
       "source_url": "https://www.aboutamazon.com/news/aws/amazon-pennsylvania-investment-cloud-infrastructure-ai-innovation",
       "source_title": "Amazon plans to invest $20 billion in Pennsylvania to expand cloud computing infrastructure and advance AI innovation",
       "captured_at": "2026-05-14",
-      "project_id": "aws-cumberland-pa",
       "metric": {
         "value": 20000000000.0,
         "unit": "usd",
@@ -778,7 +777,6 @@
       "source_url": "https://www.aboutamazon.com/news/aws/amazon-pennsylvania-investment-cloud-infrastructure-ai-innovation",
       "source_title": "Amazon plans to invest $20 billion in Pennsylvania to expand cloud computing infrastructure and advance AI innovation",
       "captured_at": "2026-05-14",
-      "project_id": "aws-cumberland-pa",
       "metric": {
         "value": 1250.0,
         "unit": "jobs",
@@ -1563,7 +1561,6 @@
       "source_url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/",
       "source_title": "Talen, Amazon Launch $18B Nuclear PPA (Kevin Miller, AWS VP)",
       "captured_at": "2026-05-14",
-      "project_id": "aws-cumberland-pa",
       "metric": {
         "value": 1250.0,
         "unit": "jobs",
@@ -1578,7 +1575,6 @@
       "source_url": "https://www.aboutamazon.com/news/aws/amazon-pennsylvania-investment-cloud-infrastructure-ai-innovation",
       "source_title": "Amazon plans to invest $20 billion in Pennsylvania",
       "captured_at": "2026-05-14",
-      "project_id": "aws-cumberland-pa",
       "metric": {
         "value": 8,
         "unit": "scholarships",
@@ -1592,8 +1588,7 @@
       "statement": "Amazon's multi-billion-dollar investment in Pennsylvania reinforces our dedication to advancing AI innovation while creating lasting economic opportunities in the state.",
       "source_url": "https://www.govtech.com/artificial-intelligence/pa-gov-announces-20b-amazon-data-center-investment",
       "source_title": "Pa. Gov. Announces $20B Amazon Data Center Investment (David Zapolsky)",
-      "captured_at": "2026-05-14",
-      "project_id": "aws-cumberland-pa"
+      "captured_at": "2026-05-14"
     },
     {
       "id": "anthropic-tax-revenue-grid-upgrades",
@@ -4937,6 +4932,16 @@
       "source_title": "Meta Data Centers — The Future is for Everyone Fund",
       "captured_at": "2026-11-15",
       "country": "US"
+    },
+    {
+      "id": "openai-milam-county-public-updates-2026",
+      "company_slug": "openai",
+      "project_id": "openai-milam-county-tx",
+      "theme": "engagement",
+      "statement": "We will coordinate with the Court and our project partners and publish progress updates on the project website.",
+      "source_url": "https://cdn.openai.com/pdf/milam-county-data-center-community-compact.pdf",
+      "source_title": "OpenAI and SB Energy — Milam County Data Center Community Compact (November 9, 2026)",
+      "captured_at": "2026-11-15"
     }
   ]
 }

@@ -1185,7 +1185,7 @@
     {
       "id": "aws-cumberland-pa",
       "company_slug": "amazon",
-      "name": "Cumberland Valley Data Center Campus",
+      "name": "Salem Township Innovation Campus",
       "city": "Salem Township",
       "state": "PA",
       "country": "US",
@@ -1193,21 +1193,33 @@
       "lon": -76.1453,
       "status": "construction",
       "announced_year": 2024,
-      "claimed_investment_usd": 20000000000,
-      "claimed_jobs": 1250,
-      "notes": "Two-campus build on land adjoining the Susquehanna Nuclear Plant in Salem Township, Luzerne County PA, structured around a behind-the-meter PPA with Talen Energy. (Project name 'Cumberland Valley' is a Talen-era branding; the actual location is Luzerne County, not Cumberland County PA.) June 11, 2025: Talen said its 300 MW co-location arrangement with AWS would shift from behind-the-meter to a front-of-the-meter PPA framework that does not require FERC approval, sidestepping the ISA dispute; transition targeted for spring 2026 after transmission upgrades.",
+      "claimed_investment_usd": null,
+      "claimed_jobs": null,
+      "notes": "Two-campus build on land adjoining the Susquehanna Nuclear Plant in Salem Township, Luzerne County PA, structured around a behind-the-meter PPA with Talen Energy. June 11, 2025: Talen said its 300 MW co-location arrangement with AWS would shift from behind-the-meter to a front-of-the-meter PPA framework that does not require FERC approval, sidestepping the ISA dispute; transition targeted for spring 2026 after transmission upgrades. Amazon's $20 billion investment and 1,250 projected jobs were announced for Pennsylvania, not for Salem Township alone. The campus page separately estimates about 1,000 permanent jobs for the completed Salem buildout; it does not give a combined construction and operations job total.",
       "source_url": "https://www.aboutamazon.com/news/aws/amazon-pennsylvania-investment-cloud-infrastructure-ai-innovation",
-      "source_title": "AWS — $20B Pennsylvania investment (June 2024)",
-      "captured_at": "2026-09-25",
-      "project_page_url": "https://www.aboutamazon.com/news/aws/amazon-pennsylvania-investment-cloud-infrastructure-ai-innovation",
+      "source_title": "Amazon — statewide Pennsylvania data center investment (June 9, 2025)",
+      "captured_at": "2026-11-15",
+      "project_page_url": "https://www.amazoninnovationinpa.com/salem-township-innovation-campus/",
       "acreage": 1200,
       "power_mw": 1920,
       "offtaker": "AWS",
       "at_a_glance": {
-        "jobs": "$20B / 1,250 jobs",
+        "jobs": "About 1,000 permanent jobs projected at full buildout; no site-specific total for construction and operations.",
         "energy": "1,920 MW PPA with Talen (Susquehanna nuclear); shifting from behind-the-meter co-location to a front-of-the-meter framework, targeted spring 2026",
         "engagement": "FERC rejected amended ISA Nov 2024; Talen/AWS restructured to a front-of-the-meter PPA instead of pursuing further FERC approval"
-      }
+      },
+      "updates": [
+        {
+          "date": "2026-11-03",
+          "kind": "news",
+          "title": "Salem campus publishes a summary of a $22 million community benefits agreement",
+          "summary": "The project summary says Salem Township may use the funds for debt, capital projects, roads, public works, vehicles or equipment. It does not give a payment schedule or say how much the township has received.",
+          "authority": null,
+          "upcoming": false,
+          "source_url": "https://www.amazoninnovationinpa.com/wp-content/uploads/2026/11/Salem-Township-CBA-One-Pager.pdf",
+          "source_title": "Salem Township Innovation Campus — Community Benefits Agreement summary"
+        }
+      ]
     },
     {
       "id": "openai-abilene-tx",
@@ -2863,6 +2875,16 @@
           "upcoming": false,
           "source_url": "https://sbenergy.com/sb-energy-openai-stargate-data-center-texas/",
           "source_title": "SB Energy — SB Energy and OpenAI Stargate data center Texas"
+        },
+        {
+          "date": "2026-11-09",
+          "kind": "news",
+          "title": "SB Energy and OpenAI present a community compact to the Milam County Commissioners Court",
+          "summary": "The developers pledge at least four updates to the court each year, annual public reporting, and acknowledgment of resident inquiries within a week. The compact records what the companies presented; it does not document county approval.",
+          "authority": "SB Energy and OpenAI",
+          "upcoming": false,
+          "source_url": "https://cdn.openai.com/pdf/milam-county-data-center-community-compact.pdf",
+          "source_title": "OpenAI and SB Energy — Milam County Data Center Community Compact (November 9, 2026)"
         }
       ]
     },
