@@ -546,3 +546,7 @@ finding an older record by name takes four interactions. The previous extra
 tap into Policy is gone. Signed agreement terms still take one tap using
 the Home shortcut. International has one country index: Ireland takes two
 taps on all three devices. No interaction budget increased.
+
+## 2026-11-16 — v7 budget change
+
+`ratecase_milestone` goes from 1 to 3 on tablet and desktop. The owner asked for a "what to watch" brief at the top of Power Costs. That brief is now the first thing on the tab, so the first rate case sits about two swipes down. On phones, the moratorium call-out in Policy → Rules shows only counts and a link. The full call-out would break the `policy_cba` budget.

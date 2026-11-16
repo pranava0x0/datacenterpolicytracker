@@ -3380,11 +3380,6 @@ body.tariff-modal-open {
   color: var(--text-muted);
   margin-top: 0.1rem;
 }
-.tariff-elem-count {
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
-  color: var(--text);
-}
 
 /* Status badges + row accent (approved↔green, proposed↔amber, rejected↔red) */
 .badge-tariff-status-approved,
@@ -3674,6 +3669,35 @@ body.tariff-modal-open {
   font-size: var(--fs-sm);
   color: var(--text-muted);
   margin-top: 0.1rem;
+}
+
+/* v7: cross-record links, from links.json. */
+.related-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+}
+.related-kind {
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 7.5rem;
+}
+.related-note {
+  flex-basis: 100%;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.tleg-record {
+  margin-left: 0.4rem;
+  font-size: var(--fs-xs);
+}
+.record-permalink-row {
+  margin: 1rem 0 0;
+  font-size: var(--fs-xs);
 }
 
 /* ==========================================================================
@@ -5009,7 +5033,8 @@ body.state-modal-open {
   color: var(--text-muted);
 }
 
-.rc-src {
+.rc-src,
+.rc-perma {
   white-space: nowrap;
 }
 
@@ -5017,7 +5042,8 @@ body.state-modal-open {
    same pattern. At the desktop scale this inline link inherits .rc-meta's
    0.75rem line box with no padding, well under the floor for a thumb. */
 @media (pointer: coarse) {
-  .rc-src {
+  .rc-src,
+  .rc-perma {
     display: inline-block;
     min-height: 44px;
     min-width: 44px;
@@ -6885,3 +6911,154 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
   .election-filters > label:not(:first-child) { flex: 1 1 140px; }
 }
 @media (pointer: coarse) { .election-more-filters > summary { min-height: 44px; display: list-item; line-height: 44px; padding: 0; } }
+
+/* v7: moratorium call-out on the Policy tab, and moratorium rows in its
+   directory. One accent rule; status colour stays in the badges. */
+.mor-callout {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  margin: 0 0 1rem;
+}
+.mor-callout-title {
+  margin: 0 0 0.25rem;
+  font-size: var(--fs-lg);
+}
+.mor-callout-counts {
+  margin: 0;
+  font-size: var(--fs-base);
+}
+.mor-callout-sub {
+  margin: 0.5rem 0 0.15rem;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.mor-callout-latest {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: var(--fs-sm);
+}
+.mor-callout-more {
+  margin: 0.5rem 0 0;
+  font-size: var(--fs-sm);
+}
+.badge-instrument-moratorium {
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.is-moratorium-row td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* v7: LBL 2026 elements. Sub-elements sit under their parent; a provision's
+   own words follow its one-line summary. */
+.tariff-coverage-card.is-sub {
+  margin-left: 1rem;
+  border-style: dashed;
+}
+.tcc-lbl {
+  display: block;
+  font-size: var(--fs-2xs);
+  color: var(--text-muted);
+}
+.tparam-sub {
+  margin-left: 1.25rem;
+}
+.tparam-quote {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.tariff-date {
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+}
+
+/* v7: Power Costs brief. Reading text, hairline-separated items, one accent. */
+.power-brief {
+  border-top: 3px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0 0.5rem;
+  margin: 0 0 1rem;
+}
+.power-brief-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+}
+.power-brief-title {
+  margin: 0;
+  font-size: var(--fs-xl);
+}
+.power-brief-asof {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.pbf-item {
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border);
+}
+.pbf-item:first-child {
+  border-top: 0;
+}
+@media (min-width: 960px) {
+  #power-brief-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+  .pbf-item:nth-child(2) {
+    border-top: 0;
+  }
+}
+.pbf-heading {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.pbf-text {
+  margin: 0;
+  max-width: 72ch;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+}
+.pbf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.9rem;
+  margin: 0.35rem 0 0;
+  font-size: var(--fs-xs);
+}
+.pbf-srcs {
+  color: var(--text-muted);
+}
+.pbf-src {
+  display: inline-block;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+/* Phones: the call-out keeps its counts and link; the latest-three list
+   would push the directory two screens down (interaction budget). */
+@media (max-width: 699px) {
+  .mor-callout-sub,
+  .mor-callout-latest {
+    display: none;
+  }
+  .mor-callout {
+    padding: 0.5rem 0.75rem;
+  }
+}

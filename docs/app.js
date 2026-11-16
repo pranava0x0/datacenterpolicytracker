@@ -163,6 +163,7 @@ const POLICY_INSTRUMENTS = [
   "benefit_agreement",
   "company_plan",
   "government_framework",
+  "commission_order",
 ];
 const POLICY_INSTRUMENT_LABELS = {
   executive_order: "Executive order",
@@ -172,6 +173,19 @@ const POLICY_INSTRUMENT_LABELS = {
   benefit_agreement: "Benefit agreement",
   company_plan: "Company plan",
   government_framework: "Government framework",
+  commission_order: "Commission order",
+};
+// v7 cross-record links. Mirrors RECORD_KINDS / RELATION_LABELS in schema.py
+// (parity-tested). links.json carries both directions, derived at refresh.
+const RECORD_KINDS = ["policy", "moratorium", "tariff", "rate_case", "project", "company", "election"];
+const RELATION_LABELS = {
+  related: "Related",
+  authorizes: "Authorizes",
+  implements: "Implements",
+  replaces: "Replaces",
+  replaced_by: "Replaced by",
+  challenges: "Challenges",
+  challenged_by: "Challenged by",
 };
 const POLICY_STATUSES = ["in_effect", "proposed", "failed"];
 const POLICY_STATUS_LABELS = {
@@ -262,92 +276,188 @@ const POLICY_SCOPE_LABELS = {
   national: "National",
   supranational: "EU-wide",
 };
-// The five LBL element groups, in the brief's order: [group_key, label].
+// v7: LBL 2026 update taxonomy. Mirrors schema.py (parity-tested).
 const TARIFF_PARAMETER_GROUPS = [
-  ["eligibility", "Eligibility & Applicability"],
-  ["contract_size", "Contract Size"],
-  ["duration", "Contract Duration & Exit"],
-  ["energy_source", "Energy Source"],
-  ["other", "Other Elements"],
+  ["established", "Established practice"],
+  ["stable", "Stable practice"],
+  ["emerging", "Emerging practice"],
+  ["declining", "Declining practice"],
 ];
-// The 17 large-load rate-design elements from the LBL brief, in order.
 const TARIFF_PARAMETERS = [
-  "min_load",
+  "min_demand_threshold",
+  "min_contract_duration",
   "monthly_demand_charge",
-  "customer_type",
-  "study_cost_recovery",
-  "credit_collateral",
-  "contracted_capacity",
+  "min_billing_demand",
+  "min_bill",
+  "collateral",
+  "direct_cost_assignment",
+  "dca_capacity_reservation",
+  "dca_interconnection",
+  "dca_generation_capacity",
+  "dca_network_transmission",
+  "customer_resource_procurement",
+  "btm_generation",
+  "customer_led_procurement",
+  "load_flexibility",
+  "load_factor_threshold",
+  "aggregation_rules",
+  "load_forecast_requirement",
+  "explicit_load_forecast",
+  "forecast_update_cadence",
+  "price_premium",
+  "study_requirements",
+  "load_ramp_period",
+  "hold_harmless",
+  "formulaic_backstop",
+  "marginal_cost",
+  "no_harm_analysis",
   "resize_reassign",
-  "btm_backup",
-  "load_factor",
-  "contract_duration",
-  "ramp_times",
-  "duration_flexibility",
   "exit_fee",
-  "clean_energy",
-  "specific_generation",
-  "marginal_pricing",
-  "econ_dev_payments",
+  "customer_type",
 ];
 const TARIFF_PARAMETER_LABELS = {
-  min_load: "Minimum load requirement",
-  monthly_demand_charge: "Minimum demand charge",
-  customer_type: "Customer-type applicability",
-  study_cost_recovery: "Study-cost recovery",
-  credit_collateral: "Credit rating / collateral",
-  contracted_capacity: "Contracted capacity & energy",
-  resize_reassign: "Resizing / reassignment",
-  btm_backup: "Behind-the-meter backup",
-  load_factor: "Minimum load factor",
-  contract_duration: "Contract duration",
-  ramp_times: "Ramp times",
-  duration_flexibility: "Duration flexibility",
+  min_demand_threshold: "Minimum demand threshold",
+  min_contract_duration: "Minimum contract duration",
+  monthly_demand_charge: "Monthly demand charge",
+  min_billing_demand: "Minimum billing demand",
+  min_bill: "Minimum bill",
+  collateral: "Collateral requirements",
+  direct_cost_assignment: "Direct assignment of costs",
+  dca_capacity_reservation: "Capacity reservation",
+  dca_interconnection: "Interconnection upgrades",
+  dca_generation_capacity: "Generation and capacity costs",
+  dca_network_transmission: "Network transmission upgrades",
+  customer_resource_procurement: "Customer-specific resource procurement",
+  btm_generation: "Behind-the-meter generation",
+  customer_led_procurement: "Customer-led procurement",
+  load_flexibility: "Load flexibility",
+  load_factor_threshold: "Load factor threshold",
+  aggregation_rules: "Aggregation rules",
+  load_forecast_requirement: "Load forecast requirement",
+  explicit_load_forecast: "Explicit load forecast",
+  forecast_update_cadence: "Forecast update cadence",
+  price_premium: "Price premium",
+  study_requirements: "Study requirements",
+  load_ramp_period: "Load ramp period",
+  hold_harmless: "Hold harmless",
+  formulaic_backstop: "Formulaic backstop",
+  marginal_cost: "Incremental or marginal cost",
+  no_harm_analysis: "No-harm analysis",
+  resize_reassign: "Resizing or reassigning capacity",
   exit_fee: "Exit fee",
-  clean_energy: "Clean-energy requirements",
-  specific_generation: "Specific generation technologies",
-  marginal_pricing: "Marginal pricing / cost-sharing",
-  econ_dev_payments: "Economic-development payments",
+  customer_type: "Customer type",
 };
 const TARIFF_PARAMETER_DESCRIPTIONS = {
-  min_load: "A lower-bound MW load threshold to qualify for the tariff.",
-  monthly_demand_charge: "Minimum charge tied to a percentage of forecasted maximum demand.",
-  customer_type: "Tariff scoped to a specific large-load customer type (e.g., data centers).",
-  study_cost_recovery: "Customer pays for interconnection / system-impact studies.",
-  credit_collateral: "Minimum credit rating and/or collateral / deposit requirements.",
-  contracted_capacity: "Defined MW / MWh the customer is obligated to buy.",
-  resize_reassign: "Terms to resize, reassign, or sell unused contracted capacity / energy.",
-  btm_backup: "Treatment of behind-the-meter generation / storage as backup or supplemental power.",
-  load_factor: "A minimum average-to-peak load ratio the customer must maintain.",
-  contract_duration: "Minimum contract term to back long-lived utility investment.",
-  ramp_times: "An extended period to reach full contracted load.",
-  duration_flexibility: "Modifications / renewals to the contract term.",
-  exit_fee: "Charge for exiting the tariff or terminating service early.",
-  clean_energy: "Requirements / options to serve the load with clean or renewable energy.",
-  specific_generation: "Utility procures specific named generation on the customer's behalf.",
-  marginal_pricing: "Marginal-cost pricing / cost-sharing to limit cross-subsidization.",
-  econ_dev_payments: "Direct payments for workforce, community, or low-income programs.",
+  min_demand_threshold: "A minimum MW (or MVA) load a customer must reach to take service under the tariff.",
+  min_contract_duration: "A minimum term the customer must commit to, so long-lived utility investment is recovered.",
+  monthly_demand_charge: "A charge per kW or MW of monthly peak or contracted demand.",
+  min_billing_demand: "The customer is billed for at least a set share of contracted demand, whatever it uses.",
+  min_bill: "A floor on the monthly bill, usually tied to contracted capacity.",
+  collateral: "Credit rating, deposit, letter of credit or guarantee to cover the customer's obligations.",
+  direct_cost_assignment: "The customer pays directly for costs incurred to serve it, rather than sharing them across all customers.",
+  dca_capacity_reservation: "A payment to reserve grid capacity before service starts.",
+  dca_interconnection: "The customer pays for the lines, substations and equipment that connect it.",
+  dca_generation_capacity: "The customer pays for new generation or capacity built or bought to serve it.",
+  dca_network_transmission: "The customer pays for wider transmission network upgrades its load requires.",
+  customer_resource_procurement: "Arrangements for energy resources tied to this customer rather than the general supply.",
+  btm_generation: "Rules for on-site generation or storage the customer owns or uses.",
+  customer_led_procurement: "The customer can bring or direct its own generation, such as clean energy, through the utility.",
+  load_flexibility: "Curtailment, interruptible service or demand response the customer agrees to.",
+  load_factor_threshold: "A minimum ratio of average to peak load to qualify.",
+  aggregation_rules: "Whether loads at several sites or affiliates count together toward the threshold.",
+  load_forecast_requirement: "The customer must give the utility forecasts of its load.",
+  explicit_load_forecast: "A stated forecast, such as a ramp schedule, must be filed.",
+  forecast_update_cadence: "Forecasts must be updated on a set schedule.",
+  price_premium: "A rate adder above the otherwise applicable rate.",
+  study_requirements: "The customer must fund or complete load, interconnection or system-impact studies.",
+  load_ramp_period: "A set schedule for reaching full contracted load, with charges phased in.",
+  hold_harmless: "Provisions meant to keep other customers from paying for the large load's costs.",
+  formulaic_backstop: "A formula that charges the customer if costs shift to other ratepayers.",
+  marginal_cost: "Rates set from the incremental or marginal cost of serving the load.",
+  no_harm_analysis: "A required showing that serving the load does not raise other customers' costs.",
+  resize_reassign: "Terms for reducing, transferring or reassigning contracted capacity.",
+  exit_fee: "A charge for leaving the tariff or ending service early.",
+  customer_type: "The tariff applies only to a named customer type, such as data centers.",
 };
-// Maps each parameter key to its group key (for grouped rendering).
 const TARIFF_PARAMETER_GROUP_OF = {
-  min_load: "eligibility",
-  monthly_demand_charge: "eligibility",
-  customer_type: "eligibility",
-  study_cost_recovery: "eligibility",
-  credit_collateral: "eligibility",
-  contracted_capacity: "contract_size",
-  resize_reassign: "contract_size",
-  btm_backup: "contract_size",
-  load_factor: "contract_size",
-  contract_duration: "duration",
-  ramp_times: "duration",
-  duration_flexibility: "duration",
-  exit_fee: "duration",
-  clean_energy: "energy_source",
-  specific_generation: "energy_source",
-  marginal_pricing: "other",
-  econ_dev_payments: "other",
+  min_demand_threshold: "established",
+  min_contract_duration: "established",
+  monthly_demand_charge: "established",
+  min_billing_demand: "established",
+  min_bill: "established",
+  collateral: "established",
+  direct_cost_assignment: "established",
+  dca_capacity_reservation: "established",
+  dca_interconnection: "established",
+  dca_generation_capacity: "established",
+  dca_network_transmission: "established",
+  customer_resource_procurement: "established",
+  btm_generation: "established",
+  customer_led_procurement: "established",
+  load_flexibility: "established",
+  load_factor_threshold: "stable",
+  aggregation_rules: "stable",
+  load_forecast_requirement: "stable",
+  explicit_load_forecast: "stable",
+  forecast_update_cadence: "stable",
+  price_premium: "stable",
+  study_requirements: "emerging",
+  load_ramp_period: "emerging",
+  hold_harmless: "emerging",
+  formulaic_backstop: "emerging",
+  marginal_cost: "emerging",
+  no_harm_analysis: "emerging",
+  resize_reassign: "emerging",
+  exit_fee: "emerging",
+  customer_type: "declining",
 };
+const TARIFF_PARAMETER_PARENT = {
+  dca_capacity_reservation: "direct_cost_assignment",
+  dca_interconnection: "direct_cost_assignment",
+  dca_generation_capacity: "direct_cost_assignment",
+  dca_network_transmission: "direct_cost_assignment",
+  btm_generation: "customer_resource_procurement",
+  customer_led_procurement: "customer_resource_procurement",
+  load_flexibility: "customer_resource_procurement",
+  explicit_load_forecast: "load_forecast_requirement",
+  forecast_update_cadence: "load_forecast_requirement",
+  formulaic_backstop: "hold_harmless",
+  marginal_cost: "hold_harmless",
+  no_harm_analysis: "hold_harmless",
+};
+const TARIFF_PARAMETER_LBL_COUNT = {
+  min_demand_threshold: 51,
+  min_contract_duration: 47,
+  monthly_demand_charge: 46,
+  min_billing_demand: 39,
+  min_bill: 47,
+  collateral: 43,
+  direct_cost_assignment: 45,
+  dca_capacity_reservation: 4,
+  dca_interconnection: 38,
+  dca_generation_capacity: 28,
+  dca_network_transmission: 10,
+  customer_resource_procurement: 43,
+  btm_generation: 28,
+  customer_led_procurement: 25,
+  load_flexibility: 27,
+  load_factor_threshold: 13,
+  aggregation_rules: 20,
+  load_forecast_requirement: 12,
+  explicit_load_forecast: 10,
+  forecast_update_cadence: 11,
+  price_premium: 6,
+  study_requirements: 33,
+  load_ramp_period: 23,
+  hold_harmless: 25,
+  formulaic_backstop: 11,
+  marginal_cost: 19,
+  no_harm_analysis: 13,
+  resize_reassign: 26,
+  exit_fee: 31,
+  customer_type: 9,
+};
+const TARIFF_LBL_SAMPLE_SIZE = 55;
 
 
 // Mirrors schema.PROJECT_STATUSES (parity-tested).
@@ -822,6 +932,191 @@ const LEGACY_HASHES = {
 
 };
 
+// v7 record deep links: one URL per record, e.g. #moratorium/<id>. Each
+// prefix names the view that owns the record and how to open it. The test
+// derives the expected prefixes from RECORD_KINDS, so a new kind needs a row.
+// `site` and `policy` hand off to their existing query-param routes
+// (?project= / ?policy=), which already restore filters and Back/Forward.
+const RECORD_ROUTES = {
+  moratorium: { kind: "moratorium", view: "moratoriums" },
+  tariff: { kind: "tariff", view: "tariffs", subtab: ["tar", "tariffs"] },
+  ratecase: { kind: "rate_case", view: "tariffs", subtab: ["tar", "ratecases"] },
+  policy: { kind: "policy", view: "policies" },
+  site: { kind: "project", view: "explorer" },
+  company: { kind: "company", view: "comparison", subtab: ["co", "profiles"] },
+  election: { kind: "election", view: "elections" },
+};
+const RECORD_PREFIX_BY_KIND = Object.fromEntries(
+  Object.entries(RECORD_ROUTES).map(([prefix, r]) => [r.kind, prefix]));
+const RECORD_DEEP_LINK = /^#(moratorium|tariff|ratecase|policy|site|company)\/([A-Za-z0-9._-]+)$/;
+
+// The canonical URL for a record, for links and "Copy link". Elections keep
+// their older #elections/<id> form.
+function recordHref(kind, id) {
+  if (kind === "election") return `#elections/${id}`;
+  const prefix = RECORD_PREFIX_BY_KIND[kind];
+  return prefix ? `#${prefix}/${encodeURIComponent(id)}` : "#";
+}
+
+// Opening a record's panel puts its URL in the address bar; closing it puts
+// back the URL it replaced. replaceState only: the record is a view of the
+// current entry, and a popstate must not be overwritten mid-route (#72).
+function setRecordUrl(kind, id) {
+  const hash = recordHref(kind, id);
+  if (window.location.hash === hash) return;
+  if (!RECORD_DEEP_LINK.test(window.location.hash)) {
+    state._recordReturnUrl = window.location.pathname + window.location.search + window.location.hash;
+  }
+  history.replaceState(null, "", window.location.pathname + window.location.search + hash);
+}
+
+function clearRecordUrl(kind) {
+  if (state._routing) return;
+  const prefix = RECORD_PREFIX_BY_KIND[kind];
+  if (!window.location.hash.startsWith(`#${prefix}/`)) return;
+  const back = state._recordReturnUrl;
+  state._recordReturnUrl = null;
+  const view = VIEWS.find((v) => v.name === state.activeView);
+  history.replaceState(null, "", back || window.location.pathname + (view ? view.hash : ""));
+}
+
+// links.json: the derived graph of every typed link, both directions.
+let _linksPromise = null;
+function loadLinksData() {
+  if (!_linksPromise) {
+    _linksPromise = fetchJson("data/links.json")
+      .then((d) => (state.links = d.links || {}))
+      .catch((err) => {
+        _linksPromise = null;
+        throw err;
+      });
+  }
+  return _linksPromise;
+}
+
+const RECORD_KIND_LABELS = {
+  policy: "Policy",
+  moratorium: "Moratorium",
+  tariff: "Tariff",
+  rate_case: "Rate case",
+  project: "Site",
+  company: "Company",
+  election: "Election",
+};
+
+// A readable name for a linked record from whatever payload is loaded; the
+// id, de-slugged, when it isn't (never a bare code).
+function recordLabel(kind, id) {
+  const find = (arr) => (arr || []).find((x) => x.id === id);
+  let r;
+  if (kind === "policy") r = find(state.policies) && find(state.policies).title;
+  else if (kind === "moratorium") {
+    const m = find(state.moratoriums);
+    r = m && `${m.jurisdiction}${m.state_code ? `, ${m.state_code}` : ""}`;
+  } else if (kind === "tariff") {
+    const t = find(state.tariffs);
+    r = t && `${t.utility}: ${t.tariff_name}`;
+  } else if (kind === "rate_case") r = find(state.rateCases) && find(state.rateCases).title;
+  else if (kind === "project") r = find(state.projects) && find(state.projects).name;
+  else if (kind === "company") r = state.companiesBySlug && state.companiesBySlug.get(id)?.name;
+  if (r) return r;
+  const words = id.replace(/[-_]+/g, " ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
+// Fill a panel's "Related" section from links.json. Each entry is a real
+// link to the record's own URL, so it can be opened, copied or shared.
+function renderRelatedRecords(sectionId, kind, id) {
+  const section = document.getElementById(sectionId);
+  const list = document.getElementById(`${sectionId}-list`);
+  if (!section || !list) return;
+  const draw = () => {
+    const edges = (state.links || {})[`${kind}:${id}`] || [];
+    list.replaceChildren(...edges.map((e) => {
+      const li = el("li", "related-item");
+      const rel = e.relation === "related" ? RECORD_KIND_LABELS[e.kind] : `${RELATION_LABELS[e.relation]} · ${RECORD_KIND_LABELS[e.kind].toLowerCase()}`;
+      li.append(el("span", "related-kind", rel));
+      const a = el("a", "related-link", recordLabel(e.kind, e.id));
+      a.href = recordHref(e.kind, e.id);
+      li.append(a);
+      if (e.note) li.append(el("span", "related-note", e.note));
+      return li;
+    }));
+    section.hidden = edges.length === 0;
+  };
+  if (state.links) draw();
+  else {
+    section.hidden = true;
+    loadLinksData().then(draw).catch((err) => console.error("Failed to load links:", err));
+  }
+}
+
+function setPermalink(elId, kind, id) {
+  const a = document.getElementById(elId);
+  if (!a) return;
+  a.href = recordHref(kind, id);
+}
+
+async function openRecordRoute(prefix, rawId) {
+  const route = RECORD_ROUTES[prefix];
+  const id = decodeURIComponent(rawId);
+  // A non-US site or policy lives in international.json; its home is the
+  // country page, not the US Sites or Policy tab (Codex review of #137).
+  if (prefix === "site" || prefix === "policy") {
+    const gen0 = state.navGen;
+    try {
+      const usList = prefix === "site"
+        ? (await loadProjectData(), state.projects)
+        : (await loadPoliciesData(), state.policies);
+      if (!(usList || []).some((x) => x.id === id)) {
+        const intl = await loadInternationalData();
+        const rec = (prefix === "site" ? intl.projects : intl.policies || []).find((x) => x.id === id);
+        if (rec && state.navGen === gen0) {
+          setActiveSubtab("world", "countries");
+          activateView("world");
+          openCountry(rec.country);
+          return;
+        }
+      }
+    } catch (err) {
+      console.error(`Could not resolve ${prefix} ${id}:`, err);
+    }
+  }
+  if (prefix === "site") {
+    history.replaceState(null, "", `${window.location.pathname}?project=${encodeURIComponent(id)}#explorer`);
+    readFiltersFromUrl();
+    activateView("explorer");
+    return;
+  }
+  if (prefix === "policy") {
+    history.replaceState(null, "", `${window.location.pathname}?policy=${encodeURIComponent(id)}#policies/rules`);
+    setActiveSubtab("pol", "rules");
+    activateView("policies");
+    return;
+  }
+  if (route.subtab) setActiveSubtab(route.subtab[0], route.subtab[1]);
+  activateView(route.view);
+  const gen = state.navGen;
+  try {
+    if (prefix === "moratorium") {
+      await loadMoratoriumsData();
+      const m = (state.moratoriums || []).find((x) => x.id === id);
+      if (m && state.navGen === gen) showMoratoriumDetail(m);
+    } else if (prefix === "tariff") {
+      await loadTariffsData();
+      const t = (state.tariffs || []).find((x) => x.id === id);
+      if (t && state.navGen === gen) showTariffDetail(t);
+    } else if (prefix === "ratecase") {
+      openRateCase(id);
+    } else if (prefix === "company") {
+      await ensureCompanyData();
+      if (state.navGen === gen && state.companiesBySlug.get(id)) selectCompany(id);
+    }
+  } catch (err) {
+    console.error(`Could not open ${prefix} ${id}:`, err);
+  }
+}
+
 function _routeFromLocation(boot) {
   const legacy = LEGACY_HASHES[window.location.hash];
   if (legacy) history.replaceState(null, "", window.location.pathname + window.location.search + legacy);
@@ -850,10 +1145,13 @@ function _routeFromLocation(boot) {
   // Ask the URL, not state: after Back, state could hold later filters.
   const explorerParams =
     URL_FILTER_KEYS.some((k) => params.get(k)) || Boolean(params.get("project"));
+  const recordLink = RECORD_DEEP_LINK.exec(window.location.hash);
   const fromHash = VIEWS.find((v) => v.hash && v.hash === window.location.hash);
   // Read the sub-key BEFORE activating: activateView rewrites the hash.
   const sub = parseSubtabHash(window.location.hash);
-  if (sub) {
+  if (recordLink) {
+    openRecordRoute(recordLink[1], recordLink[2]);
+  } else if (sub) {
     if (sub.agreement === "drafts") {
       state.draftKind = params.get("p-draft") === "state" ? "state" : "county";
       const select = document.getElementById("draft-plan-kind");
@@ -905,6 +1203,8 @@ function _routeFromLocation(boot) {
   }
   // A Frameworks entry restores its own filters and open record.
   if (!boot && state.activeView === "policies" && state._policyUrlApplied) {
+    // Fresh read: a #policy/<id> route rewrote the query after `params`.
+    const params = new URLSearchParams(window.location.search);
     setPolicyControlsFrom(params);
     renderPoliciesTable();
     const pid = params.get("policy");
@@ -2258,12 +2558,16 @@ function showMoratoriumDetail(m) {
   overlay.scrollTop = 0;
   const closeBtn = document.getElementById("moratorium-detail-close");
   if (closeBtn) closeBtn.focus();
+  setRecordUrl("moratorium", m.id);
+  setPermalink("md-permalink", "moratorium", m.id);
+  renderRelatedRecords("md-related", "moratorium", m.id);
 }
 
 function closeMoratoriumDetail() {
   const overlay = document.getElementById("moratorium-modal");
   if (!overlay || overlay.hidden) return;
   overlay.hidden = true;
+  clearRecordUrl("moratorium");
   document.body.classList.remove("moratorium-modal-open");
   const ret = state._moratoriumReturnFocus;
   state._moratoriumReturnFocus = null;
@@ -2289,6 +2593,7 @@ async function loadTariffsData() {
     ),
   ]);
   state.tariffs = payload.tariffs || [];
+  state.powerBrief = payload.brief || null;
   state.tariffsLoaded = true;
   renderTariffsView();
 }
@@ -2400,7 +2705,10 @@ function renderRateCases() {
     src.rel = "noopener noreferrer";
     src.className = "rc-src";
     src.textContent = "Source ↗";
-    meta.append(" ", src);
+    const perma = el("a", "rc-perma", "Link");
+    perma.href = recordHref("rate_case", rc.id);
+    perma.title = "Link to this rate case";
+    meta.append(" ", src, " ", perma);
     li.append(meta);
 
     // Next step leads, date first: it is what a reader of a pending case came
@@ -2441,8 +2749,16 @@ function renderRateCases() {
 }
 
 // Number of LBL design elements a tariff addresses (included OR partial).
+// Top-level LBL 2026 elements only; sub-elements detail their parent.
+const TARIFF_TOP_ELEMENTS = TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]);
 function tariffElementCount(t) {
-  return Object.keys(t.parameters || {}).length;
+  return TARIFF_TOP_ELEMENTS.filter((k) => (t.parameters || {})[k]).length;
+}
+// The date a reader needs in the directory: decided, else filed.
+function tariffDateLine(t) {
+  if (t.decision_date) return `Decided ${formatAsOf(t.decision_date)}`;
+  if (t.filed_date) return `Filed ${formatAsOf(t.filed_date)}`;
+  return "Not dated";
 }
 
 function renderTariffsView() {
@@ -2459,6 +2775,7 @@ function renderTariffsView() {
 
   // Stats + LBL coverage use the FULL set (not the filtered table).
   renderTariffStats(state.tariffs);
+  renderPowerBrief(state.powerBrief);
   renderTariffCoverage(state.tariffs);
   renderTariffsTable();
   renderRateCases();
@@ -2472,25 +2789,63 @@ function isFederalTariff(t) {
   return t.jurisdiction_level === "federal";
 }
 
+// v7: the curated "what to watch" brief at the top of Power Costs. Every
+// paragraph carries its sources; record_refs become internal links.
+function renderPowerBrief(brief) {
+  const box = document.getElementById("power-brief");
+  if (!box) return;
+  if (!brief || !(brief.paragraphs || []).length) { box.hidden = true; return; }
+  document.getElementById("power-brief-asof").textContent = `As of ${formatAsOf(brief.as_of)}`;
+  const body = document.getElementById("power-brief-body");
+  body.replaceChildren(...brief.paragraphs.map((para) => {
+    const item = el("div", "pbf-item");
+    item.append(el("h4", "pbf-heading", para.heading));
+    item.append(el("p", "pbf-text", para.text));
+    const links = el("p", "pbf-links");
+    for (const ref of para.record_refs || []) {
+      // The brief names its own links (`note`): the policy payload is not
+      // loaded on this tab, and a de-slugged id is not a name.
+      const a = el("a", "pbf-record", ref.note || recordLabel(ref.kind, ref.id));
+      a.href = recordHref(ref.kind, ref.id);
+      links.append(a);
+    }
+    // Sources as short numbered links (full title on hover and for screen
+    // readers): four full titles per paragraph doubled the brief's height.
+    const srcs = para.sources || [];
+    if (srcs.length) {
+      const wrap = el("span", "pbf-srcs", "Sources:");
+      srcs.forEach((src, i) => {
+        const a = el("a", "pbf-src", `${i + 1}`);
+        a.href = String(src.url);
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.title = src.title;
+        a.setAttribute("aria-label", `Source: ${src.title}`);
+        wrap.append(" ", a);
+      });
+      links.append(wrap);
+    }
+    item.append(links);
+    return item;
+  }));
+  box.hidden = false;
+}
+
 function renderTariffStats(tariffs) {
   const ul = document.getElementById("tariff-stats");
   if (!ul) return;
   const stateTariffs = tariffs.filter((t) => !isFederalTariff(t));
-  const federal = tariffs.filter(isFederalTariff);
   const by = (s) => stateTariffs.filter((t) => t.status === s).length;
   const statesCovered = new Set(stateTariffs.map((t) => t.state)).size;
   // [value, label, showWhenZero]. Status counts are STATE-only; federal cases
   // get their own tile; zero-count status tiles are hidden.
   const rateCases = state.rateCases || [];
+  // v7: three numbers, each answering one question. The full counts live in
+  // the sub-tab pills and filters; eight tiles read as noise.
   const tiles = [
-    [rateCases.length, "Rate cases", true],
-    [rateCases.filter((rc) => rc.status === "pending").length, "Pending", false],
-    [tariffs.length, "Tariffs", true],
-    [by("approved"), "Tariffs approved", false],
-    [by("proposed"), "Proposed", false],
-    [by("rejected"), "Rejected / Withdrawn", false],
-    [federal.length, "Federal cases", false],
-    [statesCovered, "States covered", true],
+    [rateCases.filter((rc) => rc.status === "pending").length, "Rate cases pending", true],
+    [by("approved"), "State tariffs approved", true],
+    [statesCovered, "States with a tariff", true],
   ];
   ul.innerHTML = tiles
     .filter(([n, , showZero]) => showZero || n > 0)
@@ -2534,7 +2889,7 @@ function renderTariffCoverage(tariffs) {
   const grid = document.getElementById("tariff-coverage-grid");
   if (!grid) return;
   grid.innerHTML = "";
-  setSubtabCount("tariff-coverage-count", TARIFF_PARAMETERS.length);
+  setSubtabCount("tariff-coverage-count", TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]).length);
 
   const counts = {};
   for (const k of TARIFF_PARAMETERS) counts[k] = 0;
@@ -2555,12 +2910,13 @@ function renderTariffCoverage(tariffs) {
       const count = counts[key];
       const card = document.createElement("button");
       card.type = "button";
-      card.className = "tariff-coverage-card" + (count === 0 ? " empty" : "");
+      card.className = "tariff-coverage-card" + (count === 0 ? " empty" : "") + (TARIFF_PARAMETER_PARENT[key] ? " is-sub" : "");
       card.dataset.param = key;
       card.title = TARIFF_PARAMETER_DESCRIPTIONS[key] || "";
       card.innerHTML = `
         <span class="tcc-label">${escapeHtml(TARIFF_PARAMETER_LABELS[key])}</span>
         <span class="tcc-count">${count}</span>
+        <span class="tcc-lbl">LBL sample: ${TARIFF_PARAMETER_LBL_COUNT[key]} of ${TARIFF_LBL_SAMPLE_SIZE}</span>
       `;
       card.addEventListener("click", () => {
         document
@@ -2605,6 +2961,7 @@ function renderTariffCoveragePopout(paramKey) {
             <span class="tpi-state">${escapeHtml(t.state)}</span>${partial}
           </div>
           <p class="tpi-detail">${escapeHtml(pc.detail)}</p>
+          ${pc.verbatim ? `<q class="tparam-quote">${escapeHtml(pc.verbatim)}</q>` : ""}
         </li>`;
     })
     .join("");
@@ -2612,7 +2969,7 @@ function renderTariffCoveragePopout(paramKey) {
   wrap.innerHTML = `
     <div class="tariff-popout active">
       <h4 class="tariff-popout-title">${escapeHtml(label)} <span class="tariff-popout-n">${matches.length} tariff${matches.length === 1 ? "" : "s"}</span></h4>
-      <p class="tariff-popout-desc">${escapeHtml(desc)}</p>
+      <p class="tariff-popout-desc">${escapeHtml(desc)} In LBL's 2026 sample, ${TARIFF_PARAMETER_LBL_COUNT[paramKey]} of ${TARIFF_LBL_SAMPLE_SIZE} tariffs include it.</p>
       <ul class="tariff-popout-list">${items}</ul>
     </div>`;
 }
@@ -2656,7 +3013,6 @@ function renderTariffsTable() {
     const tr = document.createElement("tr");
     tr.className = `tariff-status-${t.status}`;
     const minLoad = t.min_load_mw != null ? `${t.min_load_mw.toLocaleString()} MW` : "—";
-    const n = tariffElementCount(t);
     const typeLine = t.tariff_type
       ? `<span class="tariff-row-type">${escapeHtml(t.tariff_type)}</span>`
       : "";
@@ -2671,7 +3027,7 @@ function renderTariffsTable() {
       <td><span class="tariff-row-name">${escapeHtml(t.tariff_name)}</span>${typeLine}</td>
       <td><span class="badge badge-tariff-status-${t.status}">${escapeHtml(TARIFF_STATUS_LABELS[t.status] || t.status)}</span></td>
       <td class="num">${minLoad}</td>
-      <td class="num"><span class="tariff-elem-count" title="${n} of 17 LBL design elements">${n} / 17</span></td>
+      <td class="tariff-date">${escapeHtml(tariffDateLine(t))}</td>
     `;
     // Keyboard + screen-reader accessible: the row acts as a button.
     tr.tabIndex = 0;
@@ -2726,9 +3082,11 @@ function showTariffDetail(t) {
   const paramsHeading = document.getElementById("td-params-heading");
   if (paramsHeading) {
     const n = tariffElementCount(t);
+    const top = TARIFF_PARAMETERS.filter((k) => !TARIFF_PARAMETER_PARENT[k]);
+    const nTop = top.filter((k) => (t.parameters || {})[k]).length;
     paramsHeading.innerHTML =
-      `LBL rate-design elements — met or not ` +
-      `<span class="td-elem-tally">${n} of ${TARIFF_PARAMETERS.length} addressed</span>`;
+      `Rate-design elements (LBL 2026) ` +
+      `<span class="td-elem-tally">${nTop} of ${top.length} addressed</span>`;
   }
 
   // LBL element checklist — iterate the full taxonomy so "not addressed" shows.
@@ -2739,21 +3097,25 @@ function showTariffDetail(t) {
       (k) => TARIFF_PARAMETER_GROUP_OF[k] === groupKey
     );
     const rows = groupParams
+      // A sub-element only shows under a parent the tariff has: "not
+      // addressed" for both a parent and its four parts is noise.
+      .filter((key) => !TARIFF_PARAMETER_PARENT[key] || (t.parameters || {})[TARIFF_PARAMETER_PARENT[key]])
       .map((key) => {
         const pc = (t.parameters || {})[key];
         const status = pc ? pc.status || "included" : "absent";
         const icon = status === "included" ? "✓" : status === "partial" ? "◐" : "✕";
         const statusLabel =
           status === "included" ? "Included" : status === "partial" ? "Partial" : "Not addressed";
+        const quote = pc && pc.verbatim ? `<q class="tparam-quote">${escapeHtml(pc.verbatim)}</q>` : "";
         const detail = pc
-          ? `<span class="tparam-detail">${escapeHtml(pc.detail)}</span>`
+          ? `<span class="tparam-detail">${escapeHtml(pc.detail)}</span>${quote}`
           : `<span class="tparam-detail muted">Not addressed in this tariff.</span>`;
         const srcLink =
           pc && pc.source_url
             ? ` <a class="tparam-src" href="${escapeAttr(String(pc.source_url))}" target="_blank" rel="noopener noreferrer" title="Source for this element">↗</a>`
             : "";
         return `
-          <li class="tparam-row tparam-${status}">
+          <li class="tparam-row tparam-${status}${TARIFF_PARAMETER_PARENT[key] ? " tparam-sub" : ""}">
             <span class="tparam-icon" aria-hidden="true">${icon}</span>
             <div class="tparam-body">
               <span class="tparam-label">${escapeHtml(TARIFF_PARAMETER_LABELS[key])}<span class="tparam-status"> · ${statusLabel}</span>${srcLink}</span>
@@ -2797,8 +3159,11 @@ function showTariffDetail(t) {
       .map((l) => {
         const meta = [l.citation, l.status].filter(Boolean).join(" · ");
         const sub = l.summary ? `<span class="tleg-summary">${escapeHtml(l.summary)}</span>` : "";
+        const inner = l.policy_id
+          ? ` <a class="tleg-record" href="${escapeAttr(recordHref("policy", l.policy_id))}">Policy record</a>`
+          : "";
         return `<li>
-          <a href="${escapeAttr(String(l.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.title)} ↗</a>
+          <a href="${escapeAttr(String(l.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.title)} ↗</a>${inner}
           ${meta ? `<span class="tleg-meta">${escapeHtml(meta)}</span>` : ""}
           ${sub}
         </li>`;
@@ -2835,12 +3200,16 @@ function showTariffDetail(t) {
   overlay.scrollTop = 0;
   const closeBtn = document.getElementById("tariff-detail-close");
   if (closeBtn) closeBtn.focus();
+  setRecordUrl("tariff", t.id);
+  setPermalink("td-permalink", "tariff", t.id);
+  renderRelatedRecords("td-related", "tariff", t.id);
 }
 
 function closeTariffDetail() {
   const overlay = document.getElementById("tariff-modal");
   if (!overlay || overlay.hidden) return;
   overlay.hidden = true;
+  clearRecordUrl("tariff");
   document.body.classList.remove("tariff-modal-open");
   const ret = state._tariffReturnFocus;
   state._tariffReturnFocus = null;
@@ -3029,6 +3398,58 @@ function policySort(a, b) {
   return a.title.localeCompare(b.title);
 }
 
+// v7: the Rules directory lists every government action, moratoriums
+// included. A moratorium keeps its own record type (thresholds, votes, lift
+// dates); here it is adapted to the policy row shape so one table, one set
+// of filters and one export cover both. `_m` is the original record.
+const MORATORIUM_POLICY_STATUS = { enacted: "in_effect", proposed: "proposed", failed: "failed" };
+const DIRECTORY_INSTRUMENTS = [...POLICY_INSTRUMENTS, "moratorium"];
+const DIRECTORY_INSTRUMENT_LABELS = { ...POLICY_INSTRUMENT_LABELS, moratorium: "Moratorium" };
+
+function moratoriumAsPolicyRow(m) {
+  const lifted = Boolean(m.lifted_date);
+  return {
+    id: m.id,
+    _kind: "moratorium",
+    _m: m,
+    title: m.bill_number ? `${moratoriumPlace(m)} moratorium (${m.bill_number})` : `${moratoriumPlace(m)} moratorium`,
+    instrument: "moratorium",
+    // Lifted pauses match no status filter: they are neither in effect nor failed.
+    status: lifted ? "lifted" : MORATORIUM_POLICY_STATUS[m.status] || m.status,
+    scope: m.jurisdiction_type,
+    jurisdiction: m.jurisdiction,
+    state_code: m.state_code,
+    date: moratoriumDate(m),
+    identifier: m.bill_number || null,
+    principles: Object.keys(m.topic_notes || {}),
+    benefit_themes: [],
+    community_benefits_framework: false,
+    value_usd: null,
+    key_terms: [],
+    summary: m.summary,
+    source_url: m.source_url,
+    delivered: null,
+    captured_at: m.captured_at,
+  };
+}
+
+// US moratoriums only: international pauses live on the International tab.
+function directoryMoratoriumRows() {
+  return (state.moratoriums || []).filter((m) => (m.country || "US") === "US").map(moratoriumAsPolicyRow);
+}
+
+function directoryStatusLabel(row) {
+  if (row._kind === "moratorium") return row.status === "lifted" ? "Lifted" : MORATORIUM_STATUS_LABEL[row._m.status] || row._m.status;
+  return POLICY_STATUS_LABELS[row.status] || row.status;
+}
+const MORATORIUM_STATUS_LABEL = { enacted: "Enacted", proposed: "Proposed", failed: "Failed" };
+
+function directoryStatusBadge(row) {
+  return row._kind === "moratorium"
+    ? `badge-moratorium-status-${effectiveStatus(row._m)}`
+    : POLICY_STATUS_BADGE_CLASS[row.status] || "";
+}
+
 const POLICY_FILTER_IDS = [
   "policy-instrument-filter",
   "policy-status-filter",
@@ -3115,9 +3536,10 @@ function applyPolicyUrl() {
   }
 }
 
-function filteredPolicies() {
+function filteredPolicies({ withMoratoriums = true } = {}) {
   const f = policyFilters();
-  return (state.policies || [])
+  const rows = withMoratoriums ? [...(state.policies || []), ...directoryMoratoriumRows()] : state.policies || [];
+  return rows
     .filter((p) => !f.instrument || p.instrument === f.instrument)
     .filter((p) => !f.status || p.status === f.status)
     .filter((p) => !f.scope || p.scope === f.scope)
@@ -3131,7 +3553,7 @@ function filteredPolicies() {
 // theme) or from the data (state), counting records per option so an empty
 // option is visibly empty rather than a dead end.
 function populatePolicyFilters() {
-  const all = state.policies || [];
+  const all = [...(state.policies || []), ...directoryMoratoriumRows()];
   const fill = (id, keys, labelOf, countOf) => {
     const sel = document.getElementById(id);
     if (!sel || sel.dataset.populated) return;
@@ -3145,7 +3567,7 @@ function populatePolicyFilters() {
     }
     sel.dataset.populated = "1";
   };
-  fill("policy-instrument-filter", POLICY_INSTRUMENTS, (k) => POLICY_INSTRUMENT_LABELS[k],
+  fill("policy-instrument-filter", DIRECTORY_INSTRUMENTS, (k) => DIRECTORY_INSTRUMENT_LABELS[k],
     (k) => all.filter((p) => p.instrument === k).length);
   fill("policy-status-filter", POLICY_STATUSES, (k) => POLICY_STATUS_LABELS[k],
     (k) => all.filter((p) => p.status === k).length);
@@ -3196,11 +3618,67 @@ function wirePolicyControls() {
   }
 }
 
+// The moratorium call-out at the top of Policy: counts by status, the three
+// most recent, and the way to the Moratoriums tab (map, trends, directory).
+// Moratoriums arrive after the policies: re-count the filter options (they
+// were filled from policies alone), keep the reader's selections, re-render.
+function refreshDirectoryWithMoratoriums() {
+  for (const id of POLICY_FILTER_IDS) {
+    const sel = document.getElementById(id);
+    if (!sel || sel.tagName !== "SELECT" || !sel.dataset.populated) continue;
+    const keep = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+    delete sel.dataset.populated;
+    sel.dataset.keep = keep;
+  }
+  populatePolicyFilters();
+  for (const id of POLICY_FILTER_IDS) {
+    const sel = document.getElementById(id);
+    if (sel && sel.dataset.keep !== undefined) {
+      sel.value = sel.dataset.keep;
+      delete sel.dataset.keep;
+    }
+  }
+  // A ?p-instrument=moratorium link could not apply before the option existed.
+  const wanted = new URLSearchParams(window.location.search).get("p-instrument");
+  const inst = document.getElementById("policy-instrument-filter");
+  if (wanted === "moratorium" && inst && !inst.value) inst.value = "moratorium";
+  renderMoratoriumCallout();
+  renderPoliciesTable();
+}
+
+function renderMoratoriumCallout() {
+  const box = document.getElementById("policy-moratorium-callout");
+  if (!box) return;
+  const list = (state.moratoriums || []).filter((m) => (m.country || "US") === "US");
+  if (!list.length) { box.hidden = true; return; }
+  const count = (k) => list.filter((m) => effectiveStatus(m) === k).length;
+  const latest = [...list]
+    .filter((m) => moratoriumDate(m))
+    .sort((a, b) => moratoriumDate(b).localeCompare(moratoriumDate(a)))
+    .slice(0, 3);
+  const parts = [
+    `${count("enacted")} enacted`, `${count("proposed")} proposed`, `${count("failed")} failed`,
+  ];
+  if (count("lifted")) parts.push(`${count("lifted")} lifted`);
+  document.getElementById("pmc-counts").textContent = `${list.length} moratoriums: ${parts.join(", ")}.`;
+  const ul = document.getElementById("pmc-latest");
+  ul.replaceChildren(...latest.map((m) => {
+    const li = el("li");
+    const a = el("a", null, moratoriumPlace(m));
+    a.href = recordHref("moratorium", m.id);
+    li.append(a, ` · ${MORATORIUM_STATUS_LABEL[m.status] || m.status} ${formatAsOf(moratoriumDate(m))}`);
+    return li;
+  }));
+  box.hidden = false;
+}
+
 function renderPoliciesView() {
   wirePolicyControls();
   populatePolicyFilters();
   const all = state.policies || [];
   renderPolicyStats(all);
+  renderMoratoriumCallout();
   if (_activeSubtab.pol === "agreements") renderAgreementsView();
   renderPolicyPrinciples(all);
   renderPolicyActions(all);
@@ -3665,7 +4143,7 @@ function renderPoliciesTable() {
   const tbody = document.getElementById("policies-tbody");
   if (!tbody) return;
   const rows = filteredPolicies();
-  setSubtabCount("policies-count", (state.policies || []).length);
+  setSubtabCount("policies-count", (state.policies || []).length + directoryMoratoriumRows().length);
   tbody.innerHTML = "";
   if (!rows.length) {
     tbody.innerHTML =
@@ -3674,7 +4152,8 @@ function renderPoliciesTable() {
   }
   for (const p of rows) {
     const tr = document.createElement("tr");
-    tr.className = `tariff-status-${p.status === "in_effect" ? "approved" : p.status === "failed" ? "rejected" : "proposed"}`;
+    tr.className = `tariff-status-${p.status === "in_effect" ? "approved" : p.status === "failed" || p.status === "lifted" ? "rejected" : "proposed"}`;
+    if (p._kind === "moratorium") tr.classList.add("is-moratorium-row");
     const cbf = p.community_benefits_framework
       ? ` <span class="badge badge-cbf" title="Requires, creates or is a community benefit agreement, fund or host payment">CBF</span>`
       : "";
@@ -3688,18 +4167,18 @@ function renderPoliciesTable() {
       <td><span class="tariff-row-name">${escapeHtml(p.title)}</span>${cbf}${deliveredTag}${
         p.identifier ? `<span class="tariff-row-type">${escapeHtml(p.identifier)}</span>` : ""
       }</td>
-      <td>${escapeHtml(POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument)}</td>
+      <td>${p._kind === "moratorium" ? '<span class="badge badge-instrument-moratorium">Moratorium</span>' : escapeHtml(POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument)}</td>
       <td>${escapeHtml(policyWhere(p))}</td>
-      <td><span class="badge ${POLICY_STATUS_BADGE_CLASS[p.status] || ""}">${escapeHtml(POLICY_STATUS_LABELS[p.status] || p.status)}</span></td>
+      <td><span class="badge ${directoryStatusBadge(p)}">${escapeHtml(directoryStatusLabel(p))}</span></td>
       <td class="policy-date">${escapeHtml(p.date || "Not dated")}</td>
       <td><span class="policy-themes">${themes}</span></td>`;
     tr.tabIndex = 0;
     tr.setAttribute("role", "button");
     tr.setAttribute(
       "aria-label",
-      `${p.title}, ${POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument}, ${POLICY_STATUS_LABELS[p.status] || p.status}. Open details.`
+      `${p.title}, ${DIRECTORY_INSTRUMENT_LABELS[p.instrument] || p.instrument}, ${directoryStatusLabel(p)}. Open details.`
     );
-    const open = () => showPolicyDetail(p);
+    const open = () => (p._kind === "moratorium" ? showMoratoriumDetail(p._m) : showPolicyDetail(p));
     tr.addEventListener("click", open);
     tr.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
@@ -3762,45 +4241,6 @@ function showPolicyDetail(p) {
   const terms = document.getElementById("pd-terms");
   terms.replaceChildren(...(p.key_terms || []).map((t) => el("li", null, t)));
 
-  // Related records: tracked sites (open in Sites) and the moratorium record
-  // that carries the same instrument, if any.
-  const rel = document.getElementById("pd-related");
-  const relList = document.getElementById("pd-related-list");
-  relList.replaceChildren();
-  for (const pid of p.related_project_ids || []) {
-    const proj = (state.projects || []).find((x) => x.id === pid);
-    const li = el("li");
-    const btn = el("button", "linkish", proj ? `Site: ${proj.name}` : `Site: ${pid}`);
-    btn.type = "button";
-    btn.addEventListener("click", () => {
-      closePolicyDetail();
-      state.pendingProjectId = pid;
-      activateView("explorer");
-      if (state.explorerLoaded) {
-        state.pendingProjectId = null;
-        selectProject(pid);
-      }
-    });
-    li.append(btn);
-    relList.append(li);
-  }
-  if (p.related_moratorium_id) {
-    const li = el("li");
-    const btn = el("button", "linkish", "Related pause record");
-    btn.type = "button";
-    btn.addEventListener("click", async () => {
-      closePolicyDetail();
-      activateView("moratoriums");
-      setActiveSubtab("mor", "directory");
-      openWhenStillOn("moratoriums", loadMoratoriumsData(), () => {
-        const m = (state.moratoriums || []).find((x) => x.id === p.related_moratorium_id);
-        if (m) showMoratoriumDetail(m);
-      });
-    });
-    li.append(btn);
-    relList.append(li);
-  }
-  rel.hidden = relList.children.length === 0;
 
   const res = document.getElementById("pd-resources-list");
   res.replaceChildren(_linkLi(p.source_url, p.source_title));
@@ -3824,6 +4264,8 @@ function showPolicyDetail(p) {
   modal.scrollTop = 0;
   overlay.scrollTop = 0;
   document.getElementById("policy-detail-close")?.focus();
+  renderRelatedRecords("pd-related", "policy", p.id);
+  setPermalink("pd-permalink", "policy", p.id);
 }
 
 function closePolicyDetail() {
@@ -3841,11 +4283,11 @@ function closePolicyDetail() {
 function _policyExportRows(list) {
   return list.map((p) => [
     p.title,
-    POLICY_INSTRUMENT_LABELS[p.instrument] || p.instrument,
+    DIRECTORY_INSTRUMENT_LABELS[p.instrument] || p.instrument,
     POLICY_SCOPE_LABELS[p.scope] || p.scope,
     policyWhere(p),
     p.state_code || "",
-    POLICY_STATUS_LABELS[p.status] || p.status,
+    directoryStatusLabel(p),
     p.date || "",
     p.identifier || "",
     policyParties(p).join("; "),
@@ -3872,7 +4314,7 @@ function downloadPoliciesCSV() {
   for (const row of _policyExportRows(filteredPolicies())) {
     lines.push(row.map(csvCell).join(","));
   }
-  _triggerDownload(lines.join("\r\n"), "policies-and-agreements-TODAY.csv");
+  _triggerDownload(lines.join("\r\n"), `policies-and-moratoriums-${localToday()}.csv`);
 }
 
 async function exportPoliciesToPDF() {
@@ -4316,6 +4758,7 @@ function openRateCase(id) {
     const li = document.getElementById(`rc-${id}`);
     if (!li) return;
     li.classList.add("is-target");
+    setRecordUrl("rate_case", id);
     li.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
@@ -4501,11 +4944,14 @@ function loadMoratoriumPane(key) {
 function loadPolicyPane(key) {
   showPolicyLoadError();
   if (key === "agreements" && state.policies.length) renderAgreementsView();
-  if (key !== "latest") return;
+  if (key !== "latest" && key !== "rules") return;
+  // Latest merges governor pauses in; Rules lists every moratorium beside
+  // the policies (v7). Topics and Agreements never need the payload.
   loadMoratoriumsData().then(() => {
     policyErrors.delete("pauses");
     if (state.policies.length) renderPolicyStats(state.policies);
     renderPolicyActions(state.policies);
+    if (state.policies.length) refreshDirectoryWithMoratoriums();
     showPolicyLoadError();
   }).catch((err) => {
     console.error("Could not load pause records:", err);
@@ -4914,7 +5360,7 @@ async function exportTariffsToPDF() {
     t.utility, t.state, t.tariff_name,
     TARIFF_STATUS_LABELS[t.status] || t.status,
     t.docket_number || "—", t.min_load_mw ?? "—",
-    `${tariffElementCount(t)} of ${TARIFF_PARAMETERS.length}`,
+    `${tariffElementCount(t)} of ${TARIFF_TOP_ELEMENTS.length}`,
     (t.summary || "").substring(0, 150),
   ]);
   const today = new Date().toISOString().slice(0, 10);
@@ -5587,10 +6033,12 @@ function selectCompany(slug) {
   panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
   refreshActiveCompanyRow();
+  setRecordUrl("company", slug);
 }
 
 function closeCompanyDetail() {
   state.selectedCompanySlug = null;
+  clearRecordUrl("company");
   const panel = document.getElementById("company-detail");
   if (panel) panel.hidden = true;
   refreshActiveCompanyRow();

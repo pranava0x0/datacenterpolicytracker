@@ -184,6 +184,22 @@ def test_tariff_parameter_group_of_keys_match(js: str) -> None:
     )
 
 
+def test_tariff_parameter_parent_matches(js: str) -> None:
+    from schema import TARIFF_PARAMETER_PARENT
+    import re
+    body = re.search(r"const TARIFF_PARAMETER_PARENT = \{(.*?)\};", js, re.S).group(1)
+    js_map = dict(re.findall(r"(\w+): \"(\w+)\"", body))
+    assert js_map == TARIFF_PARAMETER_PARENT
+
+
+def test_tariff_parameter_lbl_count_matches(js: str) -> None:
+    from schema import TARIFF_PARAMETER_LBL_COUNT
+    import re
+    body = re.search(r"const TARIFF_PARAMETER_LBL_COUNT = \{(.*?)\};", js, re.S).group(1)
+    js_map = {k: int(v) for k, v in re.findall(r"(\w+): (\d+)", body)}
+    assert js_map == TARIFF_PARAMETER_LBL_COUNT
+
+
 # ---------------------------------------------------------------------------
 # Pledge roster vocabulary (v2)
 # ---------------------------------------------------------------------------

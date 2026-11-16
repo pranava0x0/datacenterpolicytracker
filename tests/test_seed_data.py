@@ -478,20 +478,16 @@ class TestBuildOutputs:
         assert len(seed["claims"]) == len(built["claims"]), "Build is stale — re-run refresh.py"
 
     def test_payload_sizes_under_budget(self):
-        # Frontend perf budget: combined first-paint payloads (companies + claims).
-        # Cap history: 50KB (v1.0) → 100KB (v1.1, +68 claims) → 150KB (v1.6,
-        # ~180 claims) → 200KB (v1.11, ~280 claims from comprehensive news
-        # polling across 13 companies) → 256KB (v1.16, ~317 claims after
-        # adding established Meta/Google/Microsoft owner-operator sites with
-        # first-party verbatim quotes). The matrix view is the landing
-        # surface so the budget stays tight, but real growth (more companies,
-        # more claims, more verbatim quotes) justifies the bump. Minified
-        # output is the contract; pretty mode is debug-only.
-        first_paint = (OUT / "companies.json").stat().st_size + (
-            OUT / "claims.json"
-        ).stat().st_size
-        assert first_paint < 256 * 1024, (
-            f"First-paint payloads grew to {first_paint} bytes. "
+        # History: this capped companies + claims at 256KB because claims.json
+        # was first paint (v1.0-v1.16). Since v5 claims.json is DEFERRED, and
+        # first paint is gated gzipped by tests/test_perf_budget.py. Keeping a
+        # first-paint cap on a lazy file only blocked the daily refresh from
+        # adding claims (2026-11-16: 183 bytes of headroom left). What remains
+        # worth guarding is that the file stays minified and sane for a
+        # lazy fetch; 600KB raw is ~2x today's size.
+        size = (OUT / "claims.json").stat().st_size
+        assert size < 600 * 1024, (
+            f"claims.json grew to {size} bytes. "
             "Re-run `python refresh.py` (without --pretty) before shipping."
         )
 

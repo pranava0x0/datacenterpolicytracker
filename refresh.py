@@ -841,6 +841,125 @@ def _build_home(payloads, today: date) -> dict:
     }
 
 
+def _record_index(payloads) -> dict[str, set[str]]:
+    """Every linkable record id, by RecordRef kind (US + international)."""
+    intl = payloads.get("international")
+    def ids(name, attr, extra=None):
+        out = {r.id for r in getattr(payloads[name], attr)} if name in payloads else set()
+        if intl is not None and extra:
+            out |= {r.id for r in getattr(intl, extra, [])}
+        return out
+    elections = payloads.get("elections")
+    return {
+        "policy": ids("policies", "policies", "policies"),
+        "moratorium": ids("moratoriums", "moratoriums", "moratoriums"),
+        "tariff": ids("tariffs", "tariffs"),
+        "rate_case": ids("rate_cases", "rate_cases", "rate_cases"),
+        "project": ids("projects", "projects", "projects"),
+        "company": {c.slug for c in payloads["companies"].companies},
+        "election": (
+            {r.id for r in [*elections.races, *elections.measures]} if elections is not None else set()
+        ),
+    }
+
+
+def _linkable_records(payloads):
+    """Yield (kind, record) for every record type that can carry `related`."""
+    intl = payloads.get("international")
+    for kind, name, attr in (
+        ("policy", "policies", "policies"),
+        ("moratorium", "moratoriums", "moratoriums"),
+        ("tariff", "tariffs", "tariffs"),
+        ("rate_case", "rate_cases", "rate_cases"),
+    ):
+        if name in payloads:
+            for r in getattr(payloads[name], attr):
+                yield kind, r
+        if intl is not None:
+            for r in getattr(intl, attr, []) or []:
+                yield kind, r
+
+
+def _build_links(payloads) -> tuple[dict[str, list[dict]], list[str]]:
+    """The derived link graph: every stored link plus its inverse.
+
+    Sources, in one pass: `related` on policies/moratoriums/tariffs/rate cases;
+    the older single-purpose fields (Policy.related_moratorium_id,
+    related_project_ids, RateCase.related_tariff_id, Election
+    related_*_ids); and Tariff.legislation[].policy_id. Returns the graph keyed
+    "kind:id" and a list of unresolved-reference errors.
+    """
+    from schema import RELATION_INVERSE
+
+    index = _record_index(payloads)
+    edges: dict[str, dict[str, dict]] = {}
+    errors: list[str] = []
+
+    def add(src_kind, src_id, dst_kind, dst_id, relation, note=None):
+        # Both ends: a tariff-legislation link is emitted with the policy as
+        # its SOURCE, so checking only the destination let a typo through
+        # (Codex review of #137).
+        if src_id not in index.get(src_kind, set()):
+            errors.append(f"{dst_kind} {dst_id!r} links to unknown {src_kind} {src_id!r}")
+            return
+        if dst_id not in index.get(dst_kind, set()):
+            errors.append(f"{src_kind} {src_id!r} links to unknown {dst_kind} {dst_id!r}")
+            return
+        if (src_kind, src_id) == (dst_kind, dst_id):
+            errors.append(f"{src_kind} {src_id!r} links to itself")
+            return
+        for a, b, rel in (
+            ((src_kind, src_id), (dst_kind, dst_id), relation),
+            ((dst_kind, dst_id), (src_kind, src_id), RELATION_INVERSE[relation]),
+        ):
+            key = f"{a[0]}:{a[1]}"
+            tgt = f"{b[0]}:{b[1]}"
+            bucket = edges.setdefault(key, {})
+            # A specific relation beats the generic one if a pair is linked twice.
+            if tgt not in bucket or bucket[tgt]["relation"] == "related":
+                entry = {"kind": b[0], "id": b[1], "relation": rel}
+                if note:
+                    entry["note"] = note
+                bucket[tgt] = entry
+
+    for kind, r in _linkable_records(payloads):
+        for ref in getattr(r, "related", None) or []:
+            add(kind, r.id, ref.kind, ref.id, ref.relation, ref.note)
+        if kind == "policy":
+            if getattr(r, "related_moratorium_id", None):
+                add(kind, r.id, "moratorium", r.related_moratorium_id, "related")
+            for pid in getattr(r, "related_project_ids", None) or []:
+                add(kind, r.id, "project", pid, "related")
+        if kind == "rate_case":
+            if getattr(r, "related_tariff_id", None):
+                add(kind, r.id, "tariff", r.related_tariff_id, "related")
+            for pid in getattr(r, "related_project_ids", None) or []:
+                add(kind, r.id, "project", pid, "related")
+        if kind == "tariff":
+            for leg in r.legislation or []:
+                if leg.policy_id:
+                    add("policy", leg.policy_id, "tariff", r.id, "authorizes")
+    elections = payloads.get("elections")
+    if elections is not None:
+        for c in [*elections.races, *elections.measures]:
+            for mid in c.related_moratorium_ids:
+                add("election", c.id, "moratorium", mid, "related")
+            for pid in c.related_policy_ids:
+                add("election", c.id, "policy", pid, "related")
+
+    graph = {k: sorted(v.values(), key=lambda e: (e["kind"], e["id"])) for k, v in sorted(edges.items())}
+    return graph, errors
+
+
+def _write_links(payloads, *, pretty: bool) -> int:
+    graph, _ = _build_links(payloads)
+    data = {"generated_at": payloads["projects"].generated_at.isoformat(), "links": graph}
+    out = OUT_DIR / "links.json"
+    text = json.dumps(data, indent=2, ensure_ascii=False) + "\n" if pretty else json.dumps(data, separators=(",", ":"), ensure_ascii=False)
+    out.write_text(text, encoding="utf-8")
+    return len(text.encode("utf-8"))
+
+
 def _write_home(payloads, *, pretty: bool) -> int:
     today = payloads["projects"].generated_at
     data = _build_home(payloads, today)
@@ -1009,6 +1128,15 @@ def refresh(*, check_only: bool = False, pretty: bool = False, audit: bool = Fal
         payloads["companies"], payloads["international"], payloads["projects"], payloads["claims"]
     )
     cross_errors += _check_map_refs(payloads["map_geography"], payloads["moratoriums"], payloads["policies"])
+    # v7: every typed `related` link (and legacy link field) must resolve.
+    cross_errors += [f"links: {e}" for e in _build_links(payloads)[1]]
+    brief = payloads["tariffs"].brief
+    if brief is not None:
+        index = _record_index(payloads)
+        for para in brief.paragraphs:
+            for ref in para.record_refs:
+                if ref.id not in index.get(ref.kind, set()):
+                    cross_errors.append(f"tariffs.json brief {para.heading!r}: unknown {ref.kind} {ref.id!r}")
     if cross_errors:
         for err in cross_errors:
             logger.error(err)
@@ -1068,6 +1196,9 @@ def refresh(*, check_only: bool = False, pretty: bool = False, audit: bool = Fal
     nbytes = _write_home(payloads, pretty=pretty)
     total += nbytes
     logger.info("Wrote home.json (%d bytes)", nbytes)
+    nbytes = _write_links(payloads, pretty=pretty)
+    total += nbytes
+    logger.info("Wrote links.json (%d bytes)", nbytes)
     _write_preview_adapters()
     _write_agent_files(payloads, today=payloads["projects"].generated_at)
     _stamp_index_date(payloads["projects"].generated_at)

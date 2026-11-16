@@ -316,6 +316,52 @@ class _StrictBase(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
 
+# v7 (2026-11-16): one typed cross-reference shape for every record that links
+# to another. Links are stored ONE way, on whichever record the curator was
+# editing; refresh.py derives the inverse into docs/data/links.json so both
+# ends show it. Storing both directions by hand is the mirrored-list failure.
+RECORD_KINDS: tuple[str, ...] = (
+    "policy", "moratorium", "tariff", "rate_case", "project", "company", "election",
+)
+RecordKind = Literal["policy", "moratorium", "tariff", "rate_case", "project", "company", "election"]
+RECORD_RELATIONS: tuple[str, ...] = (
+    "related", "authorizes", "implements", "replaces", "replaced_by", "challenges", "challenged_by",
+)
+RecordRelation = Literal[
+    "related", "authorizes", "implements", "replaces", "replaced_by", "challenges", "challenged_by",
+]
+# The reverse reading of each relation, as seen from the target record.
+RELATION_INVERSE: dict[str, str] = {
+    "related": "related",
+    "authorizes": "implements",
+    "implements": "authorizes",
+    "replaces": "replaced_by",
+    "replaced_by": "replaces",
+    "challenges": "challenged_by",
+    "challenged_by": "challenges",
+}
+RELATION_LABELS: dict[str, str] = {
+    "related": "Related",
+    "authorizes": "Authorizes",
+    "implements": "Implements",
+    "replaces": "Replaces",
+    "replaced_by": "Replaced by",
+    "challenges": "Challenges",
+    "challenged_by": "Challenged by",
+}
+
+
+class RecordRef(_StrictBase):
+    """A link from one record to another, by kind and id."""
+
+    kind: RecordKind
+    id: str = Field(min_length=1)
+    relation: RecordRelation = "related"
+    note: Optional[str] = Field(
+        default=None, description="Optional one-line reason for the link."
+    )
+
+
 # ---------------------------------------------------------------------------
 # International (v6, 2026-10-19) — notes/specs/SPEC_INTERNATIONAL.md
 # ---------------------------------------------------------------------------
@@ -1215,6 +1261,10 @@ class Moratorium(_StrictBase):
         default=None,
         description="Legislative session year (e.g., '2024', '2026'). Optional.",
     )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
+    )
     captured_at: Date = Field(
         description="Date this record was curated / moratorium status was verified."
     )
@@ -1306,10 +1356,10 @@ class MoratoriumsPayload(_StrictBase):
 # Opportunities" (January 2025), plus any additional terms OUTSIDE that study,
 # plus the state legislation that authorizes or influenced it.
 #
-# The parameter taxonomy (TARIFF_PARAMETERS) is FROZEN for v1 and mirrors the
-# LBL brief's five element groups. Adding a parameter requires a BACKLOG entry +
-# the JS mirror (TARIFF_PARAMETERS in docs/app.js) — same drift-safe discipline
-# as THEMES / DELIVERED_STATUSES. A test asserts Python/JS parity.
+# The parameter taxonomy (TARIFF_PARAMETERS) follows LBL's Aug 2026 update
+# (v7; it followed the Jan 2025 brief's 17 elements before). Changing it needs a
+# BACKLOG entry + the JS mirror (TARIFF_PARAMETERS in docs/app.js), same
+# drift-safe discipline as THEMES / DELIVERED_STATUSES. Parity-tested.
 
 # Regulatory status. Maps the user-facing "passed / proposed / rejected" to the
 # regulator's vocabulary: approved = order issued / in effect; proposed = filed
@@ -1385,104 +1435,206 @@ SignatoryTrack = Literal[
     "rolling",
 ]
 
-# The five LBL element groups, in the brief's order. (group_key, label).
+# v7 (2026-11-16): the element taxonomy follows LBL's 2026 update, Frick,
+# Cappers et al., "Electricity Rate Designs for Large Loads: Evolving
+# Practices and Opportunities, 2026 Update" (LBNL, Aug 10 2026), which
+# reviewed 55 tariffs and sorted 18 elements (plus 12 sub-elements) by how
+# common they are and whether adoption is rising. Groups are LBL's four
+# practice types. Changing this list is a migration: BACKLOG entry, the JS
+# mirrors in app.js, and every tariff re-keyed (parity-tested).
 TARIFF_PARAMETER_GROUPS: tuple[tuple[str, str], ...] = (
-    ("eligibility", "Eligibility & Applicability"),
-    ("contract_size", "Contract Size"),
-    ("duration", "Contract Duration & Exit"),
-    ("energy_source", "Energy Source"),
-    ("other", "Other Elements"),
+    ("established", "Established practice"),
+    ("stable", "Stable practice"),
+    ("emerging", "Emerging practice"),
+    ("declining", "Declining practice"),
 )
 
-# The 17 large-load tariff design elements from the LBL brief, in the brief's
-# order, grouped by the categories above. Keys are stable identifiers; labels
-# are display text. FROZEN for v1.
 TARIFF_PARAMETERS: tuple[str, ...] = (
-    # Eligibility & applicability
-    "min_load",
+    "min_demand_threshold",
+    "min_contract_duration",
     "monthly_demand_charge",
-    "customer_type",
-    "study_cost_recovery",
-    "credit_collateral",
-    # Contract size
-    "contracted_capacity",
+    "min_billing_demand",
+    "min_bill",
+    "collateral",
+    "direct_cost_assignment",
+    "dca_capacity_reservation",
+    "dca_interconnection",
+    "dca_generation_capacity",
+    "dca_network_transmission",
+    "customer_resource_procurement",
+    "btm_generation",
+    "customer_led_procurement",
+    "load_flexibility",
+    "load_factor_threshold",
+    "aggregation_rules",
+    "load_forecast_requirement",
+    "explicit_load_forecast",
+    "forecast_update_cadence",
+    "price_premium",
+    "study_requirements",
+    "load_ramp_period",
+    "hold_harmless",
+    "formulaic_backstop",
+    "marginal_cost",
+    "no_harm_analysis",
     "resize_reassign",
-    "btm_backup",
-    "load_factor",
-    # Contract duration & exit
-    "contract_duration",
-    "ramp_times",
-    "duration_flexibility",
     "exit_fee",
-    # Energy source
-    "clean_energy",
-    "specific_generation",
-    # Other elements
-    "marginal_pricing",
-    "econ_dev_payments",
+    "customer_type",
 )
 
 TARIFF_PARAMETER_LABELS: dict[str, str] = {
-    "min_load": "Minimum load requirement",
-    "monthly_demand_charge": "Minimum demand charge",
-    "customer_type": "Customer-type applicability",
-    "study_cost_recovery": "Study-cost recovery",
-    "credit_collateral": "Credit rating / collateral",
-    "contracted_capacity": "Contracted capacity & energy",
-    "resize_reassign": "Resizing / reassignment",
-    "btm_backup": "Behind-the-meter backup",
-    "load_factor": "Minimum load factor",
-    "contract_duration": "Contract duration",
-    "ramp_times": "Ramp times",
-    "duration_flexibility": "Duration flexibility",
+    "min_demand_threshold": "Minimum demand threshold",
+    "min_contract_duration": "Minimum contract duration",
+    "monthly_demand_charge": "Monthly demand charge",
+    "min_billing_demand": "Minimum billing demand",
+    "min_bill": "Minimum bill",
+    "collateral": "Collateral requirements",
+    "direct_cost_assignment": "Direct assignment of costs",
+    "dca_capacity_reservation": "Capacity reservation",
+    "dca_interconnection": "Interconnection upgrades",
+    "dca_generation_capacity": "Generation and capacity costs",
+    "dca_network_transmission": "Network transmission upgrades",
+    "customer_resource_procurement": "Customer-specific resource procurement",
+    "btm_generation": "Behind-the-meter generation",
+    "customer_led_procurement": "Customer-led procurement",
+    "load_flexibility": "Load flexibility",
+    "load_factor_threshold": "Load factor threshold",
+    "aggregation_rules": "Aggregation rules",
+    "load_forecast_requirement": "Load forecast requirement",
+    "explicit_load_forecast": "Explicit load forecast",
+    "forecast_update_cadence": "Forecast update cadence",
+    "price_premium": "Price premium",
+    "study_requirements": "Study requirements",
+    "load_ramp_period": "Load ramp period",
+    "hold_harmless": "Hold harmless",
+    "formulaic_backstop": "Formulaic backstop",
+    "marginal_cost": "Incremental or marginal cost",
+    "no_harm_analysis": "No-harm analysis",
+    "resize_reassign": "Resizing or reassigning capacity",
     "exit_fee": "Exit fee",
-    "clean_energy": "Clean-energy requirements",
-    "specific_generation": "Specific generation technologies",
-    "marginal_pricing": "Marginal pricing / cost-sharing",
-    "econ_dev_payments": "Economic-development payments",
+    "customer_type": "Customer type",
 }
 
-# One-line plain-English description of each LBL element (for tooltips / detail).
+# One plain-English line per element (tooltips and the element pane).
 TARIFF_PARAMETER_DESCRIPTIONS: dict[str, str] = {
-    "min_load": "A lower-bound MW load threshold to qualify for the tariff.",
-    "monthly_demand_charge": "Minimum charge tied to a percentage of forecasted maximum demand.",
-    "customer_type": "Tariff scoped to a specific large-load customer type (e.g., data centers).",
-    "study_cost_recovery": "Customer pays for interconnection / system-impact studies.",
-    "credit_collateral": "Minimum credit rating and/or collateral / deposit requirements.",
-    "contracted_capacity": "Defined MW / MWh the customer is obligated to buy.",
-    "resize_reassign": "Terms to resize, reassign, or sell unused contracted capacity / energy.",
-    "btm_backup": "Treatment of behind-the-meter generation / storage as backup or supplemental power.",
-    "load_factor": "A minimum average-to-peak load ratio the customer must maintain.",
-    "contract_duration": "Minimum contract term to back long-lived utility investment.",
-    "ramp_times": "An extended period to reach full contracted load.",
-    "duration_flexibility": "Modifications / renewals to the contract term.",
-    "exit_fee": "Charge for exiting the tariff or terminating service early.",
-    "clean_energy": "Requirements / options to serve the load with clean or renewable energy.",
-    "specific_generation": "Utility procures specific named generation on the customer's behalf.",
-    "marginal_pricing": "Marginal-cost pricing / cost-sharing to limit cross-subsidization.",
-    "econ_dev_payments": "Direct payments for workforce, community, or low-income programs.",
+    "min_demand_threshold": "A minimum MW (or MVA) load a customer must reach to take service under the tariff.",
+    "min_contract_duration": "A minimum term the customer must commit to, so long-lived utility investment is recovered.",
+    "monthly_demand_charge": "A charge per kW or MW of monthly peak or contracted demand.",
+    "min_billing_demand": "The customer is billed for at least a set share of contracted demand, whatever it uses.",
+    "min_bill": "A floor on the monthly bill, usually tied to contracted capacity.",
+    "collateral": "Credit rating, deposit, letter of credit or guarantee to cover the customer's obligations.",
+    "direct_cost_assignment": "The customer pays directly for costs incurred to serve it, rather than sharing them across all customers.",
+    "dca_capacity_reservation": "A payment to reserve grid capacity before service starts.",
+    "dca_interconnection": "The customer pays for the lines, substations and equipment that connect it.",
+    "dca_generation_capacity": "The customer pays for new generation or capacity built or bought to serve it.",
+    "dca_network_transmission": "The customer pays for wider transmission network upgrades its load requires.",
+    "customer_resource_procurement": "Arrangements for energy resources tied to this customer rather than the general supply.",
+    "btm_generation": "Rules for on-site generation or storage the customer owns or uses.",
+    "customer_led_procurement": "The customer can bring or direct its own generation, such as clean energy, through the utility.",
+    "load_flexibility": "Curtailment, interruptible service or demand response the customer agrees to.",
+    "load_factor_threshold": "A minimum ratio of average to peak load to qualify.",
+    "aggregation_rules": "Whether loads at several sites or affiliates count together toward the threshold.",
+    "load_forecast_requirement": "The customer must give the utility forecasts of its load.",
+    "explicit_load_forecast": "A stated forecast, such as a ramp schedule, must be filed.",
+    "forecast_update_cadence": "Forecasts must be updated on a set schedule.",
+    "price_premium": "A rate adder above the otherwise applicable rate.",
+    "study_requirements": "The customer must fund or complete load, interconnection or system-impact studies.",
+    "load_ramp_period": "A set schedule for reaching full contracted load, with charges phased in.",
+    "hold_harmless": "Provisions meant to keep other customers from paying for the large load's costs.",
+    "formulaic_backstop": "A formula that charges the customer if costs shift to other ratepayers.",
+    "marginal_cost": "Rates set from the incremental or marginal cost of serving the load.",
+    "no_harm_analysis": "A required showing that serving the load does not raise other customers' costs.",
+    "resize_reassign": "Terms for reducing, transferring or reassigning contracted capacity.",
+    "exit_fee": "A charge for leaving the tariff or ending service early.",
+    "customer_type": "The tariff applies only to a named customer type, such as data centers.",
 }
 
-# Maps each parameter key to its group key (for grouped rendering / parity test).
 TARIFF_PARAMETER_GROUP_OF: dict[str, str] = {
-    "min_load": "eligibility",
-    "monthly_demand_charge": "eligibility",
-    "customer_type": "eligibility",
-    "study_cost_recovery": "eligibility",
-    "credit_collateral": "eligibility",
-    "contracted_capacity": "contract_size",
-    "resize_reassign": "contract_size",
-    "btm_backup": "contract_size",
-    "load_factor": "contract_size",
-    "contract_duration": "duration",
-    "ramp_times": "duration",
-    "duration_flexibility": "duration",
-    "exit_fee": "duration",
-    "clean_energy": "energy_source",
-    "specific_generation": "energy_source",
-    "marginal_pricing": "other",
-    "econ_dev_payments": "other",
+    "min_demand_threshold": "established",
+    "min_contract_duration": "established",
+    "monthly_demand_charge": "established",
+    "min_billing_demand": "established",
+    "min_bill": "established",
+    "collateral": "established",
+    "direct_cost_assignment": "established",
+    "dca_capacity_reservation": "established",
+    "dca_interconnection": "established",
+    "dca_generation_capacity": "established",
+    "dca_network_transmission": "established",
+    "customer_resource_procurement": "established",
+    "btm_generation": "established",
+    "customer_led_procurement": "established",
+    "load_flexibility": "established",
+    "load_factor_threshold": "stable",
+    "aggregation_rules": "stable",
+    "load_forecast_requirement": "stable",
+    "explicit_load_forecast": "stable",
+    "forecast_update_cadence": "stable",
+    "price_premium": "stable",
+    "study_requirements": "emerging",
+    "load_ramp_period": "emerging",
+    "hold_harmless": "emerging",
+    "formulaic_backstop": "emerging",
+    "marginal_cost": "emerging",
+    "no_harm_analysis": "emerging",
+    "resize_reassign": "emerging",
+    "exit_fee": "emerging",
+    "customer_type": "declining",
 }
+
+# Sub-elements nest under a parent element (LBL Appendix 2). A tariff that
+# includes a sub-element must include its parent (validated on Tariff).
+TARIFF_PARAMETER_PARENT: dict[str, str] = {
+    "dca_capacity_reservation": "direct_cost_assignment",
+    "dca_interconnection": "direct_cost_assignment",
+    "dca_generation_capacity": "direct_cost_assignment",
+    "dca_network_transmission": "direct_cost_assignment",
+    "btm_generation": "customer_resource_procurement",
+    "customer_led_procurement": "customer_resource_procurement",
+    "load_flexibility": "customer_resource_procurement",
+    "explicit_load_forecast": "load_forecast_requirement",
+    "forecast_update_cadence": "load_forecast_requirement",
+    "formulaic_backstop": "hold_harmless",
+    "marginal_cost": "hold_harmless",
+    "no_harm_analysis": "hold_harmless",
+}
+
+# How many of LBL's 55 sampled tariffs include each element (Appendix 2).
+# Context for readers, not a score.
+TARIFF_PARAMETER_LBL_COUNT: dict[str, int] = {
+    "min_demand_threshold": 51,
+    "min_contract_duration": 47,
+    "monthly_demand_charge": 46,
+    "min_billing_demand": 39,
+    "min_bill": 47,
+    "collateral": 43,
+    "direct_cost_assignment": 45,
+    "dca_capacity_reservation": 4,
+    "dca_interconnection": 38,
+    "dca_generation_capacity": 28,
+    "dca_network_transmission": 10,
+    "customer_resource_procurement": 43,
+    "btm_generation": 28,
+    "customer_led_procurement": 25,
+    "load_flexibility": 27,
+    "load_factor_threshold": 13,
+    "aggregation_rules": 20,
+    "load_forecast_requirement": 12,
+    "explicit_load_forecast": 10,
+    "forecast_update_cadence": 11,
+    "price_premium": 6,
+    "study_requirements": 33,
+    "load_ramp_period": 23,
+    "hold_harmless": 25,
+    "formulaic_backstop": 11,
+    "marginal_cost": 19,
+    "no_harm_analysis": 13,
+    "resize_reassign": 26,
+    "exit_fee": 31,
+    "customer_type": 9,
+}
+
+TARIFF_LBL_SAMPLE_SIZE = 55
 
 # Per-parameter coverage status. "included" = the tariff addresses this element;
 # "partial" = addresses it in a limited / conditional way. A parameter the
@@ -1510,10 +1662,19 @@ class TariffParameter(_StrictBase):
         default=None,
         description="Source for THIS element if different from the tariff's main source_url.",
     )
+    verbatim: Optional[str] = Field(
+        default=None,
+        description="v7: the provision's own words, copied from source_url (or the tariff's source).",
+    )
 
 
 class TariffLegislation(_StrictBase):
     """A state law / bill that authorizes or influenced this tariff."""
+
+    policy_id: Optional[str] = Field(
+        default=None,
+        description="v7: the Policy record for this law, when one is tracked. Renders as an internal link.",
+    )
 
     title: str = Field(
         min_length=1, description="e.g., 'Ohio HB 15 (2025)' or 'Texas SB 6 (2025)'."
@@ -1635,6 +1796,10 @@ class Tariff(_StrictBase):
             "(PUC / legislature) links, then major trade press."
         ),
     )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
+    )
     captured_at: Date = Field(
         description="Date this record was curated / the tariff status was verified."
     )
@@ -1663,10 +1828,41 @@ class Tariff(_StrictBase):
             )
         return v
 
+    @field_validator("parameters")
+    @classmethod
+    def _sub_elements_have_parent(cls, v: dict) -> dict:
+        orphans = [k for k in v if k in TARIFF_PARAMETER_PARENT and TARIFF_PARAMETER_PARENT[k] not in v]
+        if orphans:
+            raise ValueError(
+                f"Sub-element(s) {sorted(orphans)} present without their parent element "
+                f"({sorted({TARIFF_PARAMETER_PARENT[k] for k in orphans})})"
+            )
+        return v
+
+
+class BriefParagraph(_StrictBase):
+    """One curated paragraph of the Power Costs brief, with its sources."""
+
+    heading: str = Field(min_length=1, max_length=80, description="A few words naming the topic.")
+    text: str = Field(min_length=1, description="Plain sentences on what happened and what is next. No adjectives doing the work of facts.")
+    record_refs: list["RecordRef"] = Field(
+        default_factory=list, description="Tracked records this paragraph is about; render as internal links."
+    )
+    sources: list["SourceResource"] = Field(min_length=1)
+
+
+class PowerBrief(_StrictBase):
+    """v7: the 'what to watch' prose at the top of Power Costs. Curated, dated,
+    sourced; the daily refresh updates it. Not generated text."""
+
+    as_of: Date
+    paragraphs: list[BriefParagraph] = Field(min_length=1, max_length=6)
+
 
 class TariffsPayload(_StrictBase):
     generated_at: Date
     tariffs: list[Tariff]
+    brief: Optional[PowerBrief] = None
 
     @field_validator("tariffs")
     @classmethod
@@ -1755,6 +1951,10 @@ class RateCase(_StrictBase):
     source_url: HttpUrl
     source_title: str = Field(min_length=1)
     resources: Optional[list[SourceResource]] = Field(default=None)
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
+    )
     captured_at: Date
 
     @field_validator("state_code")
@@ -1833,6 +2033,7 @@ POLICY_INSTRUMENTS: tuple[str, ...] = (
     "benefit_agreement",
     "company_plan",
     "government_framework",
+    "commission_order",
 )
 PolicyInstrument = Literal[
     "executive_order",
@@ -1842,6 +2043,7 @@ PolicyInstrument = Literal[
     "benefit_agreement",
     "company_plan",
     "government_framework",
+    "commission_order",
 ]
 POLICY_INSTRUMENT_LABELS: dict[str, str] = {
     "executive_order": "Executive order",
@@ -1854,6 +2056,10 @@ POLICY_INSTRUMENT_LABELS: dict[str, str] = {
     # framework, UK AI Growth Zones). Filing these as regulation would claim
     # legal force they lack.
     "government_framework": "Government framework",
+    # v7: a utility commission (PUC/PSC/FERC) order or rule that sets large-load
+    # terms beyond one tariff (generic proceedings, interconnection rules).
+    # A tariff itself stays a Tariff record.
+    "commission_order": "Commission order",
 }
 
 # in_effect = signed / enacted / published; proposed = introduced, passed one
@@ -2042,6 +2248,10 @@ class Policy(_StrictBase):
         description="Independent evidence of whether an agreement's committed "
         "benefits were actually paid / awarded / built. Same rules as "
         "Claim.delivered: absent = not yet assessed, never implied delivery.",
+    )
+    related: list[RecordRef] = Field(
+        default_factory=list,
+        description="Typed links to other records (v7). Store one direction only; links.json derives the reverse.",
     )
     captured_at: Date
     country: str = Field(default="US", description="ISO 3166-1 alpha-2, or 'EU' (v6).")
@@ -2874,6 +3084,8 @@ __all__ = [
     "TARIFF_PARAMETER_DESCRIPTIONS",
     "TARIFF_PARAMETER_GROUPS",
     "TARIFF_PARAMETER_GROUP_OF",
+    "TARIFF_PARAMETER_PARENT",
+    "TARIFF_PARAMETER_LBL_COUNT",
     "TARIFF_COVERAGE_STATUSES",
     "SIGNATORY_CATEGORIES",
     "SIGNATORY_CATEGORY_LABELS",

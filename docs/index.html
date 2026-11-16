@@ -1113,15 +1113,23 @@
 
           <h2 class="hero-title">Power Costs</h2>
           <p class="hero-dek">
-            Who pays for data center power: rate cases, and large-load tariffs scored against the
+            Who pays for data center power: rate cases, and large-load tariffs read against
             <a
               id="tariff-lbl-link"
-              href="https://eta-publications.lbl.gov/sites/default/files/2025-01/electricity_rate_designs_for_large_loads_evolving_practices_and_opportunities_final.pdf"
+              href="https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              >DOE / Berkeley Lab rate-design elements ↗</a>
+              >Berkeley Lab's 2026 rate-design elements ↗</a>
           </p>
         </div>
+
+        <section id="power-brief" class="power-brief" aria-labelledby="power-brief-heading" hidden>
+          <div class="power-brief-head">
+            <h3 id="power-brief-heading" class="power-brief-title">What to watch</h3>
+            <span id="power-brief-asof" class="power-brief-asof"></span>
+          </div>
+          <div id="power-brief-body"></div>
+        </section>
 
         <!-- Status overview stats -->
         <ul id="tariff-stats" class="rp-stats" aria-label="Tariff statistics"></ul>
@@ -1202,7 +1210,7 @@
                   <th>Tariff</th>
                   <th>Status</th>
                   <th class="num">Min load</th>
-                  <th class="num" title="LBL rate-design elements addressed out of 17">LBL elements</th>
+                  <th>Decision</th>
                 </tr>
               </thead>
               <tbody id="tariffs-tbody">
@@ -1216,7 +1224,7 @@
         <div class="subtab-panel" id="subpane-tar-elements" role="tabpanel" aria-labelledby="subtab-tar-elements" hidden>
           <div id="tariff-coverage-section">
             <p class="acc-sub">
-              The 17 elements from the DOE / Berkeley Lab brief, and how many tracked tariffs include each.
+              The 18 elements in Berkeley Lab's August 2026 update, grouped the way it groups them: established, stable, emerging and declining practice. Each card shows how many tariffs tracked here include the element, and how many of the 55 tariffs in LBL's sample do.
             </p>
             <div id="tariff-coverage-grid" class="tariff-coverage-grid">
               <!-- Populated by app.js -->
@@ -1226,7 +1234,7 @@
         </div>
 
         <p class="rp-footnote">
-          Curated, not exhaustive. Many states have no data-center tariff yet. “LBL elements” measures coverage, not quality. One
+          Curated, not exhaustive. Many states have no data-center tariff yet. Element counts measure what a tariff's text covers, not how well it works. One
           <strong>federal</strong> FERC co-location case (badged
           <span class="badge badge-tariff-federal">FED</span>) is included because the LBL brief covers co-location. It is left out of the state counts.
         </p>
@@ -1281,10 +1289,16 @@
             <ul id="td-legislation-list" class="tariff-legislation-list"></ul>
           </section>
 
+          <section id="td-related" class="tariff-legislation" aria-labelledby="td-related-heading" hidden>
+            <h4 id="td-related-heading">Related records</h4>
+            <ul id="td-related-list" class="tariff-legislation-list"></ul>
+          </section>
           <section id="td-resources" class="moratorium-resources" aria-labelledby="td-resources-heading">
             <h4 id="td-resources-heading">Sources & Resources</h4>
             <ul id="td-resources-list" class="resources-list"></ul>
           </section>
+
+          <p class="record-permalink-row"><a id="td-permalink" class="record-permalink" href="#">Link to this record</a></p>
 
           <p id="td-captured" class="muted" style="font-size: 0.85rem; margin-top: 1rem;"></p>
           </div>
@@ -1307,7 +1321,7 @@
         <div class="hero">
 
           <h2 class="hero-title">Policy</h2>
-          <p class="view-scope">U.S. laws, bills, executive orders and community benefit agreements.</p>
+          <p class="view-scope">U.S. laws, bills, executive orders, commission orders, moratoriums and community benefit agreements.</p>
         </div>
 
 
@@ -1340,6 +1354,13 @@
 
         <div class="subtab-panel" id="subpane-pol-rules" role="tabpanel" aria-labelledby="subtab-pol-rules" hidden>
           <div id="policies-directory">
+          <aside id="policy-moratorium-callout" class="mor-callout" aria-labelledby="pmc-heading" hidden>
+            <h3 id="pmc-heading" class="mor-callout-title">Moratoriums</h3>
+            <p id="pmc-counts" class="mor-callout-counts"></p>
+            <p class="mor-callout-sub">Latest:</p>
+            <ul id="pmc-latest" class="mor-callout-latest"></ul>
+            <p class="mor-callout-more"><a href="#moratoriums">Map, trends and every moratorium on the Moratoriums tab →</a></p>
+          </aside>
             <h3 class="sr-only" id="policies-table-heading">All frameworks</h3>
             <div id="policy-filters" class="filter-bar filter-bar--slim directory-filters" role="group" aria-label="Filter policies">
             <label class="filter"><span class="filter-name">Type</span>
@@ -1518,6 +1539,7 @@
               <p><button type="button" id="pd-draft-btn" class="btn-link"></button></p>
               <p class="muted pd-next-note">The draft uses invented example numbers; it does not say this rule applies elsewhere.</p>
             </section>
+            <p class="record-permalink-row"><a id="pd-permalink" class="record-permalink" href="#">Link to this record</a></p>
             <p id="pd-captured" class="muted policy-captured"></p>
           </div>
         </div>
@@ -1664,10 +1686,16 @@
             <div id="md-stakeholders-body"></div>
           </section>
 
+          <section id="md-related" class="tariff-legislation" aria-labelledby="md-related-heading" hidden>
+            <h4 id="md-related-heading">Related records</h4>
+            <ul id="md-related-list" class="tariff-legislation-list"></ul>
+          </section>
           <section id="md-resources" class="moratorium-resources" aria-labelledby="md-resources-heading">
             <h4 id="md-resources-heading">Sources &amp; Resources</h4>
             <ul id="md-resources-list" class="resources-list"></ul>
           </section>
+
+          <p class="record-permalink-row"><a id="md-permalink" class="record-permalink" href="#">Link to this record</a></p>
 
           <p id="md-captured" class="muted" style="font-size: 0.85rem; margin-top: 1rem;"></p>
           </div>

@@ -51,7 +51,9 @@ def test_framework_gaps_are_source_linked_and_latest_does_not_repeat_same_order(
     expect(page.locator('.pb-action-text').filter(has_text='New York EO 62')).to_have_count(1)
     expect(page.locator('.pb-action-text').filter(has_text='Sabattus')).to_have_count(1)
     page.click('#subtab-pol-rules')
-    expect(page.locator('#policies-tbody tr[role="button"]')).to_have_count(4)
+    expect(page.locator('#policies-tbody tr[role="button"]:not(.is-moratorium-row)')).to_have_count(4)
+    # v7: the two pause records join the directory as moratorium rows.
+    expect(page.locator('#policies-tbody tr.is-moratorium-row')).to_have_count(2)
     page.locator('#policies-tbody tr').filter(has_text='Loudoun').click()
     expect(page.locator('#pd-date')).to_have_text('2025-03-18')
     expect(page.locator('#pd-terms')).to_contain_text('special-exception')

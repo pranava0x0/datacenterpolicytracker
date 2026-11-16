@@ -20,6 +20,8 @@ from schema import (
     TARIFF_COVERAGE_STATUSES,
     TARIFF_JURISDICTION_LEVELS,
     TARIFF_PARAMETER_GROUP_OF,
+    TARIFF_PARAMETER_LBL_COUNT,
+    TARIFF_PARAMETER_PARENT,
     TARIFF_PARAMETER_GROUPS,
     TARIFF_PARAMETER_LABELS,
     TARIFF_PARAMETERS,
@@ -48,11 +50,40 @@ def test_seed_validates(tariffs: TariffsPayload) -> None:
 
 
 def test_parameter_taxonomy_frozen() -> None:
-    # The LBL brief catalogues 17 design elements across 5 groups. Frozen for v1;
-    # changing this is a deliberate migration (BACKLOG + JS mirror + colors).
-    assert len(TARIFF_PARAMETERS) == 17
-    assert len(set(TARIFF_PARAMETERS)) == 17, "Parameter keys must be unique."
-    assert len(TARIFF_PARAMETER_GROUPS) == 5
+    # v7: LBL's Aug 2026 update has 18 elements plus 12 sub-elements, sorted
+    # into four practice types. Changing this is a deliberate migration
+    # (BACKLOG + JS mirror + every tariff re-keyed).
+    assert len(TARIFF_PARAMETERS) == 30
+    assert len(set(TARIFF_PARAMETERS)) == 30, "Parameter keys must be unique."
+    assert len([k for k in TARIFF_PARAMETERS if k not in TARIFF_PARAMETER_PARENT]) == 18
+    assert [g for g, _ in TARIFF_PARAMETER_GROUPS] == ["established", "stable", "emerging", "declining"]
+
+
+def test_sub_elements_share_their_parents_group() -> None:
+    for child, parent in TARIFF_PARAMETER_PARENT.items():
+        assert parent in TARIFF_PARAMETERS and parent not in TARIFF_PARAMETER_PARENT
+        assert TARIFF_PARAMETER_GROUP_OF[child] == TARIFF_PARAMETER_GROUP_OF[parent]
+
+
+def test_lbl_counts_cover_every_element() -> None:
+    assert set(TARIFF_PARAMETER_LBL_COUNT) == set(TARIFF_PARAMETERS)
+    assert all(0 < n <= 55 for n in TARIFF_PARAMETER_LBL_COUNT.values())
+
+
+def test_every_assessed_element_quotes_its_source(tariffs: TariffsPayload) -> None:
+    """v7: each element a tariff is credited with carries the provision's own
+    words, copied from its source (probe-checked at curation time)."""
+    for t in tariffs.tariffs:
+        for key, p in t.parameters.items():
+            assert p.verbatim, f"{t.id}: {key} has no verbatim quote"
+
+
+def test_a_sub_element_without_its_parent_is_rejected(tariffs: TariffsPayload) -> None:
+    from schema import Tariff
+    data = tariffs.tariffs[0].model_dump(mode="json")
+    data["parameters"] = {"btm_generation": {"status": "included", "detail": "x", "verbatim": "x"}}
+    with pytest.raises(Exception, match="without their parent"):
+        Tariff.model_validate(data)
 
 
 def test_every_parameter_has_label_and_group() -> None:
