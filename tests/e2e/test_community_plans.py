@@ -19,8 +19,8 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
     expect(page.locator('#draft-plan-decision')).to_be_visible()
     assert page.url.endswith('#policies/agreements/drafts')
     expect(page.locator('#cba-stats')).to_be_visible()
-    expect(page.locator('.guide-notice')).to_contain_text('example numbers are invented')
-    for key, heading, sections in [('county', 'County plan', 8), ('state', 'State framework', 6)]:
+    expect(page.locator('.guide-notice')).to_contain_text('amounts, limits and deadlines are examples')
+    for key, heading, sections in [('county', 'County plan', 8), ('state', 'State plan', 6)]:
         page.locator('#draft-plan-kind').select_option(key)
         expect(page.locator('#draft-plan-content h3')).to_contain_text(heading)
         assert page.locator('#draft-plan-content .guide-clause').count() == sections + 2
@@ -35,10 +35,10 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
         path = tmp_path / download.suggested_filename
         download.save_as(path)
         text = path.read_text()
-        assert 'not adopted policies' in text and 'invented negotiation examples' in text
+        assert 'These are sample terms' in text and 'who can enforce' in text
         assert text.count('- Owner:') == sections
         assert text.count('- Remedy:') == sections
-        assert '## Before signing' in text and '## Sources and adaptation' in text
+        assert '## Before signing' in text and '## Sources' in text
         assert 'regs.maryland.gov' in text and 'nj.gov' in text
     page.get_by_role('tab', name='Evidence', exact=True).click()
     expect(page.locator('#impact-evidence-rule')).to_be_visible()
@@ -105,9 +105,9 @@ def test_blueprint_share_links_and_complete_downloads(page, base_url, width, tmp
         assert pdf.value.path().read_bytes().startswith(b"%PDF-")
         assert article.locator("h3").first.inner_text() in draft
         assert article.locator("h2").inner_text() in draft
-        assert all(s in draft for s in ("Terms every draft", "If your community has a moratorium", "What informed"))
+        assert all(s in draft for s in ("Sample agreement", "If your community has a moratorium", "Sources"))
         assert "https://pranava0x0.github.io/datacenterpolicytracker/index.html?" in draft
-        assert "(.txt)" not in draft and "Fill in one row" in draft
+        assert "(.txt)" not in draft and "Payment and inspection record" in draft
         article.get_by_role("link", name="Choose another draft").click()
     assert not page.evaluate("document.documentElement.scrollWidth > innerWidth")
 
@@ -168,7 +168,7 @@ def test_published_plan_pdfs_match_current_drafts():
 def test_state_packet_return_link_preserves_the_editable_plan(page, base_url):
     page.goto(base_url + "/?p-draft=state#policies/agreements/drafts")
     expect(page.locator("#draft-plan-kind")).to_have_value("state")
-    expect(page.locator("#draft-plan-content h3")).to_contain_text("State framework")
+    expect(page.locator("#draft-plan-content h3")).to_contain_text("State plan")
     page.reload()
     expect(page.locator("#draft-plan-kind")).to_have_value("state")
     page.locator("#draft-plan-kind").select_option("county")

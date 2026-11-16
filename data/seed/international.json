@@ -892,6 +892,79 @@
         }
       ],
       "last_reviewed": "2026-10-19"
+    },
+    {
+      "code": "NO",
+      "summary": "Norway requires commercial data center operators to register with the Norwegian Communications Authority (Nkom). The public list names commercial operators; it withholds identifying details about in-house facilities. Registration does not grant a permit.",
+      "regulators": [],
+      "primary_languages": [
+        "nb",
+        "nn"
+      ],
+      "context": [
+        {
+          "statement": "On November 15, Nkom counted 113 registered data centers, including in-house facilities. The figure counts sites, not companies.",
+          "verbatim": "Antall registrerte datasentre (inkl. virksomhetsinterne): 113",
+          "source_lang": "nb",
+          "source_url": "https://nkom.no/datasenter/oversikt",
+          "source_title": "Nkom — Registrerte datasenteroperatører og datasentre",
+          "captured_at": "2026-11-16",
+          "period": "2026-11-15",
+          "translation": {
+            "text": "Number of registered data centers (including in-house facilities): 113",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          }
+        }
+      ],
+      "last_reviewed": "2026-11-16"
+    },
+    {
+      "code": "MY",
+      "summary": "Malaysia ties data center tax incentives under the Digital Ecosystem Acceleration Scheme (DESAC) to energy, carbon and water criteria. Its guidance asks applicants to report how much water they actually use for each unit of electricity consumed by their IT equipment.",
+      "regulators": [
+        {
+          "name": "Malaysian Investment Development Authority",
+          "acronym": "MIDA",
+          "role": "investment_agency",
+          "url": "https://www.mida.gov.my/wp-content/uploads/2024/12/Guideline-for-Sustainable-Development-of-Data-Centre.pdf"
+        }
+      ],
+      "primary_languages": [
+        "ms",
+        "en"
+      ],
+      "context": [
+        {
+          "statement": "For new sites in Peninsular Malaysia, the guideline recommends avoiding water-stressed areas when choosing a location.",
+          "verbatim": "avoid water stress areas in locating the new data centre",
+          "source_lang": "en",
+          "source_url": "https://www.mida.gov.my/wp-content/uploads/2024/12/Guideline-for-Sustainable-Development-of-Data-Centre.pdf",
+          "source_title": "Malaysian Investment Development Authority — Guideline for Sustainable Development of Data Centre, §§2.1.3 and 3.1",
+          "captured_at": "2026-11-16"
+        }
+      ],
+      "last_reviewed": "2026-11-16"
+    },
+    {
+      "code": "DK",
+      "summary": "In Odense, heat from Meta’s servers goes into the district heating network run by Fjernvarme Fyn. The operator reported the start of heat delivery in 2020 and separately forecast how much more heat an expansion could supply.",
+      "regulators": [],
+      "primary_languages": [
+        "da"
+      ],
+      "context": [
+        {
+          "statement": "Meta described the first phase of the Odense campus as operating in October 2020.",
+          "verbatim": "The first phase of the data center has been completed and is now fully online.",
+          "source_lang": "en",
+          "source_url": "https://datacenters.atmeta.com/2020/10/we-are-expanding-facebooks-odense-data-center/",
+          "source_title": "Meta — We are expanding the Odense Data Center (October 13, 2020)",
+          "captured_at": "2026-11-16",
+          "period": "2020-10"
+        }
+      ],
+      "last_reviewed": "2026-11-16"
     }
   ],
   "policies": [
@@ -2596,6 +2669,72 @@
       "source_url": "https://knnindia.co.in/news/newsdetails/sectors/energy/cea-sets-up-committee-to-assess-data-centres-impact-on-power-grid-stability",
       "source_title": "KNN India — CEA sets up committee to assess data centres' impact on power grid stability",
       "captured_at": "2026-10-19"
+    },
+    {
+      "id": "no-ekom-data-centre-registration",
+      "title": "Data center operator registration under the Electronic Communications Act",
+      "instrument": "legislation",
+      "status": "in_effect",
+      "scope": "national",
+      "jurisdiction": "Norway",
+      "country": "NO",
+      "source_lang": "nb",
+      "benefit_themes": [
+        "engagement"
+      ],
+      "principles": [
+        "transparency"
+      ],
+      "community_benefits_framework": false,
+      "key_terms": [
+        "Datasentre ble registreringspliktige fra januar 2025.",
+        "Registreringen gjennomføres elektronisk hos Nkom."
+      ],
+      "key_terms_translation": {
+        "items": [
+          "Data centers became subject to registration in January 2025.",
+          "Registration takes place electronically with Nkom."
+        ],
+        "by": "machine",
+        "reviewed_at": "2026-11-16"
+      },
+      "summary": "Nkom says the duty began in January 2025. It covers operators that sell data center services and in-house facilities with more than 0.5 MW of subscribed electrical capacity. Registration gives the authorities a record of operators. It is separate from any project approval.",
+      "resources": [
+        {
+          "title": "Nkom — public operator register, scope and capacity threshold",
+          "url": "https://nkom.no/datasenter/oversikt"
+        }
+      ],
+      "source_url": "https://nkom.no/datasenter/registreringsplikt",
+      "source_title": "Nkom — Registreringsplikt for datasenteroperatører",
+      "captured_at": "2026-11-16"
+    },
+    {
+      "id": "my-desac-data-centre-sustainability-guideline",
+      "title": "Water and energy criteria for data center tax incentives",
+      "instrument": "government_framework",
+      "status": "in_effect",
+      "scope": "national",
+      "jurisdiction": "Malaysia",
+      "country": "MY",
+      "source_lang": "en",
+      "benefit_themes": [
+        "water",
+        "energy",
+        "tax_revenue"
+      ],
+      "principles": [
+        "incentive_terms",
+        "transparency"
+      ],
+      "community_benefits_framework": false,
+      "key_terms": [
+        "continuously monitor and disclose the actual WUE in their annual sustainability report"
+      ],
+      "summary": "MIDA’s guideline covers DESAC tax-incentive applications received through December 31, 2027. It recommends designing for no more than 2.2 cubic metres of water per megawatt-hour of IT electricity, requires disclosure of actual water-use effectiveness in the annual sustainability report, and calls for improvement to 2.0 or less over ten years. The design recommendation is not a site withdrawal limit.",
+      "source_url": "https://www.mida.gov.my/wp-content/uploads/2024/12/Guideline-for-Sustainable-Development-of-Data-Centre.pdf",
+      "source_title": "Malaysian Investment Development Authority — Guideline for Sustainable Development of Data Centre, §§2.1.3 and 3.1",
+      "captured_at": "2026-11-16"
     }
   ],
   "moratoriums": [
@@ -4265,6 +4404,31 @@
       "notes": "Google announced the acquisition of 460 hectares in 2026 for potential future data-centre development. Its September update describes preliminary infrastructure work and preparation for the next construction phase. The €13 billion Finland investment plan covers multiple locations.",
       "company_slug": "google",
       "captured_at": "2026-11-07"
+    },
+    {
+      "id": "dk-meta-odense",
+      "company_slug": "meta",
+      "name": "Meta Odense Data Center",
+      "city": "Odense",
+      "locality": "Odense",
+      "country": "DK",
+      "status": "operational",
+      "announced_year": 2017,
+      "announced_date": "2017-01-19",
+      "source_lang": "en",
+      "notes": "Odense announced the site in January 2017. In October 2020 Meta reported that the first phase was online and heat delivery to the local district heating network had begun. Its estimate of 165,000 MWh of heat per year was for the expanded system. The release gives no measured annual delivery or household bill savings.",
+      "updates": [
+        {
+          "date": "2017-01-19",
+          "kind": "news",
+          "title": "City announces the Tietgenbyen campus",
+          "source_url": "https://www.odense.dk/presse/pressemeddelelser/pressemeddelelser-2017/facebook-etablerer-datacenter-i-odense",
+          "source_title": "City of Odense — Facebook etablerer datacenter i Odense (January 19, 2017)"
+        }
+      ],
+      "source_url": "https://datacenters.atmeta.com/2020/10/we-are-expanding-facebooks-odense-data-center/",
+      "source_title": "Meta — We are expanding the Odense Data Center (October 13, 2020)",
+      "captured_at": "2026-11-16"
     }
   ],
   "responses": [

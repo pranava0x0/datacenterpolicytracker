@@ -750,3 +750,10 @@ reviews should check where a record is discoverable, not only its text.
 | County policy announcements | Yes | One meeting packet supported two distinct agreements; unmetered. | Share sources across records, not payment schedules. |
 | Independent accuracy review | Yes | Spotted the remaining two-campus description in Salem; unmetered. | Check the record title and historical notes after fixing totals. |
 | Policy term review | Yes | Triaged 28 partial/nonmatches and identified two substantive corrections; unmetered. | Compare actual text with the earlier audit before researching a paraphrase again. |
+
+### November 16, 2026 — community plan copy and international examples
+
+| Run | Worked | Result and cost | Next time |
+| --- | --- | --- | --- |
+| Country research | Yes | Verified and translated registry and water guidance, and distinguished heat delivered from an expansion forecast. Tokens unmetered. | Check whether a country has an actual plan, rule or operating site before adding it to the directory. |
+| Copy and evidence review | Yes | Found country examples under unrelated place headings, an ambiguous training obligation and an incorrect emergency contact. Tokens unmetered. | Read headings alone, then check the actor, trigger and remedy in revised clauses. |

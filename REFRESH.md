@@ -1396,3 +1396,7 @@ After changing a community draft or its source notes, run `python tools/build_pl
 ### 2026-11-15 — validating company profiles and regional figures
 
 A source sweep that collected only links named source_url or url silently skipped company impact and campus pages. Count records as well as URLs and explain the fallback for companies without a dedicated page. A blank text extraction from a scanned order is inconclusive; the November 15 audit recovered three such orders or meeting records with OCR. Check both the numeric project fields and the attached claims before assigning a statewide investment to an individual campus.
+
+### 2026-11-16 — writing plan examples
+
+Put the place and subject in the heading when a section covers more than one jurisdiction. Keep local figures with their source and identify projections as projections. The plan download buttons use the community heading; they do not need a separate line above it.

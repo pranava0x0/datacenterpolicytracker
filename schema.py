@@ -344,6 +344,9 @@ COUNTRIES: dict[str, str] = {
     "MX": "Mexico",
     "ES": "Spain",
     "BE": "Belgium",
+    "NO": "Norway",
+    "MY": "Malaysia",
+    "DK": "Denmark",
 }
 # ISO 3166-1 "exceptionally reserved" code; supranational policies only.
 SUPRANATIONAL: dict[str, str] = {"EU": "European Union"}
@@ -431,6 +434,7 @@ CURRENCIES: tuple[str, ...] = (
 LANGUAGES: dict[str, str] = {
     "en": "English", "fr": "French", "sv": "Swedish", "fi": "Finnish", "el": "Greek",
     "ga": "Irish", "es": "Spanish", "ja": "Japanese", "ko": "Korean", "hi": "Hindi", "nl": "Dutch",
+    "nb": "Norwegian Bokmål", "nn": "Norwegian Nynorsk", "ms": "Malay", "da": "Danish",
 }
 TRANSLATION_SOURCES: tuple[str, ...] = ("official", "human", "machine")
 TranslationSource = Literal["official", "human", "machine"]
