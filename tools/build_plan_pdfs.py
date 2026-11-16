@@ -78,11 +78,14 @@ def build(check: bool) -> None:
         for key in [*local_ids, *policy_ids]:
             policy = key in policy_ids
             body = render_source(source, key, base, policy)
-            target = base.rsplit("/", 1)[0] + "/#policies/agreements/drafts" if policy else base + "#" + key
+            target = base + "#" + key
+            if policy:
+                query = "?p-draft=state" if key == "state" else ""
+                target = base.rsplit("/", 1)[0] + "/" + query + "#policies/agreements/drafts"
             name = f"{key}-community-benefits.pdf"
             html = (f'<!doctype html><html lang="en"><meta charset="utf-8"><title>{escape(key.title())} community benefits draft</title>'
                     f'<style>{CSS}</style><div class="brand">Data Center Policy Tracker · Community benefits plans</div>{body}'
-                    f'<p><a href="{escape(target)}">Read the guide and get the editable draft online</a></p></html>')
+                    f'<p><a href="{escape(target)}">Editable draft and sources: {escape(target)}</a></p></html>')
             fingerprint = digest((html + FOOTER).encode())
             product = OUT / name
             cached = previous.get(name, {})

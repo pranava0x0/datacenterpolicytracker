@@ -163,3 +163,25 @@ def test_published_plan_pdfs_match_current_drafts():
     import subprocess
     import sys
     subprocess.run([sys.executable, str(Path(__file__).resolve().parents[2] / "tools/build_plan_pdfs.py"), "--check"], check=True)
+
+
+def test_state_packet_return_link_preserves_the_editable_plan(page, base_url):
+    page.goto(base_url + "/?p-draft=state#policies/agreements/drafts")
+    expect(page.locator("#draft-plan-kind")).to_have_value("state")
+    expect(page.locator("#draft-plan-content h3")).to_contain_text("State framework")
+    page.reload()
+    expect(page.locator("#draft-plan-kind")).to_have_value("state")
+    page.locator("#draft-plan-kind").select_option("county")
+    assert "p-draft=state" not in page.url
+    expect(page.locator("#draft-plan-pdf")).to_have_attribute("href", "plans/county-community-benefits.pdf")
+
+
+def test_updated_records_link_to_the_schedule_and_host_site(page, base_url):
+    page.goto(base_url + "/#tariffs")
+    rc = page.locator("#rc-fl-psc-tampa-electric-large-load-tariff-2026")
+    rc.get_by_role("button", name="Read more").click()
+    expect(rc.get_by_role("link", name="PSC-2026-0399", exact=False)).to_be_visible()
+    page.goto(base_url + "/?policy=memphis-tn-community-benefits-fund-5953#policies")
+    page.locator("#pd-related-list button").first.click()
+    expect(page.locator("#project-detail")).to_be_visible()
+    assert "project=xai-memphis-tn" in page.url

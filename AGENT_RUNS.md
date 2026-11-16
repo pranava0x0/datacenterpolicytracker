@@ -736,3 +736,5 @@ reviews should check where a record is discoverable, not only its text.
 | Civic records | Yes | Three updates: school payment scope, public pause findings and a county election tally. Tokens unmetered. | Look for the public body’s decision after the initial announcement. |
 | Operators, sites and international | Yes | Bounded primary sources distinguished nationwide grants, projected taxes and operating heat connections. Tokens unmetered. | Pair a measured service example with one local projection. |
 | Pledge and power | Yes | Official roster had no diff; identified an Indiana service order and Florida scheduling order. Tokens unmetered. | Compare the docket action with its order before labeling a rate approved. |
+| First packet review | Yes | State PDF returned to the county draft; paper readers lacked a visible guide URL. Tokens unmetered. | Read one printed page and follow the last PDF link in a fresh browser. |
+| First evidence review | Yes | Found the scheduling order was hidden in the data and the Memphis site link was missing. Tokens unmetered. | Trace each new date or place through the rendered record. |
