@@ -3676,6 +3676,35 @@ body.tariff-modal-open {
   margin-top: 0.1rem;
 }
 
+/* v7: cross-record links, from links.json. */
+.related-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+}
+.related-kind {
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 7.5rem;
+}
+.related-note {
+  flex-basis: 100%;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.tleg-record {
+  margin-left: 0.4rem;
+  font-size: var(--fs-xs);
+}
+.record-permalink-row {
+  margin: 1rem 0 0;
+  font-size: var(--fs-xs);
+}
+
 /* ==========================================================================
    Print
    ========================================================================== */
@@ -5009,7 +5038,8 @@ body.state-modal-open {
   color: var(--text-muted);
 }
 
-.rc-src {
+.rc-src,
+.rc-perma {
   white-space: nowrap;
 }
 
@@ -5017,7 +5047,8 @@ body.state-modal-open {
    same pattern. At the desktop scale this inline link inherits .rc-meta's
    0.75rem line box with no padding, well under the floor for a thumb. */
 @media (pointer: coarse) {
-  .rc-src {
+  .rc-src,
+  .rc-perma {
     display: inline-block;
     min-height: 44px;
     min-width: 44px;

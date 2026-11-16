@@ -836,6 +836,169 @@ const LEGACY_HASHES = {
 
 };
 
+// v7 record deep links: one URL per record, e.g. #moratorium/<id>. Each
+// prefix names the view that owns the record and how to open it. The test
+// derives the expected prefixes from RECORD_KINDS, so a new kind needs a row.
+// `site` and `policy` hand off to their existing query-param routes
+// (?project= / ?policy=), which already restore filters and Back/Forward.
+const RECORD_ROUTES = {
+  moratorium: { kind: "moratorium", view: "moratoriums" },
+  tariff: { kind: "tariff", view: "tariffs", subtab: ["tar", "tariffs"] },
+  ratecase: { kind: "rate_case", view: "tariffs", subtab: ["tar", "ratecases"] },
+  policy: { kind: "policy", view: "policies" },
+  site: { kind: "project", view: "explorer" },
+  company: { kind: "company", view: "comparison", subtab: ["co", "profiles"] },
+  election: { kind: "election", view: "elections" },
+};
+const RECORD_PREFIX_BY_KIND = Object.fromEntries(
+  Object.entries(RECORD_ROUTES).map(([prefix, r]) => [r.kind, prefix]));
+const RECORD_DEEP_LINK = /^#(moratorium|tariff|ratecase|policy|site|company)\/([A-Za-z0-9._-]+)$/;
+
+// The canonical URL for a record, for links and "Copy link". Elections keep
+// their older #elections/<id> form.
+function recordHref(kind, id) {
+  if (kind === "election") return `#elections/${id}`;
+  const prefix = RECORD_PREFIX_BY_KIND[kind];
+  return prefix ? `#${prefix}/${encodeURIComponent(id)}` : "#";
+}
+
+// Opening a record's panel puts its URL in the address bar; closing it puts
+// back the URL it replaced. replaceState only: the record is a view of the
+// current entry, and a popstate must not be overwritten mid-route (#72).
+function setRecordUrl(kind, id) {
+  const hash = recordHref(kind, id);
+  if (window.location.hash === hash) return;
+  if (!RECORD_DEEP_LINK.test(window.location.hash)) {
+    state._recordReturnUrl = window.location.pathname + window.location.search + window.location.hash;
+  }
+  history.replaceState(null, "", window.location.pathname + window.location.search + hash);
+}
+
+function clearRecordUrl(kind) {
+  if (state._routing) return;
+  const prefix = RECORD_PREFIX_BY_KIND[kind];
+  if (!window.location.hash.startsWith(`#${prefix}/`)) return;
+  const back = state._recordReturnUrl;
+  state._recordReturnUrl = null;
+  const view = VIEWS.find((v) => v.name === state.activeView);
+  history.replaceState(null, "", back || window.location.pathname + (view ? view.hash : ""));
+}
+
+// links.json: the derived graph of every typed link, both directions.
+let _linksPromise = null;
+function loadLinksData() {
+  if (!_linksPromise) {
+    _linksPromise = fetchJson("data/links.json")
+      .then((d) => (state.links = d.links || {}))
+      .catch((err) => {
+        _linksPromise = null;
+        throw err;
+      });
+  }
+  return _linksPromise;
+}
+
+const RECORD_KIND_LABELS = {
+  policy: "Policy",
+  moratorium: "Moratorium",
+  tariff: "Tariff",
+  rate_case: "Rate case",
+  project: "Site",
+  company: "Company",
+  election: "Election",
+};
+
+// A readable name for a linked record from whatever payload is loaded; the
+// id, de-slugged, when it isn't (never a bare code).
+function recordLabel(kind, id) {
+  const find = (arr) => (arr || []).find((x) => x.id === id);
+  let r;
+  if (kind === "policy") r = find(state.policies) && find(state.policies).title;
+  else if (kind === "moratorium") {
+    const m = find(state.moratoriums);
+    r = m && `${m.jurisdiction}${m.state_code ? `, ${m.state_code}` : ""}`;
+  } else if (kind === "tariff") {
+    const t = find(state.tariffs);
+    r = t && `${t.utility}: ${t.tariff_name}`;
+  } else if (kind === "rate_case") r = find(state.rateCases) && find(state.rateCases).title;
+  else if (kind === "project") r = find(state.projects) && find(state.projects).name;
+  else if (kind === "company") r = state.companiesBySlug && state.companiesBySlug.get(id)?.name;
+  if (r) return r;
+  const words = id.replace(/[-_]+/g, " ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
+// Fill a panel's "Related" section from links.json. Each entry is a real
+// link to the record's own URL, so it can be opened, copied or shared.
+function renderRelatedRecords(sectionId, kind, id) {
+  const section = document.getElementById(sectionId);
+  const list = document.getElementById(`${sectionId}-list`);
+  if (!section || !list) return;
+  const draw = () => {
+    const edges = (state.links || {})[`${kind}:${id}`] || [];
+    list.replaceChildren(...edges.map((e) => {
+      const li = el("li", "related-item");
+      const rel = e.relation === "related" ? RECORD_KIND_LABELS[e.kind] : `${RELATION_LABELS[e.relation]} · ${RECORD_KIND_LABELS[e.kind].toLowerCase()}`;
+      li.append(el("span", "related-kind", rel));
+      const a = el("a", "related-link", recordLabel(e.kind, e.id));
+      a.href = recordHref(e.kind, e.id);
+      li.append(a);
+      if (e.note) li.append(el("span", "related-note", e.note));
+      return li;
+    }));
+    section.hidden = edges.length === 0;
+  };
+  if (state.links) draw();
+  else {
+    section.hidden = true;
+    loadLinksData().then(draw).catch((err) => console.error("Failed to load links:", err));
+  }
+}
+
+function setPermalink(elId, kind, id) {
+  const a = document.getElementById(elId);
+  if (!a) return;
+  a.href = recordHref(kind, id);
+}
+
+async function openRecordRoute(prefix, rawId) {
+  const route = RECORD_ROUTES[prefix];
+  const id = decodeURIComponent(rawId);
+  if (prefix === "site") {
+    history.replaceState(null, "", `${window.location.pathname}?project=${encodeURIComponent(id)}#explorer`);
+    readFiltersFromUrl();
+    activateView("explorer");
+    return;
+  }
+  if (prefix === "policy") {
+    history.replaceState(null, "", `${window.location.pathname}?policy=${encodeURIComponent(id)}#policies/rules`);
+    setActiveSubtab("pol", "rules");
+    activateView("policies");
+    return;
+  }
+  if (route.subtab) setActiveSubtab(route.subtab[0], route.subtab[1]);
+  activateView(route.view);
+  const gen = state.navGen;
+  try {
+    if (prefix === "moratorium") {
+      await loadMoratoriumsData();
+      const m = (state.moratoriums || []).find((x) => x.id === id);
+      if (m && state.navGen === gen) showMoratoriumDetail(m);
+    } else if (prefix === "tariff") {
+      await loadTariffsData();
+      const t = (state.tariffs || []).find((x) => x.id === id);
+      if (t && state.navGen === gen) showTariffDetail(t);
+    } else if (prefix === "ratecase") {
+      openRateCase(id);
+    } else if (prefix === "company") {
+      await ensureCompanyData();
+      if (state.navGen === gen && state.companiesBySlug.get(id)) selectCompany(id);
+    }
+  } catch (err) {
+    console.error(`Could not open ${prefix} ${id}:`, err);
+  }
+}
+
 function _routeFromLocation(boot) {
   const legacy = LEGACY_HASHES[window.location.hash];
   if (legacy) history.replaceState(null, "", window.location.pathname + window.location.search + legacy);
@@ -864,10 +1027,13 @@ function _routeFromLocation(boot) {
   // Ask the URL, not state: after Back, state could hold later filters.
   const explorerParams =
     URL_FILTER_KEYS.some((k) => params.get(k)) || Boolean(params.get("project"));
+  const recordLink = RECORD_DEEP_LINK.exec(window.location.hash);
   const fromHash = VIEWS.find((v) => v.hash && v.hash === window.location.hash);
   // Read the sub-key BEFORE activating: activateView rewrites the hash.
   const sub = parseSubtabHash(window.location.hash);
-  if (sub) {
+  if (recordLink) {
+    openRecordRoute(recordLink[1], recordLink[2]);
+  } else if (sub) {
     if (sub.agreement === "drafts") {
       state.draftKind = params.get("p-draft") === "state" ? "state" : "county";
       const select = document.getElementById("draft-plan-kind");
@@ -919,6 +1085,8 @@ function _routeFromLocation(boot) {
   }
   // A Frameworks entry restores its own filters and open record.
   if (!boot && state.activeView === "policies" && state._policyUrlApplied) {
+    // Fresh read: a #policy/<id> route rewrote the query after `params`.
+    const params = new URLSearchParams(window.location.search);
     setPolicyControlsFrom(params);
     renderPoliciesTable();
     const pid = params.get("policy");
@@ -2272,12 +2440,16 @@ function showMoratoriumDetail(m) {
   overlay.scrollTop = 0;
   const closeBtn = document.getElementById("moratorium-detail-close");
   if (closeBtn) closeBtn.focus();
+  setRecordUrl("moratorium", m.id);
+  setPermalink("md-permalink", "moratorium", m.id);
+  renderRelatedRecords("md-related", "moratorium", m.id);
 }
 
 function closeMoratoriumDetail() {
   const overlay = document.getElementById("moratorium-modal");
   if (!overlay || overlay.hidden) return;
   overlay.hidden = true;
+  clearRecordUrl("moratorium");
   document.body.classList.remove("moratorium-modal-open");
   const ret = state._moratoriumReturnFocus;
   state._moratoriumReturnFocus = null;
@@ -2414,7 +2586,10 @@ function renderRateCases() {
     src.rel = "noopener noreferrer";
     src.className = "rc-src";
     src.textContent = "Source ↗";
-    meta.append(" ", src);
+    const perma = el("a", "rc-perma", "Link");
+    perma.href = recordHref("rate_case", rc.id);
+    perma.title = "Link to this rate case";
+    meta.append(" ", src, " ", perma);
     li.append(meta);
 
     // Next step leads, date first: it is what a reader of a pending case came
@@ -2811,8 +2986,11 @@ function showTariffDetail(t) {
       .map((l) => {
         const meta = [l.citation, l.status].filter(Boolean).join(" · ");
         const sub = l.summary ? `<span class="tleg-summary">${escapeHtml(l.summary)}</span>` : "";
+        const inner = l.policy_id
+          ? ` <a class="tleg-record" href="${escapeAttr(recordHref("policy", l.policy_id))}">Policy record</a>`
+          : "";
         return `<li>
-          <a href="${escapeAttr(String(l.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.title)} ↗</a>
+          <a href="${escapeAttr(String(l.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.title)} ↗</a>${inner}
           ${meta ? `<span class="tleg-meta">${escapeHtml(meta)}</span>` : ""}
           ${sub}
         </li>`;
@@ -2849,12 +3027,16 @@ function showTariffDetail(t) {
   overlay.scrollTop = 0;
   const closeBtn = document.getElementById("tariff-detail-close");
   if (closeBtn) closeBtn.focus();
+  setRecordUrl("tariff", t.id);
+  setPermalink("td-permalink", "tariff", t.id);
+  renderRelatedRecords("td-related", "tariff", t.id);
 }
 
 function closeTariffDetail() {
   const overlay = document.getElementById("tariff-modal");
   if (!overlay || overlay.hidden) return;
   overlay.hidden = true;
+  clearRecordUrl("tariff");
   document.body.classList.remove("tariff-modal-open");
   const ret = state._tariffReturnFocus;
   state._tariffReturnFocus = null;
@@ -3776,45 +3958,6 @@ function showPolicyDetail(p) {
   const terms = document.getElementById("pd-terms");
   terms.replaceChildren(...(p.key_terms || []).map((t) => el("li", null, t)));
 
-  // Related records: tracked sites (open in Sites) and the moratorium record
-  // that carries the same instrument, if any.
-  const rel = document.getElementById("pd-related");
-  const relList = document.getElementById("pd-related-list");
-  relList.replaceChildren();
-  for (const pid of p.related_project_ids || []) {
-    const proj = (state.projects || []).find((x) => x.id === pid);
-    const li = el("li");
-    const btn = el("button", "linkish", proj ? `Site: ${proj.name}` : `Site: ${pid}`);
-    btn.type = "button";
-    btn.addEventListener("click", () => {
-      closePolicyDetail();
-      state.pendingProjectId = pid;
-      activateView("explorer");
-      if (state.explorerLoaded) {
-        state.pendingProjectId = null;
-        selectProject(pid);
-      }
-    });
-    li.append(btn);
-    relList.append(li);
-  }
-  if (p.related_moratorium_id) {
-    const li = el("li");
-    const btn = el("button", "linkish", "Related pause record");
-    btn.type = "button";
-    btn.addEventListener("click", async () => {
-      closePolicyDetail();
-      activateView("moratoriums");
-      setActiveSubtab("mor", "directory");
-      openWhenStillOn("moratoriums", loadMoratoriumsData(), () => {
-        const m = (state.moratoriums || []).find((x) => x.id === p.related_moratorium_id);
-        if (m) showMoratoriumDetail(m);
-      });
-    });
-    li.append(btn);
-    relList.append(li);
-  }
-  rel.hidden = relList.children.length === 0;
 
   const res = document.getElementById("pd-resources-list");
   res.replaceChildren(_linkLi(p.source_url, p.source_title));
@@ -3838,6 +3981,8 @@ function showPolicyDetail(p) {
   modal.scrollTop = 0;
   overlay.scrollTop = 0;
   document.getElementById("policy-detail-close")?.focus();
+  renderRelatedRecords("pd-related", "policy", p.id);
+  setPermalink("pd-permalink", "policy", p.id);
 }
 
 function closePolicyDetail() {
@@ -4330,6 +4475,7 @@ function openRateCase(id) {
     const li = document.getElementById(`rc-${id}`);
     if (!li) return;
     li.classList.add("is-target");
+    setRecordUrl("rate_case", id);
     li.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
@@ -5601,10 +5747,12 @@ function selectCompany(slug) {
   panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
   refreshActiveCompanyRow();
+  setRecordUrl("company", slug);
 }
 
 function closeCompanyDetail() {
   state.selectedCompanySlug = null;
+  clearRecordUrl("company");
   const panel = document.getElementById("company-detail");
   if (panel) panel.hidden = true;
   refreshActiveCompanyRow();
