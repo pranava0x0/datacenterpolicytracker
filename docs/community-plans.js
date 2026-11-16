@@ -68,11 +68,13 @@ export function renderPlans(root) {
     <p class="guide-notice">Illustrative proposals. All example numbers are invented; check local authority before use.</p>
     <div class="guide-controls"><label for="draft-plan-kind">Choose a draft</label>
     <select id="draft-plan-kind"><option value="county">County: 100 MW campus</option><option value="state">State: incentives and large loads</option></select>
-    <button type="button" id="draft-plan-download">Download draft (.md)</button></div>
+    <button type="button" id="draft-plan-download">Download draft (.md)</button>
+    <a id="draft-plan-pdf" download>Download draft (PDF)</a></div>
     <article id="draft-plan-content"></article>`;
   const select = root.querySelector("select");
   function show() {
     const plan = PLANS[select.value];
+    root.querySelector("#draft-plan-pdf").href = 'plans/' + select.value + '-community-benefits.pdf';
     root.querySelector("article").innerHTML = `<h3>${esc(plan.title)}</h3>
       <p id="draft-plan-decision" class="guide-decision">${esc(plan.decision)}</p>
       <details class="guide-clause"><summary>Example and assumptions</summary><p>${esc(plan.scenario)}</p><p>${esc(NOTICE)}</p></details>

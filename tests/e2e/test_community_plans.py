@@ -24,6 +24,10 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
         page.locator('#draft-plan-kind').select_option(key)
         expect(page.locator('#draft-plan-content h3')).to_contain_text(heading)
         assert page.locator('#draft-plan-content .guide-clause').count() == sections + 2
+        with page.expect_download() as pdf:
+            page.get_by_role("link", name="Download draft (PDF)").click()
+        assert pdf.value.suggested_filename == f"{key}-community-benefits.pdf"
+        assert pdf.value.path().read_bytes().startswith(b"%PDF-")
         with page.expect_download() as event:
             page.get_by_role('button', name='Download draft (.md)').click()
         download = event.value
@@ -95,6 +99,11 @@ def test_blueprint_share_links_and_complete_downloads(page, base_url, width, tmp
         path = tmp_path / event.value.suggested_filename
         event.value.save_as(path)
         draft = path.read_text()
+        with page.expect_download() as pdf:
+            article.get_by_role("link", name="(PDF)", exact=False).click()
+        assert pdf.value.suggested_filename == f"{key}-community-benefits.pdf"
+        assert pdf.value.path().read_bytes().startswith(b"%PDF-")
+        assert article.locator("h3").first.inner_text() in draft
         assert article.locator("h2").inner_text() in draft
         assert all(s in draft for s in ("Terms every draft", "If your community has a moratorium", "What informed"))
         assert "https://pranava0x0.github.io/datacenterpolicytracker/index.html?" in draft
@@ -148,3 +157,9 @@ def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     assert heading.bounding_box()["y"] >= nav.bounding_box()["y"] + nav.bounding_box()["height"] - 1
     nav.get_by_role("link", name="Moratoriums", exact=True).click()
     expect(page.get_by_role("tab", name="Moratoriums", exact=True)).to_have_attribute("aria-selected", "true")
+
+
+def test_published_plan_pdfs_match_current_drafts():
+    import subprocess
+    import sys
+    subprocess.run([sys.executable, str(Path(__file__).resolve().parents[2] / "tools/build_plan_pdfs.py"), "--check"], check=True)

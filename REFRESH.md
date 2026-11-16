@@ -1388,3 +1388,7 @@ For instruments in both directories, feature only one side. The refresh emits
 a small projection of featured pauses so readers can expand every topic
 without downloading the pause directory. This was a topic audit of the existing
 inventory, not a new state-by-state search or a recertification of every status.
+
+### 2026-11-15 — Community plan packets
+
+After changing a community draft or its source notes, run `python tools/build_plan_pdfs.py` and commit the regenerated files in `docs/plans/`. The builder reads the selected HTML, includes shared terms and absolute public evidence links, and also renders the county/state drafts. `--check` verifies the printable content and file digests. A budget allocation, an executed obligation and a service already operating belong at different stages on the same worksheet.
