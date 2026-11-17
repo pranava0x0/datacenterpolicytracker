@@ -38,6 +38,9 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
         assert 'These are sample terms' in text and 'who can enforce' in text
         assert text.count('- Owner:') == sections
         assert text.count('- Remedy:') == sections
+        case_link = 'noticias.uaq.mx' if key == 'county' else 'Resolucion-Ministerial-644-2024.pdf'
+        assert case_link in text
+        assert page.locator(f'#draft-plan-content details a[href*="{case_link}"]').count() == 1
         assert '## Before signing' in text and '## Sources' in text
         assert 'regs.maryland.gov' in text and 'nj.gov' in text
     page.get_by_role('tab', name='Evidence', exact=True).click()
