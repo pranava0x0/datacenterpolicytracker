@@ -6713,6 +6713,10 @@ button.depth-chip:focus-visible {
 .world-card-btn { display: grid; align-content: start; gap: .25rem; height: 100%; padding: .6rem .75rem; border: 1px solid var(--border); color: var(--text); background: var(--surface); text-decoration: none; }
 .world-card-btn:hover, .world-card-btn:focus-visible { border-color: var(--accent); }
 .world-card-btn small { color: var(--text-muted); }
+@media (max-width: 36rem) {
+  .world-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.5rem), 1fr)); gap: .5rem; }
+  .world-card-btn { padding: .4rem .5rem; gap: .125rem; min-height: 44px; }
+}
 .world-record { min-width: 0; overflow-wrap: anywhere; }
 .world-record summary { cursor: pointer; padding-inline-end: 1.5rem; position: relative; list-style: none; }
 .world-record summary::-webkit-details-marker { display: none; }
