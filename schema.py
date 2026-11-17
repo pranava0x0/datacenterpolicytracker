@@ -393,6 +393,8 @@ COUNTRIES: dict[str, str] = {
     "NO": "Norway",
     "MY": "Malaysia",
     "DK": "Denmark",
+    "ZA": "South Africa",
+    "KE": "Kenya",
 }
 # ISO 3166-1 "exceptionally reserved" code; supranational policies only.
 SUPRANATIONAL: dict[str, str] = {"EU": "European Union"}

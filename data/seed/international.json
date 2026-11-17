@@ -494,6 +494,20 @@
           "source_url": "https://minciencia.gob.cl/uploads/filer_public/29/c7/29c71595-69d1-4b1f-be58-b6946a1967f2/national_data_centers_plan.pdf",
           "source_title": "Ministerio de Ciencia — National Data Centers Plan 2024-2030 (PDATA)",
           "captured_at": "2026-10-19"
+        },
+        {
+          "statement": "Ciudad Emergente reports that a cleanup with residents and schools in Quilicura removed 180 tonnes of waste and recycled 25% of what was collected. The nonprofit names Google and the municipality as partners.",
+          "verbatim": "Retiro de 180 toneladas de basura, logrando reciclar el 25% de los residuos recolectados.",
+          "source_lang": "es",
+          "translation": {
+            "text": "Removal of 180 tonnes of rubbish, with 25% of the collected waste recycled.",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          },
+          "period": "2024",
+          "source_url": "https://ciudademergente.org/quilicura-limpia-y-segura",
+          "source_title": "Ciudad Emergente — Quilicura Limpia y Segura",
+          "captured_at": "2026-11-16"
         }
       ],
       "last_reviewed": "2026-10-19"
@@ -807,6 +821,20 @@
           "source_url": "https://www.publimetro.com.mx/queretaro/2026/09/08/rechaza-kuri-que-data-centers-no-tengan-energia/",
           "source_title": "Publimetro — Kuri rechaza falta de energía en data centers (8 Sep 2026)",
           "captured_at": "2026-10-19"
+        },
+        {
+          "statement": "Public universities in Querétaro signed an academic collaboration agreement with the Mexican Data Center Association. The university announcement gives no paid placement target or hiring results.",
+          "verbatim": "firmó un convenio de colaboración académica con la Asociación Mexicana de Data Centers.",
+          "source_lang": "es",
+          "translation": {
+            "text": "signed an academic collaboration agreement with the Mexican Data Center Association.",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          },
+          "period": "2025-02",
+          "source_url": "https://noticias.uaq.mx/index.php/41-uncategorised/5918-se-suma-uaq-al-fortalecimiento-del-sector-tecnologico-y-la-formacion-en-innovacion-digital",
+          "source_title": "Universidad Autónoma de Querétaro — signing of the academic collaboration agreement",
+          "captured_at": "2026-11-16"
         }
       ],
       "last_reviewed": "2026-10-19"
@@ -962,6 +990,46 @@
           "source_title": "Meta — We are expanding the Odense Data Center (October 13, 2020)",
           "captured_at": "2026-11-16",
           "period": "2020-10"
+        }
+      ],
+      "last_reviewed": "2026-11-16"
+    },
+    {
+      "code": "ZA",
+      "summary": "Microsoft is building a data centre in Tshwane. In nearby Olievenhoutbosch, Microsoft reports that Afrika Tikkun, Mecer Inter-Ed and the Olieven Development Association ran a youth training programme that began in July 2024. Its account gives internship placements but does not say how many participants later took permanent jobs at the data centre.",
+      "regulators": [],
+      "primary_languages": [
+        "en"
+      ],
+      "context": [
+        {
+          "statement": "Microsoft reports that more than 500 young people received accredited training and a further 27 received Azure training and internship placements.",
+          "verbatim": "A further 27 youth were trained in Microsoft Azure learning journeys and placed into 12-month internship opportunities.",
+          "source_lang": "en",
+          "period": "Programme launched July 2024",
+          "source_url": "https://local.microsoft.com/blog/opening-doors-to-opportunity-in-olievenhoutbosch/",
+          "source_title": "Microsoft Local — Opening doors to opportunity in Olievenhoutbosch",
+          "captured_at": "2026-11-16"
+        }
+      ],
+      "last_reviewed": "2026-11-16"
+    },
+    {
+      "code": "KE",
+      "summary": "Kenya’s Ministry of Information, Communications and the Digital Economy, G42 and Microsoft signed a letter of intent in May 2024. Their proposed data centre at Olkaria would use geothermal power and run Microsoft Azure. The $1 billion figure covers a national digital investment programme; the letter does not set aside that amount for Olkaria residents.",
+      "regulators": [],
+      "primary_languages": [
+        "en"
+      ],
+      "context": [
+        {
+          "statement": "The parties tied their 24-month target for opening a new East Africa cloud region to the signing of definitive agreements. The May 2024 document was a letter of intent.",
+          "verbatim": "within 24 months of the signing of definitive agreements",
+          "source_lang": "en",
+          "period": "May 2024",
+          "source_url": "https://www.kenyanews.go.ke/kenya-g42-microsoft-sign-letter-of-intent/",
+          "source_title": "Kenya News Agency — Kenya, G42, & Microsoft sign Letter of Intent",
+          "captured_at": "2026-11-16"
         }
       ],
       "last_reviewed": "2026-11-16"
@@ -4429,6 +4497,47 @@
       "source_url": "https://datacenters.atmeta.com/2020/10/we-are-expanding-facebooks-odense-data-center/",
       "source_title": "Meta — We are expanding the Odense Data Center (October 13, 2020)",
       "captured_at": "2026-11-16"
+    },
+    {
+      "id": "za-microsoft-tshwane",
+      "company_slug": "microsoft",
+      "country": "ZA",
+      "name": "Microsoft Tshwane data centre campus",
+      "city": "Centurion",
+      "locality": "Kosmosdal, City of Tshwane",
+      "status": "construction",
+      "announced_year": 2024,
+      "source_url": "https://www.itweb.co.za/article/microsoft-readies-new-data-centre-campus/KzQenMjy6R47Zd2r",
+      "source_title": "ITWeb — Microsoft readies new data centre campus",
+      "project_page_url": "https://local.microsoft.com/communities/emea/south-africa/",
+      "captured_at": "2026-11-16",
+      "notes": "ITWeb reported the plans for Kosmosdal in February 2024. Microsoft’s Tshwane project page describes the data centre as under construction. This campus is separate from the cloud region that opened in 2019."
+    },
+    {
+      "id": "ke-microsoft-g42-olkaria",
+      "company_slug": "microsoft",
+      "country": "KE",
+      "name": "G42 and Microsoft proposed Olkaria data centre campus",
+      "city": "Naivasha",
+      "locality": "Olkaria",
+      "status": "announced",
+      "announced_year": 2024,
+      "announced_date": "2024-05-22",
+      "source_url": "https://news.microsoft.com/source/2024/05/22/microsoft-and-g42-announce-1-billion-comprehensive-digital-ecosystem-initiative-for-kenya/",
+      "source_title": "Microsoft and G42 announce $1 billion comprehensive digital ecosystem initiative for Kenya",
+      "captured_at": "2026-11-16",
+      "offtaker": "Microsoft Azure",
+      "notes": "G42 and local partners would build the campus. The $1 billion announcement covers a wider digital investment programme. Neither the announcement nor the letter of intent records a construction start or an operating site.",
+      "updates": [
+        {
+          "date": "2024-05-24",
+          "kind": "agreement",
+          "title": "Ministry, G42 and Microsoft sign a letter of intent",
+          "summary": "Kenya News Agency reports that the parties signed a letter of intent covering the data centre and other national digital projects. The cloud region’s opening date depends on later definitive agreements.",
+          "source_url": "https://www.kenyanews.go.ke/kenya-g42-microsoft-sign-letter-of-intent/",
+          "source_title": "Kenya News Agency — Kenya, G42, & Microsoft sign Letter of Intent"
+        }
+      ]
     }
   ],
   "responses": [

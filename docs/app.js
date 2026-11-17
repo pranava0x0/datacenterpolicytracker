@@ -9990,6 +9990,8 @@ const COUNTRY_NAMES = {
   NO: "Norway",
   MY: "Malaysia",
   DK: "Denmark",
+  ZA: "South Africa",
+  KE: "Kenya",
 };
 const SUPRANATIONAL_NAMES = { EU: "European Union" };
 const EU_MEMBERS = [
