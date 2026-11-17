@@ -1033,6 +1033,68 @@
         }
       ],
       "last_reviewed": "2026-11-16"
+    },
+    {
+      "code": "UY",
+      "summary": "At Parque de las Ciencias in Canelones, Uruguay’s environment ministry set a noise-reporting deadline for each new module of Google’s Los Teros data center. The ministry granted prior environmental authorization; the operator still needed a separate authorization to begin operating.",
+      "primary_languages": [
+        "es"
+      ],
+      "last_reviewed": "2026-11-16",
+      "context": [
+        {
+          "statement": "The operator must submit noise measurements at sensitive locations within 45 days after each module begins operating. If mitigation is needed, it must also submit a design and schedule for approval.",
+          "verbatim": "los resultados y análisis del monitoreo de NPS en los receptores sensibles",
+          "translation": {
+            "text": "the results and analysis of sound pressure level monitoring at sensitive receptors",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          },
+          "period": "June 2024 permit, condition 1(d)",
+          "source_lang": "es",
+          "source_url": "https://www.ambiente.gub.uy/oan/wp-content/uploads/2023/11/Resolucion-Ministerial-644-2024.pdf",
+          "source_title": "Ministerio de Ambiente — Resolución Ministerial 644/2024, condition 1(d), folio 774",
+          "captured_at": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "code": "BR",
+      "summary": "At the Pecém industrial and port complex in Caucaia, federal prosecutors and public defenders sought formal consultation with the Anacé people before the data center starts operating. A federal judge denied interim relief in October 2026 and left the merits for a later decision.",
+      "primary_languages": [
+        "pt"
+      ],
+      "last_reviewed": "2026-11-16",
+      "context": [
+        {
+          "statement": "The federal prosecutors and public defenders said that information meetings did not replace formal consultation with affected communities.",
+          "verbatim": "as reuniões informativas realizadas durante o processo não substituem o procedimento formal de consulta",
+          "translation": {
+            "text": "the information meetings held during the process do not replace the formal consultation procedure",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          },
+          "period": "September 2026",
+          "source_lang": "pt",
+          "source_url": "https://www.mpf.mp.br/o-mpf/unidades/pr-ce/noticias/mpf-e-dpu-vao-a-justica-para-impedir-operacao-de-data-center-no-complexo-do-pecem-em-caucaia-ce",
+          "source_title": "Ministério Público Federal — MPF e DPU vão à Justiça para impedir operação de data center no Complexo do Pecém em Caucaia (10 September 2026)",
+          "captured_at": "2026-11-16"
+        },
+        {
+          "statement": "The first federal trial court in Ceará declined to grant the requested interim order. It expressly left the question open for the final judgment.",
+          "verbatim": "nego o pedido de tutela de urgência, sem prejuízo de nova apreciação por ocasião da sentença",
+          "translation": {
+            "text": "I deny the request for urgent relief, without prejudice to reconsideration at the time of judgment",
+            "by": "machine",
+            "reviewed_at": "2026-11-16"
+          },
+          "period": "October 2026; case 0080626-66.2026.4.05.8100",
+          "source_lang": "pt",
+          "source_url": "https://diovanefranco.com.br/jurisprudencia-ambiental/data-center-no-pecem-justica-federal-nega-liminar-por-eiarima-e-consulta-previa/",
+          "source_title": "1ª Vara Federal do Ceará — trial court decision, text reproduced by Diovane Franco Advogados",
+          "captured_at": "2026-11-16"
+        }
+      ]
     }
   ],
   "policies": [
@@ -2803,6 +2865,43 @@
       "source_url": "https://www.mida.gov.my/wp-content/uploads/2024/12/Guideline-for-Sustainable-Development-of-Data-Centre.pdf",
       "source_title": "Malaysian Investment Development Authority — Guideline for Sustainable Development of Data Centre, §§2.1.3 and 3.1",
       "captured_at": "2026-11-16"
+    },
+    {
+      "id": "br-pecem-consultation-recommendation",
+      "title": "Pecém data center: recommendation on consultation, groundwater and noise",
+      "instrument": "government_framework",
+      "status": "proposed",
+      "scope": "city",
+      "jurisdiction": "Caucaia, Ceará",
+      "subdivision": "BR-CE",
+      "locality": "Caucaia",
+      "country": "BR",
+      "source_lang": "pt",
+      "benefit_themes": [
+        "engagement",
+        "water"
+      ],
+      "principles": [
+        "community_input",
+        "environmental_review"
+      ],
+      "community_benefits_framework": false,
+      "key_terms": [
+        "escuta ao povo Anacé e às demais comunidades tradicionais",
+        "programa de monitoramento hidrogeológico"
+      ],
+      "key_terms_translation": {
+        "items": [
+          "hearing from the Anacé people and other traditional communities",
+          "groundwater monitoring program"
+        ],
+        "by": "machine",
+        "reviewed_at": "2026-11-16"
+      },
+      "summary": "On 19 May 2026 federal prosecutors and public defenders asked Ceará’s environment agency to include consultation with the Anacé and other traditional communities in the installation licence. They also recommended groundwater monitoring and noise controls. The recipients had 30 days to respond. The recommendation itself does not amend the licence.",
+      "source_url": "https://www.mpf.mp.br/o-mpf/unidades/pr-ce/noticias/mpf-e-dpu-pedem-adequacoes-em-licenciamento-ambiental-de-data-center-no-ceara-antes-do-inicio-da-operacao",
+      "source_title": "Ministério Público Federal — joint recommendation for Pecém licensing (20 May 2026)",
+      "captured_at": "2026-11-16"
     }
   ],
   "moratoriums": [
@@ -4536,6 +4635,33 @@
           "summary": "Kenya News Agency reports that the parties signed a letter of intent covering the data centre and other national digital projects. The cloud region’s opening date depends on later definitive agreements.",
           "source_url": "https://www.kenyanews.go.ke/kenya-g42-microsoft-sign-letter-of-intent/",
           "source_title": "Kenya News Agency — Kenya, G42, & Microsoft sign Letter of Intent"
+        }
+      ]
+    },
+    {
+      "id": "uy-google-los-teros",
+      "country": "UY",
+      "company_slug": "google",
+      "name": "Los Teros data center",
+      "city": "Ciudad de la Costa",
+      "subdivision": "UY-CA",
+      "locality": "Parque de las Ciencias",
+      "status": "construction",
+      "announced_year": 2024,
+      "source_url": "https://blog.google/company-news/inside-google/around-the-globe/google-latin-america/a-new-data-center-in-latin-america/",
+      "source_title": "Google — A new data center in Latin America (29 August 2024)",
+      "captured_at": "2026-11-16",
+      "source_lang": "en",
+      "notes": "Google announced the start of construction on 29 August 2024. The ministry’s June authorization names Eleanor Applications S.R.L. as the permit holder and records an earlier project filing in August 2020.",
+      "updates": [
+        {
+          "date": "2024-06-06",
+          "kind": "permit",
+          "title": "Ministry requires noise checks after each module starts",
+          "summary": "The permit requires the operator to submit results from sensitive locations within 45 days after each module starts. If mitigation is needed, the operator must submit a design and schedule to the regulator. The permit also requires advance approval for changes to the authorized design.",
+          "authority": "Ministerio de Ambiente",
+          "source_url": "https://www.ambiente.gub.uy/oan/wp-content/uploads/2023/11/Resolucion-Ministerial-644-2024.pdf",
+          "source_title": "Ministerio de Ambiente — Resolución Ministerial 644/2024, condition 1(d), folio 774"
         }
       ]
     }

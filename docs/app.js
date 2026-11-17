@@ -9992,6 +9992,8 @@ const COUNTRY_NAMES = {
   DK: "Denmark",
   ZA: "South Africa",
   KE: "Kenya",
+  BR: "Brazil",
+  UY: "Uruguay",
 };
 const SUPRANATIONAL_NAMES = { EU: "European Union" };
 const EU_MEMBERS = [
@@ -9999,6 +10001,8 @@ const EU_MEMBERS = [
   "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
 ];
 const SUBDIVISION_NAMES = {
+  "BR-CE": "Ceará",
+  "UY-CA": "Canelones",
   "AU-NSW": "New South Wales",
   "AU-VIC": "Victoria",
   "CA-QC": "Québec",
@@ -10066,6 +10070,7 @@ const LANGUAGE_NAMES = {
   en: "English", fr: "French", sv: "Swedish", fi: "Finnish", el: "Greek", ga: "Irish", es: "Spanish",
   ja: "Japanese", ko: "Korean", hi: "Hindi", nl: "Dutch",
   nb: "Norwegian Bokmål", nn: "Norwegian Nynorsk", ms: "Malay", da: "Danish",
+  pt: "Portuguese",
 };
 const TRANSLATION_SOURCE_LABELS = {
   official: "Official English version",
