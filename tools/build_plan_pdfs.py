@@ -24,7 +24,7 @@ h1 {font-size:21pt;line-height:1.1;margin:6pt 0 12pt}
 h2,h3,summary {break-after:avoid} h2 {font-size:17pt} h3,summary {font-size:13pt}
 p,dl,ul {margin:5pt 0 8pt} dt {font-weight:bold;margin-top:8pt;break-after:avoid}
 dd {margin:2pt 0 6pt} li {margin-bottom:4pt} a {color:#184776}
-.bp-note {border-left:2pt solid #a3b1c0;padding-left:8pt} #common {break-before:page}
+.bp-note {border-left:2pt solid #a3b1c0;padding-left:8pt}
 #common dt {margin-top:5pt} #common p,#common dl,#common ul {margin:4pt 0 5pt}
 summary {list-style:none}
 details {break-inside:avoid;margin:10pt 0} summary {font-weight:bold}

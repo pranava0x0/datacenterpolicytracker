@@ -393,6 +393,10 @@ COUNTRIES: dict[str, str] = {
     "NO": "Norway",
     "MY": "Malaysia",
     "DK": "Denmark",
+    "ZA": "South Africa",
+    "KE": "Kenya",
+    "BR": "Brazil",
+    "UY": "Uruguay",
 }
 # ISO 3166-1 "exceptionally reserved" code; supranational policies only.
 SUPRANATIONAL: dict[str, str] = {"EU": "European Union"}
@@ -402,6 +406,8 @@ EU_MEMBERS: tuple[str, ...] = (
 )
 # ISO 3166-2 codes records actually cite. Not the full standard.
 SUBDIVISIONS: dict[str, str] = {
+    "BR-CE": "Ceará",
+    "UY-CA": "Canelones",
     "AU-NSW": "New South Wales",
     "AU-VIC": "Victoria",
     "CA-QC": "Québec",
@@ -481,6 +487,7 @@ LANGUAGES: dict[str, str] = {
     "en": "English", "fr": "French", "sv": "Swedish", "fi": "Finnish", "el": "Greek",
     "ga": "Irish", "es": "Spanish", "ja": "Japanese", "ko": "Korean", "hi": "Hindi", "nl": "Dutch",
     "nb": "Norwegian Bokmål", "nn": "Norwegian Nynorsk", "ms": "Malay", "da": "Danish",
+    "pt": "Portuguese",
 }
 TRANSLATION_SOURCES: tuple[str, ...] = ("official", "human", "machine")
 TranslationSource = Literal["official", "human", "machine"]

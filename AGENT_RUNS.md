@@ -757,3 +757,11 @@ reviews should check where a record is discoverable, not only its text.
 | --- | --- | --- | --- |
 | Country research | Yes | Verified and translated registry and water guidance, and distinguished heat delivered from an expansion forecast. Tokens unmetered. | Check whether a country has an actual plan, rule or operating site before adding it to the directory. |
 | Copy and evidence review | Yes | Found country examples under unrelated place headings, an ambiguous training obligation and an incorrect emergency contact. Tokens unmetered. | Read headings alone, then check the actor, trigger and remedy in revised clauses. |
+
+### 2026-11-17 — four countries and six local cases
+
+| Run | Worked | Result and cost | Next time |
+| --- | --- | --- | --- |
+| African case research | Partly | Two usable project records and a documented internship outcome. Token count unavailable. The Olkaria handoff missed a 2026 design-stage update. | Search the project name with the current year and a local interview before accepting the announcement as the latest event. |
+| Latin American case research | Yes | The signed Uruguayan permit names a 45-day reporting deadline. The Brazilian complaint and ruling distinguish requested measures from court orders. Tokens unmetered. | Start with the operative paragraph of a permit or ruling, then find a local voice. |
+| Combined source and export review | Yes | Caught the missing direct citation to the ruling, review dates, and an incomplete noise clause in the state draft. Tokens unmetered. | Read the PDF as a standalone handout and check the enforcing office as well as the example. |
