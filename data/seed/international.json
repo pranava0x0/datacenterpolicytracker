@@ -510,7 +510,7 @@
           "captured_at": "2026-11-16"
         }
       ],
-      "last_reviewed": "2026-10-19"
+      "last_reviewed": "2026-11-16"
     },
     {
       "code": "AR",
@@ -837,7 +837,7 @@
           "captured_at": "2026-11-16"
         }
       ],
-      "last_reviewed": "2026-10-19"
+      "last_reviewed": "2026-11-16"
     },
     {
       "code": "ES",
@@ -1016,7 +1016,7 @@
     },
     {
       "code": "KE",
-      "summary": "Kenya’s Ministry of Information, Communications and the Digital Economy, G42 and Microsoft signed a letter of intent in May 2024. Their proposed data centre at Olkaria would use geothermal power and run Microsoft Azure. The $1 billion figure covers a national digital investment programme; the letter does not set aside that amount for Olkaria residents.",
+      "summary": "Kenya’s Ministry of Information, Communications and the Digital Economy, G42 and Microsoft signed a letter of intent in May 2024. Their proposed data centre at Olkaria would use geothermal power and run Microsoft Azure. The $1 billion figure covers a national digital investment programme; the letter does not set aside that amount for Olkaria residents. In August 2026 KenGen said the campus was still being designed.",
       "regulators": [],
       "primary_languages": [
         "en"
@@ -4635,6 +4635,14 @@
           "summary": "Kenya News Agency reports that the parties signed a letter of intent covering the data centre and other national digital projects. The cloud region’s opening date depends on later definitive agreements.",
           "source_url": "https://www.kenyanews.go.ke/kenya-g42-microsoft-sign-letter-of-intent/",
           "source_title": "Kenya News Agency — Kenya, G42, & Microsoft sign Letter of Intent"
+        },
+        {
+          "date": "2026-08-24",
+          "kind": "news",
+          "title": "KenGen says the campus is still in design",
+          "summary": "KenGen confirmed the design stage to Al Jazeera. Lake patrol leader Grace Kimani called for residents to take part in monitoring water use.",
+          "source_url": "https://www.aljazeera.com/economy/2026/8/24/can-kenyas-ai-ambitions-coexist-with-naivashas-water-needs",
+          "source_title": "Al Jazeera — interviews with KenGen and Naivasha residents"
         }
       ]
     },

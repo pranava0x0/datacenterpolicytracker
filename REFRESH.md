@@ -1412,3 +1412,7 @@ Agents set a record's status from a docket-sheet line or a "Tuesday" in an artic
 Two Sonnet agents re-read all 29 tariffs against Berkeley Lab's Aug 2026 element list, copying each provision's words. `probe.py` matched 262 of 291 quotes; 11 were scanned Nevada PUCN PDFs the agent had OCR'd (all found in the OCR text) and 18 sat behind bot walls. Re-assessing from the tariff's own text found facts the seed had from the 2025 brief that the current tariff contradicts (Black Hills' 35 MW, Entergy Mississippi's 30 MW schedule). Keep both and say which source says what. Nevada's PUCN document API (`puc-onbase.nv.gov/api/Document/<id>/`) serves the order PDFs; scanned ones need OCR.
 
 The Power Costs brief (`brief` in data/seed/tariffs.json) is curated prose with sources and named record links. Refresh it when a dated milestone in it passes. Policy records whose state legislature site is JavaScript (Virginia LIS, Indiana IGA) can cite the Virginia Code section once chaptered (`law.lis.virginia.gov/vacode/<section>/`), which probe reads. A federal-scope Policy is placed in the `state:US` refresh unit.
+
+### 2026-11-17 — agreements and local cases in plan drafts
+
+Check the most recent dated event separately from the original agreement. The Olkaria letter starts its clock at definitive agreements; the power company still described the project as being designed two years later. At Pecém, the prosecutors’ announcement explains what they requested; the October interim decision answers a different question. Cite both events in the downloadable plan.
