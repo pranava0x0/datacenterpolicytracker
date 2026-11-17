@@ -129,6 +129,10 @@
       "last_reviewed": "2026-11-09",
       "summary": "2026-11-09: searched news since capture; found only April 2026 acquisition coverage and the June 23 IUOE Local 150 IURC filing (already recorded); no new citable updates, record unchanged."
     },
+    "site:google-new-florence-mo": {
+      "last_reviewed": "2026-11-17",
+      "summary": "Checked status, news since May 31, local zoning/permits, utility, links (both 200); no citable change since the June 8 tax-incentive vote; serving_utility lead filed"
+    },
     "site:google-putnam-county-wv": {
       "last_reviewed": "2026-11-10",
       "summary": "Added Sept 29 2026 county commission resolution (WV MetroNews); no new permits/filings found in search; Aug 5 Google Buffalo investments not added."
@@ -374,21 +378,17 @@
     "state:IL": {
       "follow_ups": [
         {
-          "due": "2026-11-17",
-          "what": "Bloomington Nov 16 Planning Commission hearing outcome"
-        },
-        {
-          "due": "2026-11-17",
-          "what": "Bloomington Nov 16 hearing outcome; verify disputed expiry Nov 16 vs computed Nov 26 from ordinance."
-        },
-        {
           "due": "2026-11-27",
           "what": "Bloomington's 6-month moratorium from May 26 nears its end — extended, lapsed, or replaced by the permanent ordinance?"
+        },
+        {
+          "due": "2026-12-01",
+          "what": "Bloomington: did the City Council extend the moratorium before its end-of-November expiry (WGLT Nov 17)?"
         }
       ],
       "last_check": {
-        "date": "2026-11-06",
-        "summary": "Nov 6: Councilmatic shows Chicago O2026-0028856 still Active with only the 9/23 Referred action (committee not shown). WGLT channel lists Bloomington Planning Commission hearings Oct 16 and Nov 16, regulations still draft; no November coverage yet."
+        "date": "2026-11-17",
+        "summary": "Bloomington: Nov 16 Planning Commission unanimously recommended a 12-month extension (WGLT Nov 17); WGLT now says pause expires end of November; council has not acted"
       }
     },
     "state:IN": {
@@ -423,13 +423,13 @@
     },
     "state:ME": {
       "last_check": {
-        "date": "2026-11-10",
-        "summary": "North Berwick: Press Herald says ban effective immediately (recorded). Eliot: ordinance PDF unreadable, no outlet states commencement; still open."
+        "date": "2026-11-17",
+        "summary": "Eliot commencement still unconfirmed: the town's Question 5 ordinance PDF is a scanned image with no extractable text, and no clerk notice or minutes found by search; no record added"
       },
       "follow_ups": [
         {
-          "due": "2026-11-17",
-          "what": "Eliot: confirm moratorium commencement/180-day window from town clerk or minutes"
+          "due": "2026-12-01",
+          "what": "Eliot: find a text source (clerk notice, Select Board minutes, local press) for when the Question 5 moratorium commenced and its 180-day window"
         },
         {
           "due": "2027-03-20",
@@ -592,6 +592,12 @@
       },
       "last_reviewed": "2026-11-15",
       "summary": "Denton moratorium: first reading Oct 27, 90-day hold proposed, vote as early as Dec 1 (Community Impact Oct 28); record updated. Fort Worth already current (Nov 11). Other TX records captured Oct-Nov, not re-checked."
+    },
+    "state:US": {
+      "blocked": {
+        "date": "2026-11-17",
+        "reason": "EL25-49 Nov 16 compliance deadline passed; no PJM Nov 2026 filing document found (pjm.com filings index is JS-rendered, guessed PDF paths 404, search shows only PJM's stated plan to file on or about Nov 16). Unblock with the filed PDF from pjm.com or FERC eLibrary, then update next_milestone."
+      }
     },
     "state:VA": {
       "follow_ups": [
