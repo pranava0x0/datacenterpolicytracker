@@ -6,15 +6,9 @@
       "summary": "Added Built Together (Oct 2, 2026): new $1B/5yr company_plan policy + 5 company-level claims (community_grants, education, energy x2, engagement) covering free community college, Modular Training Centers, energy-pricing/grid-cost commitment, Tier 4 backup generators, and ending government NDAs. Bumped companies.json summary + last_reviewed. No named community reaction yet (too fresh) — filed as a BACKLOG lead to re-check."
     },
     "company:anthropic": {
-      "follow_ups": [
-        {
-          "due": "2026-11-18",
-          "what": "Fluidstack TX/NY campuses: has a town been named? (not found Oct 21)"
-        }
-      ],
       "last_check": {
-        "date": "2026-11-06",
-        "summary": "Nov 6: fluidstack.io/blog post on Anthropic NY/TX campuses gives only state names; no town named. No change."
+        "date": "2026-11-18",
+        "summary": "Fluidstack TX/NY campuses: still no town named in first-party or primary sources (re-checked 2026-11-18); only speculative third-party site guesses (Abernathy TX, Colorado City TX, Somerset NY), not recorded."
       },
       "last_reviewed": "2026-10-26",
       "summary": "Infrastructure policy and newsroom checked; four company-wide verbatim commitments added. No new site or delivery evidence."
