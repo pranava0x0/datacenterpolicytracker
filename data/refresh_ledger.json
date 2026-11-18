@@ -45,15 +45,9 @@
     },
     "country:GB": {
       "last_check": {
-        "date": "2026-10-21",
-        "summary": "Oct 21: Microsoft terminated Nscale Loughton contract (DCK, Oct 19)."
-      },
-      "follow_ups": [
-        {
-          "due": "2026-11-18",
-          "what": "Epping Forest decision; Guardian UKPN timeline"
-        }
-      ]
+        "date": "2026-11-18",
+        "summary": "Epping Forest: Capacity (Jul 6, 2026) reports the council granted planning permission for Nscale's revised Loughton scheme 'last month' (June 2026); added as a news update. Guardian UKPN timeline not re-fetched."
+      }
     },
     "site:amazon-boardman-or": {
       "blocked": {
@@ -336,13 +330,13 @@
     "state:CO": {
       "follow_ups": [
         {
-          "due": "2026-11-18",
-          "what": "Moffat County: county minutes / Craig Daily Press for Oct 13 moratorium decision"
+          "due": "2026-12-02",
+          "what": "Moffat County: any moratorium decision or data-center regulations after the Nov 4 Planning Commission meeting? (Craig Daily Press / BOCC minutes)"
         }
       ],
       "last_check": {
-        "date": "2026-11-04",
-        "summary": "2026-11-04: search found no coverage of a Moffat County moratorium decision; Craig Daily Press and county minutes not reached."
+        "date": "2026-11-18",
+        "summary": "Moffat County: Craig Daily Press (Oct 14) says 'The county has yet to decide whether to pursue a temporary moratorium while drafting regulations'; no later decision found."
       }
     },
     "state:DE": {
@@ -411,15 +405,9 @@
     },
     "state:KY": {
       "last_check": {
-        "date": "2026-10-21",
-        "summary": "Prosperity One checked: nuclear campus, no data center named"
-      },
-      "follow_ups": [
-        {
-          "due": "2026-11-18",
-          "what": "Prosperity One (Lewis County nuclear, 6.6 GW): any co-located data center or named offtaker?"
-        }
-      ]
+        "date": "2026-11-18",
+        "summary": "Prosperity One re-checked 2026-11-18: coverage still names no data center, customer or offtaker; not a site record."
+      }
     },
     "state:ME": {
       "last_check": {
@@ -458,8 +446,8 @@
     "state:NC": {
       "follow_ups": [
         {
-          "due": "2026-11-18",
-          "what": "vance-county-nc-2026-09: did the Nov 13 special called meeting extend the moratorium? If so, new end date and vote."
+          "due": "2026-12-14",
+          "what": "vance-county-nc-2026-09: extended moratorium expired Dec 13 — extended again, lapsed, or replaced by the UDO data-center amendment?"
         },
         {
           "due": "2027-10-19",
@@ -467,8 +455,8 @@
         }
       ],
       "last_check": {
-        "date": "2026-11-14",
-        "summary": "Vance County 60-day moratorium ended Nov 13 unless extended; commissioners held a Nov 13 special called meeting on an extension (WIZS Nov 6), outcome not yet reported. Added Henderson city 6-month moratorium (4-3, Nov 9)."
+        "date": "2026-11-18",
+        "summary": "Vance County moratorium extended 30 days at Nov 13 special called meeting (unanimous, Hester absent); now expires Dec 13, 2026 (WIZS Nov 16)."
       },
       "blocked": {
         "date": "2026-10-09",
@@ -478,8 +466,8 @@
     "state:NM": {
       "follow_ups": [
         {
-          "due": "2026-11-18",
-          "what": "Grant County NM: county minutes / Silver City Daily Press for the moratorium meeting date"
+          "due": "2027-10-23",
+          "what": "grant-county-nm-2026-10: one-year moratorium from Oct 22, 2026 ends — lapsed, extended, or replaced by regulations?"
         }
       ],
       "blocked": {
@@ -487,8 +475,8 @@
         "reason": "Grant County Oct 8 action: no coverage found 2026-10-09; Ordinance 4-2026 (2-year) already exists, relation unclear; check county minutes / Chronicle-Tribune"
       },
       "last_check": {
-        "date": "2026-11-04",
-        "summary": "2026-11-04: Grant County NM meeting date still unconfirmed; ABQ Journal pieces say only 'Thursday' (pub Oct 22 or 23 inconsistent). Ordinance 4-2026 in search results is Grant County, Indiana, not NM."
+        "date": "2026-11-18",
+        "summary": "Grant County one-year moratorium dated: enacted Thu Oct 22, 2026, 4-1 (Albuquerque Journal, published that day); record added."
       }
     },
     "state:OH": {
@@ -539,8 +527,8 @@
     },
     "state:PA": {
       "last_check": {
-        "date": "2026-10-21",
-        "summary": "SB 1359, HB 2496 unchanged"
+        "date": "2026-11-18",
+        "summary": "PA PUC postponed the Nov 17 large-load cost-allocation technical conference (Secretarial Letter Oct 28, M-2026-3065062) pending PJM/FERC action; no new date. Next: Jan 28, 2027 public meeting."
       }
     },
     "state:SC": {
@@ -597,18 +585,28 @@
       "blocked": {
         "date": "2026-11-17",
         "reason": "EL25-49 Nov 16 compliance deadline passed; no PJM Nov 2026 filing document found (pjm.com filings index is JS-rendered, guessed PDF paths 404, search shows only PJM's stated plan to file on or about Nov 16). Unblock with the filed PDF from pjm.com or FERC eLibrary, then update next_milestone."
-      }
+      },
+      "last_check": {
+        "date": "2026-11-18",
+        "summary": "EL25-49: no PJM Nov 16 compliance filing or FERC action found (pjm.com filing index JS-rendered; search shows docket only through the Oct 14 PJM answer)."
+      },
+      "follow_ups": [
+        {
+          "due": "2026-12-02",
+          "what": "ferc-pjm-colocated-el25-49: find PJM's November compliance filing (FERC eLibrary EL25-49) and update next_milestone"
+        }
+      ]
     },
     "state:VA": {
       "follow_ups": [
         {
-          "due": "2026-11-18",
-          "what": "Check Loudoun Nov 17 Board outcome"
+          "due": "2026-11-20",
+          "what": "loudoun-county-va-2026-09: Nov 17 Board vote on the pause resolution — adopted, amended or deferred? (loudoun.gov newsflash, Loudoun Times-Mirror)"
         }
       ],
       "last_check": {
-        "date": "2026-10-21",
-        "summary": "Loudoun pause resolution deferred to Nov 17; Spotsylvania Crossroads campus filed as lead"
+        "date": "2026-11-18",
+        "summary": "Loudoun Nov 17 pause-resolution outcome not yet reported (search + county newsflash checked 2026-11-18, the morning after); record stays proposed."
       }
     }
   }

@@ -4176,13 +4176,17 @@
     {
       "enacted_date": "2026-09-14",
       "effective_date": "2026-09-14",
-      "duration_months": 2,
+      "duration_months": 3,
       "power_threshold_mw": null,
       "key_reasons": [],
       "resources": [
         {
           "url": "https://www.hendersondispatch.com/archives/county-adopts-60-day-moratorium/article_d7e823aa-00c3-527e-8cd0-014b0cceebd8.html",
           "title": "The Daily Dispatch (Henderson) — County adopts 60-day moratorium"
+        },
+        {
+          "url": "https://wizs.com/vance-commissioners-vote-to-extend-data-center-moratorium/",
+          "title": "WIZS — Vance Commissioners Vote To Extend Data Center Moratorium (Nov 16, 2026)"
         }
       ],
       "bill_number": null,
@@ -4196,14 +4200,14 @@
       "city_council_vote": "5-2",
       "failure_reason": null,
       "session": "2026",
-      "captured_at": "2026-11-14",
+      "captured_at": "2026-11-18",
       "id": "vance-county-nc-2026-09",
       "jurisdiction": "Vance County",
       "jurisdiction_type": "county",
       "state_code": "NC",
       "status": "enacted",
-      "duration_description": "60 days — terminates November 13, 2026 or upon adoption of a data-center zoning text amendment, whichever comes first",
-      "summary": "The Vance County Board of Commissioners voted 5-2 on Monday, September 14, 2026 (Commissioners Leo Kelly and Valencia Perry opposed) to adopt a 60-day moratorium on new data center development, effective upon adoption and ending November 13, 2026 or upon adoption of an amendment to the county zoning ordinance's data-center requirements. The motion by Commissioner Tommy Hester followed public opposition to Natelli Holdings' proposed 900-megawatt campus off US 158; residents asked for a 24-month pause. The Board 'reserves the right to extend, amend, or repeal this moratorium as deemed necessary in accordance with N.C.G.S. 160D-107.'",
+      "duration_description": "60 days, originally ending November 13, 2026 or upon adoption of a data-center zoning text amendment, whichever came first; extended by 30 days at a special called meeting on Friday, November 13, 2026 (unanimous; Commissioner Tommy Hester absent). The extension expires December 13, 2026.",
+      "summary": "The Vance County Board of Commissioners voted 5-2 on Monday, September 14, 2026 (Commissioners Leo Kelly and Valencia Perry opposed) to adopt a 60-day moratorium on new data center development, effective upon adoption and ending November 13, 2026 or upon adoption of an amendment to the county zoning ordinance's data-center requirements. The motion by Commissioner Tommy Hester followed public opposition to Natelli Holdings' proposed 900-megawatt campus off US 158; residents asked for a 24-month pause. The Board 'reserves the right to extend, amend, or repeal this moratorium as deemed necessary in accordance with N.C.G.S. 160D-107.' At a special called meeting on Friday, November 13, 2026, the day the original moratorium was to end, the Board voted unanimously to extend it by 30 days, to December 13, 2026 (WIZS, Nov 16).",
       "source_url": "https://wizs.com/towntalk-vance-county-commissioners-adopt-60-day-moratorium/",
       "source_title": "WIZS — TownTalk: Vance County Commissioners Adopt 60-Day Data Center Moratorium"
     },
@@ -9005,6 +9009,38 @@
       "source_title": "City of Edmond — City Council and PWA minutes, June 8, 2026",
       "captured_at": "2026-11-11",
       "duration_months": 7
+    },
+    {
+      "id": "grant-county-nm-2026-10",
+      "jurisdiction": "Grant County",
+      "jurisdiction_type": "county",
+      "state_code": "NM",
+      "status": "enacted",
+      "enacted_date": "2026-10-22",
+      "effective_date": null,
+      "duration_months": 12,
+      "duration_description": "1 year",
+      "power_threshold_mw": null,
+      "key_reasons": [
+        "water"
+      ],
+      "summary": "The Grant County Board of Commissioners approved a one-year data center moratorium as an ordinance on a 4-1 vote at a meeting in Silver City on Thursday, October 22, 2026 (Commissioner Thomas Shelley voted no). It prohibits \"the establishment, construction, development, expansion, enlargement, operation, or commencement of any Data Center or Direct Supporting Infrastructure\" while the county considers regulations. Commissioner Nancy Stephens proposed it; it followed opposition to Granite Renewables' proposed solar farm and data center near Hachita, with speakers raising groundwater, air emissions, and noise and light pollution.",
+      "source_url": "https://www.abqjournal.com/news/grant-county-enacts-new-mexicos-latest-data-center-moratorium/3147278",
+      "source_title": "Albuquerque Journal — Grant County enacts New Mexico's latest data center moratorium (Oct 22, 2026)",
+      "captured_at": "2026-11-18",
+      "resources": [
+        {
+          "url": "https://www.abqjournal.com/news/nm-counties-pass-data-center-moratoriums-what-next/3146749",
+          "title": "Albuquerque Journal — NM counties pass data center moratoriums: what next? (Oct 23, 2026)"
+        }
+      ],
+      "sponsors": [
+        "Commissioner Nancy Stephens"
+      ],
+      "enacted_by": "Grant County Board of Commissioners",
+      "city_council_vote": "4-1",
+      "policy_type": "traditional moratorium",
+      "session": "2026"
     }
   ]
 }
