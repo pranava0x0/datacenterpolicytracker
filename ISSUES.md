@@ -1,5 +1,5 @@
 # ISSUES.md — Data Audit Report
-Generated: 2026-11-17
+Generated: 2026-11-18
 Total projects needing attention: 166
 
 ## Critical Missing Commitment Details
@@ -179,28 +179,27 @@ Projects with important gaps:
 - **xai-southaven-ms** (construction): claimed_jobs, power_mw
 
 ## Stale Pending Records
-(22 records)
+(21 records)
 
 `proposed` moratoriums/tariffs/policies or `pending` rate cases not re-verified in 21+ days — status may have changed (signed/vetoed/enacted/rejected). Re-check source and update:
-- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 56 days ago
-- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 53 days ago
-- **pa-puc-large-load-cost-allocation-2026** (rate_case, PA): captured 2026-10-02, 46 days ago
-- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 40 days ago
-- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 30 days ago
-- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 29 days ago
-- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 29 days ago
-- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 29 days ago
-- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 29 days ago
-- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 29 days ago
-- **nc-ncuc-duke-settlement-2026** (rate_case, NC): captured 2026-10-19, 29 days ago
-- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 29 days ago
-- **front-royal-va-datacenter-ban-proposal-2026** (policy, Front Royal, VA): captured 2026-10-19, 29 days ago
-- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 29 days ago
-- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 29 days ago
-- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 27 days ago
-- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 27 days ago
-- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 27 days ago
-- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 27 days ago
-- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 27 days ago
-- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 27 days ago
-- **chicago-city-il-2026-09** (moratorium, Chicago): captured 2026-10-26, 22 days ago
+- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 57 days ago
+- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 54 days ago
+- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 41 days ago
+- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 31 days ago
+- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 30 days ago
+- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 30 days ago
+- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 30 days ago
+- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 30 days ago
+- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 30 days ago
+- **nc-ncuc-duke-settlement-2026** (rate_case, NC): captured 2026-10-19, 30 days ago
+- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 30 days ago
+- **front-royal-va-datacenter-ban-proposal-2026** (policy, Front Royal, VA): captured 2026-10-19, 30 days ago
+- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 30 days ago
+- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 30 days ago
+- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 28 days ago
+- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 28 days ago
+- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 28 days ago
+- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 28 days ago
+- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 28 days ago
+- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 28 days ago
+- **chicago-city-il-2026-09** (moratorium, Chicago): captured 2026-10-26, 23 days ago

@@ -2974,12 +2974,22 @@
       "announced_year": 2024,
       "source_url": "https://datacentrereview.com/2026/03/nscale-latest-to-face-public-backlash-over-proposed-data-centre/",
       "source_title": "Data Centre Review — Nscale latest to face public backlash over proposed data centre",
-      "captured_at": "2026-10-21",
+      "captured_at": "2026-11-18",
       "source_lang": "en",
       "notes": "Data Centre Review reports the Essex scheme received outline approval in 2024 (announced_year is that year) and that the revised scheme is 50% higher than originally proposed and includes 50% more internal capacity. The final decision lies with Epping Forest District Council. An Nscale spokesperson told The Telegraph it expects construction to begin in Q2 2026 and the site to be operational in Q2 2027.",
       "subdivision": "GB-ENG",
       "locality": "Loughton, Essex",
       "updates": [
+        {
+          "date": "2026-07-06",
+          "kind": "news",
+          "title": "Reported: Epping Forest District Council granted planning permission for the revised scheme",
+          "summary": "Capacity reported on July 6, 2026 that \"Epping Forest district council gave planning permission for the site last month\" for Nscale's larger, more powerful revised plans, after Nscale \"had previously secured planning permission for a data centre on the site, a scaffolding yard\". The council's own decision notice was not located.",
+          "authority": "Epping Forest District Council",
+          "upcoming": false,
+          "source_url": "https://capacityglobal.com/news/nscale-uk-data-centre-planning-despite-objection/",
+          "source_title": "Capacity — Nscale UK data centre gets planning despite objection (July 6, 2026)"
+        },
         {
           "date": "2026-10-19",
           "kind": "news",
