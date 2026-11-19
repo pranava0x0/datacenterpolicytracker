@@ -37,6 +37,10 @@
       "last_reviewed": "2026-11-16",
       "summary": "Checked q.com/news: the six latest items (Maricopa partnership, Fayette $14M weatherization, Station 93, Lancium Turkey, Towaliga, co-CEO interview) are all already in the seed. Fetched the Jul 23 2026 statement (Eagle Mountain road claim added under that site). 24-campus lead in BACKLOG left open."
     },
+    "company:wonder-valley": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked KUER, Deseret, SL Tribune. Added 3 site timeline updates (May 28 referendum rejection, June 3 lawsuit, July 29 MIDA pause); last_reviewed bumped. Dedicated page is a PR Newswire release; no new first-party claims found."
+    },
     "country:GB": {
       "last_check": {
         "date": "2026-11-18",
@@ -73,6 +77,10 @@
       "last_reviewed": "2026-09-27",
       "summary": "Checked status/figures (unchanged), IDEM wetlands and dewatering developments since 2026-05-14. Added 2 CommunityResponses: St. Joseph Co. Drainage Board's 2026-05-04 approval of Amazon's altered dewatering proposal (mixed, local_government) and a 2026-07-09 IDEM public hearing on Amazon's new wetlands-fill permit application where NGOs urged denial (negative, ngo). Appended a dated notes sentence on the pending wetlands permit (comment period closed 2026-07-17, decision pending)."
     },
+    "site:aws-ridgeland-ms": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked Amazon Apr 9 release, MPB, MFP. 1B/700 jobs confirmed (MPB); notes reworded to Amazon's verbatim 100%-of-costs language; added water-use reporting; lead on private city water agreement."
+    },
     "site:coreweave-hammond-in": {
       "last_reviewed": "2026-10-29",
       "summary": "Re-fetched city page (live, no $ figure); sourced up-to-$4M/yr and 35-90 jobs to Inside Indiana Business; no 2026 NIPSCO update found; notes appended"
@@ -89,6 +97,10 @@
       "last_reviewed": "2026-10-31",
       "summary": "Search found only Apr 2026 abatement/reaction coverage already on record; no construction start found. Unchanged."
     },
+    "site:google-botetourt-va": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked county Google Data Center page + botetourtcountydatacenter.com. Status announced→construction (grading began Sept 2026); announced_date 2025-06-24; acreage 312; project_page_url set; notes appended (air-cooled bldg 1, performance agreement). Lead: performance agreement as Policy."
+    },
     "site:google-council-bluffs-ia": {
       "last_reviewed": "2026-09-29",
       "summary": "Checked status/figures, links, ratepayer eligibility (pre-pledge, none due), and news since 2026-05-14. Fixed a dead source_url (datacenters.google/locations/council-bluffs/ now 404s) to the live iowa page. Re-captured 3 claims with updated figures (investment $6.8B->$20B statewide, 2025 economic activity $2.1B->$2.7B, education orgs/Iowans updated); water grade-stabilization claim unchanged. Added a mixed CommunityResponse: the mayor's June 2026 moratorium request was unanimously declined by city council. Filed a lead for an untracked Cedar Rapids Google site."
@@ -96,6 +108,10 @@
     "site:google-franklin-furnace-oh": {
       "last_reviewed": "2026-11-07",
       "summary": "Re-checked WSAZ (May 14 info fair): 500,000 sq ft, $1B, 100% electric still stated; no post-May news found. 792-acre figure unverified (only search listing), left as lead."
+    },
+    "site:google-gray-county-tx": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked Google blog + June 2026 announcement PDF, POWER Magazine. Softened water wording to Google's 'domestic uses like restrooms'; Caprock hub and status confirmed. 840 MW demand figure seen only in search synthesis, not recorded."
     },
     "site:google-lima-oh": {
       "blocked": {
@@ -144,6 +160,10 @@
     "site:meta-lebanon-in": {
       "last_reviewed": "2026-11-11",
       "summary": "Re-fetched Meta release (live); no Oct-Nov 2026 news found; added Boone REMC $1M/yr x20 fund to notes; filed lead on unsourced $45M roads figure and 'first solo IN campus' wording."
+    },
+    "site:meta-montgomery-al": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Sourced the Sept 2025 expansion (AL Reporter: >$1.5B, ~1.3M sq ft, 1,500+ peak construction, 100+ jobs) in notes. claimed_jobs mixing construction/operating left as a lead. No newer status found this run."
     },
     "site:meta-newton-ga": {
       "blocked": {
@@ -228,6 +248,10 @@
     "site:qts-cedar-rapids-ia": {
       "last_reviewed": "2026-11-01",
       "summary": "Checked Epoch + search; appended note on QTS late-2026 phase-1 target vs record's late-2028; status unchanged."
+    },
+    "site:qts-clinton-ia": {
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked QTS Clinton page, WVIK, IPR. Investment 1.5B→10B; added June 9 council 5-2 vote rejecting moratorium (response); no site plan filed as of June; Aug 11 ordinance outcome is a lead."
     },
     "site:qts-eagle-mountain-ut": {
       "last_reviewed": "2026-11-16",
@@ -423,7 +447,9 @@
       "last_check": {
         "date": "2026-10-21",
         "summary": "SB 1018 unchanged; Schoolcraft Twp lead"
-      }
+      },
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked Marshall lead (no source found), Michigan Public Nov 10. Added Romulus 180-day moratorium (Nov 9). Leads: Saginaw Township ordinance (Policy candidate), Benson statewide moratorium call. michigan-state-2026-06 recently captured, left."
     },
     "state:MN": {
       "last_check": {
@@ -440,6 +466,10 @@
     "state:NC": {
       "follow_ups": [
         {
+          "due": "2026-11-26",
+          "what": "nc-ncuc-duke-settlement-2026: fetch the NCUC order document and record approval"
+        },
+        {
           "due": "2026-12-14",
           "what": "vance-county-nc-2026-09: extended moratorium expired Dec 13 — extended again, lapsed, or replaced by the UDO data-center amendment?"
         },
@@ -452,10 +482,8 @@
         "date": "2026-11-18",
         "summary": "Vance County moratorium extended 30 days at Nov 13 special called meeting (unanimous, Hester absent); now expires Dec 13, 2026 (WIZS Nov 16)."
       },
-      "blocked": {
-        "date": "2026-10-09",
-        "reason": "Beaufort NC Oct 5 outcome and Cary enactment date: no citable report found 2026-10-09; check county minutes / Washington NC outlets"
-      }
+      "last_reviewed": "2026-11-19",
+      "summary": "Checked Duke DEC rate case (NCUC order reported Nov 17 by WFAE/WUNC; order doc not fetched, status held pending), Pitt County hearing, Cumberland moratorium term. Updated nc-ncuc-duke-settlement-2026; 3 leads added."
     },
     "state:NM": {
       "follow_ups": [
@@ -581,8 +609,8 @@
         "reason": "EL25-49 Nov 16 compliance deadline passed; no PJM Nov 2026 filing document found (pjm.com filings index is JS-rendered, guessed PDF paths 404, search shows only PJM's stated plan to file on or about Nov 16). Unblock with the filed PDF from pjm.com or FERC eLibrary, then update next_milestone."
       },
       "last_check": {
-        "date": "2026-11-18",
-        "summary": "EL25-49: no PJM Nov 16 compliance filing or FERC action found (pjm.com filing index JS-rendered; search shows docket only through the Oct 14 PJM answer)."
+        "date": "2026-11-19",
+        "summary": "EL25-49: PJM filed Nov 16, 2026 (ER27-522-000, partly on compliance with the Co-Located Load Order; proposed effective Jan 16, 2027; concurrent filing proposes Mar 16, 2027 for new Large Load transmission products). FERC action next, no date announced."
       },
       "follow_ups": [
         {

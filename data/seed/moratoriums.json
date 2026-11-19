@@ -9041,6 +9041,24 @@
       "city_council_vote": "4-1",
       "policy_type": "traditional moratorium",
       "session": "2026"
+    },
+    {
+      "id": "romulus-mi-2026-11",
+      "jurisdiction": "Romulus",
+      "jurisdiction_type": "city",
+      "status": "enacted",
+      "enacted_date": "2026-11-09",
+      "effective_date": "2026-11-09",
+      "duration_months": 6,
+      "duration_description": "180 days from November 9, 2026; took effect immediately",
+      "power_threshold_mw": null,
+      "key_reasons": [],
+      "summary": "Romulus City Council unanimously approved a 180-day moratorium on approval of any data center development, to be used to craft permanent data center regulations for the city. No data center had been proposed there; the pause was passed as a preventive measure.",
+      "source_url": "https://www.michiganpublic.org/politics-government/2026-11-10/data-center-restrictions-pass-in-saginaw-township-and-romulus",
+      "source_title": "Michigan Public — Data center restrictions pass in Saginaw Township and Romulus (Nov. 10, 2026)",
+      "captured_at": "2026-11-19",
+      "city_council_vote": "unanimous",
+      "state_code": "MI"
     }
   ]
 }

@@ -2585,6 +2585,17 @@
       "source_url": "https://www.timesleader.com/news/1749147/salem-twp-approves-road-vacations-final-master-plan-for-qts-data-center-campus",
       "source_title": "Times Leader — Salem Twp. approves road vacations, final master plan for QTS Data Center campus",
       "single_source": true
+    },
+    {
+      "id": "resp-qts-clinton-council-rejects-moratorium-2026",
+      "project_id": "qts-clinton-ia",
+      "date": "2026-06-09",
+      "stance": "mixed",
+      "constituency": "local_government",
+      "summary": "At its June 9, 2026 regular meeting the Clinton City Council voted 5-2 to drop a proposed moratorium on data centers after hours of residents mostly urging one; council members said QTS had not submitted a site plan and that any development would need council and planning commission approval.",
+      "source_url": "https://www.wvik.org/wvik-top-stories/2026-06-10/majority-of-clinton-city-council-vote-down-data-center-moratorium",
+      "source_title": "WVIK — Majority of Clinton City Council vote down data center moratorium (June 10, 2026)",
+      "single_source": false
     }
   ]
 }

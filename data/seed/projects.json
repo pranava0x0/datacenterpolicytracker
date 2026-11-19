@@ -277,15 +277,15 @@
       "lon": -90.27,
       "status": "announced",
       "announced_year": 2026,
-      "claimed_investment_usd": 1500000000,
+      "claimed_investment_usd": 10000000000,
       "claimed_jobs": null,
-      "notes": "Proposed QTS campus on ~3,400 acres zoned M5 Industrial, west of Valley Oaks Golf Course and east of South 34th Street — ten ~50,000 sq ft buildings, ~$1.5B. Proposed May 2026; not yet approved. A packed May 26 city council meeting drew resident concern over water, electricity, health, and transparency, and the council agreed to place a 120-day data-center moratorium on its June 3, 2026 agenda. No verbatim first-party QTS quote has been published yet (coverage paraphrases QTS), so no Claim is recorded for this site.",
+      "notes": "Proposed QTS campus on ~3,400 acres zoned M5 Industrial, west of Valley Oaks Golf Course and east of South 34th Street — ten ~50,000 sq ft buildings, ~$1.5B. Proposed May 2026; not yet approved. A packed May 26 city council meeting drew resident concern over water, electricity, health, and transparency, and the council agreed to place a 120-day data-center moratorium on its June 3, 2026 agenda. No verbatim first-party QTS quote has been published yet (coverage paraphrases QTS), so no Claim is recorded for this site. Update (2026-11-19): Iowa Public Radio (July 16, 2026) reports QTS is eyeing Clinton for a $10 billion hyperscale campus, and WVIK (June 10, 2026) reports QTS has suggested a 5-million-square-foot facility on nearly 1,000 acres costing $10 billion; the earlier ~$1.5B and ~3,400-acre figures are superseded in the investment field. June 9, 2026: the city council voted 5-2 to drop the proposed moratorium; council members said QTS had not submitted a site plan.",
       "source_url": "https://www.clintonherald.com/news/local_news/clinton-city-council-considering-data-center-moratorium/article_525da494-9a5c-4940-8456-dec2e25a4b4a.html",
       "source_title": "Clinton City Council considering data center moratorium (Clinton Herald)",
-      "captured_at": "2026-05-31",
+      "captured_at": "2026-11-19",
       "offtaker": "QTS",
       "at_a_glance": {
-        "energy": "$1.5B proposed campus — annexation approval pending"
+        "energy": "$10B proposed campus — no site plan submitted (June 2026)"
       },
       "ratepayer": {
         "status": "affirmed",
@@ -1373,7 +1373,7 @@
       "notes": "Joint venture between O'Leary Digital Limited (Kevin O'Leary, chairman; Paul Palandjian, CEO) and West GenCo LLC, announced Feb 17, 2026. Located in the Golden Spike District of Box Elder County. On May 4, 2026 the Box Elder County Commission approved the Stratos Project Area (~40,000 acres of private land + ~1,200 acres of military/state parcels) at Phase 1 ~3 GW scaling to a long-term 7.5–9 GW buildout — without a completed environmental review. Construction now expected to begin 2028. Self-generating power via on-site gas turbines ('Shadow Grid' model, Ruby Pipeline natural gas). Also referred to as the 'Stratos Project.'",
       "source_url": "https://www.prnewswire.com/news-releases/oleary-digital-forms-joint-venture-to-advance-7-5-gw-wonder-valley-utah-campus-alberta-permitting-underway-302689592.html",
       "source_title": "O'Leary Digital Forms Joint Venture to Advance 7.5 GW Wonder Valley Utah Campus; Alberta Permitting Underway",
-      "captured_at": "2026-10-19",
+      "captured_at": "2026-11-19",
       "project_page_url": "https://www.prnewswire.com/news-releases/oleary-digital-forms-joint-venture-to-advance-7-5-gw-wonder-valley-utah-campus-alberta-permitting-underway-302689592.html",
       "acreage": 40000,
       "power_mw": 3000,
@@ -1404,6 +1404,16 @@
           "source_title": "Herald Extra — Renderings show vision for massive data center proposed in Utah, but permits could take years"
         },
         {
+          "date": "2026-05-28",
+          "kind": "news",
+          "title": "Reported: county rejects both referendum applications; opponents vow appeal",
+          "summary": "KUER reported that Box Elder County rejected two referendum attempts against the Stratos Project approvals; county attorney Stephen Hadfield said he was legally bound to reject the applications and anticipated an appeal to the state courts.",
+          "authority": "Box Elder County Attorney",
+          "upcoming": false,
+          "source_url": "https://www.kuer.org/politics-government/2026-05-28/box-elder-county-rejects-data-center-referendums-but-opponents-arent-giving-up",
+          "source_title": "KUER — Box Elder County rejects data center referendums, but opponents aren't giving up"
+        },
+        {
           "date": "2026-05-29",
           "kind": "news",
           "title": "Governor Cox issues executive order on large data center reviews",
@@ -1422,6 +1432,26 @@
           "upcoming": false,
           "source_url": "https://www.kpcw.org/state-regional/2026-06-01/utah-leaders-to-increase-standards-walk-back-data-center-footprint",
           "source_title": "KPCW — Utah leaders to increase standards, walk back data center footprint"
+        },
+        {
+          "date": "2026-06-03",
+          "kind": "lawsuit",
+          "title": "Referendum sponsors sue in 1st District Court to overturn county attorney's rejection",
+          "summary": "Data center opponents filed suit in 1st District Court in Brigham City asking that the county attorney's determination rejecting their referendum applications be overturned.",
+          "authority": "Utah 1st District Court",
+          "upcoming": false,
+          "source_url": "https://www.deseret.com/utah/2026/06/03/box-elder-county-data-center-foes-sue-to-reverse-decision-stalling-their-efforts-against-project/",
+          "source_title": "Deseret News/KSL — Box Elder County data center foes sue to reverse decision (June 3, 2026)"
+        },
+        {
+          "date": "2026-07-29",
+          "kind": "news",
+          "title": "Reported: MIDA says it has paused action; O'Leary says work continues",
+          "summary": "The Salt Lake Tribune reported that Utah's Military Installation Development Authority, which created the Stratos project area, says it has paused action and is awaiting permit requests, while Kevin O'Leary said his company's work on the project is still in full swing.",
+          "authority": "Military Installation Development Authority",
+          "upcoming": false,
+          "source_url": "https://sltrib.com/news/2026/07/29/oleary-box-elder-county-data",
+          "source_title": "Salt Lake Tribune — O'Leary: Box Elder County data center is 'full steam ahead' despite hurdles (July 29, 2026)"
         }
       ]
     },
@@ -3861,10 +3891,10 @@
       "announced_year": 2026,
       "claimed_investment_usd": 11000000000,
       "claimed_jobs": 700,
-      "notes": "Part of Amazon's $25B Mississippi commitment announced April 9, 2026. Expansion of Amazon's existing Madison County operations cluster in Ridgeland, served by Entergy Mississippi. Amazon pays 100% of all grid infrastructure and upgrade costs under the same Entergy Mississippi agreement covering all Amazon's Mississippi campuses.",
+      "notes": "Part of Amazon's $25B Mississippi commitment announced April 9, 2026. Expansion of Amazon's existing Madison County operations cluster in Ridgeland, served by Entergy Mississippi. Amazon says it \"worked with Entergy Mississippi to ensure we pay 100% of the costs associated with our new data center campuses\" (Amazon, Apr 9 2026). MPB News (Apr 9 2026) reports the $11B Madison County expansion is expected to create 700 jobs. Mississippi Free Press (Apr 2026) reports Amazon estimates the Ridgeland facility will use 93 million gallons of water annually upon completion, and that a private agreement between the company and the city could allow significantly more water use at the site.",
       "source_url": "https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers",
       "source_title": "Amazon — $25 billion Mississippi data centers announcement (Apr 2026)",
-      "captured_at": "2026-06-01",
+      "captured_at": "2026-11-19",
       "offtaker": "Amazon",
       "ratepayer": {
         "status": "contested",
@@ -3897,7 +3927,7 @@
       "announced_date": "2026-04-09",
       "at_a_glance": {
         "jobs": "$11B / 700 direct jobs — Madison County expansion",
-        "energy": "100% electricity cost coverage claimed (Entergy Mississippi) — contested by May 2026 Synapse ratepayer report"
+        "energy": "Amazon claims it pays 100% of new campus costs (Entergy Mississippi) — contested by May 2026 Synapse ratepayer report"
       },
       "serving_utility": "Entergy Mississippi",
       "serving_utility_signatory_id": "entergy-corporation",
@@ -4203,10 +4233,10 @@
       "announced_year": 2024,
       "claimed_investment_usd": 1500000000,
       "claimed_jobs": 1100,
-      "notes": "715,000 sq ft initial building off I-65, across from Hyundai's Alabama plant. Investment expanded from $800M (May 2024 announcement) to $1.5B (September 2025) when Meta added two more buildings, targeting 1.3M sq ft total. AI-optimized campus powered by 100% Alabama renewable energy (227 MW PPA). 100+ operational jobs; 1,000+ peak construction workers. First phase targeted for commissioning late 2026.",
+      "notes": "715,000 sq ft initial building off I-65, across from Hyundai's Alabama plant. Investment expanded from $800M (May 2024 announcement) to $1.5B (September 2025) when Meta added two more buildings, targeting 1.3M sq ft total. AI-optimized campus powered by 100% Alabama renewable energy (227 MW PPA). 100+ operational jobs; 1,000+ peak construction workers. First phase targeted for commissioning late 2026. Expansion source (2026-11-19): Alabama Reporter (Sept 24, 2025) reports Meta plans to invest in two new buildings, bringing its total Montgomery-area investment to more than $1.5 billion and the footprint to nearly 1.3 million square feet; the Montgomery Chamber of Commerce cited more than 1,500 skilled trade workers at peak construction, and the Department of Commerce and Meta expect more than 100 jobs once constructed (https://www.alreporter.com/2025/09/24/meta-to-expand-montgomery-data-center-upping-local-investments-to-1-5-billion).",
       "source_url": "https://governor.alabama.gov/newsroom/2024/05/governor-ivey-announces-meta-plans-to-build-800-million-next-generation-data-center-in-montgomery/",
       "source_title": "Governor Ivey Announces Meta Plans to Build $800 Million Data Center in Montgomery (May 2024)",
-      "captured_at": "2026-06-05",
+      "captured_at": "2026-11-19",
       "project_page_url": null,
       "acreage": null,
       "power_mw": null,
@@ -4225,19 +4255,20 @@
       "country": "US",
       "lat": 37.4168,
       "lon": -79.8739,
-      "status": "announced",
+      "status": "construction",
       "announced_year": 2025,
       "claimed_investment_usd": null,
       "claimed_jobs": null,
-      "notes": "Three-building campus in Botetourt County (Roanoke Valley), VA. Approximately 300,000 sq ft per building; site grading expected before end of 2026, first building targeted for completion around 2028. County projected to receive $30M+ in annual tax revenue. Google secured a PPA for 80 MW Rocky Forge Wind (Virginia's first utility-scale wind project). Up to 8 million gallons per day water use anticipated. Google contributed $4M to county infrastructure initiatives at time of announcement.",
+      "notes": "Three-building campus in Botetourt County (Roanoke Valley), VA. Approximately 300,000 sq ft per building; site grading expected before end of 2026, first building targeted for completion around 2028. County projected to receive $30M+ in annual tax revenue. Google secured a PPA for 80 MW Rocky Forge Wind (Virginia's first utility-scale wind project). Up to 8 million gallons per day water use anticipated. Google contributed $4M to county infrastructure initiatives at time of announcement. Update (2026-11-19, Botetourt County project page): the county issued the grading plans and land disturbance permit in August 2026 and grading began at the site during the second week of September 2026; on July 22 Google announced it would use air-cooled technology on the first data center building. The county EDA approved a performance agreement on June 20, 2025, and the Board of Supervisors approved supporting it on June 24, 2025, the day the project was publicly announced; Google purchased a 312-acre parcel for $14,055,406.37.",
       "source_url": "https://www.botetourtva.gov/1021/Google-Data-Center",
       "source_title": "Google Data Center — Botetourt County, Virginia Government",
-      "captured_at": "2026-06-05",
-      "project_page_url": null,
-      "acreage": null,
+      "captured_at": "2026-11-19",
+      "project_page_url": "https://www.botetourtcountydatacenter.com/",
+      "acreage": 312,
       "power_mw": null,
       "gpu_count": null,
-      "offtaker": "Google"
+      "offtaker": "Google",
+      "announced_date": "2025-06-24"
     },
     {
       "id": "google-clay-county-mo",
@@ -4293,10 +4324,10 @@
       "announced_date": "2026-06-04",
       "claimed_investment_usd": null,
       "claimed_jobs": null,
-      "notes": "Co-located data center and 1 GW+ renewable energy campus spanning Gray County and Roberts County in the Texas Panhandle. Google acquired Intersect Power (March 2026) to develop the on-site wind, solar, battery storage, and firming gas generation. Air-cooled design — zero water consumed in operations. Caprock Workforce Hub: 800-acre residential campus in Wheeler County housing ~3,500 construction workers. $10M Texas Water Impact Fund commitment for community water infrastructure. Groundbreaking announced June 4, 2026.",
+      "notes": "Co-located data center and 1 GW+ renewable energy campus spanning Gray County and Roberts County in the Texas Panhandle. Google acquired Intersect Power (March 2026) to develop the on-site wind, solar, battery storage, and firming gas generation. Air-cooled design — Google says the Gray County facility will use advanced air-cooling technology, limiting water consumption to small-scale domestic uses like restrooms. Caprock Workforce Hub: 800-acre residential campus in Wheeler County housing ~3,500 construction workers. $10M Texas Water Impact Fund commitment for community water infrastructure. Groundbreaking announced June 4, 2026.",
       "source_url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/meitner-energy-center/",
       "source_title": "Google Blog — Meitner Energy Center (June 4, 2026)",
-      "captured_at": "2026-06-05",
+      "captured_at": "2026-11-19",
       "project_page_url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/meitner-energy-center/",
       "acreage": null,
       "power_mw": 1000,
