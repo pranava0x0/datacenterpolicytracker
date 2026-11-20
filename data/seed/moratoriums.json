@@ -4738,8 +4738,8 @@
       "source_title": "Dougherty County, Georgia — Dougherty County Approves 45-Day Moratorium on Data Center Apps"
     },
     {
-      "enacted_date": null,
-      "effective_date": null,
+      "enacted_date": "2026-11-17",
+      "effective_date": "2026-09-15",
       "duration_months": 12,
       "power_threshold_mw": null,
       "key_reasons": [],
@@ -4755,25 +4755,29 @@
         {
           "url": "https://www.loudoun.gov/m/newsflash/Home/Detail/10938",
           "title": "Loudoun County, Virginia — Board of Supervisors to Defer Discussion of Proposed Pause on Some Data Center Applications (posted October 20, 2026)"
+        },
+        {
+          "url": "https://www.bisnow.com/news/washington-dc/data-center-development/loudoun-says-no-new-data-center-approvals-for-a-year",
+          "title": "Bisnow — Loudoun Supervisors Halt New Data Center Approvals For Up To One Year (Nov. 17, 2026)"
         }
       ],
       "bill_number": null,
       "sponsors": null,
       "key_stakeholders": null,
-      "policy_type": "Proposed pause on Board (legislative) action on data center and substation applications — not a moratorium under Virginia law per the County Attorney",
-      "enacted_by": null,
+      "policy_type": "Pause on Board (legislative) action on data center and substation applications — not a moratorium under Virginia law per the County Attorney",
+      "enacted_by": "Board of Supervisors",
       "legislative_votes": null,
-      "city_council_vote": "7-1-1 to direct staff to draft the resolution (September 15, 2026), per local press; county release says 'the majority of the Board'",
+      "city_council_vote": "7-1-1 on November 17, 2026 (Umstattd against, Kershner abstaining), per Bisnow; also 7-1-1 on September 15, 2026 to direct staff to draft the resolution",
       "failure_reason": null,
       "session": "2026",
-      "captured_at": "2026-11-06",
+      "captured_at": "2026-11-20",
       "id": "loudoun-county-va-2026-09",
       "jurisdiction": "Loudoun County",
       "jurisdiction_type": "county",
       "state_code": "VA",
-      "status": "proposed",
-      "duration_description": "Up to 12 months ('the maximum allowed by Virginia law'), running from the date an application is sent to a Planning Commission public hearing; resolution scheduled for October 20, 2026 was deferred to the Board's November 17, 2026 meeting; the plan would be retroactive to September 15, 2026 if adopted",
-      "summary": "On September 15, 2026, Loudoun supervisors voted to consider a resolution that, if adopted, would pause final Board votes on legislative data-center and substation applications for up to 12 months. Applications could still be filed and processed by the Planning Commission; administrative applications would be unaffected. The county distinguishes the proposal from its existing special-exception zoning rule. The scheduled October 20 discussion was deferred to November 17, according to the county’s October 20 notice.",
+      "status": "enacted",
+      "duration_description": "Up to 12 months, retroactive to September 15, 2026 (\"through as late as September of next year\", per Bisnow); adopted November 17, 2026 after the October 20 discussion was deferred",
+      "summary": "On September 15, 2026, Loudoun supervisors voted to consider a resolution that, if adopted, would pause final Board votes on legislative data-center and substation applications for up to 12 months. Applications could still be filed and processed by the Planning Commission; administrative applications would be unaffected. The county distinguishes the proposal from its existing special-exception zoning rule. The scheduled October 20 discussion was deferred to November 17, according to the county’s October 20 notice. On November 17, 2026 the Board voted 7-1, with one abstaining, to halt consideration of legislative applications for data centers and substations with a retroactive effective date of September 15, 2026; Supervisor Kristen Umstattd voted against and Supervisor Caleb Kershner abstained, and the County Attorney said he believes there is a \"real threat of litigation\" from applicants (Bisnow, November 17, 2026; single outlet verified).",
       "source_url": "https://www.loudoun.gov/m/newsflash/Home/Detail/10874",
       "source_title": "Loudoun County — Board Approves Process that Could Pause Legislative Data Center & Substation Applications (updated September 24, 2026)"
     },
@@ -5787,7 +5791,7 @@
       "duration_description": "135 days (Ordinance 18 as amended on the floor Oct. 20, 2026); the year-long Ordinance 19 failed. The earlier draft v3 provided up to 12 months. Effective date not stated in the source.",
       "power_threshold_mw": null,
       "key_reasons": [],
-      "summary": "On October 20, 2026 the Memphis City Council voted down Ordinance 19, the year-long moratorium on accepting, processing and approving data center zoning, land-use and building applications, and instead passed Ordinance 18, amended on the floor, which establishes a 135-day moratorium along with regulations for the siting, initial development, construction, expansion, alteration and operation of data centers; WREG reports the vote as 7 yes, 5 no (its story was corrected to say the 135-day pause passed). Council members J.B. Smiley and Jerri Green said they had received the amended Ordinance 18 only just before the meeting. Mayor Paul Young issued a 90-day executive order (city release dated October 9) to study and recommend guardrails for data centers. A mayoral signature and effective date are not stated in the report, and only one outlet's account was verified. Earlier record (as of Oct. 7): The Memphis City Council postponed its vote on a proposed temporary data center moratorium to October 20, 2026, at its October 6 meeting. The draft ordinance would let the city continue to accept applications only for docketing and completeness review, while not processing, scheduling, hearing, approving or issuing rezonings, planned developments, special or conditional use permits, site plans, building, grading or land-disturbance permits, or other discretionary land-use approvals for new data centers and high-density computing facilities. It lasts up to 12 months or until comprehensive zoning regulations are adopted, and exempts existing lawfully operating facilities that do not expand, and applications legally vested before introduction. Action News 5 (Oct. 20) independently reports the council 'passed an ordinance that calls for a 135-day pause on the permitting process for data centers', sponsored by Councilman Jeff Warren and Councilwoman Rhonda Logan, with Easter-Thomas, Green, Smiley, Walker and Swearengen-Washington voting no and Cooper-Sutton absent.",
+      "summary": "On October 20, 2026 the Memphis City Council voted down Ordinance 19, the year-long moratorium on accepting, processing and approving data center zoning, land-use and building applications, and instead passed Ordinance 18, amended on the floor, which establishes a 135-day moratorium along with regulations for the siting, initial development, construction, expansion, alteration and operation of data centers; WREG reports the vote as 7 yes, 5 no (its story was corrected to say the 135-day pause passed). Council members J.B. Smiley and Jerri Green said they had received the amended Ordinance 18 only just before the meeting. Mayor Paul Young issued a 90-day executive order (city release dated October 9) to study and recommend guardrails for data centers. A mayoral signature and effective date are not stated in the report, and only one outlet's account was verified. Earlier record (as of Oct. 7): The Memphis City Council postponed its vote on a proposed temporary data center moratorium to October 20, 2026, at its October 6 meeting. The draft ordinance would let the city continue to accept applications only for docketing and completeness review, while not processing, scheduling, hearing, approving or issuing rezonings, planned developments, special or conditional use permits, site plans, building, grading or land-disturbance permits, or other discretionary land-use approvals for new data centers and high-density computing facilities. It lasts up to 12 months or until comprehensive zoning regulations are adopted, and exempts existing lawfully operating facilities that do not expand, and applications legally vested before introduction. Action News 5 (Oct. 20) independently reports the council 'passed an ordinance that calls for a 135-day pause on the permitting process for data centers', sponsored by Councilman Jeff Warren and Councilwoman Rhonda Logan, with Easter-Thomas, Green, Smiley, Walker and Swearengen-Washington voting no and Cooper-Sutton absent. A City of Memphis bulletin issued under Mayor Paul A. Young’s name on October 23, 2026 confirms the council \"approved a 135-day moratorium, or temporary pause, on new data center approvals\", during which the City \"generally cannot accept new applications, approve new projects, or issue new data center permits\"; existing facilities can continue and certain previously approved projects are exempt. The bulletin gives no ordinance number or effective date.",
       "source_url": "https://www.actionnews5.com/2026/10/21/memphians-react-failed-data-center-moratorium/",
       "source_title": "Action News 5 — Memphians react to failed data center moratorium (Oct. 20, 2026)",
       "resources": [
@@ -5802,12 +5806,16 @@
         {
           "url": "https://www.wcax.com/2026/10/07/data-center-moratorium-vote-postponed-after-fight-protests/",
           "title": "WCAX — Data center moratorium vote postponed after fight, protests (Oct. 7, 2026)"
+        },
+        {
+          "url": "https://content.govdelivery.com/accounts/TNMEMPHIS/bulletins/42f91b5",
+          "title": "City of Memphis — Mayor Paul A. Young bulletin on the 135-day data center moratorium (Oct. 23, 2026)"
         }
       ],
       "policy_type": "135-day moratorium with siting regulations (Ordinance 18, as amended); year-long Ordinance 19 failed",
       "city_council_vote": "Ordinance 18 (135-day moratorium, amended on the floor) passed 7-5 on Oct. 20, 2026; Ordinance 19 (year-long) failed",
       "session": "2026",
-      "captured_at": "2026-10-21",
+      "captured_at": "2026-11-20",
       "enacted_by": "City Council",
       "sponsors": [
         "Jeff Warren",

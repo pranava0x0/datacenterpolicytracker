@@ -2596,6 +2596,17 @@
       "source_url": "https://www.wvik.org/wvik-top-stories/2026-06-10/majority-of-clinton-city-council-vote-down-data-center-moratorium",
       "source_title": "WVIK — Majority of Clinton City Council vote down data center moratorium (June 10, 2026)",
       "single_source": false
+    },
+    {
+      "id": "resp-xai-southaven-mayor-tax-revenue-2026-11",
+      "project_id": "xai-southaven-ms",
+      "date": "2026-11-06",
+      "stance": "positive",
+      "constituency": "local_government",
+      "summary": "Southaven Mayor Darren Musselwhite said the SpaceXAI development nets about $63 million a year to DeSoto County Schools, DeSoto County and the City of Southaven, and confirmed the company is offering to buy more than 400 nearby homes and businesses whose owners are bothered by noise or pollution, an offer he said he asked for.",
+      "source_url": "https://www.wsmv.com/2026/11/06/spacexai-build-2-more-ai-data-centers-southaven/",
+      "source_title": "WSMV / Action News 5 — SpaceXAI is building 2 more AI data centers in Southaven (Nov. 6, 2026)",
+      "single_source": true
     }
   ]
 }
