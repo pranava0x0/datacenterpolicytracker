@@ -41,6 +41,10 @@
       "last_reviewed": "2026-11-19",
       "summary": "Checked KUER, Deseret, SL Tribune. Added 3 site timeline updates (May 28 referendum rejection, June 3 lawsuit, July 29 MIDA pause); last_reviewed bumped. Dedicated page is a PR Newswire release; no new first-party claims found."
     },
+    "company:xai": {
+      "last_reviewed": "2026-11-20",
+      "summary": "Checked claims (Mayo quote present but transcribed 'xAl'; Chalkbeat HIT; x.ai 403) and news since May: two more Southaven buildings under construction (notes), added Southaven mayor's positive response. last_reviewed bumped."
+    },
     "country:GB": {
       "last_check": {
         "date": "2026-11-18",
@@ -180,6 +184,14 @@
     "site:meta-tulsa-ok": {
       "last_reviewed": "2026-11-12",
       "summary": "Re-fetched Meta Hello Tulsa page (live, figures match); no news after April 2026 groundbreaking found; added OK Commerce PSO / Light a Life note; ratepayer affirmed unchanged."
+    },
+    "site:microsoft-castroville-tx": {
+      "last_reviewed": "2026-11-20",
+      "summary": "Checked TDLR TABS2026008231 (start 8/13/2026, completion 7/24/2028, $400M, Project Registered) and news since June; notes updated to TDLR dates (backlog lead resolved). No new local approvals or responses found; pre-pledge (2025), no ratepayer assessment; DCD source 403 to scripts."
+    },
+    "site:microsoft-douglasville-ga": {
+      "last_reviewed": "2026-11-20",
+      "summary": "Re-fetched Azure blog (Feb 11, 2021, quotes Douglasville): announced_year 2023→2021. Notes' $1.8B/160 ac/216 MW not on that page — BACKLOG lead. Pre-pledge, no ratepayer assessment. No news search this run."
     },
     "site:microsoft-heath-oh": {
       "last_reviewed": "2026-11-13",
@@ -567,17 +579,17 @@
     },
     "state:TN": {
       "last_check": {
-        "date": "2026-10-30",
-        "summary": "2026-10-30: Crossville 2-year moratorium: 1025wowcountry (Aug 12) says third and final reading passed; first reading was Tuesday Jul 14 (Chronicle, Jul 16). No source states the final vote date or ordinance number (a search snippet says 26-0286, unverified on a fetched page). Not recorded; needs city minutes"
+        "date": "2026-11-20",
+        "summary": "Shelby County Commission second reading: no report found (two searches, Nov 20). Memphis Ord 18: City of Memphis Oct 23 bulletin confirms the 135-day pause and exemptions but gives no ordinance number or effective date; added as resource."
       },
       "follow_ups": [
         {
-          "due": "2026-11-20",
-          "what": "Shelby County Commission second reading of data center moratorium; Memphis Ord 18 effective date"
-        },
-        {
           "due": "2026-11-30",
           "what": "Crossville moratorium: final-reading date and ordinance number from city minutes"
+        },
+        {
+          "due": "2026-12-04",
+          "what": "Shelby County Commission unincorporated data center moratorium: second/third reading outcome (commission minutes)"
         }
       ]
     },
@@ -620,15 +632,9 @@
       ]
     },
     "state:VA": {
-      "follow_ups": [
-        {
-          "due": "2026-11-20",
-          "what": "loudoun-county-va-2026-09: Nov 17 Board vote on the pause resolution — adopted, amended or deferred? (loudoun.gov newsflash, Loudoun Times-Mirror)"
-        }
-      ],
       "last_check": {
-        "date": "2026-11-18",
-        "summary": "Loudoun Nov 17 pause-resolution outcome not yet reported (search + county newsflash checked 2026-11-18, the morning after); record stays proposed."
+        "date": "2026-11-20",
+        "summary": "Loudoun adopted the pause Nov 17, 2026, 7-1-1, retroactive to Sept 15 (Bisnow, Nov 17); loudoun-county-va-2026-09 now enacted."
       }
     }
   }
