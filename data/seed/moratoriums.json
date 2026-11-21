@@ -1680,7 +1680,7 @@
       "enacted_date": "2026-05-21",
       "effective_date": "2026-05-21",
       "duration_months": 6,
-      "duration_description": "6 months",
+      "duration_description": "6 months; expires Nov. 21, 2026. On November 12, 2026 the City Council passed replacement data center regulations 7-6; Mayor Jacob Frey vetoed them on November 19, 2026. An override needs nine votes; the outcome was not yet reported.",
       "power_threshold_mw": null,
       "key_reasons": [
         "transparency",
@@ -1689,7 +1689,7 @@
       "summary": "Minneapolis enacted a 6-month moratorium (May 2026) on new data center permits while assessing grid impact and environmental justice concerns. Triggered by proposed data centers in neighborhoods with existing industrial burden. Supported by environmental justice groups, residents, and climate advocates. City planning to establish equity guidelines ensuring DCs don't concentrate in low-income communities. Explores renewable energy mandates and community benefit agreements for future projects.",
       "source_url": "https://www.datacenterbans.com/",
       "source_title": "DatacenterBans.com",
-      "captured_at": "2026-05-21",
+      "captured_at": "2026-11-21",
       "resources": [
         {
           "url": "https://datacenterbans.com/",
@@ -1702,6 +1702,14 @@
         {
           "url": "https://www.pca.state.mn.us/",
           "title": "Minnesota Pollution Control Agency"
+        },
+        {
+          "url": "https://www.mprnews.org/story/2026/11/13/minneapolis-city-council-votes-to-require-casebycase-approval-of-new-data-centers",
+          "title": "MPR News — Minneapolis council votes to require case-by-case approval of new data centers"
+        },
+        {
+          "url": "https://mprnews.org/story/2026/11/19/minneapolis-mayor-jacob-frey-vetoes-data-center-ordinance-denial-of-police-chief-nominee",
+          "title": "MPR News — Frey vetoes council's data center ordinance"
         }
       ],
       "state_code": "MN"
@@ -5634,15 +5642,15 @@
       ]
     },
     {
-      "captured_at": "2026-10-09",
+      "captured_at": "2026-11-21",
       "id": "oakland-ca-2026-09",
       "jurisdiction": "Oakland",
       "jurisdiction_type": "city",
       "state_code": "CA",
       "status": "enacted",
-      "duration_description": "45 days, effective immediately.",
+      "duration_description": "45 days, effective immediately. On November 10, 2026 the City Council voted unanimously to extend it for another 10 months and 15 days, through October 5, 2027.",
       "key_reasons": [],
-      "summary": "Oakland City Council voted 7-0 on October 6, 2026 to enact an immediate 45-day temporary moratorium on all new data center development across the city, pausing approvals while the city studies impacts on water, power grids and air quality.",
+      "summary": "Oakland City Council voted 7-0 on October 6, 2026 to enact an immediate 45-day temporary moratorium on all new data center development across the city, pausing approvals while the city studies impacts on water, power grids and air quality. On November 10, 2026 the council voted unanimously to extend the moratorium through October 5, 2027.",
       "source_url": "https://www.ktvu.com/news/oakland-city-council-approves-45-day-moratorium-new-data-centers",
       "source_title": "KTVU — Oakland City Council approves 45-day moratorium on new data centers",
       "session": "2026",
@@ -5653,8 +5661,17 @@
         {
           "url": "https://oaklandside.org/2026/09/23/oakland-data-center-moratorium-committee-appoval/",
           "title": "The Oaklandside — Oakland data center moratorium clears committee"
+        },
+        {
+          "url": "https://www.ktvu.com/news/oakland-extends-data-center-moratorium-one-year",
+          "title": "KTVU — Oakland extends data center moratorium for one year"
+        },
+        {
+          "url": "https://sfist.com/2026/11/11/sf-to-consider-extending-data-center-moratorium-as-oakland-approves-10-month-extension/",
+          "title": "SFist — Oakland approves 10-month extension"
         }
-      ]
+      ],
+      "duration_months": 12
     },
     {
       "captured_at": "2026-10-08",
@@ -5747,14 +5764,21 @@
       "status": "enacted",
       "enacted_date": "2026-10-06",
       "effective_date": "2026-10-06",
-      "captured_at": "2026-10-21",
+      "captured_at": "2026-11-21",
       "enacted_by": "Board of Supervisors",
-      "duration_description": "45 days, effective immediately; could be extended up to 22 months.",
+      "duration_description": "45 days, effective immediately; could be extended up to 22 months. On November 17, 2026 the Board of Supervisors unanimously extended it for at least another 10 months and 15 days.",
       "key_reasons": [],
       "session": "2026",
-      "summary": "San Francisco's Board of Supervisors passed a temporary 45-day moratorium on data centers citywide on October 6, 2026, introduced by Supervisor Shamann Walton. It takes effect immediately and could be extended up to 22 months if a significant environmental impact is found.",
+      "summary": "San Francisco's Board of Supervisors passed a temporary 45-day moratorium on data centers citywide on October 6, 2026, introduced by Supervisor Shamann Walton. It takes effect immediately and could be extended up to 22 months if a significant environmental impact is found. On November 17, 2026 the Board unanimously extended the moratorium for at least another 10 months and 15 days.",
       "source_url": "https://missionlocal.org/2026/10/sf-supervisors-pass-data-center-moratorium/",
-      "source_title": "Mission Local — SF supervisors pass data center moratorium"
+      "source_title": "Mission Local — SF supervisors pass data center moratorium",
+      "duration_months": 12,
+      "resources": [
+        {
+          "url": "https://missionlocal.org/2026/11/san-francisco-data-center-moratorium-extended/",
+          "title": "Mission Local — San Francisco data center moratorium extended"
+        }
+      ]
     },
     {
       "captured_at": "2026-10-10",

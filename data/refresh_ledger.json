@@ -279,6 +279,16 @@
       "last_reviewed": "2026-11-16",
       "summary": "QTS PA page (q.com/data-centers/qts-pennsylvania/) now carries a site-specific PPL no-cost-impact commitment; affirmed upgrade held in BACKLOG (claims payload budget). Set project_page_url, $10B investment, 12 buildings/early-planning note; added Times Leader Jul 15 2026 final master plan + road vacation approval (response + timeline)."
     },
+    "site:qts-van-wert-oh": {
+      "last_reviewed": "2026-11-21",
+      "summary": "Status announced->construction (Phase 1 groundbreaking/excavation, CRO Oct 28); added QTS project page; noted QTS does not disclose MW; ratepayer affirmed unchanged",
+      "follow_ups": [
+        {
+          "due": "2027-05-01",
+          "what": "Van Wert: has building construction begun (expected spring 2027)?"
+        }
+      ]
+    },
     "site:qts-wilmer-tx": {
       "last_reviewed": "2026-11-16",
       "summary": "Searched news/permits since May. Added Feb 20 2026 TDLR registrations for DFW2-DC5 and DC6 at 421 Mason Rd ($290M est. each, 363,500 sq ft, 7/1/2026-9/1/2027). Status stays construction; DCD source_url is bot-walled (403), not dead. QTS signed after 2025 announcement, so no ratepayer assessment."
@@ -328,14 +338,6 @@
     "state:CA": {
       "follow_ups": [
         {
-          "due": "2026-11-21",
-          "what": "Oakland 45-day moratorium ends ~Nov 20: extended, permanent rules, or lapsed?"
-        },
-        {
-          "due": "2026-11-21",
-          "what": "San Francisco 45-day moratorium ends ~Nov 20; Planning hearing in November: extended or lapsed?"
-        },
-        {
           "due": "2026-12-04",
           "what": "Hayward: check extensions before initial 45-day term ends."
         },
@@ -348,13 +350,21 @@
           "what": "Escondido extension expires Aug 22 2027: extended, replaced or lapsed?"
         },
         {
+          "due": "2027-09-01",
+          "what": "SF moratorium extension (Nov 17 2026, 10 mo 15 days) nears its end: extended to 22 months, permanent rules, or lapsed?"
+        },
+        {
+          "due": "2027-10-06",
+          "what": "Oakland moratorium extension ended Oct 5 2027: permanent rules or lapsed?"
+        },
+        {
           "due": "2027-10-17",
           "what": "Indio moratorium ended Oct 16 2027: permanent rule adopted or lapsed?"
         }
       ],
       "last_check": {
-        "date": "2026-11-09",
-        "summary": "Added San Diego 45-day moratorium (2026-11-09 interactive refresh)"
+        "date": "2026-11-21",
+        "summary": "Oakland extended Nov 10 (unanimous) through Oct 5 2027; SF extended Nov 17 (unanimous) 10 mo 15 days"
       }
     },
     "state:CO": {
@@ -465,9 +475,15 @@
     },
     "state:MN": {
       "last_check": {
-        "date": "2026-10-21",
-        "summary": "HF 4888 unchanged"
-      }
+        "date": "2026-11-21",
+        "summary": "Minneapolis moratorium expires Nov 21; replacement ordinance passed 7-6 Nov 12, vetoed by Frey Nov 19; override outcome not yet reported"
+      },
+      "follow_ups": [
+        {
+          "due": "2026-11-25",
+          "what": "Minneapolis: did the council override Frey's Nov 19 veto of the data center ordinance, or did the staff framework pass? Moratorium lapsed Nov 21."
+        }
+      ]
     },
     "state:MO": {
       "last_check": {
