@@ -657,7 +657,7 @@ def _place(city: str | None, state: str | None) -> str:
     return ", ".join(x for x in (city, state) if x)
 
 
-def _build_home(payloads, today: date) -> dict:
+def _build_home(payloads, today: date, *, full: bool = False) -> dict:
     projects = payloads["projects"].projects
     responses = payloads["responses"].responses
     claims = payloads["claims"].claims
@@ -789,7 +789,7 @@ def _build_home(payloads, today: date) -> dict:
         rolling[observed] = rolling.get(observed, 0) + 1
     for observed, count in rolling.items():
         latest.append({
-            "date": observed.isoformat(), "type": "Pledge",
+            "date": observed.isoformat(), "date_kind": "observed", "type": "Pledge",
             "title": f"{count} more organizations appear on the pledge roster (join dates unpublished)",
             "place": "", "target": {"kind": "roster"},
         })
@@ -836,7 +836,7 @@ def _build_home(payloads, today: date) -> dict:
 
     return {
         "totals": totals,
-        "latest": picked,
+        "latest": latest if full else picked,
         "upcoming": soon,
     }
 
@@ -967,6 +967,30 @@ def _write_home(payloads, *, pretty: bool) -> int:
     out = OUT_DIR / "home.json"
     text = json.dumps(data, indent=2, ensure_ascii=False) + "\n" if pretty else json.dumps(data, separators=(",", ":"), ensure_ascii=False)
     out.write_text(text, encoding="utf-8")
+    actions = _build_home(payloads, today, full=True)["latest"]
+    records = {f"{kind}:{r.id}": r for kind, group in [("site", payloads["projects"].projects), ("moratorium", payloads["moratoriums"].moratoriums), ("policy", payloads["policies"].policies), ("agreement", payloads["policies"].policies), ("ratecase", payloads["rate_cases"].rate_cases)] for r in group}
+    for action in actions:
+        target = action["target"]
+        record = records.get(f"{target['kind']}:{target.get('id', '')}")
+        if record:
+            source = record.source_url
+            if target["kind"] == "site":
+                update = next((u for u in record.updates or [] if u.title == action["title"] and u.date.isoformat() == action["date"]), None)
+                source = getattr(update, "source_url", None) or source
+            action["source_url"] = str(source)
+    international = payloads["international"]
+    for bucket, label, date_fields in [("policies", "Policy", ("date",)), ("moratoriums", "Moratorium", ("enacted_date",)), ("rate_cases", "Rate case", ("decided_date", "filed_date"))]:
+        for record in getattr(international, bucket):
+            event_date = next((getattr(record, field, None) for field in date_fields if getattr(record, field, None)), None)
+            if event_date and event_date <= today:
+                actions.append({"date": event_date.isoformat(), "type": label, "title": getattr(record, "title", None) or getattr(record, "jurisdiction", record.id), "place": record.country, "href": f"#country/{record.country}", "source_url": str(record.source_url)})
+    for record in [*payloads["elections"].races, *payloads["elections"].measures]:
+        if record.election_date <= today:
+            evidence = getattr(record, "result", None)
+            source = getattr(evidence.evidence, "source_url", None) if evidence else None
+            actions.append({"date": record.election_date.isoformat(), "type": "Election", "title": getattr(record, "title", None) or f"{record.jurisdiction} — {record.office}", "place": record.state_code, "href": f"#elections/{record.id}", "source_url": str(source) if source else None})
+    actions.sort(key=lambda action: action["date"], reverse=True)
+    (OUT_DIR / "actions.json").write_text(json.dumps({"actions": actions}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     return len(text.encode("utf-8"))
 
 
@@ -976,7 +1000,9 @@ SITE_URL = "https://pranava0x0.github.io/datacenterpolicytracker/"
 # this, so a new view needs one entry here (test_agent_files_cover_every_view
 # derives the expected set from app.js VIEWS).
 VIEW_GUIDE = {
-    "overview": ("Home", "Section totals, the latest actions and dated upcoming decisions."),
+    "overview": ("Explore", "Search records and places, latest actions and dated upcoming decisions."),
+    "compare": ("Compare", "Compare agreement terms or tariff provisions, with sources and explicit gaps."),
+    "updates": ("Updates", "Dated actions and material changes to published records."),
     "elections": ("Elections", "Incoming and prior officeholders' data-center policies, proposed changes, and local ballot measures."),
     "ratepayer": ("The Pledge", "The White House Ratepayer Protection Pledge: its five commitments (quoted), every signatory, and a per-site scorecard."),
     "policies": ("Policy", "Laws, bills, executive orders, local rules and community benefit agreements."),
@@ -1100,6 +1126,66 @@ def _write_preview_adapters() -> None:
         path.with_suffix(".preview.js").write_text(script, encoding="utf-8")
 
 
+def _material_record(record: dict) -> dict:
+    """Ignore refresh metadata recursively; retain evidence and substantive dates."""
+    return {
+        key: _material_record(value) if isinstance(value, dict) else
+        [_material_record(item) if isinstance(item, dict) else item for item in value]
+        if isinstance(value, list) else value
+        for key, value in record.items()
+        if key not in {"captured_at", "generated_at", "last_reviewed", "reviewed_at"}
+    }
+
+
+def _write_changes(payloads: dict, *, today: date) -> None:
+    """Append material changes against the previous published snapshot.
+
+    The first run establishes a baseline, not a fabricated historical feed.
+    Run before overwriting canonical outputs. A second build is a no-op.
+    """
+    path = OUT_DIR / "changes.json"
+    history = json.loads(path.read_text()) if path.exists() else {"since": today.isoformat(), "changes": []}
+    if path.exists():
+        groups = [(name, name, prefix) for name, prefix in {
+            "projects": "site", "policies": "policy", "moratoriums": "moratorium",
+            "tariffs": "tariff", "rate_cases": "ratecase", "companies": "company",
+            "claims": "company", "responses": "site", "signatories": "ratepayer",
+        }.items()]
+        groups += [("international", bucket, "country") for bucket in ["countries", "projects", "policies", "moratoriums", "rate_cases", "claims", "responses"]]
+        groups += [("elections", bucket, "elections") for bucket in ["races", "measures"]]
+        for name, bucket, prefix in groups:
+            if name not in payloads:
+                continue
+            previous_path = OUT_DIR / f"{name}.json"
+            if not previous_path.exists():
+                raise FileNotFoundError(f"Change history needs its previous snapshot: {previous_path}")
+            previous = json.loads(previous_path.read_text()).get(bucket, [])
+            current = payloads[name].model_dump(mode="json", exclude_none=True).get(bucket, [])
+            current = _strip_v6_defaults(name, {bucket: current})[bucket]
+            old = {r.get("id", r.get("slug", r.get("code"))): _material_record(r) for r in previous}
+            new = {r.get("id", r.get("slug", r.get("code"))): _material_record(r) for r in current}
+            for key in sorted(old.keys() | new.keys()):
+                before, after = old.get(key, {}), new.get(key, {})
+                if before == after:
+                    continue
+                record = after or before
+                fields = sorted(k for k in before.keys() | after.keys() if before.get(k) != after.get(k))
+                target = record.get("country", record.get("code", "")) if prefix == "country" else record.get("company_slug") if bucket == "claims" else record.get("project_id") if bucket == "responses" else key
+                if prefix == "country" and not target and record.get("project_id"):
+                    target = next((r.country for r in payloads["international"].projects if r.id == record["project_id"]), None)
+                href = f"#{prefix}/{target}" if target and prefix != "ratepayer" else "#world" if prefix == "country" else "#ratepayer"
+                if not after:
+                    href = "#" + {"site": "explorer", "policy": "policies", "moratorium": "moratoriums", "tariff": "tariffs", "ratecase": "tariffs", "company": "comparison", "country": "world", "elections": "elections", "ratepayer": "ratepayer"}[prefix]
+                history["changes"].insert(0, {
+                    "date": today.isoformat(), "title": record.get("title") or record.get("name") or record.get("tariff_name") or record.get("jurisdiction") or key,
+                    "href": href,
+                    "action": "added" if not before else "removed" if not after else "changed",
+                    "fields": fields, "source_url": record.get("source_url") or record.get("dedicated_page_url") or record.get("result", {}).get("evidence", {}).get("source_url"),
+                })
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(history, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+
 def refresh(*, check_only: bool = False, pretty: bool = False, audit: bool = False) -> int:
     """Validate seed and (optionally) write payloads. Returns exit code."""
     logging.basicConfig(
@@ -1185,6 +1271,7 @@ def refresh(*, check_only: bool = False, pretty: bool = False, audit: bool = Fal
         logger.info("--check passed; no outputs written.")
         return 0
 
+    _write_changes(payloads, today=today)
     total = 0
     for name, payload in payloads.items():
         nbytes = _write_payload(name, payload, pretty=pretty)

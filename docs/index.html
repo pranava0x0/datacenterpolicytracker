@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0d132d" />
+    <meta name="theme-color" content="#f8f9f6" />
     <title>Data Center Policy Tracker: the US and selected countries</title>
     <meta
       name="description"
@@ -35,142 +35,39 @@
       }
     </script>
     <link rel="preload" as="fetch" href="data/companies.json" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=20261115-pdf" />
+    <link rel="stylesheet" href="styles.css?v=20261121-civic" />
     <!-- html2pdf is lazy-loaded on demand by the moratorium PDF export (see
          loadHtml2Pdf in app.js) so it doesn't block first paint or tests. -->
-    <script defer src="app.js?v=20261115-plans"></script>
+    <script defer src="app.js?v=20261121-civic"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="topbar" role="banner">
       <div class="topbar-inner">
-        <div class="topbar-title">
+        <div class="topbar-title"><span class="identity-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div>
           <h1 aria-label="Data Center Policy Tracker">Data Center Policy Tracker</h1>
-          <p class="topbar-sub" id="meta">Loading…</p>
+          <p class="topbar-sub" id="meta">Loading…</p></div>
         </div>
         <nav class="topbar-controls" aria-label="Toolbar">
           <button id="theme-toggle" type="button" aria-label="Theme: toggle dark mode" title="Toggle theme">Theme</button>
         </nav>
       </div>
 
-      <!-- Tab bar sits directly under the title (v2.1) so every tab is
-           reachable without scrolling on load. The pledge landing content
-           (kicker/stats/panels/activity/paths) used to live here as
-           always-visible header chrome; it now lives in the "Overview" tab
-           below (#view-overview), the default view, so it's presented like
-           everything else instead of pushing the tab bar off-screen. -->
-      <div class="tabbar-sticky">
-      <div class="tabbar" role="tablist" aria-label="Dashboard views">
-        <button
-          id="tab-overview"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="true"
-          aria-controls="view-overview"
-        >
-          Home
-        </button>
-        <button
-          id="tab-ratepayer"
-          class="tab"
-          aria-label="The Pledge"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-ratepayer"
-        >
-          The Pledge
-        </button>
-        <button
-          id="tab-policies"
-          class="tab"
-          aria-label="Policy"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-policies"
-        >
-          Policy
-        </button>
-        <button
-          id="tab-moratoriums"
-          class="tab"
-          aria-label="Moratoriums"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-moratoriums"
-        >
-          Moratoriums
-        </button>
-        <button
-          id="tab-elections"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-elections"
-        >
-          Elections
-        </button>
-        <button
-          id="tab-tariffs"
-          class="tab"
-          aria-label="Power Costs"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-tariffs"
-        >
-          Power Costs
-        </button>
-        <button
-          id="tab-comparison"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-comparison"
-        >
-          Companies
-        </button>
-        <button
-          id="tab-explorer"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-explorer"
-        >
-          Sites
-        </button>
-        <button
-          id="tab-world"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-world"
-          aria-label="International"
-        >
-          International
-        </button>
-      </div>
-      </div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <div role="tablist" aria-label="Main views">
+          <button id="tab-overview" class="tab" role="tab" type="button" aria-selected="true" aria-controls="view-overview">Explore</button>
+          <button id="tab-compare" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-compare">Compare</button>
+          <button id="tab-updates" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-updates">Updates</button>
+        </div>
+        <a href="community-benefits.html" aria-label="Community benefits plans">Plans</a>
+      </nav>
+      <div class="directory-menu"><nav aria-label="Browse records">
+        <a href="#ratepayer">The Pledge</a><a href="#policies">Policy</a><a href="#moratoriums">Moratoriums</a><a href="#elections">Elections</a><a href="#tariffs">Power costs</a><a href="#comparison">Companies</a><a href="#explorer">Sites</a><a href="#world">International</a>
+      </nav></div>
     </header>
 
     <main id="main" tabindex="-1" role="main">
-      <nav class="plans-entry" aria-label="Community planning guide">
-        <a href="community-benefits.html" aria-labelledby="plans-entry-title" aria-describedby="plans-entry-description">
-          <span>
-            <strong id="plans-entry-title">Community benefits plans</strong>
-            <span id="plans-entry-description">Choose an editable draft for your community.</span>
-          </span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </nav>
       <!-- ====================== OVERVIEW VIEW ====================== -->
       <!-- The Home tab, cut to a news-style briefing (v3): a one-line dek, a
            numbers band summarizing the whole record, the soonest docket
@@ -188,11 +85,43 @@
       >
         <div class="home-body">
 
+          <form class="civic-search" id="civic-search" role="search">
+            <label for="civic-query">Find a place, company, utility or record</label>
+            <input id="civic-query" type="search" autocomplete="off" placeholder="City, state, country, company or docket" />
+          </form>
+          <nav class="civic-presets" aria-label="Quick access">
+            <a href="#moratoriums">Moratoriums</a><a href="#tariffs">Power costs</a><a href="#policies/agreements">Agreements</a><a href="?browse=places#overview">Places</a>
+          </nav>
+          <div id="civic-search-panel" hidden>
+            <div class="civic-controls"><label>Type <select id="civic-kind"><option value="">All records</option><option value="project">Sites</option><option value="policy">Policies</option><option value="agreement">Agreements</option><option value="moratorium">Moratoriums</option><option value="tariff">Tariffs</option><option value="rate_case">Rate cases</option><option value="company">Companies</option></select></label><button id="civic-reset" type="button">Clear</button></div>
+            <h2 id="civic-place-heading" hidden></h2><p id="civic-place-scope" class="civic-status" hidden></p>
+            <p id="civic-search-status" class="civic-status" role="status" aria-live="polite"></p>
+            <button id="civic-retry" class="btn-link" type="button" hidden>Retry</button>
+            <ul id="civic-places" class="civic-place-list"></ul>
+            <ol id="civic-results" class="civic-results"></ol>
+            <button id="civic-more" class="btn-link" type="button" hidden>Show more</button>
+          </div>
+          <div id="civic-home-content">
           <nav class="home-tasks" aria-label="Planning tools">
             <button type="button" data-guide-target="strongest">Read signed agreements</button>
             <button type="button" data-guide-target="drafts">County and state drafts</button>
             <button type="button" data-guide-target="evidence">Check impact claims</button>
           </nav>
+          <div class="home-latest">
+            <section class="home-feed" aria-labelledby="home-latest-h">
+              <h2 class="home-h" id="home-latest-h">Latest</h2>
+              <ol id="home-latest-list" class="feed-list"></ol>
+              <button type="button" class="btn-link home-latest-more" id="home-latest-more" hidden></button>
+            </section>
+            <section class="whats-next" aria-labelledby="wn-h" id="whats-next">
+              <h2 class="home-h" id="wn-h">Coming up</h2>
+              <ol id="whats-next-list" class="feed-list"></ol>
+              <button id="whats-next-more" class="btn-link" type="button" data-path-target="ratecases">
+                All rate-case milestones &rarr;
+              </button>
+            </section>
+          </div>
+
           <!-- One card per tab, each led by its main number. Numbers and the
                two lists render from data/home.json (built by refresh.py). -->
           <nav class="home-cards" id="home-cards" aria-label="Sections">
@@ -238,23 +167,22 @@
             </button>
           </nav>
 
-          <div class="home-latest">
-            <section class="home-feed" aria-labelledby="home-latest-h">
-              <h2 class="home-h" id="home-latest-h">Latest</h2>
-              <ol id="home-latest-list" class="feed-list"></ol>
-              <button type="button" class="btn-link home-latest-more" id="home-latest-more" hidden></button>
-            </section>
-            <section class="whats-next" aria-labelledby="wn-h" id="whats-next">
-              <h2 class="home-h" id="wn-h">Coming up</h2>
-              <ol id="whats-next-list" class="feed-list"></ol>
-              <button id="whats-next-more" class="btn-link" type="button" data-path-target="ratecases">
-                All rate-case milestones &rarr;
-              </button>
-            </section>
           </div>
         </div>
       </section>
 
+      <section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-compare" hidden>
+        <div class="hero"><h2 class="hero-title">Compare</h2></div>
+        <div class="civic-controls"><label>Compare <select id="civic-compare-kind"><option value="agreement">Agreements</option><option value="tariff">Tariffs</option></select></label><a id="civic-choose" href="?kind=agreement#overview">Choose records</a><button id="civic-compare-clear" type="button">Clear selection</button></div>
+        <p id="civic-compare-status" class="civic-status" role="status"></p>
+        <div id="civic-compare-grid" class="civic-compare-grid"></div>
+      </section>
+      <section id="view-updates" class="view" role="tabpanel" aria-labelledby="tab-updates" hidden>
+        <div class="hero"><h2 class="hero-title">Updates</h2></div>
+        <div class="civic-controls"><label>Show <select id="civic-update-kind"><option value="">All updates</option><option value="record">Record changes</option><option value="action">Dated actions and observations</option></select></label></div>
+        <p id="civic-updates-status" class="civic-status" role="status"></p>
+        <ol id="civic-updates" class="civic-results"></ol><button id="civic-updates-more" class="btn-link" type="button" hidden>Show more</button>
+      </section>
       <!-- ====================== COMPARISON VIEW ====================== -->
       <section
         id="view-comparison"
@@ -718,7 +646,7 @@
 
           <h2 class="hero-title">The Pledge</h2>
           <p class="hero-dek">
-            Who signed the White House Ratepayer Protection Pledge of <span id="rp-pledge-date">March 4, 2026</span>, and which sites show it. <a id="rp-pledge-link" href="#" target="_blank" rel="noopener noreferrer">Read the pledge →</a>
+            White House Ratepayer Protection Pledge · <span id="rp-pledge-date">March 4, 2026</span>. <a id="rp-pledge-link" href="#" target="_blank" rel="noopener noreferrer">Read the pledge →</a>
           </p>
         </div>
 
@@ -1113,23 +1041,23 @@
 
           <h2 class="hero-title">Power Costs</h2>
           <p class="hero-dek">
-            Who pays for data center power: rate cases, and large-load tariffs read against
+
             <a
               id="tariff-lbl-link"
               href="https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              >Berkeley Lab's 2026 rate-design elements ↗</a>
+              >Berkeley Lab · 2026 rate-design reference</a>
           </p>
         </div>
 
-        <section id="power-brief" class="power-brief" aria-labelledby="power-brief-heading" hidden>
-          <div class="power-brief-head">
-            <h3 id="power-brief-heading" class="power-brief-title">What to watch</h3>
+        <details id="power-brief" class="power-brief" aria-labelledby="power-brief-heading" hidden>
+          <summary class="power-brief-head">
+            <h3 id="power-brief-heading" class="power-brief-title">Dated briefing</h3>
             <span id="power-brief-asof" class="power-brief-asof"></span>
-          </div>
+          </summary>
           <div id="power-brief-body"></div>
-        </section>
+        </details>
 
         <!-- Status overview stats -->
         <ul id="tariff-stats" class="rp-stats" aria-label="Tariff statistics"></ul>
@@ -1148,11 +1076,7 @@
 
         <div class="subtab-panel" id="subpane-tar-ratecases" role="tabpanel" aria-labelledby="subtab-tar-ratecases">
           <div id="rate-cases-section">
-            <p class="acc-sub">
-              Where regulators decide who pays: rate cases, special contracts, and rulemakings. Pending cases show their next step. Federal cases are marked
-              <span class="badge badge-tariff-federal">FED</span>.
-            </p>
-            <div class="filter-bar filter-bar--slim" role="group" aria-label="Filter rate cases">
+<div class="filter-bar filter-bar--slim" role="group" aria-label="Filter rate cases">
               <label class="filter">
                 <span class="sr-only">Status</span>
                 <select id="rc-status-filter">
@@ -1321,7 +1245,7 @@
         <div class="hero">
 
           <h2 class="hero-title">Policy</h2>
-          <p class="view-scope">U.S. laws, bills, executive orders, commission orders, moratoriums and community benefit agreements.</p>
+          <p class="view-scope">United States</p>
         </div>
 
 
@@ -1767,6 +1691,96 @@
       </section>
     </main>
 
+    <div id="civic-compare-tray" class="civic-compare-tray" hidden><span id="civic-compare-count"></span><a href="#compare">Compare</a><button id="civic-tray-clear" class="btn-link" type="button">Clear</button></div>
+    <nav class="collection-nav" aria-label="Record directories"><h2>Browse records</h2>
+      <div class="tabbar" role="tablist" aria-label="Dashboard views">
+<button
+          id="tab-ratepayer"
+          class="tab"
+          aria-label="The Pledge"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-ratepayer"
+        >
+          The Pledge
+        </button>
+        <button
+          id="tab-policies"
+          class="tab"
+          aria-label="Policy"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-policies"
+        >
+          Policy
+        </button>
+        <button
+          id="tab-moratoriums"
+          class="tab"
+          aria-label="Moratoriums"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-moratoriums"
+        >
+          Moratoriums
+        </button>
+        <button
+          id="tab-elections"
+          class="tab"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-elections"
+        >
+          Elections
+        </button>
+        <button
+          id="tab-tariffs"
+          class="tab"
+          aria-label="Power Costs"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-tariffs"
+        >
+          Power Costs
+        </button>
+        <button
+          id="tab-comparison"
+          class="tab"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-comparison"
+        >
+          Companies
+        </button>
+        <button
+          id="tab-explorer"
+          class="tab"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-explorer"
+        >
+          Sites
+        </button>
+        <button
+          id="tab-world"
+          class="tab"
+          role="tab"
+          type="button"
+          aria-selected="false"
+          aria-controls="view-world"
+          aria-label="International"
+        >
+          International
+        </button>
+      </div>
+    </nav>
     <footer class="site-footer">
       <p>
         <a href="https://github.com/pranava0x0/datacenterpolicytracker">Code on GitHub</a>.

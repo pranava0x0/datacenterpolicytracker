@@ -767,13 +767,14 @@ document.addEventListener("DOMContentLoaded", () => {
   wireBtn("policy-heat-abroad", () => openWorldPrinciple("heat_reuse"));
   wireBtn("mor-retry", () => loadMoratoriumPane(_activeSubtab.mor));
   wireBtn("policy-retry", () => activateView("policies"));
+  wireCivic();
   wireTabs();
   // Referrers omit fragments. Save the exact tab, filters and open record
   // for the blueprint's Back link without adding them to its share URL.
   document.addEventListener("click", (event) => {
     const link = event.target.closest?.('a[href="community-benefits.html"]');
     if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const label = document.querySelector('.tabbar [aria-selected="true"]').textContent.trim();
+    const label = document.getElementById(VIEWS.find(v => v.name === state.activeView).tab).textContent.trim();
     try {
       sessionStorage.setItem("dcb-plans-entry", JSON.stringify({url: location.href, label}));
     } catch { /* Back to Home still works when storage is unavailable. */ }
@@ -845,6 +846,8 @@ function wireThemeToggle() {
 // Tab order (owner-directed 2026-10-08): the pledge, then the local rules
 // (frameworks, agreements, moratoriums, tariffs), then companies and sites.
 const VIEWS = [
+  { name: "compare", tab: "tab-compare", section: "view-compare", hash: "#compare" },
+  { name: "updates", tab: "tab-updates", section: "view-updates", hash: "#updates" },
   { name: "overview", tab: "tab-overview", section: "view-overview", hash: "#overview" },
   { name: "ratepayer", tab: "tab-ratepayer", section: "view-ratepayer", hash: "#ratepayer" },
   { name: "policies", tab: "tab-policies", section: "view-policies", hash: "#policies" },
@@ -1060,6 +1063,12 @@ function setPermalink(elId, kind, id) {
 async function openRecordRoute(prefix, rawId) {
   const route = RECORD_ROUTES[prefix];
   const id = decodeURIComponent(rawId);
+  const routeGeneration = state.navGen;
+  const activateRoute = (view) => {
+    const routing = state._routing;
+    state._routing = true;
+    try { activateView(view); } finally { state._routing = routing; }
+  };
   // A non-US site or policy lives in international.json; its home is the
   // country page, not the US Sites or Policy tab (Codex review of #137).
   if (prefix === "site" || prefix === "policy") {
@@ -1073,7 +1082,7 @@ async function openRecordRoute(prefix, rawId) {
         const rec = (prefix === "site" ? intl.projects : intl.policies || []).find((x) => x.id === id);
         if (rec && state.navGen === gen0) {
           setActiveSubtab("world", "countries");
-          activateView("world");
+          activateRoute("world");
           openCountry(rec.country);
           return;
         }
@@ -1082,20 +1091,21 @@ async function openRecordRoute(prefix, rawId) {
       console.error(`Could not resolve ${prefix} ${id}:`, err);
     }
   }
+  if (state.navGen !== routeGeneration) return;
   if (prefix === "site") {
     history.replaceState(null, "", `${window.location.pathname}?project=${encodeURIComponent(id)}#explorer`);
     readFiltersFromUrl();
-    activateView("explorer");
+    activateRoute("explorer");
     return;
   }
   if (prefix === "policy") {
     history.replaceState(null, "", `${window.location.pathname}?policy=${encodeURIComponent(id)}#policies/rules`);
     setActiveSubtab("pol", "rules");
-    activateView("policies");
+    activateRoute("policies");
     return;
   }
   if (route.subtab) setActiveSubtab(route.subtab[0], route.subtab[1]);
-  activateView(route.view);
+  activateRoute(route.view);
   const gen = state.navGen;
   try {
     if (prefix === "moratorium") {
@@ -1280,6 +1290,7 @@ function writeFiltersToUrl() {
 
 function activateView(name) {
   const target = VIEWS.find((v) => v.name === name) || DEFAULT_VIEW;
+  if (state._booted && !state._routing) window.scrollTo(0, 0);
   if (!state._routing) _pendingElectionId = null;
   // Every user-driven view change (tab, Home card, cross-link) gets its own
   // history entry so Back returns to where the reader was (#72). Boot and
@@ -1338,6 +1349,11 @@ function activateView(name) {
     if (!sub || sub === SUBTAB_GROUPS[VIEW_SUBTAB_GROUP[target.name]][0]) {
       history.replaceState(null, "", window.location.pathname + target.hash);
     }
+  } else if (["overview", "compare"].includes(target.name)) {
+    const params = new URLSearchParams(location.search);
+    const allowed = target.name === "overview" ? ["find", "kind", "place", "browse"] : ["records"];
+    for (const key of [...params.keys()]) if (!allowed.includes(key)) params.delete(key);
+    history.replaceState(null, "", location.pathname + (params.size ? `?${params}` : "") + target.hash);
   } else if (target.hash) {
     // pathname + hash: a bare "#x" keeps the query string, which leaked the
     // Sites and policy params into every other view's URL.
@@ -1356,7 +1372,13 @@ function activateView(name) {
       document.getElementById("explorer-meta").textContent =
         "Failed to load projects.";
     });
+  } else if (target.name === "compare") {
+    civicRenderCompare();
+  } else if (target.name === "updates") {
+    civicRenderUpdates();
   } else if (target.name === "overview") {
+    civicReadParams();
+    civicRenderSearch();
     loadHomeData()
       .then(renderHome)
       .catch((err) => {
@@ -4606,7 +4628,7 @@ function renderPledgeStateStrip() {
 // --------------------------------------------------------------------------
 
 let _homeDataPromise = null;
-const HOME_LATEST_PHONE = 5;
+const HOME_LATEST_PHONE = 4;
 function loadHomeData() {
   if (!_homeDataPromise) {
     _homeDataPromise = fetchJson("data/home.json").then((d) => {
@@ -10619,3 +10641,243 @@ window.__dcb_ratepayer_ready = new Promise((resolve) => {
     { once: true }
   );
 });
+
+// Explore shares canonical records with the specialist directories. Downloads
+// begin only after a search, place selection, comparison or Updates visit.
+const civic = { shards: new Map(), pending: null, records: [], failures: [], serial: 0, limit: 40, selected: [], params: new URLSearchParams() };
+const CIVIC_FILES = ['companies', 'projects', 'policies', 'moratoriums', 'tariffs', 'rate_cases', 'international', 'elections'];
+const CIVIC_LABELS = { project: 'Site', policy: 'Policy', agreement: 'Agreement', moratorium: 'Moratorium', tariff: 'Tariff', rate_case: 'Rate case', company: 'Company', election: 'Election' };
+const civicLabel = (value) => String(value || 'Not recorded').replaceAll('_', ' ');
+function civicLink(text, href) {
+  const a = el('a', '', text); a.href = href; return a;
+}
+function civicHref(r) {
+  if (r.country !== 'US' && r.kind !== 'company') return `#country/${r.country}`;
+  return r.kind === 'election' ? `#elections/${r.id}` : recordHref(r.kind === 'agreement' ? 'policy' : r.kind, r.id);
+}
+function civicNormalize() {
+  const records = [];
+  function add(kind, items, international = false) {
+    for (const raw of items || []) {
+      const actualKind = kind === 'policy' && raw.instrument === 'benefit_agreement' ? 'agreement' : kind;
+      const country = raw.country || (international ? 'EU' : 'US');
+      const region = raw.state_code || raw.state || raw.subdivision || '';
+      const source = raw.source_url || raw.dedicated_page_url || raw.result?.evidence?.source_url || '';
+      const title = raw.title || raw.name || raw.tariff_name || [raw.jurisdiction, raw.office].filter(Boolean).join(' · ') || raw.jurisdiction;
+      const r = { kind: actualKind, id: raw.id || raw.slug, country, region, source, title,
+        status: raw.lifted_date ? 'Lifted' : raw.status || raw.result?.status || '',
+        place: [raw.city || raw.jurisdiction || raw.locality, STATE_NAMES[region] || region, country !== 'US' ? country : ''].filter(Boolean).join(' · '),
+        date: raw.effective_date || raw.decided_date || raw.decision_date || raw.enacted_date || raw.date || raw.election_date || '', raw };
+      r.key = `${r.kind}:${r.id}`;
+      r.search = `${title} ${r.place} ${civicPlaceName(country)} ${STATE_NAMES[region] || ''} ${JSON.stringify(raw)}`.toLocaleLowerCase();
+      records.push(r);
+    }
+  }
+  for (const [file, kind] of [['companies','company'],['projects','project'],['policies','policy'],['moratoriums','moratorium'],['tariffs','tariff'],['rate_cases','rate_case']]) add(kind, civic.shards.get(file)?.[file]);
+  const abroad = civic.shards.get('international') || {};
+  for (const [key, kind] of [['projects','project'],['policies','policy'],['moratoriums','moratorium'],['rate_cases','rate_case']]) add(kind, abroad[key], true);
+  const elections = civic.shards.get('elections') || {};
+  add('election', [...(elections.races || []), ...(elections.measures || [])]);
+  civic.records = records;
+}
+async function civicLoad() {
+  if (!civic.pending) civic.pending = (async () => {
+    const missing = CIVIC_FILES.filter(file => !civic.shards.has(file));
+    await Promise.all(missing.map(async file => {
+      try { civic.shards.set(file, await fetchJson(`data/${file}.json`)); }
+      catch (error) { console.warn(`Search: ${file} unavailable`, error); }
+    }));
+    civic.failures = CIVIC_FILES.filter(file => !civic.shards.has(file));
+    civicNormalize();
+  })().finally(() => { civic.pending = null; });
+  await civic.pending;
+}
+function civicReadParams() {
+  const p = new URLSearchParams(location.search);
+  civic.params = new URLSearchParams();
+  for (const key of ['find', 'kind', 'place', 'browse']) if (p.has(key)) civic.params.set(key, p.get(key));
+  document.getElementById('civic-query').value = p.get('find') || '';
+  document.getElementById('civic-kind').value = p.get('kind') || '';
+  civic.limit = 40;
+}
+function civicWriteSearch() {
+  const q = civic.params.toString();
+  history.replaceState(history.state, '', location.pathname + (q ? `?${q}` : '') + '#overview');
+}
+function civicPlaceName(code) {
+  if (code.includes('/')) { const [region, ...local] = code.split('/'); return `${local.join('/')} · ${civicPlaceName(region)}`; }
+  if (code.startsWith('US-')) return STATE_NAMES[code.slice(3)] || code;
+  try { return new Intl.DisplayNames(['en'], {type: 'region'}).of(code); } catch { return code; }
+}
+function civicPlaceRecords(code, r) {
+  if (code.includes('/')) { const [region, ...local] = code.split('/'); return civicPlaceRecords(region, r) && [r.raw.city, r.raw.jurisdiction, r.raw.locality].includes(local.join('/')); }
+  return code.startsWith('US-') ? r.country === 'US' && r.region === code.slice(3) : r.country === code;
+}
+async function civicRenderSearch() {
+  const serial = ++civic.serial;
+  const active = civic.params.toString() !== '';
+  document.getElementById('civic-home-content').hidden = active;
+  document.getElementById('civic-search-panel').hidden = !active;
+  if (!active) return;
+  const status = document.getElementById('civic-search-status');
+  status.textContent = 'Loading records…';
+  await civicLoad();
+  if (serial !== civic.serial || state.activeView !== 'overview') return;
+  const query = (civic.params.get('find') || '').trim().toLocaleLowerCase();
+  const terms = query.split(/\s+/).filter(Boolean);
+  const kind = civic.params.get('kind');
+  const place = civic.params.get('place');
+  const browsePlaces = civic.params.get('browse') === 'places';
+  const matching = civic.records.filter(r => (!kind || r.kind === kind) && (!place || civicPlaceRecords(place, r)) && terms.every(t => r.search.includes(t)));
+  const places = [...new Set(civic.records.filter(r => r.kind !== 'company').map(r => r.country === 'US' ? (r.region ? `US-${r.region}` : '') : r.country))].filter(Boolean).sort((a,b) => civicPlaceName(a).localeCompare(civicPlaceName(b)));
+  if (query) {
+    for (const r of civic.records) {
+      const locality = r.raw.city || (['city', 'county', 'municipal', 'local'].includes(r.raw.jurisdiction_type || r.raw.scope) ? r.raw.jurisdiction : '');
+      if (!locality || !locality.toLocaleLowerCase().includes(query)) continue;
+      const key = `${r.country === 'US' ? `US-${r.region}` : r.country}/${locality}`;
+      if (!places.includes(key)) places.push(key);
+    }
+  }
+  document.getElementById('civic-places').replaceChildren(...(!place && (browsePlaces || query) ? places.filter(code => browsePlaces || civicPlaceName(code).toLocaleLowerCase().includes(query)).map(code => {
+    const li = el('li'); li.append(civicLink(civicPlaceName(code), `?place=${encodeURIComponent(code)}#overview`)); return li;
+  }) : []));
+  const heading = document.getElementById('civic-place-heading');
+  heading.hidden = !place && !browsePlaces;
+  heading.textContent = place ? civicPlaceName(place) : 'Places';
+  const scope = document.getElementById('civic-place-scope');
+  scope.hidden = !place;
+  scope.textContent = 'Recorded here. Jurisdiction and utility coverage vary by record.';
+  const shown = browsePlaces && !query && !kind && !place ? [] : matching;
+  document.getElementById('civic-results').replaceChildren(...shown.slice(0, civic.limit).map(civicResult));
+  status.textContent = `${browsePlaces && !shown.length ? `${places.length} places` : `${matching.length} records`}${civic.failures.length ? ` · Unavailable: ${civic.failures.join(', ')}` : ''}`;
+  document.getElementById('civic-retry').hidden = !civic.failures.length;
+  document.getElementById('civic-more').hidden = shown.length <= civic.limit;
+}
+function civicResult(r) {
+  const li = el('li', 'civic-result');
+  const h = el('h3'); h.append(civicLink(r.title, civicHref(r)));
+  li.append(h, el('div', 'civic-result-meta', [CIVIC_LABELS[r.kind], r.place, r.status && civicLabel(r.status)].filter(Boolean).join(' · ')));
+  if (r.date) li.append(el('div', 'civic-result-meta', `${r.raw.effective_date ? 'Effective' : r.raw.decided_date || r.raw.decision_date ? 'Decision' : r.raw.enacted_date ? 'Enacted' : r.raw.election_date ? 'Election' : 'Dated'} · ${r.date}`));
+  if (r.raw.next_milestone) li.append(el('p', '', r.raw.next_milestone + (r.raw.next_milestone_date ? ` · ${r.raw.next_milestone_date}` : ' · No date announced.')));
+  const actions = el('div', 'civic-result-actions');
+  if (r.source) actions.append(civicLink('Source', r.source));
+  if (['agreement', 'tariff'].includes(r.kind)) {
+    const label = el('label'); const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = civic.selected.includes(r.key);
+    checkbox.setAttribute('aria-label', `Compare ${r.title}`);
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked && (civic.selected.length >= 3 || civic.selected.some(key => !key.startsWith(`${r.kind}:`)))) {
+        checkbox.checked = false; document.getElementById('civic-search-status').textContent = 'Choose up to three agreements or up to three tariffs.'; return;
+      }
+      civic.selected = checkbox.checked ? [...civic.selected, r.key] : civic.selected.filter(key => key !== r.key);
+      civicTray();
+    });
+    label.append(checkbox, document.createTextNode('Compare')); actions.append(label);
+  }
+  li.append(actions); return li;
+}
+function civicTray() {
+  const tray = document.getElementById('civic-compare-tray'); tray.hidden = !civic.selected.length;
+  document.getElementById('civic-compare-count').textContent = `${civic.selected.length} selected`;
+  tray.querySelector('a').href = `?records=${encodeURIComponent(civic.selected.join(','))}#compare`;
+}
+function civicComparisonUrl() {
+  history.replaceState(null, '', `${location.pathname}${civic.selected.length ? `?records=${encodeURIComponent(civic.selected.join(','))}` : ''}#compare`);
+}
+async function civicRenderCompare() {
+  const serial = ++civic.serial;
+  const p = new URLSearchParams(location.search);
+  if (p.has('records')) civic.selected = [...new Set(p.get('records').split(','))].filter(key => /^(agreement|tariff):[a-z0-9-]+$/.test(key)).slice(0,3);
+  const status = document.getElementById('civic-compare-status'); status.textContent = 'Loading records…';
+  await civicLoad();
+  if (serial !== civic.serial || state.activeView !== 'compare') return;
+  const firstKind = civic.selected[0]?.split(':')[0];
+  civic.selected = civic.selected.filter(key => key.startsWith(`${firstKind}:`));
+  const records = civic.selected.map(key => civic.records.find(r => r.key === key)).filter(Boolean);
+  const kind = firstKind || document.getElementById('civic-compare-kind').value;
+  document.getElementById('civic-compare-kind').value = kind;
+  document.getElementById('civic-choose').href = `?kind=${kind}#overview`;
+  status.textContent = records.length ? `${records.length} selected${records.length !== civic.selected.length ? ' · Some records unavailable.' : ''}` : 'Choose two or three agreements or tariffs.';
+  if (civic.failures.length) status.textContent += ` · Unavailable: ${civic.failures.join(', ')}. Reload to retry.`;
+  const fields = kind === 'tariff' ? ['Status', 'Jurisdiction', 'Threshold'] : ['Status', 'Jurisdiction', 'Terms'];
+  // A shared field order makes missing terms visible, without scoring them.
+  if (kind === 'tariff') {
+    fields.splice(3, fields.length, ...new Set(records.flatMap(r => Object.keys(r.raw.parameters || {}))));
+  }
+  document.getElementById('civic-compare-grid').replaceChildren(...records.map(r => {
+    const card = el('article', 'civic-compare-card'); const h = el('h3'); h.append(civicLink(r.title, civicHref(r))); card.append(h);
+    const dl = el('dl');
+    for (const field of fields) {
+      dl.append(el('dt', '', TARIFF_PARAMETER_LABELS[field] || civicLabel(field)));
+      const dd = el('dd');
+      if (field === 'Status') dd.textContent = civicLabel(r.status);
+      else if (field === 'Jurisdiction') dd.textContent = r.place || 'Not recorded';
+      else if (field === 'Threshold') dd.textContent = r.raw.min_load_mw != null ? `${r.raw.min_load_mw} MW` : 'Not recorded';
+      else if (field === 'Terms') {
+        const terms = r.raw.key_terms || [];
+        if (terms.length) { const ul = el('ul'); terms.forEach(term => ul.append(el('li', '', term))); dd.append(ul); } else dd.textContent = 'Not recorded';
+      } else {
+        const term = r.raw.parameters?.[field];
+        dd.textContent = term ? [civicLabel(term.status), term.detail || term.verbatim].filter(Boolean).join(' · ') : 'Not recorded';
+        if (term?.source_url) dd.append(document.createTextNode(' '), civicLink('Source', term.source_url));
+      }
+      dl.append(dd);
+    }
+    card.append(dl); if (r.source) card.append(civicLink('Source', r.source));
+    const remove = el('button', 'btn-link', 'Remove'); remove.type = 'button'; remove.setAttribute('aria-label', `Remove ${r.title}`);
+    remove.addEventListener('click', () => { civic.selected = civic.selected.filter(key => key !== r.key); civicComparisonUrl(); civicRenderCompare(); }); card.append(remove); return card;
+  }));
+  civicComparisonUrl(); civicTray();
+}
+async function civicRenderUpdates() {
+  const serial = ++civic.serial;
+  const status = document.getElementById('civic-updates-status'); status.textContent = 'Loading updates…';
+  const results = await Promise.allSettled([fetchJson('data/changes.json'), fetchJson('data/actions.json')]);
+  if (serial !== civic.serial || state.activeView !== 'updates') return;
+  const changes = results[0].status === 'fulfilled' ? results[0].value : null;
+  const actions = results[1].status === 'fulfilled' ? results[1].value.actions || [] : [];
+  const mode = document.getElementById('civic-update-kind').value;
+  const entries = [...(mode !== 'action' ? (changes?.changes || []).map(c => ({...c, recordChange: true})) : []), ...(mode !== 'record' ? actions : [])].sort((a,b) => b.date.localeCompare(a.date));
+  document.getElementById('civic-updates').replaceChildren(...entries.slice(0, civic.updateLimit || 40).map(item => {
+    const li = el('li', 'civic-result');
+    li.append(el('div', 'civic-result-meta', `${item.recordChange ? 'Tracker updated' : item.date_kind === 'observed' ? 'First observed' : 'Event date'} · ${item.date}`));
+    const h = el('h3');
+    if (item.href) h.append(civicLink(item.title, item.href));
+    else { const button = el('button', 'btn-link', item.title); button.type = 'button'; button.addEventListener('click', () => openHomeTarget(item.target)); h.append(button); }
+    li.append(h);
+    if (item.fields) li.append(el('p', '', item.action === 'added' ? 'Added.' : item.action === 'removed' ? 'Removed.' : `Changed: ${item.fields.map(civicLabel).join(', ')}`));
+    if (item.source_url) li.append(civicLink('Source', item.source_url));
+    return li;
+  }));
+  document.getElementById('civic-updates-more').hidden = entries.length <= (civic.updateLimit || 40);
+  status.textContent = `${entries.length} updates${changes ? ` · Record history since ${changes.since}.` : ' · Record history unavailable. Reload to retry.'}${results[1].status === 'rejected' ? ' Dated actions unavailable.' : ''}`;
+}
+function wireCivic() {
+  let timer;
+  document.getElementById('civic-search').addEventListener('submit', event => { event.preventDefault(); clearTimeout(timer); search(); });
+  function search() {
+    if (state.activeView !== 'overview') return;
+    const value = document.getElementById('civic-query').value.trim();
+    if (value) civic.params.set('find', value); else civic.params.delete('find');
+    civic.limit = 40; civicWriteSearch(); civicRenderSearch();
+  }
+  document.getElementById('civic-query').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(search, 180); });
+  document.getElementById('civic-kind').addEventListener('change', event => { if (event.target.value) civic.params.set('kind', event.target.value); else civic.params.delete('kind'); civic.limit = 40; civicWriteSearch(); civicRenderSearch(); });
+  document.getElementById('civic-reset').addEventListener('click', () => { civic.params = new URLSearchParams(); document.getElementById('civic-query').value = ''; document.getElementById('civic-kind').value = ''; civicWriteSearch(); civicRenderSearch(); });
+  document.getElementById('civic-more').addEventListener('click', () => { civic.limit += 40; civicRenderSearch(); });
+  document.getElementById('civic-retry').addEventListener('click', civicRenderSearch);
+  document.getElementById('civic-compare-kind').addEventListener('change', event => { civic.selected = []; civicComparisonUrl(); civicRenderCompare(); });
+  const clear = () => { civic.selected = []; civicTray(); if (state.activeView === 'compare') { civicComparisonUrl(); civicRenderCompare(); } else civicRenderSearch(); };
+  document.getElementById('civic-compare-clear').addEventListener('click', clear);
+  document.getElementById('civic-tray-clear').addEventListener('click', clear);
+  document.getElementById('civic-update-kind').addEventListener('change', () => { civic.updateLimit = 40; civicRenderUpdates(); });
+  document.getElementById('civic-updates-more').addEventListener('click', () => { civic.updateLimit = (civic.updateLimit || 40) + 40; civicRenderUpdates(); });
+  // Same-document links use the existing router, including query-only changes.
+  document.addEventListener('click', event => {
+    const a = event.target.closest?.('a');
+    if (!a || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+    if (!a.closest('.directory-menu, .civic-presets, #civic-search-panel, #civic-compare-tray, #view-compare, #view-updates')) return;
+    event.preventDefault(); a.closest('details.directory-menu')?.removeAttribute('open'); history.pushState(null, '', url); routeFromLocation(); window.scrollTo(0, 0);
+  });
+}

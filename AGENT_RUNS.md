@@ -765,3 +765,10 @@ reviews should check where a record is discoverable, not only its text.
 | African case research | Partly | Two usable project records and a documented internship outcome. Token count unavailable. The Olkaria handoff missed a 2026 design-stage update. | Search the project name with the current year and a local interview before accepting the announcement as the latest event. |
 | Latin American case research | Yes | The signed Uruguayan permit names a 45-day reporting deadline. The Brazilian complaint and ruling distinguish requested measures from court orders. Tokens unmetered. | Start with the operative paragraph of a permit or ruling, then find a local voice. |
 | Combined source and export review | Yes | Caught the missing direct citation to the ruling, review dates, and an incomplete noise clause in the state draft. Tokens unmetered. | Read the PDF as a standalone handout and check the enforcing office as well as the example. |
+
+### 2026-11-21 — civic index redesign
+
+| Run | Worked | Result and cost | Next time |
+| --- | --- | --- | --- |
+| One combined correctness/editorial review (gpt-6.1-sol, 12-call cap) | Yes | Found debounce navigation race, observation/event mislabel, incomplete material-history coverage and digest cap leaking into Updates. All addressed; token count unavailable. | Specify feed completeness and date provenance in the feature contract before implementation. One bounded reviewer was sufficient; no research fan-out. |
+| Targeted follow-up on the same review | Yes | Verified all three feed corrections with temporary-history edits and a browser check: 746 actions, 40→80 pagination, sources and observation labels. No new findings; tokens unavailable. | Recheck the corrected flows only. |

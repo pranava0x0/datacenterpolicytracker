@@ -3,6 +3,31 @@
 _Created: 2026-06-01_
 _Last run: 2026-11-07_
 
+## 2026-11-21 — civic index redesign
+
+Full suite: 1,048 passed in 376.51 seconds. Three focused change-history tests
+passed separately (including two added after full-suite collection). All 156
+interaction paths stay within the existing device budgets; no budgets were
+raised. The harness now uses the visible specialist links and primary navigation
+instead of scrolling to the duplicate footer directory. Specialist links remain
+visible because collapsing them added a click to common tasks.
+
+At 375×812 the first update starts at y=487. Search, place results, comparisons,
+Updates and every specialist view showed no document overflow. Desktop and phone
+screenshots are in the worktree's `.preview/` directory. Search/record Back,
+comparison reload/removal, partial-load retry and typing-then-navigating have
+browser regression coverage. The full suite includes axe light/dark checks on
+all views and the source/plan download checks.
+
+The standalone preview passed its click-through smoke test without fatal errors.
+Repeated refresh output is byte-identical. Canonical records were not edited;
+the only existing home-payload change marks roster dates as observations. The
+complete dated-action feed has 746 entries; material edit history begins with
+this release, without inventing retrospective edits. An independent reviewer
+verified international/election change capture, pagination, sources and the
+observation/event distinction after corrections.
+
+
 ## 2026-11-07 state and site refresh
 
 Full suite: 976 passed in 200 seconds. Final data/source and map/election

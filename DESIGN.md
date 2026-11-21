@@ -1,5 +1,32 @@
 # DESIGN.md — Design system & editorial rubric
 
+
+## Current interface direction — owner approved 2026-11-21
+
+This section supersedes historical visual instructions below. Use Aicher's
+organization and Martin's restraint as principles, with an original small
+geometric mark. Off-white, graphite, one deep blue accent; one system sans
+family; generous space between groups and compact rows within them.
+
+Explore / Compare / Plans / Updates are the primary destinations. Search by
+place, company, utility, docket or record; retain canonical specialist and
+record URLs. Group places only by explicit geography; never infer a utility's
+service territory. Compare actual agreement/tariff terms without scores.
+Separate event dates from tracker edits; capture-date refreshes are not news.
+
+Drop masthead dominance, mandatory hero headings/deks, boxed totals as the
+default, the permanent Plans promotion, the White House visual identity,
+mandatory serif/sans pairing, and uppercase labels. No eyebrows, ornamental
+charts, photography, gradients, oversized heroes or explanatory filler.
+Copy is severe: “Conference postponed.” “Source.” “No date announced.” Keep
+explanation when it distinguishes a promise from an obligation, adoption from
+effectiveness, or otherwise changes the reader's understanding.
+
+Exact quotations, visible sources, explicit unknowns, curator-owned judgments,
+consistent terminology, accessibility and stable links remain mandatory.
+Quotes remain marked up as quotes; typography alone is not their attribution.
+
+
 > The visual language and the editorial rules that the dashboard's
 > credibility rests on. Touch this before changing how claims, projects,
 > or community responses are categorized or displayed.

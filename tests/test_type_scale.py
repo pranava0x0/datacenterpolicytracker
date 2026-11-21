@@ -54,6 +54,6 @@ def test_scale_is_small() -> None:
     assert 6 <= len(tokens) <= 10, tokens
 
 
-def test_masthead_is_the_largest_heading() -> None:
-    """No view or section heading may outrank the site title."""
+def test_headings_use_the_fixed_scale() -> None:
+    """Page headings can outrank the masthead; both use the shared scale."""
     assert "clamp(" not in re.sub(r"(padding|gap|max-height)[^;]*;", "", BODY)
