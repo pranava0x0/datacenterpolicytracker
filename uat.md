@@ -6,9 +6,8 @@ _Last run: 2026-11-07_
 ## 2026-11-21 — civic index redesign
 
 Full suite: 1,048 passed in 376.51 seconds. Three focused change-history tests
-passed separately (including two added after full-suite collection). All 156
-interaction paths stay within the existing device budgets; no budgets were
-raised. The harness now uses the visible specialist links and primary navigation
+passed separately (including two added after full-suite collection). All default-context paths stay within the existing device budgets; no budgets
+were raised. All 156 default/expanded paths complete without errors. The harness now uses the visible specialist links and primary navigation
 instead of scrolling to the duplicate footer directory. Specialist links remain
 visible because collapsing them added a click to common tasks.
 
