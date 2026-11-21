@@ -9091,6 +9091,25 @@
       "captured_at": "2026-11-19",
       "city_council_vote": "unanimous",
       "state_code": "MI"
+    },
+    {
+      "id": "plymouth-county-ia-2026-06",
+      "jurisdiction": "Plymouth County",
+      "jurisdiction_type": "county",
+      "state_code": "IA",
+      "status": "enacted",
+      "enacted_date": "2026-06-16",
+      "duration_months": 12,
+      "duration_description": "One year, effective immediately; set to expire June 16, 2027, and can be revoked or extended by the Board at any time.",
+      "key_reasons": [
+        "water"
+      ],
+      "summary": "The Plymouth County Board of Supervisors unanimously approved a resolution on June 16, 2026 enacting a one-year moratorium on large-scale data centers and industrial battery storage facilities within the county zoning board's jurisdiction. Board chair Don Kass cited water consumption and the possibility of the centers becoming brownfield sites.",
+      "source_url": "https://klem1410.com/2026/06/17/plymouth-county-supervisors-approve-one-year-data-center-moratorium/",
+      "source_title": "KLEM 1410 — Plymouth County supervisors approve one-year data center moratorium",
+      "enacted_by": "Board of Supervisors",
+      "session": "2026",
+      "captured_at": "2026-11-21"
     }
   ]
 }

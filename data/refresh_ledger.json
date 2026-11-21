@@ -409,6 +409,10 @@
         "summary": "Nov 5: openai.com still 403; OpenAI quote not verified, no change. Needs non-403 route (archive/PDF)."
       }
     },
+    "state:IA": {
+      "last_reviewed": "2026-11-21",
+      "summary": "No pending/proposed IA records; searched new county moratoriums; added Plymouth County (Jun 16 2026, KLEM); Iowa/Sioux/Shelby/Ida counties left as leads; legislature/IUB not checked"
+    },
     "state:IL": {
       "follow_ups": [
         {
