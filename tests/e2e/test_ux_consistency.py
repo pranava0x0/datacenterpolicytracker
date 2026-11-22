@@ -73,7 +73,7 @@ def test_tab_name_is_the_same_everywhere(page: Page, base_url: str):
         if t["aria"]:
             assert t["aria"] == t["label"], t
         card = cards.get(target_of.get(t["name"], t["name"]))
-        if t["name"] != "overview":
+        if t["name"] not in ("overview", "compare", "updates"):
             assert card == t["label"], (t, card)
             assert f"[{t['label']}](" in llms, f"llms.txt names {t['name']} differently"
         if t["hero"] is not None and t["name"] != "elections":

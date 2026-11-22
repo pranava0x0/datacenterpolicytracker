@@ -6,7 +6,9 @@ Last refreshed 2026-11-21. Record counts: 195 sites (60 contested), 17 companies
 
 ## Sections
 
-- [Home](https://pranava0x0.github.io/datacenterpolicytracker/#overview): Section totals, the latest actions and dated upcoming decisions.
+- [Explore](https://pranava0x0.github.io/datacenterpolicytracker/#overview): Search records and places, latest actions and dated upcoming decisions.
+- [Compare](https://pranava0x0.github.io/datacenterpolicytracker/#compare): Compare agreement terms or tariff provisions, with sources and explicit gaps.
+- [Updates](https://pranava0x0.github.io/datacenterpolicytracker/#updates): Dated actions and material changes to published records.
 - [Elections](https://pranava0x0.github.io/datacenterpolicytracker/#elections): Incoming and prior officeholders' data-center policies, proposed changes, and local ballot measures.
 - [The Pledge](https://pranava0x0.github.io/datacenterpolicytracker/#ratepayer): The White House Ratepayer Protection Pledge: its five commitments (quoted), every signatory, and a per-site scorecard.
 - [Policy](https://pranava0x0.github.io/datacenterpolicytracker/#policies): Laws, bills, executive orders, local rules and community benefit agreements.
@@ -18,6 +20,8 @@ Last refreshed 2026-11-21. Record counts: 195 sites (60 contested), 17 companies
 
 ## Data (JSON, one file per record type)
 
+- [actions.json](https://pranava0x0.github.io/datacenterpolicytracker/data/actions.json)
+- [changes.json](https://pranava0x0.github.io/datacenterpolicytracker/data/changes.json)
 - [claims.json](https://pranava0x0.github.io/datacenterpolicytracker/data/claims.json)
 - [companies.json](https://pranava0x0.github.io/datacenterpolicytracker/data/companies.json)
 - [coverage.json](https://pranava0x0.github.io/datacenterpolicytracker/data/coverage.json)

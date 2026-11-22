@@ -89,8 +89,8 @@ def test_labeled_filters_keep_primary_controls_visible(page: Page, base_url: str
     assert page.locator('.tabbar .tab').evaluate_all('nodes=>nodes.every(n=>n.innerText.trim().length > 0)')
     # One name per tab at every width (UX audit 2026-11-09): no short variants.
     expect(page.locator('#tab-world')).to_have_text('International', use_inner_text=True)
-    if width <= 1100:
-        assert page.locator('.tabbar').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 5
+    if width <= 640:
+        assert page.locator('.tabbar').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 4
 
 @pytest.mark.parametrize(("file", "missing", "unaffected"), [
     ("moratoriums", "pauses", "principles"), ("policies", "rules", "pauses"),

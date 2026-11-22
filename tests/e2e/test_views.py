@@ -2318,7 +2318,7 @@ class TestPledgeLanding:
         by a hero-sized band."""
         page.set_viewport_size({"width": 1440, "height": 900})
         page.goto(base_url + "/")
-        box = page.locator(".tabbar").bounding_box()
+        box = page.locator(".primary-nav").bounding_box()
         assert box is not None, ".tabbar did not render"
         assert box["y"] < 900, f".tabbar starts at y={box['y']:.0f}, below the fold"
 
@@ -2351,7 +2351,7 @@ class TestPledgeLanding:
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         page.wait_for_selector("#whats-next-list .feed-item", timeout=E2E_WAIT)
-        for sel in ("#home-cards", "#home-latest-list", "#whats-next-list"):
+        for sel in ("#civic-search", "#home-latest-list", "#whats-next-list"):
             box = page.locator(sel).bounding_box()
             assert box is not None, f"{sel} did not render"
             assert box["y"] < 900, f"{sel} starts at y={box['y']:.0f}, below the fold"
@@ -2360,7 +2360,7 @@ class TestPledgeLanding:
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         cards = page.locator(".home-cards .home-card")
-        views = page.evaluate("() => VIEWS.length")
+        views = page.evaluate("() => VIEWS.filter(v => !['compare', 'updates'].includes(v.name)).length")
         assert cards.count() == views - 1, f"{cards.count()} cards for {views - 1} non-Home tabs"
         for i in range(cards.count()):
             target = cards.nth(i).get_attribute("data-path-target")
@@ -3581,7 +3581,7 @@ class TestHomeV6:
         targets = page.locator("#home-cards .home-card").evaluate_all("els => els.map(e => e.dataset.pathTarget)")
         # Cards follow the tab bar, so a reader meets sections in one order.
         views = page.evaluate(
-            "() => VIEWS.slice(1).map(v => Object.entries(PLEDGE_TARGETS)"
+            "() => VIEWS.filter(v => !['overview', 'compare', 'updates'].includes(v.name)).map(v => Object.entries(PLEDGE_TARGETS)"
             ".find(([k, t]) => t.view === v.name && !t.anchor)[0])"
         )
         assert targets == views
@@ -4099,9 +4099,9 @@ class TestInternational:
             page.goto(base_url + "/")
             page.wait_for_selector("#tab-world", timeout=E2E_WAIT)
             rows = page.evaluate(
-                "() => new Set(VIEWS.map(v => Math.round(document.getElementById(v.tab).getBoundingClientRect().y))).size"
+                "() => new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().y))).size"
             )
-            assert rows <= 2, f"{rows} tab rows at {width}px"
+            assert rows == 1, f"{rows} primary navigation rows at {width}px"
         finally:
             ctx.close()
 

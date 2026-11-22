@@ -139,17 +139,15 @@ def test_blueprint_back_restores_tracker_route(page, base_url, file_preview):
     expect(page.locator("#f-q")).to_have_value("Tulsa")
     # An independently opened shared link must not borrow an old return route.
     page.goto(base_url + "/community-benefits.html#corridor")
-    page.get_by_role("link", name="← Back to Home", exact=True).click()
-    expect(page.get_by_role("tab", name="Home", exact=True)).to_have_attribute("aria-selected", "true")
+    page.get_by_role("link", name="← Back to Explore", exact=True).click()
+    expect(page.get_by_role("tab", name="Explore", exact=True)).to_have_attribute("aria-selected", "true")
 
 
 @pytest.mark.parametrize("width", [375, 1366])
 def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     page.set_viewport_size({"width": width, "height": 812})
     page.goto(base_url)
-    dashboard = page.evaluate("""() => VIEWS.map(v => [
-        document.getElementById(v.tab).textContent.trim(), v.hash
-    ])""")
+    dashboard = [["Explore", "#overview"], ["Compare", "#compare"], ["Plans", ""], ["Updates", "#updates"]]
     page.goto(base_url + "/community-benefits.html#rural")
     nav = page.get_by_role("navigation", name="Main navigation")
     expect(nav).to_be_in_viewport(ratio=1)
@@ -158,8 +156,8 @@ def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     heading = page.locator("#rural h2")
     expect(heading).to_be_in_viewport(ratio=1)
     assert heading.bounding_box()["y"] >= nav.bounding_box()["y"] + nav.bounding_box()["height"] - 1
-    nav.get_by_role("link", name="Moratoriums", exact=True).click()
-    expect(page.get_by_role("tab", name="Moratoriums", exact=True)).to_have_attribute("aria-selected", "true")
+    nav.get_by_role("link", name="Updates", exact=True).click()
+    expect(page.get_by_role("tab", name="Updates", exact=True)).to_have_attribute("aria-selected", "true")
 
 
 def test_published_plan_pdfs_match_current_drafts():

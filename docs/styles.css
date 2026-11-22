@@ -5,59 +5,25 @@
    hard-code colors elsewhere — read CSS vars via getComputedStyle in JS.
    ========================================================================== */
 
-/* Civic-record palette (v2): cool paper, near-black ink, one deep signal blue.
-   Deliberately NOT the warm cream the source page uses — a warm-cream-and-gold
-   editorial look reads as a consumer AI product, and this is a public record.
-   Cool paper reads as a registry or an investigative newsroom, which is what
-   the site actually is. The pledge's STRUCTURE is what we borrowed (Roman
-   numeral commitments, letterspaced kickers, big display serif); the colour is
-   ours.
-
-   Every value below is a literal in BOTH this block and the dark block
-   (DESIGN.md 12.12: a `var()` alias in :root only computes on :root and does
-   NOT propagate the dark override to descendants). */
+/* Independent civic index: paper, graphite and one blue accent.
+   Status and evidence colors retain their editorial meanings. */
 :root {
-  /* v3 civic palette, taken from whitehouse.gov's own presets (extracted from
-     the live site 2026-08-03): white paper, charcoal ink (#293340), deep navy
-     (#0D132D / #151A30 / #141F4D), signal red (#B50000), amber (#FFBD00 —
-     10.9:1 on the navy band, 1.7:1 on white, so it is a MARK color on light
-     surfaces and a text color only on the band), stone (#E8E6E0) and
-     pale-gray (#D9DEE8). Every text pairing below was contrast-computed
-     before landing; see the commit message for the table. */
-  --bg: #ffffff;
+  --bg: #f8f9f6;
   --surface: #ffffff;
-  --surface-2: #f3f3f3;
-  --text: #293340;
-  --text-muted: #5a6572;
-  --border: #d9dee8;
-  --border-strong: #8a8a8a;
-  --accent: #141f4d;
-  --accent-soft: #e3e7f2;
-  /* Deliberately NOT --accent's navy: navy-on-white text and this navy link
-     color compute to ~1.23:1 contrast against each other, so a link with no
-     other visual cue (many use text-decoration: none at rest, underline only
-     on :hover) reads as indistinguishable body copy. #2563eb keeps AA against
-     white (5.17:1) while roughly doubling the link/text separation (~2.48:1)
-     — the practical ceiling given how dark --text already is; 3:1 would need
-     --text itself to lighten, out of scope here. */
-  --link: #2563eb;
-
-  /* ONE structural accent (2026-08-24, user-directed): the deep navy that
-     links, the tab underline and tile rules already used. The old separate
-     red mark/rule pair made the chrome read as alarm; whitehouse.gov red
-     survives only where color carries a data meaning — the
-     failed/rejected/negative status tokens. */
-
-  /* The inked band — the dark section the commitments render on. Deliberately
-     dark in BOTH themes (it is a figure, not a surface), so its own foreground
-     tokens travel with it rather than inheriting the page theme. */
-  --band-bg: #0d132d;
-  --band-text: #ffffff;
-  --band-text-muted: #abb4c4;
-  --band-accent: #ffbd00;
-  --band-hairline: rgba(255, 255, 255, 0.18);
-
-  --hairline: rgba(41, 51, 64, 0.16);
+  --surface-2: #edf0eb;
+  --text: #202825;
+  --text-muted: #536058;
+  --border: #d6dcd5;
+  --border-strong: #87958b;
+  --accent: #2353b8;
+  --accent-soft: #e7edf9;
+  --link: #2353b8;
+  --band-bg: #202825;
+  --band-text: #f8f9f6;
+  --band-text-muted: #c1ccc3;
+  --band-accent: #a5c3ff;
+  --band-hairline: rgba(248, 249, 246, 0.2);
+  --hairline: rgba(32, 40, 37, 0.16);
 
   /* Per-stance colors (community responses) */
   --stance-positive: #25663f;
@@ -166,19 +132,9 @@
   --theme-education: #8a4a5b;
   --theme-engagement: #4a8a6b;
 
-  /* Exactly TWO families (2026-08-24, user-directed): one sans for body, UI
-     and labels; one serif for the masthead, headings and display numbers.
-     The old third (mono, for kickers/dates/counts) and fourth (a separate
-     display serif) read as four competing voices on one page. whitehouse.gov
-     names Instrument first; naming it costs nothing (it engages when locally
-     installed) and the stacks fall back to system faces — still no web
-     fonts, per the perf budget. */
-  --font-sans:
-    "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-serif:
-    "Instrument Serif", Georgia, "Iowan Old Style", "Palatino Linotype",
-    Palatino, "Book Antiqua", "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Compatibility for the existing print/export templates. */
+  --font-serif: var(--font-sans);
 
   /* Type scale (2026-09-23). Every font-size in this sheet is one of these;
      a new size is a design decision, not a styling one. */
@@ -190,7 +146,7 @@
   --fs-lg: 1.125rem; /* 18px: card titles */
   --fs-xl: 1.28rem; /* section headings */
   --fs-2xl: 1.4rem; /* view headings */
-  --fs-3xl: 1.55rem; /* masthead, stat numerals */
+  --fs-3xl: 1.75rem; /* masthead, stat numerals */
 
   /* Spacing scale (2026-10-19): the rhythm every card, section and pill gap
      draws from. */
@@ -210,31 +166,22 @@
 }
 
 [data-theme="dark"] {
-  --bg: #0d132d;
-  --surface: #151a30;
-  --surface-2: #141f4d;
-  --text: #e8e6e0;
-  --text-muted: #9aa4b6;
-  --border: #2a3450;
-  --border-strong: #3e4a6b;
-  --accent: #ffbd00;
-  --accent-soft: #33290a;
-  /* Same fix as the light-mode --link: the previous amber-adjacent value
-     (#ffcb33) sits at ~1.22:1 contrast against --text (#e8e6e0) — both are
-     light, so a link with no static underline was nearly indistinguishable
-     from body copy. #4d84ff keeps AA against --bg (5.2:1) and separates from
-     --text at ~2.82:1. */
-  --link: #4d84ff;
-
-  /* The band goes darker still in dark mode so it stays a distinct figure
-     against the already-dark page rather than blending into it. */
-  --band-bg: #070d1f;
-  --band-text: #ffffff;
-  --band-text-muted: #abb4c4;
-  --band-accent: #ffbd00;
-  --band-hairline: rgba(255, 255, 255, 0.18);
-
-  --hairline: rgba(232, 230, 224, 0.16);
+  --bg: #161c19;
+  --surface: #1d2520;
+  --surface-2: #28332c;
+  --text: #eef2ec;
+  --text-muted: #b0beb3;
+  --border: #39483e;
+  --border-strong: #809888;
+  --accent: #a5c3ff;
+  --accent-soft: #25344f;
+  --link: #a5c3ff;
+  --band-bg: #111713;
+  --band-text: #eef2ec;
+  --band-text-muted: #b0beb3;
+  --band-accent: #a5c3ff;
+  --band-hairline: rgba(238, 242, 236, 0.2);
+  --hairline: rgba(238, 242, 236, 0.18);
 
   --stance-positive: #6cc18a;
   --stance-positive-soft: #1d3a28;
@@ -350,15 +297,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.01em;
   margin: 0;
 }
 
-/* Scale runs DOWN from the masthead: the site title is the biggest type on
-   the page (news-masthead convention, and 2026-08-24 user direction — view
-   headings must never outrank it). h1 1.5 > h2 1.4 > .acc-title 1.28 > h3 1.2. */
+/* Content headings can outrank the compact site identity. */
 h1 {
   font-size: var(--fs-3xl);
   line-height: 1.2;
@@ -517,13 +462,7 @@ select:focus-visible,
 /* Sticky wrapper so the tab bar survives the hero scrolling past. The
    background lives here rather than on .tabbar because the sticky element must
    be opaque edge-to-edge, not just under the 1280px content column. */
-.tabbar-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
+
 
 /* ==========================================================================
    Home briefing (v3)
@@ -603,7 +542,7 @@ select:focus-visible,
 
 .home-card-title {
   grid-area: title;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-lg);
   line-height: 1.2;
   color: var(--text);
@@ -888,7 +827,7 @@ main {
 }
 
 .claim-quote {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-md);
   line-height: 1.4;
   margin: 0 0 4px;
@@ -992,8 +931,8 @@ main {
   border-radius: 999px;
   font-size: var(--fs-2xs);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   /* Dark-mode bump: when currentColor is a light token (delivered/positive
      etc), the contrast against --surface needs the surface to be the *light*
      surface variant; matching what the soft backgrounds already do. */
@@ -1303,7 +1242,7 @@ main {
 
 .company-summary {
   margin: 0 0 16px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-md);
   line-height: 1.55;
   color: var(--text);
@@ -1597,8 +1536,8 @@ main {
   display: inline-block;
   padding: 0 6px;
   font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--text-muted);
   border: 1px solid var(--border-strong);
   border-radius: 999px;
@@ -1834,7 +1773,7 @@ main {
 }
 
 .mor-chart-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-md);
   font-weight: 600;
   color: var(--text);
@@ -2103,7 +2042,7 @@ main {
 
 .acc-title {
   margin: 0 0 0.3rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   /* The display face carries weight optically; 600 makes it look printed
      twice. Same 400 the pledge band and .rp-subhead already use. */
   font-weight: 400;
@@ -2495,7 +2434,7 @@ main {
 .rp-card-company {
   font-size: var(--fs-2xs);
   font-weight: 600;
-  color: var(--co-color);
+  color: var(--text-muted);
 }
 
 .rp-card-name {
@@ -3409,7 +3348,7 @@ body.tariff-modal-open {
   border: 1px solid var(--border);
   font-size: var(--fs-2xs);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: normal;
   margin-left: 0.3rem;
 }
 .tariff-status-approved td:first-child {
@@ -3542,7 +3481,7 @@ body.tariff-modal-open {
 .tpi-state {
   font-size: var(--fs-2xs);
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: normal;
   padding: 0.05rem 0.4rem;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -3555,8 +3494,8 @@ body.tariff-modal-open {
 }
 .tariff-partial-tag {
   font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--tariff-partial);
   background: var(--tariff-partial-soft);
   border-radius: 4px;
@@ -3681,8 +3620,8 @@ body.tariff-modal-open {
 .related-kind {
   font-size: var(--fs-2xs);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--text-muted);
   min-width: 7.5rem;
 }
@@ -3733,7 +3672,7 @@ body.tariff-modal-open {
 
 .mtt-quote {
   margin: 0 0 6px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-sm);
   line-height: 1.5;
   color: var(--text);
@@ -3758,8 +3697,8 @@ body.tariff-modal-open {
   display: inline-block;
   font-size: var(--fs-2xs);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   padding: 2px 7px;
   border-radius: 3px;
   background: var(--stance-positive-soft);
@@ -4274,7 +4213,7 @@ body.tariff-modal-open {
   border-radius: 3px;
   padding: 0 4px;
   margin-top: 2px;
-  letter-spacing: 0.02em;
+  letter-spacing: normal;
 }
 
 /* .gov badge on official government links in the resources list */
@@ -4282,8 +4221,8 @@ body.tariff-modal-open {
   display: inline-block;
   font-size: var(--fs-2xs);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   background: var(--stance-positive, #1a7a4a);
   color: #fff;
   border-radius: 3px;
@@ -4396,7 +4335,7 @@ nav {
 
 .rp-band-title {
   margin: 0 0 24px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: var(--fs-2xl);
   line-height: 1.12;
@@ -4422,7 +4361,7 @@ nav {
 }
 
 .rp-commit-num {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-style: italic;
   font-size: var(--fs-3xl);
   line-height: 0.85;
@@ -4435,7 +4374,7 @@ nav {
   text-transform: none;
   letter-spacing: -0.01em;
   margin: 0 0 6px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: var(--fs-lg);
   line-height: 1.18;
@@ -4520,7 +4459,7 @@ nav {
   /* Same override as .rp-commit-title — see the global h4 rule. */
   text-transform: none;
   letter-spacing: -0.01em;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   margin: 26px 0 6px;
   font-size: var(--fs-lg);
@@ -4700,7 +4639,7 @@ body.state-modal-open {
 }
 
 .state-detail .detail-header h3 {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: var(--fs-2xl);
   margin: 2px 0 6px;
@@ -4935,7 +4874,7 @@ body.state-modal-open {
 .pledge-state-abbr {
   font-size: 0.56rem;
   font-family: var(--font-sans);
-  letter-spacing: 0.02em;
+  letter-spacing: normal;
   color: var(--text);
 }
 
@@ -5067,8 +5006,8 @@ body.state-modal-open {
 .rc-next-lbl {
   font-weight: 600;
   color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   font-size: var(--fs-2xs);
 }
 
@@ -5287,7 +5226,7 @@ body.state-modal-open {
   color: var(--accent);
   font-size: var(--fs-2xs);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: normal;
   vertical-align: middle;
 }
 
@@ -5962,8 +5901,8 @@ button.depth-chip:focus-visible {
 }
 .tl-flag {
   font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   font-weight: 600;
   padding: 1px 6px;
   border-radius: 999px;
@@ -5990,8 +5929,8 @@ button.depth-chip:focus-visible {
 .status-pill {
   font-size: var(--fs-2xs);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   padding: 2px 7px;
   border-radius: 999px;
   background: var(--surface-2);
@@ -6025,8 +5964,8 @@ button.depth-chip:focus-visible {
 }
 .rc-next-lbl {
   font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   font-weight: 600;
   padding: 1px 6px;
   border-radius: 999px;
@@ -6074,7 +6013,7 @@ button.depth-chip:focus-visible {
 /* A real heading, not an eyebrow: sentence case, full ink, readable size. */
 .home-h {
   margin: 1.6rem 0 0.7rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-xl);
   font-weight: 600;
   color: var(--text);
@@ -6257,7 +6196,7 @@ button.depth-chip:focus-visible {
 .cba-title {
   flex-basis: 100%;
   margin: 2px 0 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-lg);
   font-weight: 600;
   line-height: 1.3;
@@ -6351,7 +6290,7 @@ button.depth-chip:focus-visible {
 }
 .cba-feature-title {
   margin: 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-lg);
   font-weight: 600;
 }
@@ -6429,27 +6368,6 @@ button.depth-chip:focus-visible {
 .cba-prov-chip { font-size: var(--fs-xs); color: var(--text); background: var(--surface-2); border-radius: 999px; padding: 2px 10px; }
 .cba-prov-num { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
 
-/* A direct route to the editable plans from every dashboard view. */
-.plans-entry { margin: 0 0 12px; }
-.plans-entry a {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  min-height: 44px; padding: .6rem 1rem;
-  border-radius: var(--radius-sm); color: var(--band-text); background: var(--band-bg);
-  text-decoration: none;
-}
-.plans-entry strong { font: 600 var(--fs-xl)/1.25 var(--font-serif); }
-.plans-entry a span span { color: var(--band-text-muted); margin-inline-start: .65rem; }
-.plans-entry a > span:last-child { font-size: var(--fs-xl); color: var(--band-accent); }
-.plans-entry a:is(:hover, :focus-visible) strong { text-decoration: underline; }
-.plans-entry a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-@media (max-width: 640px) {
-  .plans-entry a span span { display: block; margin: .1rem 0 0; font-size: var(--fs-sm); }
-  /* Keep the one-tap link on topic pages without displacing their directories. */
-  .plans-entry:has(+ #view-overview[hidden]) { margin-bottom: 0; }
-  .plans-entry:has(+ #view-overview[hidden]) a { padding-block: 0; }
-  .plans-entry:has(+ #view-overview[hidden]) #plans-entry-description { display: none; }
-}
-
 /* Planning tools share Frameworks routing; the guide module loads on demand. */
 .home-tasks, .guide-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
 .home-tasks button, .guide-controls button, .guide-controls select {
@@ -6521,8 +6439,8 @@ button.depth-chip:focus-visible {
   display: block;
   color: var(--text-muted);
   font-size: var(--fs-2xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: normal;
   font-weight: 600;
 }
 .world-formality-de_facto, .world-formality-administrative { font-style: italic; }
@@ -6578,8 +6496,8 @@ button.depth-chip:focus-visible {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   background: transparent;
 }
 
@@ -6613,8 +6531,8 @@ button.depth-chip:focus-visible {
   font-family: var(--font-sans);
   font-size: var(--fs-2xs);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   line-height: 1.5;
   white-space: nowrap;
   margin-left: 0;
@@ -6708,7 +6626,7 @@ button.depth-chip:focus-visible {
 
 /* Pills whose text is quoted in sentences and read by assistive tech keep sentence case. */
 .rp-basis,
-.rp-conflict-flag { text-transform: none; letter-spacing: 0.02em; }
+.rp-conflict-flag { text-transform: none; letter-spacing: normal; }
 
 .world-card-btn { display: grid; align-content: start; gap: .25rem; height: 100%; padding: .6rem .75rem; border: 1px solid var(--border); color: var(--text); background: var(--surface); text-decoration: none; }
 .world-card-btn:hover, .world-card-btn:focus-visible { border-color: var(--accent); }
@@ -6767,7 +6685,7 @@ button.depth-chip:focus-visible {
 .election-candidates.election-single { grid-template-columns: 1fr; }
 .election-candidate { min-width: 0; border-top: 1px solid var(--border); padding-top: 12px; }
 .election-candidate h4 { margin: 0 0 10px; font-size: var(--fs-base); }
-.election-evidence blockquote { margin: 12px 0 4px; padding-left: 12px; border-left: 2px solid var(--border); font-family: var(--font-serif); }
+.election-evidence blockquote { margin: 12px 0 4px; padding-left: 12px; border-left: 2px solid var(--border); font-family: var(--font-sans); }
 .election-evidence h4 { margin-bottom: 6px; }
 .election-evidence .muted { font-size: var(--fs-sm); }
 .election-related { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: var(--fs-sm); }
@@ -6938,8 +6856,8 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
   margin: 0.5rem 0 0.15rem;
   font-size: var(--fs-2xs);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--text-muted);
 }
 .mor-callout-latest {
@@ -6977,7 +6895,7 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
 .tparam-quote {
   display: block;
   margin-top: 0.2rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--fs-sm);
   color: var(--text-muted);
 }
@@ -7066,3 +6984,109 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
     padding: 0.5rem 0.75rem;
   }
 }
+
+/* 2026-11-21: civic index shell. Existing record and status components share
+   this typography; the primary routes are separate from specialist indexes. */
+.topbar { background: var(--bg); }
+.topbar-inner { align-items: center; padding-block: 16px 8px; }
+.topbar-title { display: flex; align-items: center; gap: 10px; }
+.topbar h1 { font-size: var(--fs-md); white-space: normal; line-height: 1.25; }
+.topbar-sub { font-size: var(--fs-xs); margin-top: 2px; }
+.identity-mark { display: grid; grid-template-columns: repeat(2, 7px); gap: 3px; flex: none; }
+.identity-mark i { width: 7px; height: 7px; background: var(--accent); }
+.identity-mark i:nth-child(2) { opacity: .25; }
+.identity-mark i:nth-child(3) { opacity: .55; }
+.primary-nav { display: flex; gap: 24px; max-width: 1280px; margin: auto; padding: 0 20px; }
+.primary-nav [role="tablist"] { display: contents; }
+.primary-nav .tab, .primary-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 6px 0; font-size: var(--fs-base); color: var(--text-muted); text-decoration: none; border: 0; border-bottom: 2px solid transparent; }
+.primary-nav .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.primary-nav a { order: 2; }
+#tab-updates { order: 3; }
+.primary-nav a:hover { color: var(--accent); text-decoration: underline; }
+main { padding-top: 24px; }
+.hero, #view-overview .hero { margin: 0 0 16px; max-width: none; }
+.hero-title, #view-overview .hero-title { font-size: var(--fs-3xl); letter-spacing: -.025em; margin-bottom: 6px; }
+.hero-dek, .view-scope { font-size: var(--fs-sm); margin: 0; }
+.home-h { font-size: var(--fs-xl); }
+.home-latest { gap: 36px; margin-top: 24px; }
+.home-cards { gap: 0 24px; margin-block: 24px; }
+.home-card { background: transparent; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 12px 0; }
+.home-card:hover { transform: none; background: var(--surface-2); }
+.home-card-title { font-size: var(--fs-base); font-weight: 600; }
+.home-card-num { font-size: var(--fs-base); color: var(--text-muted); }
+.rp-stat-value { color: var(--text); }
+.home-tasks { margin-block: 24px; }
+.home-tasks button { border: 0; border-bottom: 1px solid var(--border); background: transparent; padding-inline: 0; margin-right: 16px; color: var(--link); }
+.collection-nav { max-width: 1280px; margin: 32px auto 0; padding: 0 20px; }
+.collection-nav h2 { font-size: var(--fs-md); margin-bottom: 8px; }
+.collection-nav .tabbar { padding: 0; flex-wrap: wrap; justify-content: flex-start; gap: 4px 16px; overflow: visible; }
+.collection-nav .tab { font-size: var(--fs-sm); padding: 8px 0; white-space: normal; text-align: left; min-height: 44px; }
+.power-brief { border-top: 1px solid var(--border); padding: 10px 0; }
+.power-brief > summary { cursor: pointer; min-height: 44px; }
+.power-brief-title { display: inline; font-size: var(--fs-base); }
+.power-brief-asof { margin-left: 8px; }
+.civic-search { max-width: 760px; }
+.civic-search label { display: block; font-weight: 600; font-size: var(--fs-base); margin-bottom: 6px; }
+.civic-search input { width: 100%; box-sizing: border-box; min-height: 48px; border: 1px solid var(--border-strong); border-radius: 2px; background: var(--surface); color: var(--text); font: inherit; padding: 10px 12px; }
+.civic-presets, .civic-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 18px; margin: 8px 0 16px; }
+.civic-presets a { min-height: 44px; display: inline-flex; align-items: center; font-size: var(--fs-sm); }
+.civic-controls label { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); }
+.civic-controls select, .civic-controls button { min-height: 44px; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); padding: 6px 10px; }
+.civic-status { font-size: var(--fs-sm); color: var(--text-muted); margin: 8px 0; }
+.civic-results { list-style: none; padding: 0; margin: 0; max-width: 960px; }
+.civic-result { padding: 16px 0; border-top: 1px solid var(--border); }
+.civic-result h3 { font-size: var(--fs-md); line-height: 1.45; }
+.civic-result h3 a { color: var(--text); }
+.civic-result-meta, .civic-result-actions { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--fs-sm); }
+.civic-result-meta { color: var(--text-muted); margin-top: 4px; }
+.civic-result p { margin: 8px 0; max-width: 80ch; font-size: var(--fs-base); }
+.civic-result-actions { align-items: center; }
+.civic-result-actions a, .civic-result-actions label { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
+.civic-result-actions input { width: 18px; height: 18px; }
+.civic-compare-tray { position: sticky; bottom: 0; z-index: 20; background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; display: flex; align-items: center; gap: 16px; max-width: 960px; }
+.civic-compare-tray a, .civic-compare-tray button { min-height: 44px; display: inline-flex; align-items: center; }
+.civic-compare-tray button { margin-left: auto; }
+.civic-compare-grid { display: grid; grid-template-columns: repeat(var(--compare-columns, 2), minmax(0, 1fr)); gap: 24px; }
+.civic-compare-card { min-width: 0; overflow-wrap: anywhere; }
+.civic-compare-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
+.civic-compare-card h4 { color: var(--text); margin: 18px 0 8px; }
+.civic-compare-card dt { font-size: var(--fs-sm); color: var(--text-muted); }
+.civic-compare-card dd { margin: 2px 0 14px; font-size: var(--fs-base); }
+.civic-compare-card ul { padding-left: 20px; font-size: var(--fs-base); }
+.civic-compare-card li { margin-bottom: 8px; }
+.civic-compare-card blockquote { margin: 8px 0; padding-left: 12px; border-left: 2px solid var(--border-strong); font-size: var(--fs-base); }
+.civic-place-list { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; padding: 0; }
+.civic-place-list a { display: inline-flex; align-items: center; min-height: 44px; }
+#civic-place-heading { margin: 16px 0 8px; font-size: var(--fs-3xl); }
+@media (max-width: 640px) {
+  .topbar-inner { padding: 12px 16px 4px; }
+  .topbar-controls { gap: 4px; }
+  .primary-nav { padding-inline: 16px; justify-content: space-between; gap: 12px; }
+  main { padding: 20px 16px 32px; }
+  .home-latest { gap: 24px; }
+  .home-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-title, #view-overview .hero-title { font-size: var(--fs-2xl); }
+  .collection-nav .tabbar { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 10px; }
+  .collection-nav .tab { font-size: var(--fs-xs); }
+  .civic-compare-grid { grid-template-columns: 1fr; }
+  .subtabs { flex-wrap: wrap; overflow: visible; }
+  .subtab { white-space: normal; }
+}
+@media (pointer: coarse) {
+  .civic-controls a, .civic-results button, .primary-nav a, #theme-toggle { min-height: 44px; }
+}
+@media print {
+  .primary-nav, .collection-nav, .civic-search, .civic-controls, .civic-presets, .civic-compare-tray { display: none; }
+}
+
+/* A short digest; Updates holds the full record. */
+.home-latest .feed-list.is-capped > li:nth-child(n+5) { display: none; }
+.home-card-sub { font-weight: 400; }
+
+.directory-menu { max-width: 1240px; margin: auto; padding: 0 20px; font-size: var(--fs-sm); }
+.directory-menu nav { display: flex; flex-wrap: wrap; gap: 0 20px; padding-bottom: 4px; }
+.directory-menu a { min-height: 44px; align-content: center; }
+@media (max-width: 699px) { .directory-menu { padding-inline: 16px; } }
+
+.directory-menu a { color: var(--text-muted); text-decoration: none; }
+.directory-menu a:hover { color: var(--link); text-decoration: underline; }

@@ -1,5 +1,32 @@
 # CLAUDE.md — Universal Development Principles
 
+
+## Current interface direction — owner approved 2026-11-21
+
+This section supersedes historical visual instructions below. Use Aicher's
+organization and Martin's restraint as principles, with an original small
+geometric mark. Off-white, graphite, one deep blue accent; one system sans
+family; generous space between groups and compact rows within them.
+
+Explore / Compare / Plans / Updates are the primary destinations. Search by
+place, company, utility, docket or record; retain canonical specialist and
+record URLs. Group places only by explicit geography; never infer a utility's
+service territory. Compare actual agreement/tariff terms without scores.
+Separate event dates from tracker edits; capture-date refreshes are not news.
+
+Drop masthead dominance, mandatory hero headings/deks, boxed totals as the
+default, the permanent Plans promotion, the White House visual identity,
+mandatory serif/sans pairing, and uppercase labels. No eyebrows, ornamental
+charts, photography, gradients, oversized heroes or explanatory filler.
+Copy is severe: “Conference postponed.” “Source.” “No date announced.” Keep
+explanation when it distinguishes a promise from an obligation, adoption from
+effectiveness, or otherwise changes the reader's understanding.
+
+Exact quotations, visible sources, explicit unknowns, curator-owned judgments,
+consistent terminology, accessibility and stable links remain mandatory.
+Quotes remain marked up as quotes; typography alone is not their attribution.
+
+
 > Distilled from patterns across multiple projects. Apply universally; skip sections irrelevant to the current project type.
 
 ---
@@ -2254,3 +2281,17 @@ Spec: [notes/specs/SPEC_V7_POLICY_RECORD.md](notes/specs/SPEC_V7_POLICY_RECORD.m
 - **Power Costs leads with `brief`** (TariffsPayload): dated, sourced paragraphs with named record links (`note` is the link text, because the policy payload isn't loaded on that tab). It is curated, not generated; refresh it when a date in it passes. Stat row cut to three numbers. The first rate case now sits within ~1.5 screens on desktop (test updated, owner-directed).
 - **`commission_order`** is a new Policy instrument for PUC/PSC/FERC orders that set large-load terms beyond one tariff. A federal-scope Policy goes in the `state:US` refresh unit.
 - **The claims.json size test now caps the deferred file at 600 KB**, not companies+claims at 256 KB. claims.json has not been first paint since v5; the old cap was 183 bytes from failing the daily refresh.
+
+
+### 2026-11-21 — async record routing and optional election evidence
+
+Expected a canonical record link to use the router's existing history entry.
+An awaited site/policy lookup continued after the synchronous routing flag
+had reset, creating a second entry; a late result could also overwrite Back.
+Keep a generation guard across the await and restore routing mode around the
+continuation's view activation. The civic navigation tests cover returning
+from a record to a place search.
+
+Expected election results to carry evidence in the action-feed builder.
+Unreported results legitimately have no evidence: guard the optional field
+and omit the source rather than inferring a result or a citation.
