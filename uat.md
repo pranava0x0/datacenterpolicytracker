@@ -605,6 +605,8 @@ All 156 paths (26 tasks × three devices × two contexts) completed within the
 revised budgets. Two mobile Sites tasks timed out in the shared-preview run;
 the recorded results use their successful focused rerun on the harness server.
 
-Validation: 1,050 pytest checks passed in 150 seconds (interaction harness
-measured separately above), including light/dark accessibility, mobile layout,
-links, sources and history. The preview build was byte-identical on two runs.
+Validation: all 1,054 pytest checks passed in two groups: 1,050 regression
+checks in 150 seconds and four interaction-budget checks in 149 seconds.
+These include light/dark accessibility, mobile layout, links, sources and
+history. The preview build was byte-identical on two runs. The final accessible
+Updates label also passed the focused 22-check navigation/consistency run.
