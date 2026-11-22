@@ -4568,14 +4568,14 @@
     },
     {
       "id": "front-royal-va-datacenter-ban-proposal-2026",
-      "title": "Front Royal, VA — proposed zoning ban on data centers in industrial districts",
+      "title": "Front Royal, VA — zoning prohibition on data centers",
       "instrument": "local_ordinance",
-      "status": "proposed",
+      "status": "in_effect",
       "scope": "city",
       "jurisdiction": "Front Royal, VA",
       "state_code": "VA",
-      "identifier": "Zoning amendment (proposed)",
-      "date": "2026-06-22",
+      "identifier": "Zoning ordinance amendment",
+      "date": "2026-10-26",
       "benefit_themes": [
         "infrastructure"
       ],
@@ -4584,13 +4584,19 @@
       ],
       "community_benefits_framework": false,
       "key_terms": [
-        "Council members at their June 22 meeting voted to deny a proposed zoning ordinance amendment that would have allowed data centers by special-use permit",
-        "The Front Royal Town Council agreed to hold a public hearing on proposed zoning restrictions banning data centers."
+        "In a unanimous vote, reflecting a June 22 meeting in which the council directed the commission to develop prohibition language against data centers, the council made the prohibition effective.",
+        "the council adopted an ordinance amendment that targets “data center” as a use and distinguishes it from “technology business”"
       ],
-      "summary": "On June 22, 2026 the Front Royal Town Council denied a zoning amendment that would have allowed data centers by special-use permit, and the council later agreed to hold a public hearing on proposed zoning restrictions banning data centers. Final adoption has not been confirmed. This is a proposed zoning amendment, not a moratorium.",
-      "source_url": "https://www.nvdaily.com/nvdaily/council-seeks-legal-advice-on-data-center-ban/article_8447d61b-1e1a-5002-9eb8-53bfd83ab50a.html",
-      "source_title": "Northern Virginia Daily — Front Royal council seeks legal advice on data center ban",
-      "captured_at": "2026-10-19"
+      "summary": "On June 22, 2026 the Front Royal Town Council denied a zoning amendment that would have allowed data centers by special-use permit and directed the planning commission to draft prohibition language. On October 26, 2026 the council unanimously adopted the zoning ordinance amendment, which targets \"data center\" as a use and distinguishes it from \"technology business\". This is a zoning prohibition, not a moratorium.",
+      "source_url": "https://royalexaminer.com/town-council-makes-prohibition-on-data-centers-effective-with-unanimous-vote/",
+      "source_title": "Royal Examiner — Town Council Makes Prohibition on Data Centers Effective with Unanimous Vote (Oct 27 2026)",
+      "captured_at": "2026-11-22",
+      "resources": [
+        {
+          "url": "https://www.nvdaily.com/nvdaily/council-seeks-legal-advice-on-data-center-ban/article_8447d61b-1e1a-5002-9eb8-53bfd83ab50a.html",
+          "title": "Northern Virginia Daily — Front Royal council seeks legal advice on data center ban"
+        }
+      ]
     },
     {
       "id": "az-acc-cooperative-large-load-framework-2026",

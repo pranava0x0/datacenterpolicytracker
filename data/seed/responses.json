@@ -2607,6 +2607,61 @@
       "source_url": "https://www.wsmv.com/2026/11/06/spacexai-build-2-more-ai-data-centers-southaven/",
       "source_title": "WSMV / Action News 5 — SpaceXAI is building 2 more AI data centers in Southaven (Nov. 6, 2026)",
       "single_source": true
+    },
+    {
+      "id": "resp-google-lima-neighbors-secrecy-2026-07",
+      "project_id": "google-lima-oh",
+      "date": "2026-07-16",
+      "stance": "negative",
+      "constituency": "residents",
+      "summary": "Neighbors of the American Township site, quoted by name, objected to the project and how it was approved; one said it \"was all done in a very secretive manner, with no public input.\" Google said it is committed to working with local officials, state agencies and nearby residents.",
+      "source_url": "https://signalohio.org/google-data-center-near-lima-ohio-neighbors-are-furious/",
+      "source_title": "Signal Ohio — Google data center near Lima, Ohio: neighbors are furious (Jul 16 2026)",
+      "single_source": true
+    },
+    {
+      "id": "resp-prologis-trenton-revoke-demand-2026-11",
+      "project_id": "prologis-trenton-oh",
+      "date": "2026-11-09",
+      "stance": "negative",
+      "constituency": "residents",
+      "summary": "Attorneys representing Trenton residents formally demanded that the city revoke Project Mila's zoning certificate, arguing the voter-approved charter amendment requires the city to act.",
+      "source_url": "https://wcpo.com/news/local-news/prologis-sues-trenton-over-voter-approved-data-center-restrictions-as-project-mila-construction-continues",
+      "source_title": "WCPO — Prologis sues Trenton over voter-approved data center restrictions as Project Mila construction continues (Nov 16 2026)",
+      "single_source": true
+    },
+    {
+      "id": "resp-meta-newton-well-lawsuit-2026-10",
+      "project_id": "meta-newton-ga",
+      "date": "2026-10-21",
+      "stance": "negative",
+      "constituency": "residents",
+      "summary": "Four families are suing Meta, alleging in a 180-page lawsuit that blasting, excavation and land clearing for the Stanton Springs campus disturbed the groundwater system and let sediment into their wells. Meta says a study it commissioned concluded its construction and operations are not likely to be the cause.",
+      "source_url": "https://www.wsbtv.com/news/local/4-georgia-families-sue-meta-claim-data-center-construction-contaminated-well-water/FVX726UR7FGJTLEAOYTQ4MDZ2Y/",
+      "source_title": "WSB-TV — 4 Georgia families sue Meta, claim data center construction contaminated well water (Oct 21 2026)",
+      "single_source": true
+    },
+    {
+      "id": "resp-google-little-rock-city-board-ordinance-2026-06",
+      "project_id": "google-little-rock-ar",
+      "date": "2026-06-02",
+      "stance": "mixed",
+      "constituency": "local_government",
+      "summary": "The Little Rock City Board voted unanimously to pass Mayor Frank Scott Jr.'s data center ordinance, which imposes industry-specific land-use regulations on all data centers in the city, including Google's planned hyperscale campus; the board did not adopt the moratorium many speakers asked for.",
+      "source_url": "https://arktimes.com/arkansas-blog/2026/06/03/little-rock-passes-modest-data-center-regulations-but-the-burgeoning-anti-data-center-movement-is-still-raring-for-a-fight",
+      "source_title": "Arkansas Times — Little Rock passes modest data center regulations, but the burgeoning anti-data center movement is still raring for a fight (Jun 3 2026)",
+      "single_source": false
+    },
+    {
+      "id": "resp-google-little-rock-sweet-home-residents-2026-06",
+      "project_id": "google-little-rock-ar",
+      "date": "2026-06-02",
+      "stance": "negative",
+      "constituency": "residents",
+      "summary": "Dozens of residents, including Sweet Home resident India Jackson, spoke at the City Board meeting with deep skepticism of the Google data center planned near the Sweet Home neighborhood and urged a moratorium on new data center permitting.",
+      "source_url": "https://arktimes.com/arkansas-blog/2026/06/03/little-rock-passes-modest-data-center-regulations-but-the-burgeoning-anti-data-center-movement-is-still-raring-for-a-fight",
+      "source_title": "Arkansas Times — Little Rock passes modest data center regulations, but the burgeoning anti-data center movement is still raring for a fight (Jun 3 2026)",
+      "single_source": true
     }
   ]
 }
