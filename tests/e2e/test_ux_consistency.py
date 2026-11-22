@@ -25,7 +25,7 @@ def _home_cards(page: Page, base_url: str) -> list[dict]:
         timeout=E2E_WAIT,
     )
     return page.evaluate(
-        """() => [...document.querySelectorAll('#home-cards .home-card')].map(c => ({
+        """() => [...document.querySelectorAll('#home-cards .home-card[data-path-target]')].map(c => ({
               target: c.dataset.pathTarget,
               title: c.querySelector('.home-card-title').textContent.trim(),
               num: c.querySelector('.home-card-num').textContent.trim(),
@@ -70,13 +70,13 @@ def test_tab_name_is_the_same_everywhere(page: Page, base_url: str):
     target_of = {"ratepayer": "pledge", "comparison": "companies"}
     llms = (ROOT / "docs" / "llms.txt").read_text(encoding="utf-8")
     for t in tabs:
-        if t["aria"]:
+        if t["aria"] and t["name"] != "updates":
             assert t["aria"] == t["label"], t
         card = cards.get(target_of.get(t["name"], t["name"]))
-        if t["name"] not in ("overview", "compare", "updates"):
+        if t["name"] not in ("overview", "compare", "updates", "ratepayer"):
             assert card == t["label"], (t, card)
             assert f"[{t['label']}](" in llms, f"llms.txt names {t['name']} differently"
-        if t["hero"] is not None and t["name"] != "elections":
+        if t["hero"] is not None and t["name"] not in ("elections", "updates"):
             assert t["hero"].strip() == t["label"], t
     # Elections renders its heading from a lazy module.
     page.goto(base_url + "/#elections")

@@ -774,7 +774,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (event) => {
     const link = event.target.closest?.('a[href="community-benefits.html"]');
     if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const label = document.getElementById(VIEWS.find(v => v.name === state.activeView).tab).textContent.trim();
+    const active = VIEWS.find(v => v.name === state.activeView);
+    const label = document.querySelector(`#${active.section} .hero-title`)?.textContent.trim() || "Home";
     try {
       sessionStorage.setItem("dcb-plans-entry", JSON.stringify({url: location.href, label}));
     } catch { /* Back to Home still works when storage is unavailable. */ }
@@ -887,7 +888,17 @@ function wireTabs() {
   for (const v of VIEWS) {
     document
       .getElementById(v.tab)
-      .addEventListener("click", () => activateView(v.name));
+      .addEventListener("click", (event) => {
+        event.preventDefault();
+        if (v.name === "overview") {
+          if (location.search || location.hash !== "#overview") history.pushState(null, "", location.pathname + "#overview");
+          routeFromLocation();
+          window.scrollTo(0, 0);
+          return;
+        }
+        if (v.name === "policies" && _activeSubtab.pol === "agreements") setActiveSubtab("pol", "principles");
+        activateView(v.name);
+      });
   }
   if (!window._dcbPopWired) {
     window._dcbPopWired = true;
@@ -1233,7 +1244,8 @@ function returnFocus(el) {
   }
   const v = VIEWS.find((x) => x.name === state.activeView);
   const tab = v && document.getElementById(v.tab);
-  if (tab) tab.focus();
+  if (tab?.closest("#browse-menu") && !document.getElementById("browse-menu").open) document.getElementById("browse-toggle").focus();
+  else if (tab) tab.focus();
 }
 
 const URL_FILTER_KEYS = [
@@ -1301,13 +1313,19 @@ function activateView(name) {
   // A country page belongs to one visit to the International tab; leaving
   // (or re-entering by its tab) shows the list again.
   if (!state._routing && (target.name !== state.activeView || state.openCountry)) closeCountry({ restoreFocus: target.name === "world" });
+  const browse = document.getElementById("browse-menu");
+  if (browse?.open) {
+    browse.open = false;
+    document.getElementById("main").focus({ preventScroll: true });
+  }
   state.activeView = target.name;
   state.navGen = (state.navGen || 0) + 1;
 
   for (const v of VIEWS) {
     const isActive = v.name === target.name;
     const tabEl = document.getElementById(v.tab);
-    tabEl.setAttribute("aria-selected", String(isActive));
+    if (tabEl.getAttribute("role") === "tab") tabEl.setAttribute("aria-selected", String(isActive));
+    else tabEl.setAttribute("aria-current", isActive ? "page" : "false");
     document.getElementById(v.section).hidden = !isActive;
     // Scroll the active tab into view within the tabbar (important on mobile
     // where the bar overflows horizontally). scrollIntoView scrolls the page;
@@ -4628,7 +4646,7 @@ function renderPledgeStateStrip() {
 // --------------------------------------------------------------------------
 
 let _homeDataPromise = null;
-const HOME_LATEST_PHONE = 4;
+const HOME_LATEST_LIMIT = 2;
 function loadHomeData() {
   if (!_homeDataPromise) {
     _homeDataPromise = fetchJson("data/home.json").then((d) => {
@@ -4652,14 +4670,14 @@ function renderHome() {
     // Each card leads with the number its tab leads with, under the same
     // rule (test_home_card_numbers_match_their_tab), so a reader who clicks
     // through never meets a different count for the same thing.
-    sites: [t.sites, `${t.contested_sites} contested`],
-    policies: [t.policies, `${t.agreements} agreements and site pledges`],
-    moratoriums: [t.moratoriums, `${t.moratoriums_enacted} enacted`],
-    tariffs: [t.rate_cases, `rate cases, ${t.rate_cases_pending} pending · ${t.tariffs} tariffs`],
-    companies: [t.companies, "operators"],
+    sites: [t.sites, "Projects and local responses"],
+    policies: [t.policies, "Laws, bills and regulations"],
+    moratoriums: [t.moratoriums, "Temporary restrictions"],
+    tariffs: [t.rate_cases, "Rates and utility cases"],
+    companies: [t.companies, "Published company commitments"],
     pledge: [t.pledge_organizations + t.pledge_governors, `signers: ${t.pledge_organizations} organizations, ${t.pledge_governors} governors`],
-    world: [t.international_countries, `countries plus EU rules · ${t.international_records} records`],
-    elections: [t.election_winners, `officeholders · ${t.election_measures} ballot measures`],
+    world: [t.international_countries, "Rules and projects abroad"],
+    elections: [t.election_winners, "Officeholders and ballot measures"],
   };
   for (const [key, [num, sub]] of Object.entries(cards)) {
     const n = document.querySelector(`.home-card-num[data-count-for="${key}"]`);
@@ -4696,29 +4714,11 @@ function renderHome() {
     );
   };
   const latestEl = document.getElementById("home-latest-list");
-  feed(latestEl, h.latest, "Nothing recorded yet.");
-  // Phones show the first HOME_LATEST_PHONE items (CSS hides the rest while
-  // .is-capped is set) so "Coming up" stays within reach; one tap shows all.
-  const more = document.getElementById("home-latest-more");
-  const hidden = h.latest.length - HOME_LATEST_PHONE;
-  if (latestEl && more) {
-    const expanded = latestEl.dataset.expanded === "1";
-    latestEl.classList.toggle("is-capped", hidden > 0 && !expanded);
-    more.hidden = hidden <= 0 || expanded;
-    more.textContent = `Show ${hidden} more`;
-    if (more.dataset.wired !== "1") {
-      more.dataset.wired = "1";
-      more.addEventListener("click", () => {
-        latestEl.dataset.expanded = "1";
-        latestEl.classList.remove("is-capped");
-        more.hidden = true;
-      });
-    }
-  }
+  feed(latestEl, h.latest.slice(0, HOME_LATEST_LIMIT), "Nothing recorded yet.");
   // The digest is built once a day; drop anything whose date has since passed.
   feed(
     document.getElementById("whats-next-list"),
-    h.upcoming.filter((u) => u.date >= today),
+    h.upcoming.filter((u) => u.date >= today).slice(0, 2),
     "No announced dates ahead."
   );
   document.dispatchEvent(new CustomEvent("dcb:home-ready"));
@@ -4820,7 +4820,7 @@ const PLEDGE_TARGETS = {
   pledge: { view: "ratepayer", anchor: null },
   companies: { view: "comparison", anchor: null },
   tariffs: { view: "tariffs", anchor: null },
-  policies: { view: "policies", anchor: null },
+  policies: { view: "policies", anchor: null, subtab: { group: "pol", key: "principles" } },
   moratoriums: { view: "moratoriums", anchor: null },
 };
 
@@ -4934,6 +4934,14 @@ function setActiveSubtab(group, key) {
       btn.tabIndex = active ? 0 : -1;
     }
     if (pane) pane.hidden = !active;
+  }
+  if (group === "pol") {
+    const agreements = key === "agreements";
+    const parentTabs = document.querySelector('#view-policies > .subtabs');
+    const moveFocus = agreements && parentTabs.contains(document.activeElement);
+    parentTabs.hidden = agreements;
+    if (moveFocus) document.getElementById(`subtab-cba-${_activeSubtab.cba || "strongest"}`).focus();
+    document.querySelector('#view-policies .hero-title').textContent = agreements ? "Agreements" : "Policy";
   }
   syncSubtabHash(group);
   if (group === "world" && state.activeView === "world") renderWorldPane(key);
@@ -10852,6 +10860,13 @@ async function civicRenderUpdates() {
   status.textContent = `${entries.length} updates${changes ? ` · Record history since ${changes.since}.` : ' · Record history unavailable. Reload to retry.'}${results[1].status === 'rejected' ? ' Dated actions unavailable.' : ''}`;
 }
 function wireCivic() {
+  const browse = document.getElementById('browse-menu');
+  document.addEventListener('click', event => {
+    if (browse.open && !browse.contains(event.target)) browse.open = false;
+  });
+  browse.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { browse.open = false; document.getElementById('browse-toggle').focus(); }
+  });
   let timer;
   document.getElementById('civic-search').addEventListener('submit', event => { event.preventDefault(); clearTimeout(timer); search(); });
   function search() {
@@ -10877,7 +10892,7 @@ function wireCivic() {
     if (!a || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
-    if (!a.closest('.directory-menu, .civic-presets, #civic-search-panel, #civic-compare-tray, #view-compare, #view-updates')) return;
-    event.preventDefault(); a.closest('details.directory-menu')?.removeAttribute('open'); history.pushState(null, '', url); routeFromLocation(); window.scrollTo(0, 0);
+    if (!a.closest('.comparison-entry, #civic-search-panel, #civic-compare-tray, #view-compare, #view-updates')) return;
+    event.preventDefault(); history.pushState(null, '', url); routeFromLocation(); window.scrollTo(0, 0);
   });
 }

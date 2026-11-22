@@ -275,6 +275,7 @@ class TestExplorerView:
     def test_tab_switches_to_explorer(self, page: Page, base_url: str):
         page.goto(base_url + "/#comparison/commitments")
         page.wait_for_selector("#matrix-body tr", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         expect(page.locator("#view-explorer")).to_be_visible()
         expect(page.locator("#view-comparison")).to_be_hidden()
@@ -284,6 +285,7 @@ class TestExplorerView:
 
     def test_explorer_loads_projects(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         cards = page.locator("#project-list .project-card")
@@ -292,6 +294,7 @@ class TestExplorerView:
 
     def test_explorer_meta_shows_count(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         meta = page.locator("#explorer-meta")
@@ -300,6 +303,7 @@ class TestExplorerView:
 
     def test_company_filter_narrows_projects(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         full = page.locator("#project-list .project-card").count()
@@ -314,6 +318,7 @@ class TestExplorerView:
 
     def test_negative_stance_filter_works(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#f-stance").select_option("negative")
@@ -330,6 +335,7 @@ class TestExplorerView:
 
     def test_reset_clears_filters(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         full = page.locator("#project-list .project-card").count()
@@ -345,6 +351,7 @@ class TestExplorerView:
 
     def test_clicking_project_opens_detail(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         card = page.locator("#project-list .project-card").first
@@ -355,6 +362,7 @@ class TestExplorerView:
 
     def test_detail_close_hides_panel(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
@@ -363,6 +371,7 @@ class TestExplorerView:
 
     def test_escape_closes_detail(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
@@ -372,6 +381,7 @@ class TestExplorerView:
     def test_xai_memphis_shows_negative_responses(self, page: Page, base_url: str):
         # Memphis xAI has at least 2 documented negative responses in seed.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('xai-memphis-tn')")
@@ -388,6 +398,7 @@ class TestExplorerView:
         # kept out of the e2e suite's network dependencies.
         page.add_init_script(STUB_HTML2PDF_JS)
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         with page.expect_download(timeout=E2E_WAIT) as dl_info:
@@ -438,6 +449,7 @@ class TestCrossCutting:
         # Project detail uses [hidden] + custom display rules. The CSS should
         # ensure [hidden] wins. Regression for the "[hidden] trap" CLAUDE.md note.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         # Detail starts hidden.
@@ -467,6 +479,7 @@ class TestCrossCutting:
         n = page.locator("#matrix-body tr").count()
         assert n >= 8, f"Mobile matrix should render >=8 rows, got {n}"
         # Tab to explorer still works.
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         expect(page.locator("#view-explorer")).to_be_visible()
@@ -477,6 +490,7 @@ class TestDetailTabs:
 
     def _open_first_project(self, page: Page, base_url: str) -> None:
         page.goto(base_url + "/#comparison/commitments")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
@@ -521,6 +535,7 @@ class TestDetailTabs:
     def test_clicking_responses_tab_swaps_panes(self, page: Page, base_url: str):
         # Memphis xAI has known responses; pick it explicitly.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('xai-memphis-tn')")
@@ -531,6 +546,7 @@ class TestDetailTabs:
 
     def test_tab_counts_render_when_data_present(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('xai-memphis-tn')")
@@ -550,6 +566,7 @@ class TestDetailTabs:
         # User explicitly switches to Claims, then opens a different project.
         # Claims should remain active — they're scanning the same view across sites.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
@@ -564,12 +581,14 @@ class TestDetailTabs:
 
     def test_active_tab_resets_on_page_reload(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
         page.locator("#dtab-responses").click()
         # Reload — module state resets.
         page.reload()
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#project-list .project-card").first.click()
@@ -593,6 +612,7 @@ class TestDetailTabs:
         # but that gained a community response.) Update this target if Blakely
         # later gets data.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('qts-blakely-ga')")
@@ -689,6 +709,7 @@ class TestWonderValley:
 
     def test_wonder_valley_project_in_explorer(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#f-company").select_option("wonder-valley")
@@ -701,6 +722,7 @@ class TestWonderValley:
     ):
         # Sierra Club + Utah Clean Energy responses are tagged negative.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(
@@ -717,6 +739,7 @@ class TestProjectPageUrl:
 
     def test_project_page_link_renders(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('meta-prineville-or')")
@@ -732,6 +755,7 @@ class TestProjectPhysicalMetrics:
 
     def _open(self, page: Page, base_url: str, project_id: str) -> None:
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(f"window.__dcb.selectProject('{project_id}')")
@@ -793,6 +817,7 @@ class TestAtAGlance:
 
     def _open(self, page: Page, base_url: str, project_id: str) -> None:
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(f"window.__dcb.selectProject('{project_id}')")
@@ -838,6 +863,7 @@ class TestPublishedAtRendering:
         # Meta Richland has multiple claims with published_at set
         # (Dec 2024 / Dec 2025 from the deep-dive agent).
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('meta-richland-la')")
@@ -871,6 +897,7 @@ class TestNewV14Sites:
         self, page: Page, base_url: str
     ):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#f-company").select_option("qts")
@@ -884,6 +911,7 @@ class TestNewV14Sites:
 
     def test_google_van_buren_mi_project(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('google-van-buren-mi')")
@@ -893,6 +921,7 @@ class TestNewV14Sites:
     def test_aws_loudoun_metrics_refreshed(self, page: Page, base_url: str):
         # v1.4: investment refreshed to $91.5B, jobs to 20,700.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('aws-loudoun-va')")
@@ -911,6 +940,7 @@ class TestSourceAttribution:
         # v1.3: claim cards are exclusively in the project-detail Claims tab,
         # since the comparison view's global claims list was removed.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         # meta-richland-la has many site-specific + company-level claims.
@@ -932,6 +962,7 @@ class TestSourceAttribution:
 
     def test_every_response_card_has_source_link(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate("window.__dcb.selectProject('xai-memphis-tn')")
@@ -952,6 +983,7 @@ class TestDeliveredAssessmentRendering:
 
     def test_delivered_panel_renders_for_assessed_claim(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         # A project with a delivered-assessed claim, derived from the seed.
@@ -965,6 +997,7 @@ class TestDeliveredAssessmentRendering:
 
     def test_delivered_panel_has_evidence_link(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(f"window.__dcb.selectProject('{DELIVERED_PROJECT}')")
@@ -978,6 +1011,7 @@ class TestDeliveredAssessmentRendering:
 
     def test_delivered_status_class_applied(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(f"window.__dcb.selectProject('{DELIVERED_PROJECT}')")
@@ -1000,19 +1034,13 @@ class TestRatepayerView:
     def test_tab_switches_to_ratepayer(self, page: Page, base_url: str):
         page.goto(base_url + "/#comparison/commitments")
         page.wait_for_selector("#matrix-body tr", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         expect(page.locator("#view-ratepayer")).to_be_visible()
         expect(page.locator("#view-comparison")).to_be_hidden()
         expect(page.locator("#tab-ratepayer")).to_have_attribute(
             "aria-selected", "true"
         )
-
-    def test_landing_band_reports_the_whole_roster(self, page: Page, base_url: str):
-        # The Pledge card on Home carries the whole roster count (from home.json).
-        page.goto(base_url + "/")
-        page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
-        num = page.locator('#home-cards .home-card[data-path-target="pledge"] .home-card-num').inner_text()
-        assert int(num.replace(",", "")) >= 200, f"Pledge card shows {num}; expected the full roster"
 
     def test_pledge_era_unassessed_split_from_pre_pledge(
         self, page: Page, base_url: str
@@ -1022,6 +1050,7 @@ class TestRatepayerView:
         # pledge"; post-pledge (or year-only 2026) sites land in "Pledge-era
         # sites awaiting assessment" instead of being mislabeled pre-pledge.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_selector(
             "#rp-pre-pledge .rp-pre-card", state="attached", timeout=E2E_WAIT
@@ -1046,6 +1075,7 @@ class TestRatepayerView:
         self, page: Page, base_url: str
     ):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_selector("#rp-scorecard .rp-card", timeout=E2E_WAIT)
         cards = page.locator("#rp-scorecard .rp-card")
@@ -1057,6 +1087,7 @@ class TestRatepayerView:
 
     def test_affirmed_card_shows_principle_source_links(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_selector("#rp-scorecard .rp-card", timeout=E2E_WAIT)
         # Expand first affirmed card to inspect principles.
@@ -1227,6 +1258,7 @@ class TestRatepayerView:
         # Every assessed card labels whether the site was claimed individually
         # (a site-specific commitment) or only under the company-wide pledge.
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_selector("#rp-scorecard .rp-card", timeout=E2E_WAIT)
         text = page.locator("#rp-scorecard").inner_text()
@@ -1237,6 +1269,7 @@ class TestRatepayerView:
         # Sites with an independent ratepayer cost-shift report carry a header
         # flag (visible) and an expandable conflicts block (in the DOM).
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_selector("#rp-scorecard .rp-card", timeout=E2E_WAIT)
         assert page.locator("#rp-scorecard .rp-conflict-flag").count() >= 1
@@ -1666,6 +1699,7 @@ class TestSummaryStats:
 class TestExplorerFiltersPorted:
     def test_state_filter_narrows(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         full = page.locator("#project-list .project-card").count()
@@ -1679,6 +1713,7 @@ class TestExplorerFiltersPorted:
 
     def test_theme_chip_filters(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#theme-filter-row .theme-filter-chip", timeout=E2E_WAIT)
         chips = page.locator("#theme-filter-row .theme-filter-chip")
@@ -1698,6 +1733,7 @@ class TestExplorerFiltersPorted:
 
     def test_constituency_filter_present(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#f-constituency", timeout=E2E_WAIT)
         opts = page.locator("#f-constituency option").count()
@@ -1803,9 +1839,13 @@ class TestSubtabDeepLinks:
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         groups = page.evaluate("() => Object.entries(VIEW_SUBTAB_GROUP)")
         for view, group in groups:
+            page.locator("#browse-toggle").click()
             page.locator(f"#tab-{view}").click()
             keys = page.evaluate(f"() => SUBTAB_GROUPS['{group}']")
             for key in reversed(keys):
+                if group == "pol" and page.locator("#view-policies > .subtabs").is_hidden():
+                    page.locator("#browse-toggle").click()
+                    page.locator("#tab-policies").click()
                 page.locator(f"#subtab-{group}-{key}").click()
                 expect(page.locator(f"#subpane-{group}-{key}")).to_be_visible()
 
@@ -1834,6 +1874,7 @@ class TestSubtabDeepLinks:
 class TestUrlState:
     def test_filters_serialize_to_url(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.locator("#f-company").select_option("prologis")
@@ -2048,9 +2089,11 @@ class TestConstituencyBreakdown:
     ):
         # Navigate to Explorer first so project data (including responses) is fetched.
         page.goto(base_url + "/#comparison/commitments")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         # Switch back to Comparison and open the Microsoft pop-out.
+        page.locator("#browse-toggle").click()
         page.locator("#tab-comparison").click()
         page.wait_for_selector("#matrix-body tr", timeout=E2E_WAIT)
         page.locator('#matrix-body tr[data-company="microsoft"] th.col-company').click()
@@ -2075,6 +2118,7 @@ class TestConstituencyBreakdown:
 class TestFormalAgreementBadge:
     def _open_claims(self, page: Page, base_url: str, project_id: str) -> None:
         page.goto(base_url + "/#comparison/commitments")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-explorer").click()
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         page.evaluate(f"window.__dcb.selectProject('{project_id}')")
@@ -2143,6 +2187,7 @@ class TestMoratoriumCharts:
 
     def _open(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.click("#tab-moratoriums")
         page.locator("#subtab-mor-trends").click()
         page.wait_for_selector("#moratorium-charts .mor-chart", timeout=E2E_WAIT)
@@ -2258,6 +2303,7 @@ class TestMoratoriumTable:
 
     def _open(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.click("#tab-moratoriums")
         page.wait_for_selector("#moratoriums-tbody tr", timeout=E2E_WAIT)
 
@@ -2333,6 +2379,7 @@ class TestPledgeLanding:
 
     def test_ratepayer_tab_is_reachable_and_not_default(self, page: Page, base_url: str):
         page.goto(base_url + "/")
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         expect(page.locator("#view-ratepayer")).to_be_visible()
         expect(page.locator("#view-overview")).to_be_hidden()
@@ -2356,7 +2403,7 @@ class TestPledgeLanding:
             assert box is not None, f"{sel} did not render"
             assert box["y"] < 900, f"{sel} starts at y={box['y']:.0f}, below the fold"
 
-    def test_home_cards_cover_every_other_tab(self, page: Page, base_url: str):
+    def test_home_cards_open_the_eight_primary_topics(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         cards = page.locator(".home-cards .home-card")
@@ -2364,6 +2411,9 @@ class TestPledgeLanding:
         assert cards.count() == views - 1, f"{cards.count()} cards for {views - 1} non-Home tabs"
         for i in range(cards.count()):
             target = cards.nth(i).get_attribute("data-path-target")
+            if not target:
+                assert cards.nth(i).get_attribute("data-guide-target") == "strongest"
+                continue
             assert page.evaluate(f"() => Boolean(PLEDGE_TARGETS['{target}'])"), target
         nums = page.locator(".home-card-num").all_inner_texts()
         assert all(n.strip() and n.strip() != "—" for n in nums), nums
@@ -2371,7 +2421,7 @@ class TestPledgeLanding:
     def test_whats_next_is_capped_with_a_link_to_the_rest(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#whats-next-list .feed-item", timeout=E2E_WAIT)
-        assert page.locator("#whats-next-list .feed-item").count() <= 8
+        assert page.locator("#whats-next-list .feed-item").count() <= 2
         page.locator("#whats-next-more").click()
         expect(page.locator("#subpane-tar-ratecases")).to_be_visible()
 
@@ -2419,17 +2469,17 @@ class TestPledgeLanding:
         expected_empty = sum(not any(counts.values()) for counts in coverage.values())
         expect(page.locator("#pledge-state-strip .pledge-state-cell.lvl-0")).to_have_count(expected_empty)
 
-    def test_pledge_card_opens_the_pledge_tab(self, page: Page, base_url: str):
+    def test_agreements_card_opens_signed_terms(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
-        page.locator('#home-cards .home-card[data-path-target="pledge"]').click()
-        expect(page.locator("#view-ratepayer")).to_be_visible()
+        page.locator('#home-cards .home-card[data-guide-target="strongest"]').click()
+        expect(page.locator("#cba-strongest")).to_be_visible()
 
     def test_activity_feed_renders_dated_entries(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         items = page.locator("#home-latest-list .feed-item")
-        assert items.count() >= 5
+        assert items.count() == 2
         for i in range(items.count()):
             assert items.nth(i).locator(".feed-date").get_attribute("datetime")
             assert items.nth(i).locator(".feed-title").inner_text().strip()
@@ -3331,8 +3381,10 @@ class TestPathwayCohort:
         page.wait_for_selector("#rp-scorecard .rp-card", timeout=E2E_WAIT)
         page.locator("#subtab-rp-sites-pre-pledge").click()
 
+        page.locator("#browse-toggle").click()
         page.click("#tab-moratoriums")
         page.wait_for_timeout(300)
+        page.locator("#browse-toggle").click()
         page.locator("#tab-ratepayer").click()
         page.wait_for_timeout(400)
 
@@ -3480,6 +3532,7 @@ class TestMobileV5Panes:
             page = ctx.new_page()
             page.goto(base_url + "/")
             for view in page.evaluate("() => Object.keys(VIEW_SUBTAB_GROUP)"):
+                page.locator("#browse-toggle").click()
                 page.locator(f"#tab-{view}").click()
                 tops = page.locator(f"#view-{'explorer' if view == 'explorer' else view} .subtabs--view:visible .subtab").evaluate_all(
                     "els => [...new Set(els.map(e => Math.round(e.getBoundingClientRect().top)))]"
@@ -3507,6 +3560,7 @@ class TestSitesPaneRouting:
     def test_company_cta_lands_on_the_map_pane(self, page: Page, base_url: str):
         page.goto(base_url + "/#explorer/contested")
         page.wait_for_selector("#contested-list .contested-card", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.locator("#tab-comparison").click()
         page.locator("#subtab-co-commitments").click()
         page.locator('#matrix-body tr[data-company="google"] th.col-company').click()
@@ -3578,13 +3632,9 @@ class TestHomeV6:
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         nums = page.locator("#home-cards .home-card-num").all_inner_texts()
         assert nums and all(n.replace(",", "").isdigit() for n in nums), nums
-        targets = page.locator("#home-cards .home-card").evaluate_all("els => els.map(e => e.dataset.pathTarget)")
-        # Cards follow the tab bar, so a reader meets sections in one order.
-        views = page.evaluate(
-            "() => VIEWS.filter(v => !['overview', 'compare', 'updates'].includes(v.name)).map(v => Object.entries(PLEDGE_TARGETS)"
-            ".find(([k, t]) => t.view === v.name && !t.anchor)[0])"
-        )
-        assert targets == views
+        titles = page.locator("#home-cards .home-card-title").all_inner_texts()
+        assert titles == ["Moratoriums", "Power Costs", "Agreements", "Sites", "Policy", "Companies", "Elections", "International"]
+        assert page.locator(".site-footer .tab").count() == 0
 
     def test_open_agreement_lands_on_an_open_card_even_if_it_is_strongest(self, page: Page, base_url: str):
         # The same record renders in Strongest and All; ids must not collide.
@@ -3725,6 +3775,7 @@ class TestIssue72Navigation:
     def test_back_after_a_tab_click_returns_to_the_previous_view(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-policies")
         page.click("#subtab-pol-agreements")
         expect(page.locator("#subpane-pol-agreements")).to_be_visible()
@@ -3777,6 +3828,7 @@ class TestIssue72Navigation:
         # entry Back had just restored, trapping the reader on Frameworks.
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-policies")
         page.click("#subtab-pol-rules")
         page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", timeout=E2E_WAIT)
@@ -3790,6 +3842,7 @@ class TestIssue72Navigation:
     def test_back_closes_a_moratorium_detail(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-moratoriums")
         page.wait_for_selector("#moratoriums-tbody tr[data-id]", timeout=E2E_WAIT)
         page.locator("#moratoriums-tbody tr[data-id]").first.click()
@@ -3813,15 +3866,19 @@ class TestIssue72Navigation:
         code = page.evaluate("() => state.policies.find(p => p.state_code).state_code")
         page.select_option("#policy-state-filter", code)
         assert "p-state=" in page.url
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
         assert "?" not in page.url and page.url.endswith("#tariffs")
 
     def test_sites_filters_restore_on_back(self, page: Page, base_url: str):
         page.goto(base_url + "/?q=memphis#explorer")
         page.wait_for_function("() => state.explorerLoaded", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
+        page.locator("#browse-toggle").click()
         page.click("#tab-explorer")
         page.fill("#f-q", "texas")
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
         page.go_back()  # the Sites entry saved with q=texas
         expect(page.locator("#f-q")).to_have_value("texas")
@@ -3851,9 +3908,12 @@ class TestIssue72Navigation:
         page.wait_for_selector("#policies-tbody tr[role='button']:not(.is-moratorium-row)", state="attached", timeout=E2E_WAIT)
         a, b = page.evaluate("() => [...new Set(state.policies.map(p => p.state_code).filter(Boolean))].slice(0, 2)")
         page.select_option("#policy-state-filter", a)
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
+        page.locator("#browse-toggle").click()
         page.click("#tab-policies")
         page.select_option("#policy-state-filter", b)
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
         page.go_back()
         expect(page.locator("#policy-state-filter")).to_have_value(b)
@@ -3868,9 +3928,12 @@ class TestIssue72Navigation:
         page.goto(base_url + "/#explorer")
         page.wait_for_function("() => state.explorerLoaded", timeout=E2E_WAIT)
         pid = page.evaluate("() => state.projects[0].id")
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
+        page.locator("#browse-toggle").click()
         page.click("#tab-explorer")
         page.evaluate("(id) => selectProject(id)", pid)
+        page.locator("#browse-toggle").click()
         page.click("#tab-tariffs")
         page.go_back()  # Sites with the project open
         page.wait_for_function("(id) => state.selectedProjectId === id", arg=pid, timeout=E2E_WAIT)
@@ -3955,6 +4018,7 @@ class TestIssues78And79:
             page.click("#project-list .project-list-more button")
             assert cards.count() == min(total, 2 * page.evaluate("() => SITES_PAGE"))
             # Benefits: the first few full cards, then the rest on request.
+            page.locator("#browse-toggle").click()
             page.click("#tab-policies")
             page.click("#subtab-pol-agreements")
             page.wait_for_selector("#cba-strongest .cba-card", timeout=E2E_WAIT)
@@ -3965,6 +4029,7 @@ class TestIssues78And79:
                 page.click("#cba-strongest .project-list-more button")
                 assert strongest.count() == n
             # Moratoriums: paged, and a search starts from the first page.
+            page.locator("#browse-toggle").click()
             page.click("#tab-moratoriums")
             page.wait_for_selector("#moratoriums-tbody tr[data-id]", timeout=E2E_WAIT)
             rows = page.locator("#moratoriums-tbody tr[data-id]")
@@ -3977,6 +4042,7 @@ class TestIssues78And79:
             assert rows.count() == min(page.evaluate("() => filteredMoratoriums().length"), per)
             # A site picked past the current page still renders and is focused
             # after "Show more" (Sonnet review of #82).
+            page.locator("#browse-toggle").click()
             page.click("#tab-explorer")
             last = page.evaluate("() => filteredProjects().slice(-1)[0].id")
             page.evaluate("(id) => selectProject(id)", last)
@@ -3985,6 +4051,7 @@ class TestIssues78And79:
             assert page.locator("#project-list .project-card").count() == page.evaluate(
                 "() => Math.min(state.sitesShown, filteredProjects().length - 1) + 1"
             )
+            page.locator("#browse-toggle").click()
             page.click("#tab-moratoriums")
             page.fill("#moratorium-q", "")
             more = page.locator("#moratoriums-tbody .project-list-more button")
@@ -3993,6 +4060,7 @@ class TestIssues78And79:
             more.click()
             assert page.evaluate("() => document.activeElement.closest('#moratoriums-tbody tr[data-id]') !== null")
             # Pledge scorecard.
+            page.locator("#browse-toggle").click()
             page.click("#tab-ratepayer")
             page.wait_for_selector("#rp-scorecard .rp-card", state="attached", timeout=E2E_WAIT)
             sc = page.evaluate("() => filteredAssessedProjects().length")
@@ -4015,6 +4083,7 @@ class TestInternational:
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         page.wait_for_load_state("networkidle")
         assert not seen, "international.json must not load until the tab opens"
+        page.locator("#browse-toggle").click()
         page.click("#tab-world")
         page.wait_for_selector("#world-country-list .world-card", timeout=E2E_WAIT)
         assert len(seen) == 1
@@ -4031,6 +4100,7 @@ class TestInternational:
         code = next(c["code"] for c in seed["countries"] if any(p["country"] == c["code"] for p in seed["policies"]))
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-world")
         page.click(f'#world-country-list [data-country="{code}"]')
         expect(page.locator("#world-country")).to_be_visible()
@@ -4090,16 +4160,16 @@ class TestInternational:
         assert page.locator("#world-instrument-list .world-record").count() >= 1
 
     @pytest.mark.parametrize("width", [360, 375, 390])
-    def test_phone_tab_bar_stays_two_rows(self, browser, base_url: str, width: int):
+    def test_phone_primary_navigation_stays_one_row(self, browser, base_url: str, width: int):
         # A ninth tab (v6) wrapped to a third row and pushed every view down
         # ~44px; the interaction-cost budgets caught it. Derived from VIEWS.
         ctx = browser.new_context(viewport={"width": width, "height": 800}, is_mobile=True, has_touch=True)
         page = ctx.new_page()
         try:
             page.goto(base_url + "/")
-            page.wait_for_selector("#tab-world", timeout=E2E_WAIT)
+            page.wait_for_selector("#tab-world", state="attached", timeout=E2E_WAIT)
             rows = page.evaluate(
-                "() => new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().y))).size"
+                "() => new Set([...document.querySelectorAll('#tab-overview, #browse-toggle, .primary-nav > a')].filter(t => t.getClientRects().length).map(t => Math.round(t.getBoundingClientRect().y))).size"
             )
             assert rows == 1, f"{rows} primary navigation rows at {width}px"
         finally:
@@ -4124,10 +4194,12 @@ class TestInternational:
     def test_country_page_closes_when_leaving_the_tab(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
+        page.locator("#browse-toggle").click()
         page.click("#tab-world")
         page.click('#world-country-list [data-country="IE"]')
         expect(page.locator("#world-country")).to_be_visible()
         page.click("#tab-overview")
+        page.locator("#browse-toggle").click()
         page.click("#tab-world")
         expect(page.locator("#world-panes")).to_be_visible()
         expect(page.locator("#world-country")).to_be_hidden()
@@ -4297,6 +4369,7 @@ class TestPr86ReviewFixes:
         page.goto(base_url + "/#ratepayer")
         page.locator("#rp-roster-summary").click()
         page.locator('.rp-roster-chip[data-category="governor"]').click()
+        page.locator("#browse-toggle").click()
         page.click("#tab-explorer")
         page.wait_for_selector("#project-list .project-card", timeout=E2E_WAIT)
         slug, pid = page.evaluate("""() => {

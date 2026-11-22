@@ -1000,7 +1000,7 @@ SITE_URL = "https://pranava0x0.github.io/datacenterpolicytracker/"
 # this, so a new view needs one entry here (test_agent_files_cover_every_view
 # derives the expected set from app.js VIEWS).
 VIEW_GUIDE = {
-    "overview": ("Explore", "Search records and places, latest actions and dated upcoming decisions."),
+    "overview": ("Home", "Search records and places, latest actions and dated upcoming decisions."),
     "compare": ("Compare", "Compare agreement terms or tariff provisions, with sources and explicit gaps."),
     "updates": ("Updates", "Dated actions and material changes to published records."),
     "elections": ("Elections", "Incoming and prior officeholders' data-center policies, proposed changes, and local ballot measures."),

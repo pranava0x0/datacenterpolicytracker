@@ -6067,7 +6067,6 @@ button.depth-chip:focus-visible {
   #view-overview .hero { margin-bottom: 10px; }
   .home-h { margin-top: 14px; }
   .home-cards { grid-template-columns: 1fr; gap: 6px; }
-  #home-latest-list.is-capped > li:nth-child(n + 6) { display: none; }
   .home-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -6320,13 +6319,6 @@ button.depth-chip:focus-visible {
   }
 }
 
-/* The "Show N more" control only matters where the list is capped (phones). */
-.home-latest-more { margin-top: 8px; }
-@media (min-width: 601px) {
-  .home-latest-more { display: none; }
-}
-.home-latest-more[hidden] { display: none; }
-
 /* One line each on phones (owner, 2026-10-08): site title, sub-tab labels. */
 .subtab { white-space: nowrap; }
 @media (max-width: 640px) {
@@ -6369,17 +6361,17 @@ button.depth-chip:focus-visible {
 .cba-prov-num { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
 
 /* Planning tools share Frameworks routing; the guide module loads on demand. */
-.home-tasks, .guide-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
-.home-tasks button, .guide-controls button, .guide-controls select {
+.guide-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.guide-controls button, .guide-controls select {
   min-height: 44px; padding: 8px 12px; border: 1px solid var(--border);
   border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font: inherit;
 }
 @media (pointer: coarse) {
   .guide-controls a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: .5rem; }
 }
-.home-tasks button, .guide-controls button { cursor: pointer; }
-.home-tasks button:hover, .guide-controls button:hover { border-color: var(--accent); }
-.home-tasks button:focus-visible, .guide-controls :focus-visible, .guide-clause summary:focus-visible {
+.guide-controls button { cursor: pointer; }
+.guide-controls button:hover { border-color: var(--accent); }
+.guide-controls :focus-visible, .guide-clause summary:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 3px;
 }
 .planning-guide { max-width: 900px; }
@@ -6396,8 +6388,6 @@ button.depth-chip:focus-visible {
 #policy-stats[hidden] { display: none; }
 #view-policies > .subtabs, #subpane-pol-agreements > .subtabs { flex-wrap: wrap; overflow-x: visible; }
 @media (max-width: 640px) {
-  .home-tasks { gap: 6px; }
-  .home-tasks button { flex: 1; padding: 8px 6px; font-size: var(--fs-sm); }
   #view-policies > .subtabs .subtab, #subpane-pol-agreements > .subtabs .subtab { padding: 8px; font-size: var(--fs-sm); }
   .guide-controls select { max-width: 100%; }
   .guide-clause dl { grid-template-columns: 1fr; gap: 4px; }
@@ -7000,8 +6990,7 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
 .primary-nav [role="tablist"] { display: contents; }
 .primary-nav .tab, .primary-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 6px 0; font-size: var(--fs-base); color: var(--text-muted); text-decoration: none; border: 0; border-bottom: 2px solid transparent; }
 .primary-nav .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
-.primary-nav a { order: 2; }
-#tab-updates { order: 3; }
+
 .primary-nav a:hover { color: var(--accent); text-decoration: underline; }
 main { padding-top: 24px; }
 .hero, #view-overview .hero { margin: 0 0 16px; max-width: none; }
@@ -7015,12 +7004,7 @@ main { padding-top: 24px; }
 .home-card-title { font-size: var(--fs-base); font-weight: 600; }
 .home-card-num { font-size: var(--fs-base); color: var(--text-muted); }
 .rp-stat-value { color: var(--text); }
-.home-tasks { margin-block: 24px; }
-.home-tasks button { border: 0; border-bottom: 1px solid var(--border); background: transparent; padding-inline: 0; margin-right: 16px; color: var(--link); }
-.collection-nav { max-width: 1280px; margin: 32px auto 0; padding: 0 20px; }
-.collection-nav h2 { font-size: var(--fs-md); margin-bottom: 8px; }
-.collection-nav .tabbar { padding: 0; flex-wrap: wrap; justify-content: flex-start; gap: 4px 16px; overflow: visible; }
-.collection-nav .tab { font-size: var(--fs-sm); padding: 8px 0; white-space: normal; text-align: left; min-height: 44px; }
+
 .power-brief { border-top: 1px solid var(--border); padding: 10px 0; }
 .power-brief > summary { cursor: pointer; min-height: 44px; }
 .power-brief-title { display: inline; font-size: var(--fs-base); }
@@ -7028,8 +7012,8 @@ main { padding-top: 24px; }
 .civic-search { max-width: 760px; }
 .civic-search label { display: block; font-weight: 600; font-size: var(--fs-base); margin-bottom: 6px; }
 .civic-search input { width: 100%; box-sizing: border-box; min-height: 48px; border: 1px solid var(--border-strong); border-radius: 2px; background: var(--surface); color: var(--text); font: inherit; padding: 10px 12px; }
-.civic-presets, .civic-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 18px; margin: 8px 0 16px; }
-.civic-presets a { min-height: 44px; display: inline-flex; align-items: center; font-size: var(--fs-sm); }
+.civic-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 18px; margin: 8px 0 16px; }
+
 .civic-controls label { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); }
 .civic-controls select, .civic-controls button { min-height: 44px; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); padding: 6px 10px; }
 .civic-status { font-size: var(--fs-sm); color: var(--text-muted); margin: 8px 0; }
@@ -7066,8 +7050,7 @@ main { padding-top: 24px; }
   .home-latest { gap: 24px; }
   .home-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-title, #view-overview .hero-title { font-size: var(--fs-2xl); }
-  .collection-nav .tabbar { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 10px; }
-  .collection-nav .tab { font-size: var(--fs-xs); }
+
   .civic-compare-grid { grid-template-columns: 1fr; }
   .subtabs { flex-wrap: wrap; overflow: visible; }
   .subtab { white-space: normal; }
@@ -7076,17 +7059,35 @@ main { padding-top: 24px; }
   .civic-controls a, .civic-results button, .primary-nav a, #theme-toggle { min-height: 44px; }
 }
 @media print {
-  .primary-nav, .collection-nav, .civic-search, .civic-controls, .civic-presets, .civic-compare-tray { display: none; }
+  .primary-nav, .civic-search, .civic-controls, .civic-compare-tray { display: none; }
 }
 
-/* A short digest; Updates holds the full record. */
-.home-latest .feed-list.is-capped > li:nth-child(n+5) { display: none; }
 .home-card-sub { font-weight: 400; }
 
-.directory-menu { max-width: 1240px; margin: auto; padding: 0 20px; font-size: var(--fs-sm); }
-.directory-menu nav { display: flex; flex-wrap: wrap; gap: 0 20px; padding-bottom: 4px; }
-.directory-menu a { min-height: 44px; align-content: center; }
-@media (max-width: 699px) { .directory-menu { padding-inline: 16px; } }
-
-.directory-menu a { color: var(--text-muted); text-decoration: none; }
-.directory-menu a:hover { color: var(--link); text-decoration: underline; }
+/* One global menu, then information and topic cards. */
+.primary-nav { justify-content: flex-start; align-items: center; gap: 28px; position: relative; }
+.browse-menu { position: relative; }
+.browse-menu > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 8px; font-size: var(--fs-base); color: var(--text-muted); }
+.browse-menu > summary::after { content: "⌄"; }
+.browse-menu[open] > summary { color: var(--link); }
+.browse-menu .tabbar { position: absolute; top: 100%; left: -12px; z-index: 100; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 300px; max-width: calc(100vw - 48px); padding: 12px; gap: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 8px 24px #00000012; }
+.browse-menu .tab { min-height: 44px; padding: 8px; font-size: var(--fs-sm); white-space: normal; text-align: left; justify-content: flex-start; }
+.browse-menu .tab[aria-selected="true"] { background: var(--accent-soft); }
+.browse-menu summary:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.home-section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.home-section-head .btn-link { min-height: 44px; white-space: nowrap; }
+.home-latest { margin: 20px 0 28px; gap: 32px; }
+.home-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 12px 0 0; }
+.home-card { border: 1px solid var(--border); border-radius: 4px; background: var(--surface); padding: 16px; min-height: 104px; align-content: start; }
+.home-card:hover { background: var(--accent-soft); border-color: var(--border-strong); }
+.home-card-title { font-size: var(--fs-base); }
+.home-card-sub { font-size: var(--fs-sm); line-height: 1.4; }
+.home-card-num { font-size: var(--fs-xs); }
+.comparison-entry { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 8px; font-size: var(--fs-sm); }
+@media (max-width: 700px) {
+  .primary-nav { justify-content: flex-start; }
+  .browse-menu .tabbar { left: -80px; }
+  .home-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-card { padding: 12px; min-height: 104px; }
+  .home-latest { gap: 20px; }
+}
