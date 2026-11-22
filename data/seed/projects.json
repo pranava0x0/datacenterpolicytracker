@@ -2662,10 +2662,10 @@
       "announced_year": 2026,
       "claimed_investment_usd": 500000000,
       "claimed_jobs": null,
-      "notes": "Google's third Ohio data center, on a 170-acre site in American Township (Allen County). Up to three buildings; construction begins 2026 with 2030 target. Commitments include $50M for local roundabouts (Bluelick Rd / N Cole St; SR-115 / N Cole St), $13.6M for local water infrastructure, and $250K/yr to Elida Local Schools as a 15-year tax-abatement offset.",
+      "notes": "Google's third Ohio data center, on a 170-acre site in American Township (Allen County). Up to three buildings; construction begins 2026 with 2030 target. Commitments include $50M for local roundabouts (Bluelick Rd / N Cole St; SR-115 / N Cole St), $13.6M for local water infrastructure, and $250K/yr to Elida Local Schools as a 15-year tax-abatement offset. Signal Ohio (July 16 2026) reports the Ohio EPA granted the air permit for the backup generators in late May 2026, and a separate Ohio EPA permit to fill about 0.7 acres of wetlands.",
       "source_url": "https://www.datacenterdynamics.com/en/news/google-confirmed-as-company-behind-500m-data-center-in-lima-ohio/",
       "source_title": "Data Center Dynamics — Google confirmed as company behind $500m data center in Lima, Ohio",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-22",
       "acreage": 170,
       "offtaker": "Google",
       "ratepayer": {
@@ -3664,7 +3664,7 @@
       "notes": "1.43M sq ft across 5 industrial buildings + 2 office buildings + a substation, off Zueber Road in Sweet Home (Pulaski County). Reveal Jan 2026; site plan in progress. Active community opposition centered on water draw and ratepayer impact.",
       "source_url": "https://www.datacenterdynamics.com/en/news/google-behind-1bn-data-center-in-little-rock-arkansas-report/",
       "source_title": "Data Center Dynamics — Google behind $1bn data center in Little Rock, Arkansas",
-      "captured_at": "2026-05-16",
+      "captured_at": "2026-11-22",
       "offtaker": "Google",
       "ratepayer": {
         "status": "pledge_only",
@@ -4491,7 +4491,7 @@
       "notes": "Madison County campus; 1,200 construction jobs at peak; broke ground 2018; LEED Gold certified; TVA 100% clean energy partnership; $3.9M+ grants to local schools/nonprofits since 2019.",
       "source_url": "https://datacenters.atmeta.com/us-locations/",
       "project_page_url": "https://datacenters.atmeta.com/asset/huntsville-data-center-info-sheet/",
-      "captured_at": "2026-06-07",
+      "captured_at": "2026-11-22",
       "at_a_glance": {
         "jobs": "$1.5B / 300+ ops jobs / 1,200 peak construction",
         "community_grants": "$3.9M+ to Madison County schools and nonprofits since 2019",
@@ -7203,6 +7203,23 @@
           "source_title": "ABC 3340 — Next for Bessemer: QTS eyes 5-7 year buildout"
         }
       ]
+    },
+    {
+      "id": "prologis-trenton-oh",
+      "company_slug": "prologis",
+      "name": "Project Mila",
+      "city": "Trenton",
+      "state": "OH",
+      "country": "US",
+      "lat": 39.4809,
+      "lon": -84.4577,
+      "status": "construction",
+      "announced_year": 2025,
+      "notes": "Butler County. Planned to reach 250 MW. The city issued Project Mila a zoning certificate in December 2025; on Nov. 3 2026 Trenton voters approved Issue 17, a charter amendment prohibiting construction of data centers with a power demand greater than 25 MW. Prologis says it has put its total investment at $42.3 million and argues its earlier approval gives it a right to continue; no tenant named in the source. Nov 12 2026: Prologis filed suit against the city in federal court; machinery continues moving at the site as the lawsuit proceeds. Map pin is the city center, not the parcel.",
+      "power_mw": 250,
+      "source_url": "https://wcpo.com/news/local-news/prologis-sues-trenton-over-voter-approved-data-center-restrictions-as-project-mila-construction-continues",
+      "source_title": "WCPO — Prologis sues Trenton over voter-approved data center restrictions as Project Mila construction continues (Nov 16 2026)",
+      "captured_at": "2026-11-22"
     }
   ]
 }

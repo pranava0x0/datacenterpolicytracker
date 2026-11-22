@@ -33,6 +33,10 @@
       "last_reviewed": "2026-11-16",
       "summary": "Checked for new sites (Stargate sites tracked under openai) and the Jan 26 2026 community blog (live at /news/announcement/blog/...; old 404 lead resolved). Verified 'paying our own way on energy' claim; held in BACKLOG (claims payload budget). Bumped last_reviewed."
     },
+    "company:prologis": {
+      "last_reviewed": "2026-11-22",
+      "summary": "Newsroom/commitments page 403. Added Project Mila, Trenton OH (prologis-trenton-oh, construction, 250 MW) from WCPO Nov 16: Nov 12 federal suit over Issue 17 and residents' Nov 9 revoke demand. Yorkville Project Steel already tracked as prologis-yorkville-il."
+    },
     "company:qts": {
       "last_reviewed": "2026-11-16",
       "summary": "Checked q.com/news: the six latest items (Maricopa partnership, Fayette $14M weatherization, Station 93, Lancium Turkey, Towaliga, co-CEO interview) are all already in the seed. Fetched the Jul 23 2026 statement (Eagle Mountain road claim added under that site). 24-campus lead in BACKLOG left open."
@@ -118,16 +122,12 @@
       "summary": "Checked Google blog + June 2026 announcement PDF, POWER Magazine. Softened water wording to Google's 'domestic uses like restrooms'; Caprock hub and status confirmed. 840 MW demand figure seen only in search synthesis, not recorded."
     },
     "site:google-lima-oh": {
-      "blocked": {
-        "date": "2026-11-08",
-        "reason": "2026-11-08: AEDG data-centers page and search show only Mar-May 2026 items already tracked; no dated post-May status, permit or EPA-hearing outcome found. Unblock with Lima News / WLIO fetch for the EPA permit decision."
-      }
+      "last_reviewed": "2026-11-22",
+      "summary": "Checked news since May capture; added Signal Ohio Jul 16: Ohio EPA air permit granted late May + 0.7-acre wetland fill permit (notes) and a residents' response. Source_url (DCD) not re-fetched."
     },
     "site:google-little-rock-ar": {
-      "blocked": {
-        "date": "2026-11-08",
-        "reason": "2026-11-08: search surfaced nothing newer than Apr 2026 for the Port of Little Rock site; needs KATV / Arkansas Democrat-Gazette fetch for site-plan or permit outcome."
-      }
+      "last_reviewed": "2026-11-22",
+      "summary": "No new status source (DCD blocked). Added two Jun 2 City Board responses (ordinance passed unanimously; Sweet Home residents) from Arkansas Times. Leads: possible two-site blend, LR ordinance as Policy, ADG contract lawsuit."
     },
     "site:google-mesa-az": {
       "last_reviewed": "2026-09-30",
@@ -161,6 +161,10 @@
       "last_reviewed": "2026-11-11",
       "summary": "Re-fetched Meta page (live); checked news since May 2026 — no new local permits/coverage found; added operational-jobs and grants-timing to notes from Meta's page."
     },
+    "site:meta-huntsville-al": {
+      "last_reviewed": "2026-11-22",
+      "summary": "Re-verified $1.5B/1,200/300+ on Meta's US locations page. Sept 2026 info sheet has newer grant ($4.5M+) and AL clean-energy (487 MW) figures plus a TVA full-cost line; filed as a lead because probe can't read PDFs here. News and permits not searched this run."
+    },
     "site:meta-lebanon-in": {
       "last_reviewed": "2026-11-11",
       "summary": "Re-fetched Meta release (live); no Oct-Nov 2026 news found; added Boone REMC $1M/yr x20 fund to notes; filed lead on unsourced $45M roads figure and 'first solo IN campus' wording."
@@ -171,8 +175,8 @@
     },
     "site:meta-newton-ga": {
       "blocked": {
-        "date": "2026-11-08",
-        "reason": "2026-11-08: still no fetchable primary source for the 1120 MW / $1.5B / 400-job figures (see BACKLOG); needs Meta current Newton page or local-press source."
+        "date": "2026-11-22",
+        "reason": "Figures ($1.5B, 400 jobs, 1120 MW, 416 ac) still have no fetchable primary source. Added WSB-TV Oct 21 well-water lawsuit response this run. Unblock with Meta's current Newton page or a county/development-authority document stating the figures."
       }
     },
     "site:meta-prineville-or": {
@@ -236,6 +240,10 @@
     "site:openai-milam-county-tx": {
       "last_reviewed": "2026-11-15",
       "summary": "SB Energy page confirms 1.2 GW build-and-operate role; DCD source 403 (bot wall). No news since Jan 2026 found; trackers disagree on near-term capacity (0.3 GW / 2027-28), not recorded. Pre-pledge site, no ratepayer assessment."
+    },
+    "site:openai-saline-mi": {
+      "last_reviewed": "2026-11-22",
+      "summary": "News search only: Nov 11 tax-break reaffirmation (Detroit News, paywalled) and pending MPSC appeal filed as leads. No record changes; source_url (openai.com) not re-fetched."
     },
     "site:openai-shackelford-tx": {
       "last_reviewed": "2026-11-15",
@@ -655,7 +663,9 @@
       "last_check": {
         "date": "2026-11-20",
         "summary": "Loudoun adopted the pause Nov 17, 2026, 7-1-1, retroactive to Sept 15 (Bisnow, Nov 17); loudoun-county-va-2026-09 now enacted."
-      }
+      },
+      "last_reviewed": "2026-11-22",
+      "summary": "Checked proposed records: Front Royal zoning prohibition adopted unanimously Oct 26 (Royal Examiner), policy now in_effect; HB1515 continued to 2027, no change. Spotsylvania Crossroads SUP approved 4-3 Nov 17 (WJLA), no operator named, kept as lead."
     }
   }
 }
