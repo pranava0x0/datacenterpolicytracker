@@ -837,7 +837,7 @@ def _build_home(payloads, today: date, *, full: bool = False) -> dict:
 
     return {
         "totals": totals,
-        "toplines": _build_toplines(payloads, today, soon),
+        "toplines": _build_toplines(payloads, today, upcoming),
         "latest": latest if full else picked,
         "upcoming": soon,
     }
@@ -849,7 +849,9 @@ def _ref(kind: str, rid: str, title: str, when: date | None, place: str = "") ->
 
 
 def _build_toplines(payloads, today: date, upcoming: list[dict]) -> dict:
-    """The five questions Home answers before anything else: where the pledge
+    """`upcoming` is the full date-sorted list, not Home's capped one.
+
+    The five questions Home answers before anything else: where the pledge
     stands, how many moratoriums are in force, what communities have won,
     what regulators decide next, and how much policy is in effect. Each
     count uses the same rule as the tab it links to."""
@@ -884,7 +886,8 @@ def _build_toplines(payloads, today: date, upcoming: list[dict]) -> dict:
     # Community benefits: the Agreements pane's signed cohort.
     agreements = [p for p in policies if _is_agreement(p)]
     signed = sorted(
-        (p for p in agreements if p.instrument == "benefit_agreement" and p.status == "in_effect" and p.date),
+        (p for p in agreements if p.instrument == "benefit_agreement" and p.status == "in_effect"
+         and p.date and p.date <= today),
         key=lambda p: p.date, reverse=True,
     )
     newest_a = signed[0] if signed else None
@@ -909,7 +912,10 @@ def _build_toplines(payloads, today: date, upcoming: list[dict]) -> dict:
             "in_force": len(in_force),
             "total": len(morats),
             "states": len({m.state_code for m in in_force if m.state_code and m.jurisdiction_type != "federal"}),
-            "last_90_days": sum((today - m.enacted_date).days <= 90 for m in dated),
+            # Same base as the monthly bars: every enactment, lifted or not.
+            "last_90_days": sum(
+                m.status == "enacted" and m.enacted_date is not None
+                and 0 <= (today - m.enacted_date).days <= 90 for m in morats),
             "monthly": months,
             "newest": _ref("moratorium", newest_m.id, newest_m.jurisdiction, newest_m.enacted_date,
                            newest_m.state_code or "") if newest_m else None,

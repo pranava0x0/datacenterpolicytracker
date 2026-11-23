@@ -7240,3 +7240,17 @@ details[open] > .pb-topic-toggle::before { transform: rotate(90deg); }
   #moratoriums-table .mor-col-duration { grid-column: 1 / -1; font-size: var(--fs-sm); color: var(--text-muted); }
 }
 @media (max-width: 640px) { #policy-stats .rp-stat--minor { display: none; } }
+
+.detail-header > .btn-link { align-self: flex-start; text-align: left; }
+.ledger-head:hover { background: none; }
+.civic-browse { font-size: var(--fs-sm); white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.pb-crosslinks { margin: 8px 0 0; font-size: var(--fs-sm); }
+.pb-topic-toggle { flex-wrap: nowrap; align-items: flex-start; }
+.pb-topic-toggle::before { margin-top: 6px; flex: none; }
+.pb-topic-name { flex: 0 1 auto; }
+.pb-topic-count { flex: 0 0 auto; }
+@media (max-width: 640px) {
+  .pb-topic-toggle { flex-wrap: wrap; padding-left: 1.4rem; position: relative; }
+  .pb-topic-toggle::before { position: absolute; left: .7rem; top: 1rem; margin: 0; }
+  .primary-nav .tab, .primary-nav a.tab-util { min-height: 44px; }
+}

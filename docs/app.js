@@ -3719,14 +3719,13 @@ function renderPolicyStats(all) {
   const year = _policySnapshotYear || String(new Date().getFullYear());
   const agreements = agreementRecords().length;
   setSubtabCount("policy-agreements-count", agreements);
-  // In effect leads (Home's Policy number). The last two repeat the
-  // Agreements and Rules pill counts, so phones drop them to keep the
-  // topics on the first screen.
+  // In effect leads (Home's Policy number). The last repeats the Rules pill
+  // count, so phones drop it to keep the topics on the first screen. The
+  // agreement count lives in its pill and the Agreements pane's own stats.
   const tiles = [
     [n((p) => p.status === "in_effect"), "In effect"],
     [new Set(all.filter((p) => p.scope === "state").map((p) => p.state_code)).size, "States acting"],
     [n((p) => p.instrument === "executive_order" && (p.date || "").startsWith(year)), `Governor orders in ${year}`],
-    [agreements, "Agreements and site pledges", true],
     [all.length, "Policy records", true],
   ];
   ul.innerHTML = tiles
@@ -4716,7 +4715,7 @@ function renderPledgeStatus() {
   if (!p || !pl) return;
   const bs = pl.by_status || {};
   p.textContent =
-    `${pl.signers.toLocaleString()} signers as of ${formatAsOf(pl.as_of)}. ` +
+    `${pl.signers.toLocaleString()} signers${pl.as_of ? ` as of ${formatAsOf(pl.as_of)}` : ""}. ` +
     `${pl.assessed} sites assessed: ${bs.affirmed || 0} site-specific, ${bs.pledge_only || 0} national pledge only, ${bs.contested || 0} contested.`;
 }
 

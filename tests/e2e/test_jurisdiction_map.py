@@ -43,7 +43,7 @@ def test_map_filters_and_canonical_records(page: Page, base_url: str, width: int
     expect(page.locator(".map-announcements > .map-announcement")).to_have_count(2)
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
     # Phones show every destination in a 4 x 3 grid (2026-11-23).
-    assert page.locator(".primary-nav").evaluate("e=>e.getBoundingClientRect().height") <= 120
+    assert page.locator(".primary-nav").evaluate("e=>e.getBoundingClientRect().height") <= 140
     expect(page.locator(".hero-kicker")).to_have_count(0)
     expect(page.locator(".site-footer")).not_to_contain_text("Company claims")
 

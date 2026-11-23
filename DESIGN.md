@@ -12,7 +12,7 @@ family; generous space between groups and compact rows within them.
 row plus a second "Browse records" row and a footer copy of the same tabs
 became one navigation row: Overview, the nine record tabs, then Updates,
 Compare and Plans. Home leads with search and five top lines (The Pledge,
-Moratoriums, Community benefits, Power Costs, Policy) — a large tabular
+Moratoriums, Community benefits, Policy, Power Costs) — a large tabular
 figure, one status sentence, the newest or next dated item — under a 2px ink
 rule, with two data marks (assessed pledge sites by status; moratoriums
 enacted per month). Sections are ruled, not grey boxed bars. A record's kind

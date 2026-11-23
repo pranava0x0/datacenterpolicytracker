@@ -93,6 +93,7 @@
           <form class="civic-search" id="civic-search" role="search">
             <label for="civic-query">Search</label>
             <input id="civic-query" type="search" autocomplete="off" placeholder="Place, company, utility or docket" />
+            <a class="civic-browse" href="?browse=places#overview">Browse places</a>
           </form>
           <div id="civic-search-panel" hidden>
             <div class="civic-controls"><label>Type <select id="civic-kind"><option value="">All records</option><option value="project">Sites</option><option value="policy">Policies</option><option value="agreement">Agreements</option><option value="moratorium">Moratoriums</option><option value="tariff">Tariffs</option><option value="rate_case">Rate cases</option><option value="company">Companies</option></select></label><button id="civic-reset" type="button">Clear</button></div>
@@ -124,15 +125,6 @@
               <div class="ledger-body"><p class="ledger-line" data-line-for="moratoriums"></p><p class="ledger-latest" data-latest-for="moratoriums"></p></div>
               <div class="ledger-mark" data-mark-for="moratoriums"></div>
             </li>
-            <li class="ledger-row" data-topic="policies">
-              <button class="home-card ledger-head" type="button" data-path-target="policies">
-                <span class="home-card-title">Policy</span>
-                <span class="home-card-num" data-count-for="policies">&mdash;</span>
-                <span class="home-card-sub" data-sub-for="policies"></span>
-              </button>
-              <div class="ledger-body"><p class="ledger-line" data-line-for="policies"></p><p class="ledger-latest" data-latest-for="policies"></p></div>
-              <div class="ledger-mark" data-mark-for="policies"></div>
-            </li>
             <li class="ledger-row" data-topic="agreements">
               <button class="home-card ledger-head" type="button" data-path-target="agreements">
                 <span class="home-card-title">Community benefits</span>
@@ -143,6 +135,15 @@
                 <p class="ledger-links home-tasks"><button type="button" data-guide-target="strongest">Signed agreements</button><button type="button" data-guide-target="drafts">County and state drafts</button><button type="button" data-guide-target="evidence">Impact claims</button></p>
               </div>
               <div class="ledger-mark" data-mark-for="agreements"></div>
+            </li>
+            <li class="ledger-row" data-topic="policies">
+              <button class="home-card ledger-head" type="button" data-path-target="policies">
+                <span class="home-card-title">Policy</span>
+                <span class="home-card-num" data-count-for="policies">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="policies"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="policies"></p><p class="ledger-latest" data-latest-for="policies"></p></div>
+              <div class="ledger-mark" data-mark-for="policies"></div>
             </li>
             <li class="ledger-row" data-topic="tariffs">
               <button class="home-card ledger-head" type="button" data-path-target="tariffs">
@@ -1275,6 +1276,7 @@
           <div id="policy-principles-section">
             <ul id="policy-principles" class="pb-principles" aria-label="US policy topics"></ul>
             <button id="policy-heat-abroad" class="linkish" type="button">Waste heat reuse abroad →</button>
+            <p class="pb-crosslinks"><a href="#moratoriums/map">Jurisdiction map</a> · <a href="#tariffs/tariffs">Utility tariffs</a></p>
           </div>
         </div>
 

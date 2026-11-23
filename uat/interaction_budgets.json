@@ -17,7 +17,7 @@
     "site_comment": 5,
     "draft_county": 3,
     "draft_state": 5,
-    "impact_water": 5,
+    "impact_water": 6,
     "moratorium_older": 4,
     "world_country": 2,
     "election_result": 1,
@@ -29,7 +29,7 @@
     "map_moratorium": 6,
     "topline_pledge": 0,
     "topline_moratoriums": 0,
-    "topline_benefits": 1,
+    "topline_benefits": 2,
     "topline_power": 2,
     "topline_policy": 2,
     "place_search": 2

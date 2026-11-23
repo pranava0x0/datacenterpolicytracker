@@ -581,14 +581,19 @@ taps on all three devices. No interaction budget increased.
 (`JOURNEYS`), reports which Home top lines are on the first screen, and adds
 six tasks: five top lines (`topline_*`) and `place_search`.
 
-- First screen: desktop and tablet show 5 of 5 top lines; a 390×844 phone
-  shows 3 (Pledge, Moratoriums, Community benefits).
-- Cheaper: `pledge_site_score` 6→3 phone, 4→1 desktop (the pledge's status
-  line and Tracked sites now lead); `ratecase_milestone` 4→1 phone, 3→1
-  desktop; `election_policy` 7→1 phone; map lookups 8–9→5–6.
-- Costlier, accepted: `home_latest` 0→2–3 and `home_coming_up` 0→2 desktop,
-  `latest_item_record` 1→3 desktop, because the mixed Latest / Coming up
-  feeds now sit below the five top lines. Each top line already shows its own
-  newest or next dated item at 0 interactions, which is what most readers
-  open Home for. On phones the agreement-guide paths (`draft_*`,
-  `agreement_terms`, `policy_cba`) cost +2 swipes for the same reason.
+- First screen: desktop and tablet show all 5 top lines (each with its
+  newest or next dated item); a 390×844 phone shows 3 (Pledge, Moratoriums,
+  Community benefits).
+- The 26 tasks shared with the last committed measurement (2026-11-07, the
+  Nov 21 redesign did not re-measure) total mobile 72 → 87, tablet 66 → 69,
+  desktop 64 → 67. That is a net cost on old paths, traded for the five
+  top-line answers at 0 interactions on tablet/desktop.
+- Cheaper: `pledge_site_score` (desktop 3 → 1, mobile 4 → 3),
+  `pledge_signatory` mobile 5 → 4, `ratecase_milestone` 1 everywhere.
+- Costlier: the mixed Latest / Coming up feeds now sit below the ledger
+  (`home_latest` 0 → 2 desktop, 0 → 3 mobile; `latest_item_record` 1 → 3);
+  on phones the agreement-guide links sit inside the Community benefits row
+  (`draft_county` 1 → 3, `agreement_terms` 1 → 3); Policy opens on its stat
+  row, so `policy_cba` mobile 3 → 5; `state_panel` +1 (Coverage collapsed).
+- `site_comment` desktop hit one 10 s timeout in the final run; its budget
+  stays at the previous measured 5.

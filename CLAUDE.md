@@ -43,7 +43,7 @@ elsewhere to "CLAUDE.md > <section>" now resolve there.
   and Plans at the end. Labels are identical everywhere a tab is named (tab,
   Home row, heading, llms.txt).
 - Home is a ledger: search, then five top lines (The Pledge, Moratoriums,
-  Community benefits, Power Costs, Policy), each a large tabular figure, one
+  Community benefits, Policy, Power Costs), each a large tabular figure, one
   status sentence and the newest or next dated item; then Latest / Coming up.
   The figures come from `toplines` in `data/home.json` (built by
   `refresh.py::_build_toplines`) under the same rule the tab uses, and
