@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 def test_summary_strips_stay_visible_and_headings_keep_ink(page: Page, base_url: str, width: int) -> None:
     page.set_viewport_size({'width': width, 'height': 812})
     page.goto(base_url + '/#policies')
-    expect(page.locator('#policy-stats .rp-stat')).to_have_count(5)
+    expect(page.locator('#policy-stats .rp-stat')).to_have_count(4)
     for group, view, stats in [('pol', 'policies', 'policy-stats')]:
         page.click('#tab-' + view)
         assert page.locator('#view-' + view).evaluate('e => getComputedStyle(e).opacity') == '1'
@@ -90,7 +90,8 @@ def test_labeled_filters_keep_primary_controls_visible(page: Page, base_url: str
     # One name per tab at every width (UX audit 2026-11-09): no short variants.
     expect(page.locator('#tab-world')).to_have_text('International', use_inner_text=True)
     if width <= 640:
-        assert page.locator('.tabbar').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 4
+        # The nav grid lives on .primary-nav; .tabbar is display:contents.
+        assert page.locator('.primary-nav').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 4
 
 @pytest.mark.parametrize(("file", "missing", "unaffected"), [
     ("moratoriums", "pauses", "principles"), ("policies", "rules", "pauses"),

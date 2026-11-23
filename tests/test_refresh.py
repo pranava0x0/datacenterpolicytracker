@@ -334,3 +334,49 @@ def test_home_roster_activity_preserves_first_observation_dates(snapshot):
     assert activity[0]["title"].startswith("2 more organizations")
     assert activity[0]["date"] == "2026-10-26"
     assert all(x["date"] in ("2026-09-21", "2026-10-26") for x in activity)
+
+
+def _all_payloads():
+    return {name: refresh._load_payload(name, model)
+            for name, model in refresh.PAYLOAD_FILES.items()}
+
+
+def test_home_toplines_agree_with_the_totals_and_their_tabs():
+    """Each Home top line uses the rule its tab uses, so a reader who clicks
+    through meets the same number."""
+    payloads = _all_payloads()
+    today = date(2026, 11, 23)
+    home = refresh._build_home(payloads, today)
+    t, tl = home["totals"], home["toplines"]
+    assert tl["moratoriums"]["in_force"] == t["moratoriums_enacted"]
+    assert tl["moratoriums"]["total"] == t["moratoriums"]
+    assert tl["agreements"]["signed"] == t["agreements_signed"]
+    assert tl["agreements"]["total"] == t["agreements"]
+    assert tl["power"]["pending"] == t["rate_cases_pending"]
+    assert tl["policy"]["in_effect"] == t["policies_in_effect"]
+    assert tl["pledge"]["signers"] == t["pledge_organizations"] + t["pledge_governors"]
+    bs = tl["pledge"]["by_status"]
+    assert sum(bs.values()) == tl["pledge"]["assessed"]
+    assert set(bs) == set(refresh.RATEPAYER_STATUSES)
+
+
+def test_home_moratorium_months_end_this_month_and_never_count_the_future():
+    payloads = _all_payloads()
+    today = date(2026, 11, 23)
+    mo = refresh._build_home(payloads, today)["toplines"]["moratoriums"]
+    months = [m["month"] for m in mo["monthly"]]
+    assert len(months) == 12 and months[-1] == "2026-11" and months[0] == "2025-12"
+    assert months == sorted(months)
+    newest = mo["newest"]
+    assert newest is None or newest["date"] <= today.isoformat()
+    # An earlier "today" must not see later enactments.
+    early = refresh._build_home(payloads, date(2026, 3, 1))["toplines"]["moratoriums"]
+    assert early["monthly"][-1]["month"] == "2026-03"
+    assert early["newest"] is None or early["newest"]["date"] <= "2026-03-01"
+
+
+def test_home_next_power_step_is_never_in_the_past():
+    payloads = _all_payloads()
+    today = date(2026, 11, 23)
+    nxt = refresh._build_home(payloads, today)["toplines"]["power"]["next"]
+    assert nxt is None or nxt["date"] >= today.isoformat()

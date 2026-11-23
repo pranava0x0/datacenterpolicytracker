@@ -32,6 +32,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from schema import (
+    RATEPAYER_STATUSES,
     COUNTRIES,
     RATEPAYER_PLEDGE_DATE,
     THEMES,
@@ -836,8 +837,110 @@ def _build_home(payloads, today: date, *, full: bool = False) -> dict:
 
     return {
         "totals": totals,
+        "toplines": _build_toplines(payloads, today, upcoming),
         "latest": latest if full else picked,
         "upcoming": soon,
+    }
+
+
+def _ref(kind: str, rid: str, title: str, when: date | None, place: str = "") -> dict:
+    return {"kind": kind, "id": rid, "title": title,
+            "date": when.isoformat() if when else None, "place": place}
+
+
+def _build_toplines(payloads, today: date, upcoming: list[dict]) -> dict:
+    """`upcoming` is the full date-sorted list, not Home's capped one.
+
+    The five questions Home answers before anything else: where the pledge
+    stands, how many moratoriums are in force, what communities have won,
+    what regulators decide next, and how much policy is in effect. Each
+    count uses the same rule as the tab it links to."""
+    projects = payloads["projects"].projects
+    morats = payloads["moratoriums"].moratoriums
+    policies = payloads["policies"].policies
+    rate_cases = payloads["rate_cases"].rate_cases
+    sig = payloads["signatories"]
+
+    # The Pledge: ratepayerAssessedProjects() in app.js.
+    assessed = [p for p in projects if p.ratepayer and p.status != "withdrawn"]
+    by_status = {s: sum(p.ratepayer.status == s for p in assessed) for s in RATEPAYER_STATUSES}
+
+    # Moratoriums: effectiveStatus() — a lifted record is no longer enacted.
+    in_force = [m for m in morats if m.status == "enacted" and not m.lifted_date]
+    dated = sorted((m for m in in_force if m.enacted_date and m.enacted_date <= today),
+                   key=lambda m: m.enacted_date, reverse=True)
+    months: list[dict] = []
+    y, mo = today.year, today.month
+    for _ in range(12):
+        months.append({"month": f"{y:04d}-{mo:02d}", "count": 0})
+        y, mo = (y, mo - 1) if mo > 1 else (y - 1, 12)
+    months.reverse()
+    slot = {m["month"]: m for m in months}
+    for m in morats:  # every enactment, including ones later lifted
+        if m.enacted_date and m.status == "enacted" and m.enacted_date <= today:
+            key = m.enacted_date.strftime("%Y-%m")
+            if key in slot:
+                slot[key]["count"] += 1
+    newest_m = dated[0] if dated else None
+
+    # Community benefits: the Agreements pane's signed cohort.
+    agreements = [p for p in policies if _is_agreement(p)]
+    signed = sorted(
+        (p for p in agreements if p.instrument == "benefit_agreement" and p.status == "in_effect"
+         and p.date and p.date <= today),
+        key=lambda p: p.date, reverse=True,
+    )
+    newest_a = signed[0] if signed else None
+
+    # Power costs: the next regulator-announced step, from the Coming up list.
+    nxt = next((u for u in upcoming if u["type"] == "Rate case"), None)
+
+    # Policy: the Policy tab's stat row.
+    newest_p = max(
+        (p for p in policies if p.status == "in_effect" and p.date and p.date <= today
+         and not _is_agreement(p) and p.instrument != "company_plan"),
+        key=lambda p: p.date, default=None,
+    )
+    return {
+        "pledge": {
+            "signers": len(sig.signatories),
+            "as_of": sig.roster_as_of.isoformat() if sig.roster_as_of else None,
+            "assessed": len(assessed),
+            "by_status": by_status,
+        },
+        "moratoriums": {
+            "in_force": len(in_force),
+            "total": len(morats),
+            "states": len({m.state_code for m in in_force if m.state_code and m.jurisdiction_type != "federal"}),
+            # Same base as the monthly bars: every enactment, lifted or not.
+            "last_90_days": sum(
+                m.status == "enacted" and m.enacted_date is not None
+                and 0 <= (today - m.enacted_date).days <= 90 for m in morats),
+            "monthly": months,
+            "newest": _ref("moratorium", newest_m.id, newest_m.jurisdiction, newest_m.enacted_date,
+                           newest_m.state_code or "") if newest_m else None,
+        },
+        "agreements": {
+            "total": len(agreements),
+            "signed": sum(p.instrument == "benefit_agreement" and p.status == "in_effect"
+                          for p in agreements),
+            "newest": _ref("agreement", newest_a.id, newest_a.title, newest_a.date,
+                           newest_a.state_code or "") if newest_a else None,
+        },
+        "power": {
+            "rate_cases": len(rate_cases),
+            "pending": sum(r.status == "pending" for r in rate_cases),
+            "tariffs": len(payloads["tariffs"].tariffs),
+            "next": ({"kind": "ratecase", "id": nxt["target"]["id"], "title": nxt["title"],
+                      "date": nxt["date"], "place": nxt["place"]} if nxt else None),
+        },
+        "policy": {
+            "in_effect": sum(p.status == "in_effect" for p in policies),
+            "total": len(policies),
+            "states": len({p.state_code for p in policies if p.scope == "state" and p.state_code}),
+            "newest": _ref("policy", newest_p.id, newest_p.title, newest_p.date,
+                           newest_p.state_code or "") if newest_p else None,
+        },
     }
 
 

@@ -574,3 +574,26 @@ taps on all three devices. No interaction budget increased.
 ## 2026-11-16 — v7 budget change
 
 `ratecase_milestone` goes from 1 to 3 on tablet and desktop. The owner asked for a "what to watch" brief at the top of Power Costs. That brief is now the first thing on the tab, so the first rate case sits about two swipes down. On phones, the moratorium call-out in Policy → Rules shows only counts and a link. The full call-out would break the `policy_cba` budget.
+
+## 2026-11-23 — ledger Home, one nav row (interaction budgets reset to measured)
+
+`tools/interaction_cost.py` now groups tasks into reader journeys
+(`JOURNEYS`), reports which Home top lines are on the first screen, and adds
+six tasks: five top lines (`topline_*`) and `place_search`.
+
+- First screen: desktop and tablet show all 5 top lines (each with its
+  newest or next dated item); a 390×844 phone shows 3 (Pledge, Moratoriums,
+  Community benefits).
+- The 26 tasks shared with the last committed measurement (2026-11-07, the
+  Nov 21 redesign did not re-measure) total mobile 72 → 87, tablet 66 → 69,
+  desktop 64 → 67. That is a net cost on old paths, traded for the five
+  top-line answers at 0 interactions on tablet/desktop.
+- Cheaper: `pledge_site_score` (desktop 3 → 1, mobile 4 → 3),
+  `pledge_signatory` mobile 5 → 4, `ratecase_milestone` 1 everywhere.
+- Costlier: the mixed Latest / Coming up feeds now sit below the ledger
+  (`home_latest` 0 → 2 desktop, 0 → 3 mobile; `latest_item_record` 1 → 3);
+  on phones the agreement-guide links sit inside the Community benefits row
+  (`draft_county` 1 → 3, `agreement_terms` 1 → 3); Policy opens on its stat
+  row, so `policy_cba` mobile 3 → 5; `state_panel` +1 (Coverage collapsed).
+- `site_comment` desktop hit one 10 s timeout in the final run; its budget
+  stays at the previous measured 5.

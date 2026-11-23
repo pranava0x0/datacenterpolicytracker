@@ -2346,12 +2346,13 @@ class TestPledgeLanding:
         expect(page.locator("#tab-comparison")).to_have_attribute("aria-selected", "true")
 
     def test_the_briefing_lands_above_the_fold(self, page: Page, base_url: str):
-        # The owner: "less time to get to explore". The section cards and the
-        # start of both feeds sit above a 900px desktop fold.
+        # The owner: "less time to get to explore". Search and all five top
+        # lines (each with its newest or next item) sit above a 900px
+        # desktop fold (2026-11-23 ledger).
         page.goto(base_url + "/")
-        page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
-        page.wait_for_selector("#whats-next-list .feed-item", timeout=E2E_WAIT)
-        for sel in ("#civic-search", "#home-latest-list", "#whats-next-list"):
+        page.wait_for_selector('[data-latest-for="policies"] .ledger-ref', timeout=E2E_WAIT)
+        sels = ["#civic-search"] + [f'[data-line-for="{t}"]' for t in ("pledge", "moratoriums", "policies", "agreements", "tariffs")]
+        for sel in sels:
             box = page.locator(sel).bounding_box()
             assert box is not None, f"{sel} did not render"
             assert box["y"] < 900, f"{sel} starts at y={box['y']:.0f}, below the fold"
@@ -2359,9 +2360,12 @@ class TestPledgeLanding:
     def test_home_cards_cover_every_other_tab(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
-        cards = page.locator(".home-cards .home-card")
-        views = page.evaluate("() => VIEWS.filter(v => !['compare', 'updates'].includes(v.name)).length")
-        assert cards.count() == views - 1, f"{cards.count()} cards for {views - 1} non-Home tabs"
+        cards = page.locator("#home-cards .home-card")
+        covered = set(page.evaluate(
+            "() => [...document.querySelectorAll('#home-cards .home-card')].map(c => PLEDGE_TARGETS[c.dataset.pathTarget].view)"
+        ))
+        views = set(page.evaluate("() => VIEWS.filter(v => !['overview', 'compare', 'updates'].includes(v.name)).map(v => v.name)"))
+        assert covered == views, f"Home rows cover {sorted(covered)}, tabs are {sorted(views)}"
         for i in range(cards.count()):
             target = cards.nth(i).get_attribute("data-path-target")
             assert page.evaluate(f"() => Boolean(PLEDGE_TARGETS['{target}'])"), target
@@ -2381,7 +2385,7 @@ class TestPledgeLanding:
         # Home's cards are the one summary, so none may come back.
         assert "static-summary" not in html and "record at a glance" not in html.lower()
         assert "279" not in html and "323" not in html, "roster count hardcoded in index.html"
-        assert html.count('class="home-card-num"') == html.count("&mdash;</span>\n              <span class=\"home-card-sub\"")
+        assert html.count('class="home-card-num"') == len(re.findall(r'class="home-card-num"[^>]*>&mdash;</span>', html))
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         nums = page.locator("#home-cards .home-card-num").all_inner_texts()
@@ -3578,13 +3582,15 @@ class TestHomeV6:
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
         nums = page.locator("#home-cards .home-card-num").all_inner_texts()
         assert nums and all(n.replace(",", "").isdigit() for n in nums), nums
-        targets = page.locator("#home-cards .home-card").evaluate_all("els => els.map(e => e.dataset.pathTarget)")
-        # Cards follow the tab bar, so a reader meets sections in one order.
-        views = page.evaluate(
-            "() => VIEWS.filter(v => !['overview', 'compare', 'updates'].includes(v.name)).map(v => Object.entries(PLEDGE_TARGETS)"
-            ".find(([k, t]) => t.view === v.name && !t.anchor)[0])"
+        # Rows follow the tab bar, so a reader meets sections in one order.
+        # Community benefits opens a pane of Policy, so consecutive rows may
+        # share a view.
+        seen = page.evaluate(
+            "() => [...document.querySelectorAll('#home-cards .home-card')].map(c => PLEDGE_TARGETS[c.dataset.pathTarget].view)"
+            ".filter((v, i, a) => v !== a[i - 1])"
         )
-        assert targets == views
+        views = page.evaluate("() => VIEWS.filter(v => !['overview', 'compare', 'updates'].includes(v.name)).map(v => v.name)")
+        assert seen == views
 
     def test_open_agreement_lands_on_an_open_card_even_if_it_is_strongest(self, page: Page, base_url: str):
         # The same record renders in Strongest and All; ids must not collide.
@@ -4091,8 +4097,8 @@ class TestInternational:
 
     @pytest.mark.parametrize("width", [360, 375, 390])
     def test_phone_tab_bar_stays_two_rows(self, browser, base_url: str, width: int):
-        # A ninth tab (v6) wrapped to a third row and pushed every view down
-        # ~44px; the interaction-cost budgets caught it. Derived from VIEWS.
+        # 2026-11-23: one navigation row on desktop; phones lay all twelve
+        # destinations out in a 4 x 3 grid so none hides behind a side-swipe.
         ctx = browser.new_context(viewport={"width": width, "height": 800}, is_mobile=True, has_touch=True)
         page = ctx.new_page()
         try:
@@ -4101,7 +4107,8 @@ class TestInternational:
             rows = page.evaluate(
                 "() => new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().y))).size"
             )
-            assert rows == 1, f"{rows} primary navigation rows at {width}px"
+            assert rows <= 3, f"{rows} primary navigation rows at {width}px"
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         finally:
             ctx.close()
 
