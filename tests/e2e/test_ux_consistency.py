@@ -185,3 +185,26 @@ def test_links_from_before_the_policy_merge_still_land(page: Page, base_url: str
     expect(page.locator(f"#view-{view}")).to_be_visible(timeout=E2E_WAIT)
     expect(page.locator(f"#{pane}")).to_be_visible(timeout=E2E_WAIT)
     assert page.evaluate("() => !document.getElementById('tab-agreements')")
+
+
+def test_home_next_power_step_skips_an_expired_milestone(page: Page, base_url: str):
+    """Codex on #149: a day-old digest must not keep showing a passed
+    milestone as "Next step"; it falls back to the next unexpired one."""
+    page.goto(base_url + "/")
+    page.wait_for_selector('[data-latest-for="tariffs"] .ledger-ref', timeout=E2E_WAIT)
+    text = page.evaluate(
+        """() => {
+            const h = state.home;
+            h.toplines.power.next = {...h.toplines.power.next, date: '2000-01-01', title: 'EXPIRED'};
+            h.upcoming = [{type: 'Rate case', date: '2999-01-01', title: 'FUTURE', place: 'MN',
+                           target: {kind: 'ratecase', id: h.toplines.power.next.id}}];
+            renderHome();
+            return document.querySelector('[data-latest-for="tariffs"]').textContent;
+        }"""
+    )
+    assert "FUTURE" in text and "EXPIRED" not in text
+    empty = page.evaluate(
+        """() => { state.home.upcoming = []; renderHome();
+                   return document.querySelector('[data-latest-for="tariffs"]').textContent; }"""
+    )
+    assert empty == ""

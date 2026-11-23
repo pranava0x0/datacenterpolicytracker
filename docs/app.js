@@ -4762,11 +4762,21 @@ function renderHome() {
     const p = document.querySelector(`[data-line-for="${key}"]`);
     if (p) p.textContent = text;
   }
+  // The digest is built once a day and can outlive its first milestone:
+  // fall back to the next unexpired rate-case date in Coming up, or none.
+  const today = todayIso();
+  const nextStep =
+    pw.next && pw.next.date >= today
+      ? pw.next
+      : (() => {
+          const u = (h.upcoming || []).find((x) => x.type === "Rate case" && x.date >= today);
+          return u ? { kind: "ratecase", id: u.target.id, title: u.title, date: u.date, place: u.place } : null;
+        })();
   const latest = {
     pledge: pl.as_of ? [`Roster as of ${formatAsOf(pl.as_of)}`, null] : null,
     moratoriums: mo.newest ? ["Newest", mo.newest] : null,
     agreements: ag.newest ? ["Newest signed", ag.newest] : null,
-    tariffs: pw.next ? ["Next step", pw.next] : null,
+    tariffs: nextStep ? ["Next step", nextStep] : null,
     policies: po.newest ? ["Newest", po.newest] : null,
   };
   for (const [key, v] of Object.entries(latest)) {
@@ -4789,7 +4799,6 @@ function renderHome() {
     p.replaceChildren(el("span", "ledger-label", label), btn);
   }
   renderLedgerMarks(tl);
-  const today = todayIso();
   const feed = (ol, items, empty) => {
     if (!ol) return;
     if (!items.length) {
