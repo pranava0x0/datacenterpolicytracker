@@ -1,5 +1,5 @@
 # ISSUES.md — Data Audit Report
-Generated: 2026-11-22
+Generated: 2026-11-23
 Total projects needing attention: 167
 
 ## Critical Missing Commitment Details
@@ -183,22 +183,22 @@ Projects with important gaps:
 (19 records)
 
 `proposed` moratoriums/tariffs/policies or `pending` rate cases not re-verified in 21+ days — status may have changed (signed/vetoed/enacted/rejected). Re-check source and update:
-- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 61 days ago
-- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 58 days ago
-- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 45 days ago
-- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 35 days ago
-- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 34 days ago
-- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 34 days ago
-- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 34 days ago
-- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 34 days ago
-- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 34 days ago
-- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 34 days ago
-- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 34 days ago
-- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 34 days ago
-- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 32 days ago
-- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 32 days ago
-- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 32 days ago
-- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 32 days ago
-- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 32 days ago
-- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 32 days ago
-- **chicago-city-il-2026-09** (moratorium, Chicago): captured 2026-10-26, 27 days ago
+- **nv-pucn-google-esa-2026** (rate_case, NV): captured 2026-09-22, 62 days ago
+- **ferc-rm26-4-large-loads** (rate_case, US): captured 2026-09-25, 59 days ago
+- **tuscaloosa-county-al-applied-digital-delta-forge-2-2026** (policy, Brookwood / Tuscaloosa County, AL): captured 2026-10-08, 46 days ago
+- **swatara-township-pa-corscale-cba-2026** (policy, Swatara Township (Dauphin County), PA): captured 2026-10-18, 36 days ago
+- **rogersville-al-2026-07** (moratorium, Rogersville): captured 2026-10-19, 35 days ago
+- **hastings-mn-2026-08** (moratorium, Hastings): captured 2026-10-19, 35 days ago
+- **mchenry-county-il-2026-10** (moratorium, McHenry County): captured 2026-10-19, 35 days ago
+- **knoxville-tn-2026-08** (moratorium, Knoxville): captured 2026-10-19, 35 days ago
+- **agawam-city-ma-2026-08** (moratorium, Agawam): captured 2026-10-19, 35 days ago
+- **ashville-oh-edgeconnex-term-summary-resolution-2026** (policy, Ashville, OH (Pickaway County)): captured 2026-10-19, 35 days ago
+- **coeur-dalene-id-datacenter-non-approval-2026** (policy, Coeur d'Alene, ID): captured 2026-10-19, 35 days ago
+- **morton-county-nd-datacenter-ordinance-2026-08** (policy, Morton County): captured 2026-10-19, 35 days ago
+- **federal-sanders-ocasio-cortez-2026-03** (moratorium, Federal): captured 2026-10-21, 33 days ago
+- **ohio-state-amendment-2024** (moratorium, Ohio): captured 2026-10-21, 33 days ago
+- **virginia-state-2026-01** (moratorium, Virginia): captured 2026-10-21, 33 days ago
+- **az-acc-aps-rate-case-2025** (rate_case, AZ): captured 2026-10-21, 33 days ago
+- **in-iurc-im-base-rate-reduction-2026** (rate_case, IN): captured 2026-10-21, 33 days ago
+- **dane-county-wi-qts-community-commitment-2025** (policy, Dane County / Town of Vienna / DeForest, WI): captured 2026-10-21, 33 days ago
+- **chicago-city-il-2026-09** (moratorium, Chicago): captured 2026-10-26, 28 days ago
