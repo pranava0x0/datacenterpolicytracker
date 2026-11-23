@@ -35,10 +35,10 @@
       }
     </script>
     <link rel="preload" as="fetch" href="data/companies.json" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=20261121-civic" />
+    <link rel="stylesheet" href="styles.css?v=20261123-ledger" />
     <!-- html2pdf is lazy-loaded on demand by the moratorium PDF export (see
          loadHtml2Pdf in app.js) so it doesn't block first paint or tests. -->
-    <script defer src="app.js?v=20261121-civic"></script>
+    <script defer src="app.js?v=20261123-ledger"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -55,16 +55,21 @@
       </div>
 
       <nav class="primary-nav" aria-label="Main navigation">
-        <div role="tablist" aria-label="Main views">
-          <button id="tab-overview" class="tab" role="tab" type="button" aria-selected="true" aria-controls="view-overview">Explore</button>
-          <button id="tab-compare" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-compare">Compare</button>
-          <button id="tab-updates" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-updates">Updates</button>
+        <div class="tabbar nav-tabs" role="tablist" aria-label="Dashboard views">
+          <button id="tab-overview" class="tab" role="tab" type="button" aria-selected="true" aria-controls="view-overview">Overview</button>
+          <button id="tab-ratepayer" class="tab" aria-label="The Pledge" role="tab" type="button" aria-selected="false" aria-controls="view-ratepayer">The Pledge</button>
+          <button id="tab-moratoriums" class="tab" aria-label="Moratoriums" role="tab" type="button" aria-selected="false" aria-controls="view-moratoriums">Moratoriums</button>
+          <button id="tab-policies" class="tab" aria-label="Policy" role="tab" type="button" aria-selected="false" aria-controls="view-policies">Policy</button>
+          <button id="tab-tariffs" class="tab" aria-label="Power Costs" role="tab" type="button" aria-selected="false" aria-controls="view-tariffs">Power Costs</button>
+          <button id="tab-elections" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-elections">Elections</button>
+          <button id="tab-comparison" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-comparison">Companies</button>
+          <button id="tab-explorer" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-explorer">Sites</button>
+          <button id="tab-world" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-world" aria-label="International">International</button>
+          <button id="tab-updates" class="tab tab-util" role="tab" type="button" aria-selected="false" aria-controls="view-updates">Updates</button>
+          <button id="tab-compare" class="tab tab-util" role="tab" type="button" aria-selected="false" aria-controls="view-compare">Compare</button>
         </div>
-        <a href="community-benefits.html" aria-label="Community benefits plans">Plans</a>
+        <a class="tab-util nav-plans" href="community-benefits.html" aria-label="Community benefits plans">Plans</a>
       </nav>
-      <div class="directory-menu"><nav aria-label="Browse records">
-        <a href="#ratepayer">The Pledge</a><a href="#policies">Policy</a><a href="#moratoriums">Moratoriums</a><a href="#elections">Elections</a><a href="#tariffs">Power costs</a><a href="#comparison">Companies</a><a href="#explorer">Sites</a><a href="#world">International</a>
-      </nav></div>
     </header>
 
     <main id="main" tabindex="-1" role="main">
@@ -86,12 +91,9 @@
         <div class="home-body">
 
           <form class="civic-search" id="civic-search" role="search">
-            <label for="civic-query">Find a place, company, utility or record</label>
-            <input id="civic-query" type="search" autocomplete="off" placeholder="City, state, country, company or docket" />
+            <label for="civic-query">Search</label>
+            <input id="civic-query" type="search" autocomplete="off" placeholder="Place, company, utility or docket" />
           </form>
-          <nav class="civic-presets" aria-label="Quick access">
-            <a href="#moratoriums">Moratoriums</a><a href="#tariffs">Power costs</a><a href="#policies/agreements">Agreements</a><a href="?browse=places#overview">Places</a>
-          </nav>
           <div id="civic-search-panel" hidden>
             <div class="civic-controls"><label>Type <select id="civic-kind"><option value="">All records</option><option value="project">Sites</option><option value="policy">Policies</option><option value="agreement">Agreements</option><option value="moratorium">Moratoriums</option><option value="tariff">Tariffs</option><option value="rate_case">Rate cases</option><option value="company">Companies</option></select></label><button id="civic-reset" type="button">Clear</button></div>
             <h2 id="civic-place-heading" hidden></h2><p id="civic-place-scope" class="civic-status" hidden></p>
@@ -102,11 +104,62 @@
             <button id="civic-more" class="btn-link" type="button" hidden>Show more</button>
           </div>
           <div id="civic-home-content">
-          <nav class="home-tasks" aria-label="Planning tools">
-            <button type="button" data-guide-target="strongest">Read signed agreements</button>
-            <button type="button" data-guide-target="drafts">County and state drafts</button>
-            <button type="button" data-guide-target="evidence">Check impact claims</button>
-          </nav>
+          <h2 class="sr-only">Top lines</h2>
+          <ol class="ledger" id="home-cards">
+            <li class="ledger-row" data-topic="pledge">
+              <button class="home-card ledger-head" type="button" data-path-target="pledge">
+                <span class="home-card-title">The Pledge</span>
+                <span class="home-card-num" data-count-for="pledge">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="pledge"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="pledge"></p><p class="ledger-latest" data-latest-for="pledge"></p></div>
+              <div class="ledger-mark" data-mark-for="pledge"></div>
+            </li>
+            <li class="ledger-row" data-topic="moratoriums">
+              <button class="home-card ledger-head" type="button" data-path-target="moratoriums">
+                <span class="home-card-title">Moratoriums</span>
+                <span class="home-card-num" data-count-for="moratoriums">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="moratoriums"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="moratoriums"></p><p class="ledger-latest" data-latest-for="moratoriums"></p></div>
+              <div class="ledger-mark" data-mark-for="moratoriums"></div>
+            </li>
+            <li class="ledger-row" data-topic="policies">
+              <button class="home-card ledger-head" type="button" data-path-target="policies">
+                <span class="home-card-title">Policy</span>
+                <span class="home-card-num" data-count-for="policies">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="policies"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="policies"></p><p class="ledger-latest" data-latest-for="policies"></p></div>
+              <div class="ledger-mark" data-mark-for="policies"></div>
+            </li>
+            <li class="ledger-row" data-topic="agreements">
+              <button class="home-card ledger-head" type="button" data-path-target="agreements">
+                <span class="home-card-title">Community benefits</span>
+                <span class="home-card-num" data-count-for="agreements">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="agreements"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="agreements"></p><p class="ledger-latest" data-latest-for="agreements"></p>
+                <p class="ledger-links home-tasks"><button type="button" data-guide-target="strongest">Signed agreements</button><button type="button" data-guide-target="drafts">County and state drafts</button><button type="button" data-guide-target="evidence">Impact claims</button></p>
+              </div>
+              <div class="ledger-mark" data-mark-for="agreements"></div>
+            </li>
+            <li class="ledger-row" data-topic="tariffs">
+              <button class="home-card ledger-head" type="button" data-path-target="tariffs">
+                <span class="home-card-title">Power Costs</span>
+                <span class="home-card-num" data-count-for="tariffs">&mdash;</span>
+                <span class="home-card-sub" data-sub-for="tariffs"></span>
+              </button>
+              <div class="ledger-body"><p class="ledger-line" data-line-for="tariffs"></p><p class="ledger-latest" data-latest-for="tariffs"></p></div>
+              <div class="ledger-mark" data-mark-for="tariffs"></div>
+            </li>
+            <li class="ledger-row ledger-row--more">
+              <button class="home-card" type="button" data-path-target="elections"><span class="home-card-title">Elections</span><span class="home-card-num" data-count-for="elections">&mdash;</span><span class="home-card-sub" data-sub-for="elections"></span></button>
+              <button class="home-card" type="button" data-path-target="companies"><span class="home-card-title">Companies</span><span class="home-card-num" data-count-for="companies">&mdash;</span><span class="home-card-sub" data-sub-for="companies"></span></button>
+              <button class="home-card" type="button" data-path-target="explorer"><span class="home-card-title">Sites</span><span class="home-card-num" data-count-for="sites">&mdash;</span><span class="home-card-sub" data-sub-for="sites"></span></button>
+              <button class="home-card" type="button" data-path-target="world"><span class="home-card-title">International</span><span class="home-card-num" data-count-for="world">&mdash;</span><span class="home-card-sub" data-sub-for="world"></span></button>
+            </li>
+          </ol>
           <div class="home-latest">
             <section class="home-feed" aria-labelledby="home-latest-h">
               <h2 class="home-h" id="home-latest-h">Latest</h2>
@@ -121,52 +174,6 @@
               </button>
             </section>
           </div>
-
-          <!-- One card per tab, each led by its main number. Numbers and the
-               two lists render from data/home.json (built by refresh.py). -->
-          <nav class="home-cards" id="home-cards" aria-label="Sections">
-            <button class="home-card" type="button" data-path-target="pledge">
-              <span class="home-card-title">The Pledge</span>
-              <span class="home-card-num" data-count-for="pledge">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="pledge"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="policies">
-              <span class="home-card-title">Policy</span>
-              <span class="home-card-num" data-count-for="policies">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="policies"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="moratoriums">
-              <span class="home-card-title">Moratoriums</span>
-              <span class="home-card-num" data-count-for="moratoriums">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="moratoriums"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="elections">
-              <span class="home-card-title">Elections</span>
-              <span class="home-card-num" data-count-for="elections">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="elections"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="tariffs">
-              <span class="home-card-title">Power Costs</span>
-              <span class="home-card-num" data-count-for="tariffs">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="tariffs"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="companies">
-              <span class="home-card-title">Companies</span>
-              <span class="home-card-num" data-count-for="companies">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="companies"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="explorer">
-              <span class="home-card-title">Sites</span>
-              <span class="home-card-num" data-count-for="sites">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="sites"></span>
-            </button>
-            <button class="home-card" type="button" data-path-target="world">
-              <span class="home-card-title">International</span>
-              <span class="home-card-num" data-count-for="world">&mdash;</span>
-              <span class="home-card-sub" data-sub-for="world"></span>
-            </button>
-          </nav>
-
           </div>
         </div>
       </section>
@@ -210,7 +217,7 @@
 
         <div class="subtab-panel" id="subpane-co-profiles" role="tabpanel" aria-labelledby="subtab-co-profiles">
           <p class="acc-sub">
-            One card per operator. Commitment depth counts the operator&rsquo;s own published statements, theme by theme.
+            Commitment depth counts the operator&rsquo;s own published statements on each theme.
           </p>
           <ul class="depth-legend" aria-label="Commitment depth legend">
             <li><span class="depth-chip depth-specific">Specific</span> at least one statement with a figure (jobs, dollars, megawatts, gallons)</li>
@@ -223,7 +230,7 @@
         <div class="subtab-panel" id="subpane-co-commitments" role="tabpanel" aria-labelledby="subtab-co-commitments" hidden>
           <div class="matrix-toolbar">
             <p class="matrix-help">
-              How specific each operator&rsquo;s published commitments are, theme by theme, and how many statements back each one.
+              How specific each operator&rsquo;s published commitments are on each theme, and how many statements back each one.
             </p>
             <span class="export-btns">
               <button id="matrix-csv" type="button" class="btn-ghost matrix-csv" aria-label="Download the company-by-theme matrix as a CSV file">⤓ CSV</button>
@@ -296,7 +303,7 @@
             ×
           </button>
           <header class="detail-header">
-            <p class="eyebrow" id="cd-hq">—</p>
+            <p class="detail-kind" id="cd-hq">—</p>
             <h3 id="cd-name">—</h3>
           </header>
 
@@ -648,6 +655,7 @@
           <p class="hero-dek">
             White House Ratepayer Protection Pledge · <span id="rp-pledge-date">March 4, 2026</span>. <a id="rp-pledge-link" href="#" target="_blank" rel="noopener noreferrer">Read the pledge →</a>
           </p>
+          <p class="hero-dek hero-status" id="rp-status"></p>
         </div>
 
         <!-- ---------------------------------------------------------------
@@ -675,7 +683,7 @@
                  allowed as child of element summary") — but <h3> takes
                  phrasing content, so the kicker nests happily there. -->
             <h3 class="rp-band-title acc-title" id="rp-commitments-heading">
-              The five commitments, and how tracked sites measure up
+              Five commitments
             </h3>
             <span class="acc-count" id="rp-commitments-count"></span>
             <span class="acc-chevron" aria-hidden="true"></span>
@@ -1009,7 +1017,7 @@
               ×
             </button>
             <header class="detail-header">
-              <p class="eyebrow" id="sd-eyebrow">State</p>
+              <p class="detail-kind" id="sd-kind">State</p>
               <h3 id="sd-name">—</h3>
               <p class="detail-sub" id="sd-governor">—</p>
             </header>
@@ -1158,9 +1166,8 @@
         </div>
 
         <p class="rp-footnote">
-          Curated, not exhaustive. Many states have no data-center tariff yet. Element counts measure what a tariff's text covers, not how well it works. One
-          <strong>federal</strong> FERC co-location case (badged
-          <span class="badge badge-tariff-federal">FED</span>) is included because the LBL brief covers co-location. It is left out of the state counts.
+          Many states have no data-center tariff yet. Element counts measure a tariff&rsquo;s text, not its results. The
+          <strong>federal</strong> FERC co-location case (<span class="badge badge-tariff-federal">FED</span>) is left out of state counts.
         </p>
 
         <!-- ================= TARIFF DETAIL MODAL ================= -->
@@ -1171,7 +1178,7 @@
             ×
           </button>
           <header class="detail-header">
-            <p class="eyebrow" id="td-utility">—</p>
+            <p class="detail-kind" id="td-utility">—</p>
             <h3 id="td-name">—</h3>
             <p class="detail-sub">
               <span id="td-status" class="badge">—</span> ·
@@ -1247,6 +1254,7 @@
           <h2 class="hero-title">Policy</h2>
           <p class="view-scope">United States</p>
         </div>
+        <ul id="policy-stats" class="rp-stats" aria-label="Policy statistics"></ul>
 
 
         <div class="subtabs subtabs--view" role="tablist" aria-label="Policy view">
@@ -1362,7 +1370,7 @@
         </div>
 
         <div class="subtab-panel" id="subpane-cba-strongest" role="tabpanel" aria-labelledby="subtab-cba-strongest">
-          <p class="cba-note">Signed agreements that put the most of the nine terms in writing. A count of terms on paper, not a measure of enforcement or delivery.</p>
+          <p class="cba-note">Ranked by how many of the nine terms each signed agreement puts in writing. Enforcement and delivery are not scored.</p>
           <ol id="cba-strongest" class="cba-list" role="list"></ol>
         </div>
 
@@ -1414,16 +1422,12 @@
         <ul id="cba-stats" class="rp-stats" aria-label="Agreement statistics"></ul>
         </div>
 
-        <p class="rp-footnote">
-          Coverage varies by state. <a href="#moratoriums/map">Jurisdiction map</a> · <a href="#tariffs/tariffs">Utility tariffs</a>.
-        </p>
-        <ul id="policy-stats" class="rp-stats" aria-label="Policy statistics"></ul>
         <div id="policy-modal" class="tariff-modal" hidden>
           <div class="tariff-modal__backdrop" data-policy-close aria-hidden="true"></div>
           <div id="policy-detail" class="moratorium-detail tariff-detail tariff-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pd-title">
             <button id="policy-detail-close" class="detail-close" type="button" aria-label="Close policy details">×</button>
             <header class="detail-header">
-              <p class="eyebrow" id="pd-instrument">—</p>
+              <p class="detail-kind" id="pd-instrument">—</p>
               <h3 id="pd-title">—</h3>
               <p class="detail-sub">
                 <span id="pd-status" class="badge">—</span> ·
@@ -1519,7 +1523,7 @@
                 <tr>
                   <th aria-sort="none">Jurisdiction</th>
                   <th aria-sort="none">Date</th>
-                  <th aria-sort="none">Type</th>
+                  <th aria-sort="none" class="mor-col-type">Type</th>
                   <th aria-sort="none">Status</th>
                   <th aria-sort="none">Duration</th>
                   <th aria-sort="none" class="mor-col-reasons">Key Reasons</th>
@@ -1566,7 +1570,7 @@
             ×
           </button>
           <header class="detail-header">
-            <p class="eyebrow" id="md-jurisdiction-type">—</p>
+            <p class="detail-kind" id="md-jurisdiction-type">—</p>
             <h3 id="md-jurisdiction">—</h3>
             <p class="detail-sub">
               <span id="md-status" class="badge">—</span> ·
@@ -1599,7 +1603,7 @@
             <dd id="md-votes" hidden>—</dd>
             <dt id="md-session-dt" hidden>Session</dt>
             <dd id="md-session" hidden>—</dd>
-            <dt id="md-failure-reason-dt" hidden>Why it failed</dt>
+            <dt id="md-failure-reason-dt" hidden>Failure reason</dt>
             <dd id="md-failure-reason" hidden>—</dd>
           </dl>
 
@@ -1692,95 +1696,6 @@
     </main>
 
     <div id="civic-compare-tray" class="civic-compare-tray" hidden><span id="civic-compare-count"></span><a href="#compare">Compare</a><button id="civic-tray-clear" class="btn-link" type="button">Clear</button></div>
-    <nav class="collection-nav" aria-label="Record directories"><h2>Browse records</h2>
-      <div class="tabbar" role="tablist" aria-label="Dashboard views">
-<button
-          id="tab-ratepayer"
-          class="tab"
-          aria-label="The Pledge"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-ratepayer"
-        >
-          The Pledge
-        </button>
-        <button
-          id="tab-policies"
-          class="tab"
-          aria-label="Policy"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-policies"
-        >
-          Policy
-        </button>
-        <button
-          id="tab-moratoriums"
-          class="tab"
-          aria-label="Moratoriums"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-moratoriums"
-        >
-          Moratoriums
-        </button>
-        <button
-          id="tab-elections"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-elections"
-        >
-          Elections
-        </button>
-        <button
-          id="tab-tariffs"
-          class="tab"
-          aria-label="Power Costs"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-tariffs"
-        >
-          Power Costs
-        </button>
-        <button
-          id="tab-comparison"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-comparison"
-        >
-          Companies
-        </button>
-        <button
-          id="tab-explorer"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-explorer"
-        >
-          Sites
-        </button>
-        <button
-          id="tab-world"
-          class="tab"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="view-world"
-          aria-label="International"
-        >
-          International
-        </button>
-      </div>
-    </nav>
     <footer class="site-footer">
       <p>
         <a href="https://github.com/pranava0x0/datacenterpolicytracker">Code on GitHub</a>.

@@ -8,9 +8,16 @@ organization and Martin's restraint as principles, with an original small
 geometric mark. Off-white, graphite, one deep blue accent; one system sans
 family; generous space between groups and compact rows within them.
 
-Explore / Compare / Plans / Updates are the primary destinations. Search by
-place, company, utility, docket or record; retain canonical specialist and
-record URLs. Group places only by explicit geography; never infer a utility's
+**2026-11-23 — one row, a ledger Home.** The Explore/Compare/Plans/Updates
+row plus a second "Browse records" row and a footer copy of the same tabs
+became one navigation row: Overview, the nine record tabs, then Updates,
+Compare and Plans. Home leads with search and five top lines (The Pledge,
+Moratoriums, Community benefits, Power Costs, Policy) — a large tabular
+figure, one status sentence, the newest or next dated item — under a 2px ink
+rule, with two data marks (assessed pledge sites by status; moratoriums
+enacted per month). Sections are ruled, not grey boxed bars. A record's kind
+and operator sit under its title, never above it. Search by place, company,
+utility, docket or record; retain canonical specialist and record URLs. Group places only by explicit geography; never infer a utility's
 service territory. Compare actual agreement/tariff terms without scores.
 Separate event dates from tracker edits; capture-date refreshes are not news.
 

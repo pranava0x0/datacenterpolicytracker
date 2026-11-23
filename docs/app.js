@@ -850,10 +850,10 @@ const VIEWS = [
   { name: "updates", tab: "tab-updates", section: "view-updates", hash: "#updates" },
   { name: "overview", tab: "tab-overview", section: "view-overview", hash: "#overview" },
   { name: "ratepayer", tab: "tab-ratepayer", section: "view-ratepayer", hash: "#ratepayer" },
-  { name: "policies", tab: "tab-policies", section: "view-policies", hash: "#policies" },
   { name: "moratoriums", tab: "tab-moratoriums", section: "view-moratoriums", hash: "#moratoriums" },
-  { name: "elections", tab: "tab-elections", section: "view-elections", hash: "#elections" },
+  { name: "policies", tab: "tab-policies", section: "view-policies", hash: "#policies" },
   { name: "tariffs", tab: "tab-tariffs", section: "view-tariffs", hash: "#tariffs" },
+  { name: "elections", tab: "tab-elections", section: "view-elections", hash: "#elections" },
   { name: "comparison", tab: "tab-comparison", section: "view-comparison", hash: "#comparison" },
   { name: "explorer", tab: "tab-explorer", section: "view-explorer", hash: "#explorer" },
   { name: "world", tab: "tab-world", section: "view-world", hash: "#world" },
@@ -1329,6 +1329,9 @@ function activateView(name) {
     ensureComparisonData().catch((err) => console.error("Failed to load claims:", err));
     // Small and lazy: only so company cards can count sites abroad.
     loadInternationalData().then(renderCompanyCards).catch((err) => console.error("Failed to load international data:", err));
+  }
+  if (target.name === "ratepayer") {
+    loadHomeData().then(renderPledgeStatus).catch((err) => console.error("Failed to load pledge status:", err));
   }
   if (["comparison", "explorer", "ratepayer"].includes(target.name)) {
     loadAggregateView().catch((err) => {
@@ -1980,9 +1983,9 @@ function renderMoratoriumsView() {
     tr.innerHTML = `
       <td>${escapeHtml(moratoriumPlace(m))}${billHtml}</td>
       <td class="mor-date">${moratoriumDate(m) ? escapeHtml(formatAsOf(moratoriumDate(m))) : '<span class="field-missing">Not stated</span>'}</td>
-      <td><span class="badge badge-jurisdiction-type">${escapeHtml(m.jurisdiction_type)}</span></td>
-      <td><span class="badge badge-moratorium-status-${effectiveStatus(m)}">${escapeHtml(effectiveStatus(m))}</span></td>
-      <td title="${escapeAttr(m.duration_description || "")}">${escapeHtml(shortDuration(m.duration_description))}</td>
+      <td class="mor-col-type"><span class="badge badge-jurisdiction-type">${escapeHtml(m.jurisdiction_type)}</span></td>
+      <td class="mor-col-status"><span class="badge badge-moratorium-status-${effectiveStatus(m)}">${escapeHtml(effectiveStatus(m))}</span></td>
+      <td class="mor-col-duration" title="${escapeAttr(m.duration_description || "")}">${escapeHtml(shortDuration(m.duration_description))}</td>
       <td class="mor-col-reasons">${reasonBadges || '<span class="field-missing">Not stated</span>'}</td>
     `;
 
@@ -3716,17 +3719,20 @@ function renderPolicyStats(all) {
   const year = _policySnapshotYear || String(new Date().getFullYear());
   const agreements = agreementRecords().length;
   setSubtabCount("policy-agreements-count", agreements);
+  // In effect leads (Home's Policy number). The last two repeat the
+  // Agreements and Rules pill counts, so phones drop them to keep the
+  // topics on the first screen.
   const tiles = [
-    [all.length, "Policy records"],
-    [agreements, "Agreements and site pledges"],
     [n((p) => p.status === "in_effect"), "In effect"],
     [new Set(all.filter((p) => p.scope === "state").map((p) => p.state_code)).size, "States acting"],
     [n((p) => p.instrument === "executive_order" && (p.date || "").startsWith(year)), `Governor orders in ${year}`],
+    [agreements, "Agreements and site pledges", true],
+    [all.length, "Policy records", true],
   ];
   ul.innerHTML = tiles
     .map(
-      ([v, label]) => `
-      <li class="rp-stat">
+      ([v, label, minor]) => `
+      <li class="rp-stat${minor ? " rp-stat--minor" : ""}">
         <span class="rp-stat-value">${v}</span>
         <span class="rp-stat-label">${escapeHtml(label)}</span>
       </li>`
@@ -4037,7 +4043,12 @@ function renderPolicyPrinciples(all) {
     const li = el("li", "pb-principle");
     li.dataset.principle = key;
     const details = el("details");
-    const summary = el("summary", "pb-topic-toggle", POLICY_PRINCIPLE_LABELS[key]);
+    const summary = el("summary", "pb-topic-toggle");
+    const live = recs.filter((r) => r.status === "in_effect").length;
+    summary.append(
+      el("span", "pb-topic-name", POLICY_PRINCIPLE_LABELS[key]),
+      el("span", "pb-topic-count", `${recs.length} records · ${live} in effect`)
+    );
     const body = el("div", "pb-topic-body");
     details.open = open.has(key);
     details.append(summary, body);
@@ -4644,30 +4655,141 @@ const HOME_SITE_KIND_LABELS = {
   filing: "Filing", agreement: "Agreement", construction: "Construction", news: "News",
 };
 
+// Two data marks on Home, both read from home.json: the assessed pledge
+// sites by status, and moratoriums enacted per month. Each carries its
+// figures as text for screen readers.
+function renderLedgerMarks(tl) {
+  const pledge = document.querySelector('[data-mark-for="pledge"]');
+  const bs = tl.pledge && tl.pledge.by_status;
+  if (pledge && bs) {
+    const total = RATEPAYER_STATUSES.reduce((a, k) => a + (bs[k] || 0), 0);
+    const bar = el("div", "mark-bar");
+    bar.setAttribute("role", "img");
+    bar.setAttribute(
+      "aria-label",
+      RATEPAYER_STATUSES.map((k) => `${bs[k] || 0} ${RATEPAYER_LABELS[k].toLowerCase()}`).join(", ")
+    );
+    for (const k of RATEPAYER_STATUSES) {
+      if (!bs[k]) continue;
+      const seg = el("span", `mark-seg mark-seg--${k}`);
+      seg.style.flexGrow = String(bs[k]);
+      seg.title = `${bs[k]} ${RATEPAYER_LABELS[k]}`;
+      bar.append(seg);
+    }
+    const key = el("p", "mark-key");
+    for (const k of RATEPAYER_STATUSES) {
+      if (!bs[k]) continue;
+      const item = el("span", `mark-key-item mark-key--${k}`, `${RATEPAYER_LABELS[k]} ${bs[k]}`);
+      key.append(item);
+    }
+    pledge.replaceChildren(bar, key);
+    pledge.hidden = total === 0;
+  }
+  const mor = document.querySelector('[data-mark-for="moratoriums"]');
+  const months = tl.moratoriums && tl.moratoriums.monthly;
+  if (mor && months && months.length) {
+    const max = Math.max(1, ...months.map((m) => m.count));
+    const label = (m) => new Date(`${m}-15T12:00:00`).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    const chart = el("div", "mark-cols");
+    chart.setAttribute("role", "img");
+    chart.setAttribute(
+      "aria-label",
+      `Moratoriums enacted per month, ${label(months[0].month)} to ${label(months[months.length - 1].month)}: ` +
+        months.map((m) => m.count).join(", ")
+    );
+    for (const m of months) {
+      const col = el("span", "mark-col");
+      col.style.height = `${Math.max(2, Math.round((m.count / max) * 100))}%`;
+      col.title = `${label(m.month)}: ${m.count}`;
+      chart.append(col);
+    }
+    const axis = el("p", "mark-axis");
+    axis.append(el("span", "", label(months[0].month)), el("span", "", `${label(months[months.length - 1].month)} to date`));
+    mor.replaceChildren(el("p", "mark-cap", "Enacted per month"), chart, axis);
+  }
+}
+
+// The Pledge tab opens on the same top line Home shows for it.
+function renderPledgeStatus() {
+  const p = document.getElementById("rp-status");
+  const pl = state.home && state.home.toplines && state.home.toplines.pledge;
+  if (!p || !pl) return;
+  const bs = pl.by_status || {};
+  p.textContent =
+    `${pl.signers.toLocaleString()} signers as of ${formatAsOf(pl.as_of)}. ` +
+    `${pl.assessed} sites assessed: ${bs.affirmed || 0} site-specific, ${bs.pledge_only || 0} national pledge only, ${bs.contested || 0} contested.`;
+}
+
 function renderHome() {
   const h = state.home;
   if (!h) return;
   const t = h.totals;
+  const tl = h.toplines || {};
+  const fmt = (n) => (Number.isFinite(n) ? n.toLocaleString() : "—");
+  const pl = tl.pledge || {}, mo = tl.moratoriums || {}, ag = tl.agreements || {};
+  const pw = tl.power || {}, po = tl.policy || {};
+  // Each lead number is the number its tab leads with, under the same rule
+  // (test_home_card_numbers_match_their_tab).
   const cards = {
-    // Each card leads with the number its tab leads with, under the same
-    // rule (test_home_card_numbers_match_their_tab), so a reader who clicks
-    // through never meets a different count for the same thing.
+    pledge: [pl.signers, "signers"],
+    moratoriums: [mo.in_force, "in force"],
+    agreements: [ag.signed, "signed agreements"],
+    tariffs: [pw.pending, "rate cases pending"],
+    policies: [po.in_effect, "in effect"],
     sites: [t.sites, `${t.contested_sites} contested`],
-    policies: [t.policies, `${t.agreements} agreements and site pledges`],
-    moratoriums: [t.moratoriums, `${t.moratoriums_enacted} enacted`],
-    tariffs: [t.rate_cases, `rate cases, ${t.rate_cases_pending} pending · ${t.tariffs} tariffs`],
     companies: [t.companies, "operators"],
-    pledge: [t.pledge_organizations + t.pledge_governors, `signers: ${t.pledge_organizations} organizations, ${t.pledge_governors} governors`],
-    world: [t.international_countries, `countries plus EU rules · ${t.international_records} records`],
-    elections: [t.election_winners, `officeholders · ${t.election_measures} ballot measures`],
+    world: [t.international_countries, "countries plus EU rules"],
+    elections: [t.election_winners, `officeholders · ${t.election_measures} measures`],
   };
   for (const [key, [num, sub]] of Object.entries(cards)) {
     const n = document.querySelector(`.home-card-num[data-count-for="${key}"]`);
     const sEl = document.querySelector(`.home-card-sub[data-sub-for="${key}"]`);
-    if (n) n.textContent = Number.isFinite(num) ? num.toLocaleString() : "—";
+    if (n) n.textContent = fmt(num);
     if (sEl) sEl.textContent = sub;
   }
-
+  const bs = pl.by_status || {};
+  const lines = {
+    pledge: pl.assessed != null
+      ? `${fmt(pl.assessed)} sites assessed: ${fmt(bs.affirmed)} with a site-specific commitment, ${fmt(bs.pledge_only)} national pledge only, ${fmt(bs.contested)} contested.`
+      : "",
+    moratoriums: mo.states != null
+      ? `In ${fmt(mo.states)} states. ${fmt(mo.last_90_days)} enacted in the last 90 days; ${fmt(mo.total)} recorded in all.`
+      : "",
+    agreements: ag.total != null ? `${fmt(ag.total)} agreements and site pledges recorded.` : "",
+    tariffs: pw.rate_cases != null ? `${fmt(pw.rate_cases)} rate cases and ${fmt(pw.tariffs)} large-load tariffs recorded.` : "",
+    policies: po.total != null ? `${fmt(po.total)} laws, orders, rules and agreements. State action in ${fmt(po.states)} states.` : "",
+  };
+  for (const [key, text] of Object.entries(lines)) {
+    const p = document.querySelector(`[data-line-for="${key}"]`);
+    if (p) p.textContent = text;
+  }
+  const latest = {
+    pledge: pl.as_of ? [`Roster as of ${formatAsOf(pl.as_of)}`, null] : null,
+    moratoriums: mo.newest ? ["Newest", mo.newest] : null,
+    agreements: ag.newest ? ["Newest signed", ag.newest] : null,
+    tariffs: pw.next ? ["Next step", pw.next] : null,
+    policies: po.newest ? ["Newest", po.newest] : null,
+  };
+  for (const [key, v] of Object.entries(latest)) {
+    const p = document.querySelector(`[data-latest-for="${key}"]`);
+    if (!p) continue;
+    if (!v) { p.replaceChildren(); continue; }
+    const [label, ref] = v;
+    if (!ref) { p.replaceChildren(el("span", "ledger-label", label)); continue; }
+    const btn = el("button", "ledger-ref");
+    btn.type = "button";
+    btn.dataset.kind = ref.kind;
+    const place = ref.place ? `, ${ref.place}` : "";
+    if (ref.date) {
+      const time = el("time", "ledger-ref-date", formatAsOf(ref.date));
+      time.setAttribute("datetime", ref.date);
+      btn.append(time);
+    }
+    btn.append(el("span", "ledger-ref-title", ref.title + place));
+    btn.addEventListener("click", () => openHomeTarget({ kind: ref.kind, id: ref.id }));
+    p.replaceChildren(el("span", "ledger-label", label), btn);
+  }
+  renderLedgerMarks(tl);
   const today = todayIso();
   const feed = (ol, items, empty) => {
     if (!ol) return;
@@ -4683,9 +4805,8 @@ function renderHome() {
         const kind = it.type === "Site" ? `Site · ${HOME_SITE_KIND_LABELS[it.subtype] || ""}` : it.type;
         btn.append(
           el("time", "feed-date", formatAsOf(it.date)),
-          el("span", "feed-type", kind),
           el("span", "feed-title", it.title),
-          el("span", "feed-place", it.place ? STATE_NAMES[it.place] || it.place : "")
+          el("span", "feed-place", [kind, it.place ? STATE_NAMES[it.place] || it.place : ""].filter(Boolean).join(" · "))
         );
         btn.querySelector("time").setAttribute("datetime", it.date);
         btn.dataset.kind = it.target.kind;
@@ -4822,6 +4943,7 @@ const PLEDGE_TARGETS = {
   tariffs: { view: "tariffs", anchor: null },
   policies: { view: "policies", anchor: null },
   moratoriums: { view: "moratoriums", anchor: null },
+  agreements: { view: "policies", anchor: null, subtab: { group: "pol", key: "agreements" } },
 };
 
 // --------------------------------------------------------------------------
@@ -6557,9 +6679,8 @@ function renderContestedCard(p) {
     .join("");
   li.innerHTML = `
     <header class="contested-head">
-      <p class="contested-eyebrow">${escapeHtml(co ? co.name : p.company_slug)}</p>
       <h3 class="contested-name">${escapeHtml(p.name)}</h3>
-      <p class="contested-facts">${facts.map(escapeHtml).join(" · ")}</p>
+      <p class="contested-facts">${[co ? co.name : p.company_slug, ...facts].map(escapeHtml).join(" · ")}</p>
       <ul class="reason-chips" role="list" aria-label="Why it is contested">${reasons}</ul>
     </header>
     ${
@@ -9153,9 +9274,8 @@ function renderRatepayerCard(p) {
     <details class="rp-card-details">
       <summary class="rp-card-head">
         <div class="rp-card-title">
-          <span class="rp-card-company">${escapeHtml(co ? co.name : p.company_slug)}</span>
           <span class="rp-card-name">${escapeHtml(p.name)}</span>
-          <span class="rp-card-loc">${loc} · ${escapeHtml(STATUS_LABELS[p.status] || p.status)}</span>
+          <span class="rp-card-loc">${escapeHtml(co ? co.name : p.company_slug)} · ${loc} · ${escapeHtml(STATUS_LABELS[p.status] || p.status)}</span>
           <span class="rp-card-badges">${rpBasisBadgeHtml(p)}${rpConflictFlagHtml(p)}</span>
           ${datesHtml}
         </div>

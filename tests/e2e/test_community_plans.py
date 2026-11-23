@@ -139,15 +139,15 @@ def test_blueprint_back_restores_tracker_route(page, base_url, file_preview):
     expect(page.locator("#f-q")).to_have_value("Tulsa")
     # An independently opened shared link must not borrow an old return route.
     page.goto(base_url + "/community-benefits.html#corridor")
-    page.get_by_role("link", name="← Back to Explore", exact=True).click()
-    expect(page.get_by_role("tab", name="Explore", exact=True)).to_have_attribute("aria-selected", "true")
+    page.get_by_role("link", name="← Back to Overview", exact=True).click()
+    expect(page.get_by_role("tab", name="Overview", exact=True)).to_have_attribute("aria-selected", "true")
 
 
 @pytest.mark.parametrize("width", [375, 1366])
 def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     page.set_viewport_size({"width": width, "height": 812})
     page.goto(base_url)
-    dashboard = [["Explore", "#overview"], ["Compare", "#compare"], ["Plans", ""], ["Updates", "#updates"]]
+    dashboard = [["Overview", "#overview"], ["Compare", "#compare"], ["Plans", ""], ["Updates", "#updates"]]
     page.goto(base_url + "/community-benefits.html#rural")
     nav = page.get_by_role("navigation", name="Main navigation")
     expect(nav).to_be_in_viewport(ratio=1)

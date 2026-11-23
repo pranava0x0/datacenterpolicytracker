@@ -26,6 +26,10 @@ Two contexts per device:
 Devices are measured separately, mobile first, because a path that is one
 screen on a desktop can be five swipes on a phone.
 
+Tasks are grouped into reader journeys (JOURNEYS): one reason a reader
+arrives. The report adds a per-journey total and, for each device, which of
+Home's top lines a reader sees on the first screen without scrolling.
+
     python3 tools/interaction_cost.py              # all devices, writes uat/
     python3 tools/interaction_cost.py --device mobile --task moratorium_recent
     python3 tools/interaction_cost.py --no-write   # print only
@@ -93,122 +97,154 @@ class Task:
     key: str
     question: str
     steps: list[tuple]
+    journey: str = ""
+
+
+# A journey is one reason a reader arrives. Tasks are grouped under the
+# journey they serve so a layout change can be judged by what it does to
+# each reason, not only to individual selectors.
+JOURNEYS: dict[str, str] = {
+    "briefing": "What is happening overall, and what changed?",
+    "pledge": "Who signed the ratepayer pledge, and is it showing up at sites?",
+    "moratoriums": "Where are moratoriums in force, and what did they do?",
+    "benefits": "What have communities won in benefit agreements?",
+    "power": "What are regulators deciding about who pays for power?",
+    "policy": "What laws, orders and rules apply?",
+    "place": "What is happening in my state, county or city?",
+    "elections": "What did the election change?",
+    "operators": "What have companies promised, and where is it contested?",
+    "international": "What do other countries require?",
+}
 
 
 TASKS: list[Task] = [
+    # Home's top lines: each should be readable without leaving Home.
+    Task("topline_pledge", "Where does the pledge stand at assessed sites?",
+         [("see", '[data-line-for="pledge"]')], "pledge"),
+    Task("topline_moratoriums", "How many moratoriums are in force, and which is newest?",
+         [("see", '[data-latest-for="moratoriums"] .ledger-ref')], "moratoriums"),
+    Task("topline_benefits", "What is the newest signed benefit agreement?",
+         [("see", '[data-latest-for="agreements"] .ledger-ref')], "benefits"),
+    Task("topline_power", "What is the next regulator decision on large-load costs?",
+         [("see", '[data-latest-for="tariffs"] .ledger-ref')], "power"),
+    Task("topline_policy", "How much policy is in effect, and what is newest?",
+         [("see", '[data-latest-for="policies"] .ledger-ref')], "policy"),
+    Task("place_search", "What is on record for Loudoun County?",
+         [("type", "#civic-query", "Loudoun"),
+          ("see", "#civic-results > li")], "place"),
     Task("map_overview", "View jurisdiction boundaries and DOE references.",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("tap", "#subtab-mor-map"),
-          ("see", "#jurisdiction-map-svg")]),
+          ("see", "#jurisdiction-map-svg")], "place"),
     Task("map_doe_announcement", "Read the Savannah River lease-negotiation announcement.",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("tap", "#subtab-mor-map"),
           ("type", "#jurisdiction-map-q", "Amentum"),
           ("tap", '[data-location-id="doe-savannah-river"]'),
-          ("see", '#jurisdiction-map-detail [data-announcement-id="doe-srs-amentum-negotiations-2026"] .muted')]),
+          ("see", '#jurisdiction-map-detail [data-announcement-id="doe-srs-amentum-negotiations-2026"] .muted')], "place"),
     Task("map_framework", "Open Texas SB6 from its jurisdiction.",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("tap", "#subtab-mor-map"),
           ("select", "#jurisdiction-map-state", "TX"),
           ("tap", '[data-jurisdiction-id="states-48"]'),
           ("tap", '.map-record-link[data-record-id="tx-sb6-2025"]'),
-          ("see", "#policy-detail #pd-title")]),
+          ("see", "#policy-detail #pd-title")], "policy"),
     Task("map_moratorium", "Open Hernando County’s moratorium from its jurisdiction.",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("tap", "#subtab-mor-map"),
           ("type", "#jurisdiction-map-q", "Hernando"),
           ("tap", '[data-location-id="counties-12053"]'),
           ("tap", '.map-record-link[data-record-id="hernando-county-fl-2026-06"]'),
-          ("see", "#moratorium-modal:not([hidden]) #md-status")]),
+          ("see", "#moratorium-modal:not([hidden]) #md-status")], "moratoriums"),
     Task("draft_county", "Reach a county community-benefits draft.",
          [("tap", '[data-guide-target="drafts"]'),
-          ("see", "#draft-plan-decision")]),
+          ("see", "#draft-plan-decision")], "benefits"),
     Task("draft_state", "Reach a state community-benefits draft.",
          [("tap", '[data-guide-target="drafts"]'),
           ("select", "#draft-plan-kind", "state"),
-          ("see", "#draft-plan-decision")]),
+          ("see", "#draft-plan-decision")], "benefits"),
     Task("impact_water", "Check what the Querétaro water claim establishes.",
          [("tap", '[data-guide-target="evidence"]'),
           ("tap", "#subpane-cba-evidence .guide-clause:first-of-type summary"),
           ("see", "#subpane-cba-evidence .guide-clause:first-of-type [data-evidence-answer]"),
           ("see", "#subpane-cba-evidence .guide-clause:first-of-type [data-evidence-status]"),
-          ("see", "#subpane-cba-evidence .guide-clause:first-of-type [data-evidence-limit]")]),
+          ("see", "#subpane-cba-evidence .guide-clause:first-of-type [data-evidence-limit]")], "benefits"),
     Task("home_latest", "What changed most recently?",
-         [("see", "#home-latest-list .feed-item")]),
+         [("see", "#home-latest-list .feed-item")], "briefing"),
     Task("home_coming_up", "What is the next scheduled hearing or deadline?",
-         [("see", "#whats-next-list .feed-item")]),
+         [("see", "#whats-next-list .feed-item")], "briefing"),
     Task("home_sections", "Where do I go to explore a topic?",
-         [("see", ".directory-menu a:last-child")]),
+         [("see", "#tab-world")], "briefing"),
     Task("latest_item_record", "Open the newest moratorium in the Latest feed.",
          [("tap", '#home-latest-list .feed-btn[data-kind="moratorium"]'),
-          ("see", "#moratorium-modal:not([hidden]) #md-status")]),
+          ("see", "#moratorium-modal:not([hidden]) #md-status")], "briefing"),
     Task("pledge_signatory", "Did Entergy sign the ratepayer pledge?",
-         [("tap", '.directory-menu a[href="#ratepayer"]'),
+         [("tap", '#tab-ratepayer'),
           ("type", "#rp-roster-q", "entergy"),
-          ("see", "#rp-roster > li")]),
+          ("see", "#rp-roster > li")], "pledge"),
     Task("pledge_site_score", "How does an assessed site score on the five commitments?",
-         [("tap", '.directory-menu a[href="#ratepayer"]'),
-          ("see", "#subpane-rp-sites-assessed .rp-card")]),
+         [("tap", '#tab-ratepayer'),
+          ("see", "#subpane-rp-sites-assessed .rp-card")], "pledge"),
     Task("state_panel", "What is happening in Virginia?",
-         [("tap", '.directory-menu a[href="#ratepayer"]'),
+         [("tap", '#tab-ratepayer'),
           ("tap", '.pledge-state-cell[data-state-code="VA"]'),
-          ("see", "#sd-body > *")]),
+          ("see", "#sd-body > *")], "place"),
     Task("policy_cba", "Find a signed community benefits agreement.",
-         [("tap", '.directory-menu a[href="#policies"]'),
+         [("tap", '#tab-policies'),
           ("tap", "#subtab-pol-rules"),
           ("tap", "#policy-cbf-filter"),
-          ("see", "#policies-tbody tr")]),
+          ("see", "#policies-tbody tr")], "benefits"),
     Task("agreement_terms", "What did the most complete signed agreement commit to?",
          [("tap", '[data-guide-target="strongest"]'),
-          ("see", "#cba-strongest .cba-card .cba-terms")]),
+          ("see", "#cba-strongest .cba-card .cba-terms")], "benefits"),
     # The directory sorts enacted records first, newest first, so the top row
     # is the newest ENACTED moratorium (a newer proposed or failed one sorts
     # below). Pinning one record (Raleigh) went stale as soon as newer
     # moratoriums landed above it.
     Task("moratorium_recent", "What did the newest enacted moratorium do, and when?",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("tap", "#moratoriums-tbody tr:first-child"),
-          ("see", "#md-status")]),
+          ("see", "#md-status")], "moratoriums"),
     Task("moratorium_older", "Did Hernando County, FL pass its moratorium?",
-         [("tap", '.civic-presets a[href="#moratoriums"]'),
+         [("tap", '#tab-moratoriums'),
           ("type", "#moratorium-q", "hernando"),
           ("tap", '#moratoriums-tbody tr[data-id="hernando-county-fl-2026-06"]'),
-          ("see", "#md-status")]),
+          ("see", "#md-status")], "moratoriums"),
     Task("election_result", "Who won the first priority governor race?",
-         [("tap", '.directory-menu a[href="#elections"]'),
-          ("see", "#elections-directory .election-row:first-child .election-result strong")]),
+         [("tap", '#tab-elections'),
+          ("see", "#elections-directory .election-row:first-child .election-result strong")], "elections"),
     Task("election_policy", "Compare the incoming and prior Texas governors’ permit pauses and sources.",
-         [("tap", '.directory-menu a[href="#elections"]'),
+         [("tap", '#tab-elections'),
           ("see", '#election-tx-governor-2026 .election-transition'),
           ("see", '#election-tx-governor-2026 .election-summary .election-topic:first-child'),
-          ("see", '#election-tx-governor-2026 .election-summary .election-topic:first-child a:first-of-type')]),
+          ("see", '#election-tx-governor-2026 .election-summary .election-topic:first-child a:first-of-type')], "elections"),
     Task("election_legal_record", "What legal moratorium record follows the Sabattus ballot vote?",
-         [("tap", '.directory-menu a[href="#elections"]'),
+         [("tap", '#tab-elections'),
           ("type", "#elections-q", "Sabattus"),
           ("tap", '#elections-directory .election-row .election-related button[data-related-record]'),
-          ("see", "#moratorium-modal:not([hidden]) #md-status")]),
+          ("see", "#moratorium-modal:not([hidden]) #md-status")], "elections"),
     Task("world_country", "What does Ireland require of data centers?",
-         [("tap", '.directory-menu a[href="#world"]'),
+         [("tap", '#tab-world'),
           ("tap", '#world-country-list [data-country="IE"]'),
-          ("see", "#world-country-body .world-record")]),
+          ("see", "#world-country-body .world-record")], "international"),
     Task("ratecase_milestone", "When is the next step in a pending rate case?",
-         [("tap", '.civic-presets a[href="#tariffs"]'),
-          ("see", "#rate-cases-list .rc-item .rc-next")]),
+         [("tap", '#tab-tariffs'),
+          ("see", "#rate-cases-list .rc-item .rc-next")], "power"),
     Task("company_water", "What has Google said about water?",
-         [("tap", '.directory-menu a[href="#comparison"]'),
+         [("tap", '#tab-comparison'),
           ("tap", "#subtab-co-commitments"),
           ("tap", '#matrix-body td[data-company="google"][data-theme="water"]'),
-          ("see", "#theme-quotes-list > li")]),
+          ("see", "#theme-quotes-list > li")], "operators"),
     Task("contested_timeline", "What hearings or votes are coming at a contested site?",
-         [("tap", '.directory-menu a[href="#explorer"]'),
+         [("tap", '#tab-explorer'),
           ("tap", "#subtab-sites-contested"),
-          ("see", "#contested-list .contested-card .timeline .tl-item")]),
+          ("see", "#contested-list .contested-card .timeline .tl-item")], "operators"),
     Task("site_comment", "What did residents say about a specific site?",
-         [("tap", '.directory-menu a[href="#explorer"]'),
+         [("tap", '#tab-explorer'),
           ("type", "#f-q", "memphis"),
           ("tap", '#project-list .project-card[data-project-id="xai-memphis-tn"]'),
           ("tap", "#dtab-responses"),
-          ("see", "#d-responses .response-card")]),
+          ("see", "#d-responses .response-card")], "operators"),
 ]
 
 
@@ -397,6 +433,36 @@ def serve_docs() -> tuple[socketserver.TCPServer, str]:
     return srv, f"http://127.0.0.1:{srv.server_address[1]}"
 
 
+_FIRST_SCREEN_JS = """() => {
+  const vh = window.innerHeight;
+  return [...document.querySelectorAll('.ledger-row[data-topic]')].map(row => {
+    const line = row.querySelector('.ledger-line') || row;
+    const r = line.getBoundingClientRect();
+    return {topic: row.dataset.topic, visible: r.height > 0 && r.top >= 0 && r.bottom <= vh};
+  });
+}"""
+
+
+def first_screen(page, base: str) -> dict[str, Any]:
+    """Which Home top lines are readable before the first scroll."""
+    page.goto(base + "/", wait_until="load")
+    page.wait_for_selector('[data-line-for="pledge"]:not(:empty)', state="attached", timeout=10000)
+    _settle(page)
+    rows = page.evaluate(_FIRST_SCREEN_JS)
+    seen = [r["topic"] for r in rows if r["visible"]]
+    return {"visible": seen, "count": len(seen), "of": len(rows)}
+
+
+def journey_totals(tasks: dict[str, Any]) -> dict[str, int]:
+    """Sum of default-context totals per journey (lower is better)."""
+    by_key = {t.key: t.journey for t in TASKS}
+    out: dict[str, int] = {}
+    for key, v in tasks.items():
+        j = by_key.get(key, "")
+        out[j] = out.get(j, 0) + v["default"]["total"]
+    return dict(sorted(out.items()))
+
+
 def measure(devices: list[str], tasks: list[Task], base: Optional[str] = None) -> dict[str, Any]:
     from playwright.sync_api import sync_playwright
 
@@ -414,14 +480,16 @@ def measure(devices: list[str], tasks: list[Task], base: Optional[str] = None) -
                 ctx.route("**/*arcgisonline*/**", lambda r: r.fulfill(status=204))
                 page = ctx.new_page()
                 res: dict[str, Any] = {}
+                out.setdefault("first_screen", {})[dev] = first_screen(page, base)
                 for t in tasks:
-                    res[t.key] = {"question": t.question}
+                    res[t.key] = {"question": t.question, "journey": t.journey}
                     for c in CONTEXTS:
                         cost = run_task(page, base, t, expanded=(c == "expanded"))
                         res[t.key][c] = cost.as_dict()
                         log.info("%-8s %-20s %-8s total=%d %s", dev, t.key, c, cost.total,
                                  cost.error or "")
                 out["devices"][dev] = res
+                out.setdefault("journeys", {})[dev] = journey_totals(res)
                 ctx.close()
             browser.close()
     finally:
@@ -431,7 +499,9 @@ def measure(devices: list[str], tasks: list[Task], base: Optional[str] = None) -
 
 
 def summary_line(result: dict[str, Any]) -> dict[str, Any]:
-    line: dict[str, Any] = {"date": result["date"], "elapsed_seconds": {}}
+    line: dict[str, Any] = {"date": result["date"], "elapsed_seconds": {},
+                            "journeys": result.get("journeys", {}),
+                            "first_screen": {d: v["count"] for d, v in result.get("first_screen", {}).items()}}
     for dev, tasks in result["devices"].items():
         line[dev] = {k: v["default"]["total"] for k, v in tasks.items()}
         line["elapsed_seconds"][dev] = {
@@ -442,6 +512,10 @@ def summary_line(result: dict[str, Any]) -> dict[str, Any]:
 
 
 def print_table(result: dict[str, Any]) -> None:
+    for dev, fs in result.get("first_screen", {}).items():
+        print(f"{dev}: {fs['count']} of {fs['of']} Home top lines on the first screen ({', '.join(fs['visible']) or 'none'})")
+    for dev, totals in result.get("journeys", {}).items():
+        print(f"{dev} journeys: " + "  ".join(f"{j}={n}" for j, n in totals.items()))
     for dev, tasks in result["devices"].items():
         print(f"\n{dev}: task / default (taps+swipes+side+type) / expanded / seconds (default, expanded)")
         for k, v in tasks.items():

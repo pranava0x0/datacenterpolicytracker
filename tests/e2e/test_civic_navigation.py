@@ -49,9 +49,10 @@ def test_search_failure_is_explicit_and_retryable(page, base_url):
 def test_phone_primary_navigation_and_updates(page, base_url):
     page.set_viewport_size({'width': 375, 'height': 812})
     page.goto(base_url)
-    expect(page.locator('#home-latest-list li').first).to_be_visible()
-    assert page.locator('#home-latest-list li').first.bounding_box()['y'] < 600
-    for name in ['Explore', 'Compare', 'Updates']:
+    # The first top line is readable on the first phone screen.
+    expect(page.locator('[data-line-for="pledge"]')).not_to_be_empty()
+    assert page.locator('[data-line-for="pledge"]').bounding_box()['y'] < 600
+    for name in ['Overview', 'Compare', 'Updates']:
         expect(page.get_by_role('tab', name=name, exact=True)).to_be_in_viewport()
     page.get_by_role('tab', name='Updates', exact=True).click()
     expect(page.locator('#civic-updates')).to_contain_text('Event date')

@@ -574,3 +574,21 @@ taps on all three devices. No interaction budget increased.
 ## 2026-11-16 — v7 budget change
 
 `ratecase_milestone` goes from 1 to 3 on tablet and desktop. The owner asked for a "what to watch" brief at the top of Power Costs. That brief is now the first thing on the tab, so the first rate case sits about two swipes down. On phones, the moratorium call-out in Policy → Rules shows only counts and a link. The full call-out would break the `policy_cba` budget.
+
+## 2026-11-23 — ledger Home, one nav row (interaction budgets reset to measured)
+
+`tools/interaction_cost.py` now groups tasks into reader journeys
+(`JOURNEYS`), reports which Home top lines are on the first screen, and adds
+six tasks: five top lines (`topline_*`) and `place_search`.
+
+- First screen: desktop and tablet show 5 of 5 top lines; a 390×844 phone
+  shows 3 (Pledge, Moratoriums, Community benefits).
+- Cheaper: `pledge_site_score` 6→3 phone, 4→1 desktop (the pledge's status
+  line and Tracked sites now lead); `ratecase_milestone` 4→1 phone, 3→1
+  desktop; `election_policy` 7→1 phone; map lookups 8–9→5–6.
+- Costlier, accepted: `home_latest` 0→2–3 and `home_coming_up` 0→2 desktop,
+  `latest_item_record` 1→3 desktop, because the mixed Latest / Coming up
+  feeds now sit below the five top lines. Each top line already shows its own
+  newest or next dated item at 0 interactions, which is what most readers
+  open Home for. On phones the agreement-guide paths (`draft_*`,
+  `agreement_terms`, `policy_cba`) cost +2 swipes for the same reason.

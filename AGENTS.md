@@ -9,9 +9,11 @@
 
 ## Read these first, in order
 
-1. **[CLAUDE.md](CLAUDE.md)** — universal principles + project-specific
-   notes. The "Project intent" and "Editorial / sourcing rules" sections
-   are load-bearing for every change.
+1. **[CLAUDE.md](CLAUDE.md)** — the short always-loaded rules plus a
+   "Load before…" table pointing at `notes/agent/*.md`. Project intent and
+   the full editorial / sourcing rules are in `notes/agent/data-rules.md`;
+   the generic principles (token gate, URL fetch gate) in
+   `notes/agent/principles.md`.
 2. **[DESIGN.md](DESIGN.md)** — design system + the editorial rubric for
    `stance` tagging. Touch this before changing community-response
    handling.
