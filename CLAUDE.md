@@ -1,17 +1,21 @@
 # CLAUDE.md — Universal Development Principles
 
 
-## Current interface direction — owner approved 2026-11-21
+## Current interface direction — owner revised 2026-11-22
 
 This section supersedes historical visual instructions below. Use Aicher's
 organization and Martin's restraint as principles, with an original small
 geometric mark. Off-white, graphite, one deep blue accent; one system sans
 family; generous space between groups and compact rows within them.
 
-Explore / Compare / Plans / Updates are the primary destinations. Search by
-place, company, utility, docket or record; retain canonical specialist and
-record URLs. Group places only by explicit geography; never infer a utility's
-service territory. Compare actual agreement/tariff terms without scores.
+The header has Home, Browse and Plans. Browse is a closed menu; do not repeat
+its links in a second header row or footer sitemap. Home has search, two recent
+updates, two upcoming dates and one set of topic cards. Cards are welcome.
+Updates belongs beside the briefing; Compare belongs beside records. On the
+Agreements page show its own controls, not the parent Policy tab row too.
+Minimize reading and navigation ambiguity, not just the measured tap count.
+Search by place, company, utility, docket or record; retain canonical URLs.
+Group places only by explicit geography; never infer a utility's service territory. Compare actual agreement/tariff terms without scores.
 Separate event dates from tracker edits; capture-date refreshes are not news.
 
 Drop masthead dominance, mandatory hero headings/deks, boxed totals as the
@@ -2295,3 +2299,11 @@ from a record to a place search.
 Expected election results to carry evidence in the action-feed builder.
 Unreported results legitimately have no evidence: guard the optional field
 and omit the source rather than inferring a result or a citation.
+
+
+### 2026-11-22 — preview server identity
+
+Expected the previous preview port to serve this worktree. It returned HTTP 200
+for another project's directory listing. A successful status alone does not
+identify a server. Verify the expected page title/markup before reuse, and bind
+a free port with an absolute `--directory` path when starting a new preview.

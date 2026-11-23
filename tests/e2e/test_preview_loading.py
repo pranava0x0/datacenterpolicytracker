@@ -48,6 +48,7 @@ def test_startup_does_not_fetch_other_views(page: Page, base_url: str, hashpart:
     page.wait_for_timeout(150)
     for name in ("projects.json", "responses.json", "claims.json", "international.json"):
         assert not any(name in url for url in requests), name
+    page.locator("#browse-toggle").click()
     page.locator("#tab-comparison").click()
     expect(page.locator(".co-card").first).to_be_visible()
     assert any("claims.json" in url for url in requests)

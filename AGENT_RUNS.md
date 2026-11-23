@@ -772,3 +772,9 @@ reviews should check where a record is discoverable, not only its text.
 | --- | --- | --- | --- |
 | One combined correctness/editorial review (gpt-6.1-sol, 12-call cap) | Yes | Found debounce navigation race, observation/event mislabel, incomplete material-history coverage and digest cap leaking into Updates. All addressed; token count unavailable. | Specify feed completeness and date provenance in the feature contract before implementation. One bounded reviewer was sufficient; no research fan-out. |
 | Targeted follow-up on the same review | Yes | Verified all three feed corrections with temporary-history edits and a browser check: 746 actions, 40→80 pagination, sources and observation labels. No new findings; tokens unavailable. | Recheck the corrected flows only. |
+
+### 2026-11-22 — homepage and navigation simplification
+
+| Run | Worked | Result and cost | Next time |
+| --- | --- | --- | --- |
+| One combined navigation/correctness review (gpt-6.1-sol, 10-call cap) | Yes | Found focus left on the hidden Policy row when opening Agreements. Fixed and covered with keyboard regression; confirmed menu fit and contextual comparison. Tokens unavailable. | Whenever a transition hides the focused control, assert the next visible focus target. One bounded reviewer was sufficient. |

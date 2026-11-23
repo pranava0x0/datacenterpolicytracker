@@ -117,3 +117,13 @@ def test_nu_validator_errors_do_not_grow():
     assert msgs is not None
     errors = [m for m in msgs if m["type"] == "error"]
     assert len(errors) <= NU_ERROR_CEILING, [(m["lastLine"], m["message"]) for m in errors]
+
+
+def test_open_browse_has_no_axe_violations(page: Page, base_url: str, axe_source: str):
+    page.set_viewport_size({"width": 375, "height": 812})
+    page.goto(base_url)
+    page.wait_for_function("() => state._booted", timeout=E2E_WAIT)
+    page.locator("#browse-toggle").click()
+    page.evaluate(axe_source)
+    violations = page.evaluate("async () => (await axe.run('.primary-nav')).violations.map(v => v.id)")
+    assert not violations

@@ -15,12 +15,16 @@ def test_summary_strips_stay_visible_and_headings_keep_ink(page: Page, base_url:
     page.goto(base_url + '/#policies')
     expect(page.locator('#policy-stats .rp-stat')).to_have_count(5)
     for group, view, stats in [('pol', 'policies', 'policy-stats')]:
+        page.locator('#browse-toggle').click()
         page.click('#tab-' + view)
         assert page.locator('#view-' + view).evaluate('e => getComputedStyle(e).opacity') == '1'
         strip = page.locator('#' + stats)
         count = strip.locator('.rp-stat').count()
         keys = page.evaluate('(group) => SUBTAB_GROUPS[group]', group)
         for key in keys:
+            if page.locator("#view-policies > .subtabs").is_hidden():
+                page.locator("#browse-toggle").click()
+                page.locator("#tab-policies").click()
             page.click(f'#subtab-{group}-{key}')
             expect(strip).to_be_visible()
             expect(strip.locator('.rp-stat')).to_have_count(count)
@@ -29,6 +33,7 @@ def test_summary_strips_stay_visible_and_headings_keep_ink(page: Page, base_url:
             expect(strip.locator('.rp-stat').first).to_have_css('border-top-width', '0px')
             assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
     expect(page.locator('#subtab-pol-influence')).to_have_count(0)
+    page.locator("#browse-toggle").click()
     page.click('#tab-elections')
     expect(page.locator('.election-row')).to_have_count(54)
     expect(page.locator('#elections-stats')).to_have_count(0)
@@ -85,12 +90,13 @@ def test_labeled_filters_keep_primary_controls_visible(page: Page, base_url: str
     page.select_option('#policy-scope-filter', 'state')
     assert page.locator('#policies-tbody tr[role=button]').count() > 0
     assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
+    page.locator('#browse-toggle').click()
     assert page.locator('.tabbar').evaluate('e=>e.scrollWidth<=e.clientWidth')
     assert page.locator('.tabbar .tab').evaluate_all('nodes=>nodes.every(n=>n.innerText.trim().length > 0)')
     # One name per tab at every width (UX audit 2026-11-09): no short variants.
     expect(page.locator('#tab-world')).to_have_text('International', use_inner_text=True)
     if width <= 640:
-        assert page.locator('.tabbar').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 4
+        assert page.locator('.tabbar').evaluate('e=>getComputedStyle(e).gridTemplateColumns.split(" ").length') == 2
 
 @pytest.mark.parametrize(("file", "missing", "unaffected"), [
     ("moratoriums", "pauses", "principles"), ("policies", "rules", "pauses"),
@@ -102,10 +108,12 @@ def test_latest_keeps_available_actions_when_one_feed_fails(page: Page, base_url
     expect(page.locator("#policy-error-message")).to_have_text(f"Could not load {missing}.")
     expect(page.locator("#policy-actions li").first).to_be_visible()
     if unaffected == "pauses":
+        page.locator("#browse-toggle").click()
         page.click("#tab-moratoriums")
     else:
         page.click(f"#subtab-pol-{unaffected}")
     expect(page.locator("#policy-pane-error")).to_be_hidden()
+    page.locator("#browse-toggle").click()
     page.click("#tab-policies")
     page.click("#subtab-pol-latest")
     expect(page.locator("#policy-retry")).to_be_visible()

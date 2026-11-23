@@ -574,3 +574,39 @@ taps on all three devices. No interaction budget increased.
 ## 2026-11-16 — v7 budget change
 
 `ratecase_milestone` goes from 1 to 3 on tablet and desktop. The owner asked for a "what to watch" brief at the top of Power Costs. That brief is now the first thing on the tab, so the first rate case sits about two swipes down. On phones, the moratorium call-out in Policy → Rules shows only counts and a link. The full call-out would break the `policy_cba` budget.
+
+## 2026-11-22 — simpler homepage and navigation
+
+Owner feedback rejected repeated navigation, a page full of text and stacked
+subtabs. Home now has one search box, two recent changes, two upcoming dates
+and eight topic cards. The header is Home / Browse / Plans; specialist links
+are in the closed Browse menu. Updates sits beside Latest, and comparison
+starts beside records. Agreements has one local control row. Plans keeps one
+contextual return link. Canonical section and record URLs still work.
+
+At 375×812, the first update starts at 234px (previous preview: about 487px).
+At 1366×900 the briefing and all eight topic cards fit on screen. Neither
+layout has horizontal overflow. Keyboard checks cover Browse Escape, visible
+focus after opening Agreements, and Home clearing search while Back restores
+it. Open Browse passes axe at both widths. The standalone preview smoke test
+passes with no fatal errors.
+
+The intentional trade is one menu-opening tap on specialist paths instead of
+showing the same directory in several places. These tasks now measure Browse;
+Agreements uses its Home card. Budgets are updated only for measured changes,
+including the phone swipe to that card, with cheaper briefing paths tightened.
+This follows the owner's request for less reading and fewer competing choices;
+restoring permanent link rows just to keep a one-tap budget would undo it.
+
+Measured examples (phone / tablet / desktop, default context): Latest and
+Coming up need 0 / 0 / 0 interactions; signed agreement terms need 3 / 1 / 1;
+the newest moratorium needs 3 / 3 / 3; the jurisdiction map needs 3 / 3 / 3.
+All 156 paths (26 tasks × three devices × two contexts) completed within the
+revised budgets. Two mobile Sites tasks timed out in the shared-preview run;
+the recorded results use their successful focused rerun on the harness server.
+
+Validation: all 1,054 pytest checks passed in two groups: 1,050 regression
+checks in 150 seconds and four interaction-budget checks in 149 seconds.
+These include light/dark accessibility, mobile layout, links, sources and
+history. The preview build was byte-identical on two runs. The final accessible
+Updates label also passed the focused 22-check navigation/consistency run.

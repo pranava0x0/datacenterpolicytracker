@@ -15,6 +15,7 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
     page.goto(base_url)
     expect(page.locator('#home-latest-list .feed-item').first).to_be_visible()
     assert not any('community-plans.js' in url for url in requests)
+    page.locator("#browse-toggle").click()
     page.get_by_role('button', name='County and state drafts', exact=True).click()
     expect(page.locator('#draft-plan-decision')).to_be_visible()
     assert page.url.endswith('#policies/agreements/drafts')
@@ -74,6 +75,7 @@ def test_guide_deep_link_and_keyboard(page, base_url):
 def test_guide_import_failure_can_retry(page, base_url):
     page.route('**/community-plans.js', lambda route: route.abort(), times=1)
     page.goto(base_url)
+    page.locator("#browse-toggle").click()
     page.get_by_role('button', name='County and state drafts', exact=True).click()
     expect(page.locator('#subpane-cba-drafts')).to_contain_text("Couldn't load")
     page.get_by_role('tab', name='Terms', exact=False).click()
@@ -87,6 +89,7 @@ def test_blueprint_share_links_and_complete_downloads(page, base_url, width, tmp
     page.goto(base_url)
     entry = page.get_by_role("link", name="Community benefits plans", exact=True)
     expect(entry).to_be_in_viewport(ratio=1)
+    page.locator("#browse-toggle").click()
     page.get_by_role("tab", name="Policy", exact=True).click()
     expect(entry).to_be_in_viewport(ratio=1)
     entry.click()
@@ -135,29 +138,25 @@ def test_blueprint_back_restores_tracker_route(page, base_url, file_preview):
     back = page.get_by_role("link", name="← Back to Sites", exact=True)
     expect(back).to_have_attribute("href", origin)
     back.click()
-    expect(page.get_by_role("tab", name="Sites", exact=True)).to_have_attribute("aria-selected", "true")
+    expect(page.locator("#tab-explorer")).to_have_attribute("aria-selected", "true")
     expect(page.locator("#f-q")).to_have_value("Tulsa")
     # An independently opened shared link must not borrow an old return route.
     page.goto(base_url + "/community-benefits.html#corridor")
-    page.get_by_role("link", name="← Back to Explore", exact=True).click()
-    expect(page.get_by_role("tab", name="Explore", exact=True)).to_have_attribute("aria-selected", "true")
+    page.get_by_role("link", name="← Back to Home", exact=True).click()
+    expect(page.get_by_role("tab", name="Home", exact=True)).to_have_attribute("aria-selected", "true")
 
 
 @pytest.mark.parametrize("width", [375, 1366])
 def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     page.set_viewport_size({"width": width, "height": 812})
     page.goto(base_url)
-    dashboard = [["Explore", "#overview"], ["Compare", "#compare"], ["Plans", ""], ["Updates", "#updates"]]
     page.goto(base_url + "/community-benefits.html#rural")
-    nav = page.get_by_role("navigation", name="Main navigation")
-    expect(nav).to_be_in_viewport(ratio=1)
-    links = nav.get_by_role("link").evaluate_all("(links) => links.map(a => [a.textContent, a.hash])")
-    assert links == dashboard
-    heading = page.locator("#rural h2")
-    expect(heading).to_be_in_viewport(ratio=1)
-    assert heading.bounding_box()["y"] >= nav.bounding_box()["y"] + nav.bounding_box()["height"] - 1
-    nav.get_by_role("link", name="Updates", exact=True).click()
-    expect(page.get_by_role("tab", name="Updates", exact=True)).to_have_attribute("aria-selected", "true")
+    back = page.get_by_role("link", name="← Back to Home", exact=True)
+    expect(back).to_be_in_viewport(ratio=1)
+    expect(page.locator("#rural h2")).to_be_in_viewport(ratio=1)
+    assert page.locator('.bp-nav').count() == 0
+    back.click()
+    expect(page.locator('#view-overview')).to_be_visible()
 
 
 def test_published_plan_pdfs_match_current_drafts():

@@ -142,6 +142,7 @@ def test_party_filter_accepts_aliases_and_preserves_unknown_affiliation(page: Pa
 def test_direct_record_url_and_back(elections: Page, base_url: str) -> None:
     elections.goto(base_url + "/#elections/tx-governor-2026")
     expect(elections.locator("#election-details-tx-governor-2026 .election-candidates")).to_be_visible()
+    elections.locator("#browse-toggle").click()
     elections.click("#tab-policies")
     expect(elections.locator("#view-policies")).to_be_visible()
     elections.go_back()
@@ -185,7 +186,7 @@ def test_layout_and_keyboard_sources(elections: Page, base_url: str, width: int)
     # A wrapping row must not inherit the generic filter bar's column layout:
     # mobile flex-basis values would become 140px-tall empty rows.
     assert elections.locator(".election-filters").evaluate("e => e.getBoundingClientRect().height") < 260
-    assert elections.evaluate("new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().top))).size") <= 2
+    assert elections.evaluate("new Set([...document.querySelectorAll('#tab-overview, #browse-toggle, .primary-nav > a')].filter(t => t.getClientRects().length).map(t => Math.round(t.getBoundingClientRect().top))).size") <= 2
     source = elections.locator("#election-tx-governor-2026 .election-summary a")
     source.focus()
     expect(source).to_be_focused()

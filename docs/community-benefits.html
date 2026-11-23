@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://pranava0x0.github.io/datacenterpolicytracker/community-benefits.html">
   <meta property="og:title" content="Data center community benefits plans">
   <meta property="og:description" content="Pick a community, download its draft, and bring specific terms to the next meeting.">
-  <link rel="stylesheet" href="styles.css?v=20261121-civic">
+  <link rel="stylesheet" href="styles.css?v=20261122-simple">
   <style>
     html { scroll-padding-top: var(--bp-header-height, 9rem); }
     main, .bp-bar > div, .bp-nav { max-width: 58rem; margin: auto; }
@@ -47,13 +47,8 @@
 <body>
 <a class="skip-link" href="#main">Skip to plans</a>
 <header class="bp-bar">
-  <div><span>Data Center Policy Tracker</span><a id="bp-back" href="index.html#overview">← Back to Explore</a></div>
-  <nav class="bp-nav" aria-label="Main navigation">
-    <a href="index.html#overview">Explore</a>
-    <a href="index.html#compare">Compare</a>
-    <a href="community-benefits.html" aria-current="page">Plans</a>
-    <a href="index.html#updates">Updates</a>
-  </nav>
+  <div><span>Data Center Policy Tracker</span><a id="bp-back" href="index.html#overview">← Back to Home</a></div>
+
 </header>
 <main id="main">
   <header class="bp-intro">
@@ -189,6 +184,12 @@
   }
   sizeHeader();
   new ResizeObserver(sizeHeader).observe(bar);
+  // The header's height can change after the browser restores a fragment on
+  // reload (especially a contextual Back label). Align after final layout.
+  window.addEventListener('load', () => {
+    sizeHeader();
+    document.getElementById(location.hash.slice(1))?.scrollIntoView({block: 'start'});
+  });
 
   // Consume the handoff once. Only a reload reuses the active return route;
   // a newly opened shared draft starts at Home even in the same browser tab.

@@ -1493,7 +1493,7 @@ navigation.
   Re-check each untagged agreement's source for the nine terms, and add the
   Michigan HB 6137-style "permit or hookup gated on a CBA" as a 10th feature
   only with a BACKLOG migration. **medium**
-- ~~**Landing redesign.**~~ Implemented 2026-11-21: Explore / Compare / Plans / Updates, unified search and explicit place grouping, sourced term comparison, material change history, and the owner-approved restrained visual system.
+- ~~**Landing redesign.**~~ Implemented 2026-11-21: unified search and explicit place grouping, sourced term comparison, material change history, and the owner-approved restrained visual system. Simplified 2026-11-22 after owner feedback: Home / Browse / Plans, a two-item briefing per column, eight topic cards, contextual Updates/Compare, and no repeated header/footer directory or nested Policy row on Agreements.
 - **Stat tiles stack raggedly on phone.** Content-sized tiles (`flex: 0 1
   auto`) wrap into rows of 1, 1, 1, 2, 1, taking about 1.3 screens before
   any content. Use a two-column grid under ~600 px. **medium**
