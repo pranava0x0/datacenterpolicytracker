@@ -21,6 +21,10 @@
       "last_reviewed": "2026-09-29",
       "summary": "Checked the Abilene community page (jobs/tax/water figures unchanged) and newsroom. Confirmed crusoe-cheyenne-wy's operator handoff to Google (Project Tembo, Jupiter Star Holdings LLC, 2.7GW/716ac) and updated power_mw + notes; company_slug migration to google deferred as a lead. Added one new site, crusoe-warrenton-mo (announced, tax-abatement sourced)."
     },
+    "company:google": {
+      "last_reviewed": "2026-11-23",
+      "summary": "Fetched datacenters.google hub (location list vs 55 tracked sites; no new US site untracked except Prince William VA, lead) and searched Nov 2026 news: Wyoming $17B and Van Buren override already recorded. Malaysia $15B filed as lead. last_reviewed bumped."
+    },
     "company:meta": {
       "last_reviewed": "2026-11-14",
       "summary": "Checked datacenters.atmeta.com: 2026 posts (New Albany Oct, Eagle Mountain Sept, careers Oct, 2026 grant recipients) already cited; no new sites or changed commitments found."
@@ -121,6 +125,10 @@
       "last_reviewed": "2026-11-19",
       "summary": "Checked Google blog + June 2026 announcement PDF, POWER Magazine. Softened water wording to Google's 'domestic uses like restrooms'; Caprock hub and status confirmed. 840 MW demand figure seen only in search synthesis, not recorded."
     },
+    "site:google-lenoir-nc": {
+      "last_reviewed": "2026-11-23",
+      "summary": "Re-fetched Google NC page ($4B+ since 2007 confirmed; no tax/400-jobs text). Added Mar 2026 $1B two-year expansion + $2M Energy Impact Fund + grants to notes (NSJ); added Lenoir mayor positive response. Existing note's '2024 $1B' framing unverified, left as lead."
+    },
     "site:google-lima-oh": {
       "last_reviewed": "2026-11-22",
       "summary": "Checked news since May capture; added Signal Ohio Jul 16: Ohio EPA air permit granted late May + 0.7-acre wetland fill permit (notes) and a residents' response. Source_url (DCD) not re-fetched."
@@ -128,6 +136,10 @@
     "site:google-little-rock-ar": {
       "last_reviewed": "2026-11-22",
       "summary": "No new status source (DCD blocked). Added two Jun 2 City Board responses (ordinance passed unanimously; Sweet Home residents) from Arkansas Times. Leads: possible two-site blend, LR ordinance as Policy, ADG contract lawsuit."
+    },
+    "site:google-mayes-county-ok": {
+      "last_reviewed": "2026-11-23",
+      "summary": "Re-fetched Google OK page: $15B and $12M are statewide; notes reworded to say so. claimed_investment_usd (15B) and 800 jobs still unscoped/unsourced — curator lead. No new local news found."
     },
     "site:google-mesa-az": {
       "last_reviewed": "2026-09-30",
@@ -169,6 +181,10 @@
       "last_reviewed": "2026-11-11",
       "summary": "Re-fetched Meta release (live); no Oct-Nov 2026 news found; added Boone REMC $1M/yr x20 fund to notes; filed lead on unsourced $45M roads figure and 'first solo IN campus' wording."
     },
+    "site:meta-los-lunas-nm": {
+      "last_reviewed": "2026-11-23",
+      "summary": "Re-fetched Meta 2021 page (nearly $2B, 400+ ops jobs, $2.3M grants since 2017); record's $2.5B, 1,500 jobs and $4.9M figures not on it — lead. Expansion ($350M by year 10, ~500 acres) only on an undated KOB page — lead. No changes."
+    },
     "site:meta-montgomery-al": {
       "last_reviewed": "2026-11-19",
       "summary": "Sourced the Sept 2025 expansion (AL Reporter: >$1.5B, ~1.3M sq ft, 1,500+ peak construction, 100+ jobs) in notes. claimed_jobs mixing construction/operating left as a lead. No newer status found this run."
@@ -188,6 +204,10 @@
     "site:meta-tulsa-ok": {
       "last_reviewed": "2026-11-12",
       "summary": "Re-fetched Meta Hello Tulsa page (live, figures match); no news after April 2026 groundbreaking found; added OK Commerce PSO / Light a Life note; ratepayer affirmed unchanged."
+    },
+    "site:microsoft-boydton-va": {
+      "last_reviewed": "2026-11-23",
+      "summary": "Re-fetched cited blog (55+ projects, Wi-Fi, ChangeX confirmed; $2B/250 jobs not on it) and Southern Virginia page. Fact-sheet and June 2026 expansion filing filed as leads. No data changes."
     },
     "site:microsoft-castroville-tx": {
       "last_reviewed": "2026-11-20",
@@ -350,6 +370,10 @@
           "what": "Hayward: check extensions before initial 45-day term ends."
         },
         {
+          "due": "2026-12-09",
+          "what": "San Jose: did the council adopt data center standards Dec 8, ending the moratorium (san-jose-ca-2026-11)?"
+        },
+        {
           "due": "2026-12-11",
           "what": "San Diego 45-day data center moratorium (san-diego-ca-2026-10, adopted Oct 27) ends about now; check for extension"
         },
@@ -373,7 +397,9 @@
       "last_check": {
         "date": "2026-11-21",
         "summary": "Oakland extended Nov 10 (unanimous) through Oct 5 2027; SF extended Nov 17 (unanimous) 10 mo 15 days"
-      }
+      },
+      "last_reviewed": "2026-11-23",
+      "summary": "Checked new CA local moratoriums since Nov 9: added San Jose (Nov 17 unanimous, lapses when standards take effect; San José Spotlight). Pittsburg (no meeting date), Moreno Valley and Dixon (blocked/aggregator) filed as leads. CA bills already recorded in_effect; resolved stale Oakland/Escondido and SB lead."
     },
     "state:CO": {
       "follow_ups": [

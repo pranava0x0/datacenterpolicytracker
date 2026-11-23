@@ -9110,6 +9110,29 @@
       "enacted_by": "Board of Supervisors",
       "session": "2026",
       "captured_at": "2026-11-21"
+    },
+    {
+      "id": "san-jose-ca-2026-11",
+      "jurisdiction": "San Jose",
+      "jurisdiction_type": "city",
+      "state_code": "CA",
+      "status": "enacted",
+      "enacted_date": "2026-11-17",
+      "effective_date": null,
+      "duration_months": null,
+      "bill_number": null,
+      "source_url": "https://sanjosespotlight.com/san-jose-enacts-temporary-data-center-moratorium/",
+      "source_title": "San José Spotlight — San Jose enacts temporary data center moratorium (Nov. 17, 2026)",
+      "captured_at": "2026-11-23",
+      "enacted_by": "City Council",
+      "duration_description": "Lapses once the city's new data center standards take effect; the council was scheduled to take up the standards on Dec. 8, 2026.",
+      "key_reasons": [
+        "energy",
+        "water",
+        "air_quality",
+        "noise"
+      ],
+      "summary": "San Jose's City Council unanimously approved a temporary moratorium on Tuesday, November 17, 2026, pausing all land use approvals for data centers and other large energy-use projects while it finalizes data center standards setting minimum benchmarks for energy and water use, air pollution and noise. The moratorium lapses once those standards take effect."
     }
   ]
 }
