@@ -356,8 +356,9 @@ def test_some_signed_agreements_are_tagged(policies) -> None:
 
 def test_agreements_tab_is_wired(js) -> None:
     html = INDEX.read_text(encoding="utf-8")
-    assert 'id="subtab-pol-agreements"' in html and 'id="subpane-pol-agreements"' in html
-    assert '"#agreements"' in js
+    # 2026-11-23: agreements moved from Policy to the Community benefits tab.
+    assert 'id="subtab-ben-agreements"' in html and 'id="subpane-ben-agreements"' in html
+    assert '"#agreements"' in js and '"#policies/agreements"' in js
     assert 'data-guide-target="strongest"' in html
 
 

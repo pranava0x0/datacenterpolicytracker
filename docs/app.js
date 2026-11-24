@@ -846,11 +846,11 @@ function wireThemeToggle() {
 // Tab order (owner-directed 2026-10-08): the pledge, then the local rules
 // (frameworks, agreements, moratoriums, tariffs), then companies and sites.
 const VIEWS = [
-  { name: "compare", tab: "tab-compare", section: "view-compare", hash: "#compare" },
   { name: "updates", tab: "tab-updates", section: "view-updates", hash: "#updates" },
   { name: "overview", tab: "tab-overview", section: "view-overview", hash: "#overview" },
   { name: "ratepayer", tab: "tab-ratepayer", section: "view-ratepayer", hash: "#ratepayer" },
   { name: "moratoriums", tab: "tab-moratoriums", section: "view-moratoriums", hash: "#moratoriums" },
+  { name: "benefits", tab: "tab-benefits", section: "view-benefits", hash: "#benefits" },
   { name: "policies", tab: "tab-policies", section: "view-policies", hash: "#policies" },
   { name: "tariffs", tab: "tab-tariffs", section: "view-tariffs", hash: "#tariffs" },
   { name: "elections", tab: "tab-elections", section: "view-elections", hash: "#elections" },
@@ -927,11 +927,17 @@ const LEGACY_HASHES = {
   "#policies/map": "#moratoriums/map",
   "#policies/trends": "#moratoriums/trends",
   "#policies/directory": "#policies/rules",
-  "#policies/drafts": "#policies/agreements/drafts",
-  "#policies/evidence": "#policies/agreements/evidence",
-  "#agreements": "#policies/agreements",
-  ...Object.fromEntries(["strongest", "all", "features", "drafts", "evidence"].map(k =>
-    [`#agreements/${k}`, k === "strongest" ? "#policies/agreements" : `#policies/agreements/${k}`])),
+  // Agreements, Plans and Compare became the Community benefits tab
+  // (2026-11-23).
+  "#policies/drafts": "#benefits/drafts",
+  "#policies/evidence": "#benefits/evidence",
+  "#agreements": "#benefits",
+  "#policies/agreements": "#benefits",
+  "#compare": "#benefits/compare",
+  ...Object.fromEntries(["strongest", "all", "features", "drafts", "evidence"].flatMap(k => [
+    [`#agreements/${k}`, k === "strongest" ? "#benefits" : `#benefits/${k}`],
+    [`#policies/agreements/${k}`, k === "strongest" ? "#benefits" : `#benefits/${k}`],
+  ])),
 
 };
 
@@ -1171,10 +1177,13 @@ function _routeFromLocation(boot) {
       }
     }
     activateView(sub.view);
+    if (sub.group === "ben" && sub.key === "agreements") setActiveSubtab("cba", sub.agreement || SUBTAB_GROUPS.cba[0]);
     setActiveSubtab(sub.group, sub.key);
-    if (sub.key === "agreements") setActiveSubtab("cba", sub.agreement || SUBTAB_GROUPS.cba[0]);
   } else if (fromHash) {
     const group = VIEW_SUBTAB_GROUP[fromHash.name];
+    // A bare #benefits is the default agreements pane, not whichever inner
+    // pane the reader last opened (Codex on #150).
+    if (fromHash.name === "benefits") setActiveSubtab("cba", SUBTAB_GROUPS.cba[0]);
     if (group) setActiveSubtab(group, SUBTAB_GROUPS[group][0]);
     activateView(fromHash.name);
   } else if (explorerParams) {
@@ -1346,15 +1355,17 @@ function activateView(name) {
     writeFiltersToUrl();
   } else if (target.name === "policies") {
     writePolicyUrl();
+  } else if (target.name === "benefits") {
+    writeBenefitsUrl();
   } else if (VIEW_SUBTAB_GROUP[target.name]) {
     syncSubtabHash(VIEW_SUBTAB_GROUP[target.name]);
     const sub = _activeSubtab[VIEW_SUBTAB_GROUP[target.name]];
     if (!sub || sub === SUBTAB_GROUPS[VIEW_SUBTAB_GROUP[target.name]][0]) {
       history.replaceState(null, "", window.location.pathname + target.hash);
     }
-  } else if (["overview", "compare"].includes(target.name)) {
+  } else if (target.name === "overview") {
     const params = new URLSearchParams(location.search);
-    const allowed = target.name === "overview" ? ["find", "kind", "place", "browse"] : ["records"];
+    const allowed = ["find", "kind", "place", "browse"];
     for (const key of [...params.keys()]) if (!allowed.includes(key)) params.delete(key);
     history.replaceState(null, "", location.pathname + (params.size ? `?${params}` : "") + target.hash);
   } else if (target.hash) {
@@ -1375,8 +1386,8 @@ function activateView(name) {
       document.getElementById("explorer-meta").textContent =
         "Failed to load projects.";
     });
-  } else if (target.name === "compare") {
-    civicRenderCompare();
+  } else if (target.name === "benefits") {
+    loadBenefitsPane(_activeSubtab.ben || SUBTAB_GROUPS.ben[0]);
   } else if (target.name === "updates") {
     civicRenderUpdates();
   } else if (target.name === "overview") {
@@ -2022,14 +2033,6 @@ function moratoriumDate(m) {
   return m.enacted_date || m.effective_date || null;
 }
 
-function _jurtypeBreakdown(moratoriums) {
-  const counts = { state: 0, county: 0, city: 0, federal: 0 };
-  moratoriums.forEach((m) => { if (m.jurisdiction_type in counts) counts[m.jurisdiction_type]++; });
-  return ["city", "county", "state", "federal"]
-    .filter((t) => counts[t] > 0)
-    .map((t) => `${counts[t]} ${t}`)
-    .join(" · ");
-}
 
 function renderMoratoriumStats(moratoriums) {
   if (!moratoriums || !Array.isArray(moratoriums)) return;
@@ -2047,30 +2050,25 @@ function renderMoratoriumStats(moratoriums) {
     <li class="rp-stat">
       <span class="rp-stat-value">${total}</span>
       <span class="rp-stat-label">Total</span>
-      <span class="rp-stat-breakdown">${_jurtypeBreakdown(moratoriums)}</span>
     </li>
     <li class="rp-stat">
       <span class="rp-stat-value">${enacted.length}</span>
       <span class="rp-stat-label">Enacted</span>
-      <span class="rp-stat-breakdown">${_jurtypeBreakdown(enacted)}</span>
     </li>
     <li class="rp-stat">
       <span class="rp-stat-value">${proposed.length}</span>
       <span class="rp-stat-label">Proposed</span>
-      <span class="rp-stat-breakdown">${_jurtypeBreakdown(proposed)}</span>
     </li>
     ${failed.length > 0 ? `
     <li class="rp-stat">
       <span class="rp-stat-value">${failed.length}</span>
       <span class="rp-stat-label">Failed</span>
-      <span class="rp-stat-breakdown">${_jurtypeBreakdown(failed)}</span>
     </li>
     ` : ""}
     ${lifted.length > 0 ? `
     <li class="rp-stat">
       <span class="rp-stat-value">${lifted.length}</span>
       <span class="rp-stat-label">Lifted</span>
-      <span class="rp-stat-breakdown">${_jurtypeBreakdown(lifted)}</span>
     </li>
     ` : ""}
   `;
@@ -3512,7 +3510,6 @@ function writePolicyUrl() {
   if (state.activeView !== "policies" || state._routing) return;
   const key = _activeSubtab.pol;
   let hash = key && key !== SUBTAB_GROUPS.pol[0] ? `#policies/${key}` : "#policies";
-  if (key === "agreements" && _activeSubtab.cba && _activeSubtab.cba !== SUBTAB_GROUPS.cba[0]) hash += "/" + _activeSubtab.cba;
   // Until the boot params are applied, keep the query string: rewriting it
   // now would erase a shared link's filters before the payload lands.
   if (!state._policyUrlApplied) {
@@ -3526,7 +3523,6 @@ function writePolicyUrl() {
   }
   if (document.getElementById("policy-cbf-filter")?.checked) params.set("p-cbf", "1");
   if (state.openPolicyId) params.set("policy", state.openPolicyId);
-  if (key === "agreements" && _activeSubtab.cba === "drafts" && state.draftKind === "state") params.set("p-draft", "state");
   const qs = params.toString();
   history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + hash);
 }
@@ -3704,7 +3700,7 @@ function renderPoliciesView() {
   const all = state.policies || [];
   renderPolicyStats(all);
   renderMoratoriumCallout();
-  if (_activeSubtab.pol === "agreements") renderAgreementsView();
+  if (state.activeView === "benefits" && benefitsPane() === "agreements") renderAgreementsView();
   renderPolicyPrinciples(all);
   renderPolicyActions(all);
   applyPolicyUrl();
@@ -3966,8 +3962,8 @@ function renderAgreementsView() {
 // Show one agreement in the directory, opened. Used by Home and the
 // "Terms" lists.
 function openAgreement(id) {
-  activateView("policies");
-  setActiveSubtab("pol", "agreements");
+  activateView("benefits");
+  setActiveSubtab("ben", "agreements");
   setActiveSubtab("cba", "all");
   for (const sid of ["cba-status-filter", "cba-state-filter", "cba-kind-filter"]) {
     const sel = document.getElementById(sid);
@@ -4789,6 +4785,9 @@ function renderHome() {
     btn.type = "button";
     btn.dataset.kind = ref.kind;
     const place = ref.place ? `, ${ref.place}` : "";
+    // The label sits inside the button so a long title wraps under it
+    // instead of leaving the label stranded on a line of its own.
+    btn.append(el("span", "ledger-label", label));
     if (ref.date) {
       const time = el("time", "ledger-ref-date", formatAsOf(ref.date));
       time.setAttribute("datetime", ref.date);
@@ -4796,7 +4795,7 @@ function renderHome() {
     }
     btn.append(el("span", "ledger-ref-title", ref.title + place));
     btn.addEventListener("click", () => openHomeTarget({ kind: ref.kind, id: ref.id }));
-    p.replaceChildren(el("span", "ledger-label", label), btn);
+    p.replaceChildren(btn);
   }
   renderLedgerMarks(tl);
   const feed = (ol, items, empty) => {
@@ -4951,7 +4950,8 @@ const PLEDGE_TARGETS = {
   tariffs: { view: "tariffs", anchor: null },
   policies: { view: "policies", anchor: null },
   moratoriums: { view: "moratoriums", anchor: null },
-  agreements: { view: "policies", anchor: null, subtab: { group: "pol", key: "agreements" } },
+  agreements: { view: "benefits", anchor: null, subtab: { group: "ben", key: "agreements" } },
+  benefits: { view: "benefits", anchor: null, subtab: { group: "ben", key: "agreements" } },
 };
 
 // --------------------------------------------------------------------------
@@ -5022,7 +5022,8 @@ const SUBTAB_GROUPS = {
   sites: ["map", "contested", "states"],
   tar: ["ratecases", "tariffs", "elements"],
   // Community agreements share the Policy view; pauses have their own directory.
-  pol: ["principles", "agreements", "latest", "rules"],
+  pol: ["principles", "latest", "rules"],
+  ben: ["agreements", "plans", "compare"],
   mor: ["directory", "map", "trends"],
   cba: ["strongest", "all", "features", "drafts", "evidence"],
   world: ["countries", "instruments", "sites"],
@@ -5037,6 +5038,7 @@ const VIEW_SUBTAB_GROUP = {
   explorer: "sites",
   tariffs: "tar",
   policies: "pol",
+  benefits: "ben",
   moratoriums: "mor",
   world: "world",
 };
@@ -5069,6 +5071,7 @@ function setActiveSubtab(group, key) {
   if (group === "world" && state.activeView === "world") renderWorldPane(key);
   if (group === "mor" && state.activeView === "moratoriums") loadMoratoriumPane(key);
   if (group === "pol" && state.activeView === "policies") loadPolicyPane(key);
+  if (group === "ben" && state.activeView === "benefits") loadBenefitsPane(key);
   if (group === "cba" && (key === "drafts" || key === "evidence")) loadPlanningGuide(key);
   document.dispatchEvent(new CustomEvent("dcb:subtab", { detail: { group, key } }));
 }
@@ -5077,7 +5080,7 @@ const policyErrors = new Set();
 function showPolicyLoadError() {
   const key = _activeSubtab.pol || SUBTAB_GROUPS.pol[0];
   const missing = [];
-  if (policyErrors.has("rules") && ["principles", "agreements", "rules", "latest"].includes(key)) missing.push("rules");
+  if (policyErrors.has("rules") && ["principles", "rules", "latest"].includes(key)) missing.push("rules");
   if (policyErrors.has("pauses") && key === "latest") missing.push("pauses");
   document.getElementById("policy-pane-error").hidden = !missing.length;
   document.getElementById("policy-error-message").textContent = missing.length ? `Could not load ${missing.join(" or ")}.` : "";
@@ -5095,7 +5098,6 @@ function loadMoratoriumPane(key) {
 
 function loadPolicyPane(key) {
   showPolicyLoadError();
-  if (key === "agreements" && state.policies.length) renderAgreementsView();
   if (key !== "latest" && key !== "rules") return;
   // Latest merges governor pauses in; Rules lists every moratorium beside
   // the policies (v7). Topics and Agreements never need the payload.
@@ -5115,8 +5117,8 @@ function loadPolicyPane(key) {
 // Open Benefit Agreements → Draft plans on the county or state draft.
 function openDraftPlan(kind) {
   closePolicyDetail();
-  activateView("policies");
-  setActiveSubtab("pol", "agreements");
+  activateView("benefits");
+  setActiveSubtab("ben", "agreements");
   setActiveSubtab("cba", "drafts");
   (_planningGuidePromise || Promise.reject(new Error("guide not loading")))
     .then(() => {
@@ -5148,7 +5150,7 @@ function loadPlanningGuide(key) {
     if (_planningGuidesRendered.has(key)) return;
     if (key === "drafts") guide.renderPlans(root, state.draftKind, (kind) => {
       state.draftKind = kind;
-      writePolicyUrl();
+      writeBenefitsUrl();
     });
     else guide.renderEvidence(root);
     _planningGuidesRendered.add(key);
@@ -5162,7 +5164,7 @@ function loadPlanningGuide(key) {
 // only while that view is showing -- a sub-tab set programmatically on a
 // hidden view must not clobber the current view's hash.
 function syncSubtabHash(group) {
-  if (group === "cba" && _activeSubtab.pol === "agreements") { writePolicyUrl(); return; }
+  if (group === "cba" && state.activeView === "benefits" && benefitsPane() === "agreements") { writeBenefitsUrl(); return; }
   const view = Object.keys(VIEW_SUBTAB_GROUP).find((v) => VIEW_SUBTAB_GROUP[v] === group);
   if (!view || state.activeView !== view) return;
   if (view === "explorer") {
@@ -5171,6 +5173,10 @@ function syncSubtabHash(group) {
   }
   if (view === "policies") {
     writePolicyUrl();
+    return;
+  }
+  if (view === "benefits") {
+    writeBenefitsUrl();
     return;
   }
   const target = VIEWS.find((v) => v.name === view);
@@ -5183,13 +5189,174 @@ function syncSubtabHash(group) {
 
 // "#tariffs/elements" -> { view, key }, or null for any other hash shape.
 function parseSubtabHash(hash) {
-  const nested = /^#policies\/agreements\/([a-z]+)$/.exec(hash);
-  if (nested && SUBTAB_GROUPS.cba.includes(nested[1])) return { view: "policies", group: "pol", key: "agreements", agreement: nested[1] };
+  // #benefits/drafts: an agreements pane named straight off the tab.
+  const nested = /^#benefits\/([a-z]+)$/.exec(hash || "");
+  if (nested && SUBTAB_GROUPS.cba.includes(nested[1])) return { view: "benefits", group: "ben", key: "agreements", agreement: nested[1] };
   const m = /^#([a-z]+)\/([a-z-]+)$/.exec(hash || "");
   if (!m) return null;
   const group = VIEW_SUBTAB_GROUP[m[1]];
   if (!group || !SUBTAB_GROUPS[group].includes(m[2])) return null;
   return { view: m[1], group, key: m[2] };
+}
+
+// --------------------------------------------------------------------------
+// Community benefits (2026-11-23): agreements, draft plans and the
+// side-by-side comparison under one tab. Agreements read policies.json;
+// Plans inlines community-benefits.html's content; Compare is the civic
+// comparison that used to be its own view.
+// --------------------------------------------------------------------------
+function benefitsPane() {
+  return _activeSubtab.ben || SUBTAB_GROUPS.ben[0];
+}
+
+function compareActive() {
+  return state.activeView === "benefits" && benefitsPane() === "compare";
+}
+
+function writeBenefitsUrl() {
+  if (state.activeView !== "benefits" || state._routing) return;
+  const key = _activeSubtab.ben || SUBTAB_GROUPS.ben[0];
+  const params = new URLSearchParams();
+  let hash = "#benefits";
+  if (key === "agreements") {
+    const cba = _activeSubtab.cba;
+    if (cba && cba !== SUBTAB_GROUPS.cba[0]) hash += "/" + cba;
+    if (cba === "drafts" && state.draftKind === "state") params.set("p-draft", "state");
+  } else {
+    hash += "/" + key;
+    if (key === "compare" && civic.selected.length) params.set("records", civic.selected.join(","));
+  }
+  const qs = params.toString();
+  history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + hash);
+}
+
+function wireBenefitsRetry() {
+  wireBtn("ben-retry", () => loadBenefitsPane(benefitsPane()));
+}
+
+function loadBenefitsPane(key) {
+  wireBenefitsRetry();
+  if (key === "agreements") {
+    loadPoliciesData()
+      .then(() => {
+        document.getElementById("ben-load-error").hidden = true;
+        setSubtabCount("policy-agreements-count", agreementRecords().length);
+        if (state.activeView === "benefits" && benefitsPane() === "agreements") renderAgreementsView();
+      })
+      .catch((err) => {
+        // Without this the pane reads as an empty directory (Codex on #150).
+        console.error("Failed to load agreements:", err);
+        document.getElementById("ben-load-error").hidden = false;
+      });
+    const cba = _activeSubtab.cba;
+    if (cba === "drafts" || cba === "evidence") loadPlanningGuide(cba);
+  } else if (key === "plans") {
+    loadPlans();
+  } else if (key === "compare") {
+    civicRenderCompare();
+  }
+}
+
+// Same controls the standalone page builds after </main> (Codex on #150):
+// each draft gets its PDF, an editable .txt and a way back to the picker.
+const PLANS_PAGE_URL = "https://pranava0x0.github.io/datacenterpolicytracker/community-benefits.html";
+function planDraftText(section) {
+  return Array.from(section.querySelectorAll("h2, h3, p:not(.bp-actions), dt, dd, li"), (node) => {
+    const copy = node.cloneNode(true);
+    for (const a of copy.querySelectorAll("a")) {
+      const href = a.dataset.origHref || a.getAttribute("href");
+      a.append(" (" + new URL(href, PLANS_PAGE_URL).href + ")");
+    }
+    return copy.textContent.trim();
+  }).join("\n\n");
+}
+
+function addPlanDownloads(root) {
+  for (const article of root.querySelectorAll("article")) {
+    const heading = article.querySelector("h2");
+    if (!heading) continue;
+    const key = article.id.replace(/^bp-/, "");
+    const actions = el("p", "bp-actions");
+    const button = el("button", "btn-link", `Download ${heading.textContent.toLowerCase()} draft (.txt)`);
+    button.type = "button";
+    button.addEventListener("click", () => {
+      const parts = [article, ...["common", "pause", "sources"].map((id) => document.getElementById("bp-" + id))].filter(Boolean);
+      const text = "Data center community benefits plans\n" + PLANS_PAGE_URL + "#" + key + "\n\n" + parts.map(planDraftText).join("\n\n");
+      const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = key + "-community-benefits-draft.txt";
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    const pdf = article.querySelector(".bp-pdf a");
+    if (pdf) actions.append(pdf, " · ");
+    actions.append(button, " · ");
+    article.querySelector(".bp-pdf")?.remove();
+    const back = el("a", "", "Choose another draft");
+    back.href = "community-benefits.html#choose";
+    back.dataset.planAnchor = "bp-choose";
+    actions.append(back);
+    heading.after(actions);
+  }
+}
+
+// The plans page stays a standalone, shareable document (PDF links, print,
+// #rural anchors); this pane shows the same content inside the tracker.
+let _plansPromise = null;
+function loadPlans() {
+  const root = document.getElementById("ben-plans");
+  if (!root || root.dataset.loaded === "1") return _plansPromise;
+  if (!_plansPromise) {
+    _plansPromise = fetch("community-benefits.html")
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.text();
+      })
+      .then((html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const main = doc.querySelector("main");
+        if (!main) throw new Error("plans page has no <main>");
+        main.querySelector(".bp-intro h1")?.remove();
+        for (const node of main.querySelectorAll("[id]")) node.id = "bp-" + node.id;
+        for (const node of main.querySelectorAll("[aria-labelledby]")) {
+          node.setAttribute("aria-labelledby", "bp-" + node.getAttribute("aria-labelledby"));
+        }
+        for (const a of main.querySelectorAll("a[href]")) {
+          const href = a.getAttribute("href");
+          a.dataset.origHref = href; // the text download cites the page's own URLs
+          if (href.startsWith("#")) {
+            // In-page anchors scroll within the pane; the tracker owns the hash.
+            a.setAttribute("href", "community-benefits.html" + href);
+            a.dataset.planAnchor = "bp-" + href.slice(1);
+          } else if (href.startsWith("index.html#")) {
+            a.setAttribute("href", href.slice("index.html".length));
+          }
+        }
+        root.replaceChildren(...main.childNodes);
+        addPlanDownloads(root);
+        root.dataset.loaded = "1";
+        root.addEventListener("click", (e) => {
+          const a = e.target.closest?.("a[data-plan-anchor]");
+          if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+          const target = document.getElementById(a.dataset.planAnchor);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      })
+      .catch((err) => {
+        _plansPromise = null;
+        console.error("Failed to load plans:", err);
+        root.replaceChildren(
+          el("p", "muted", "Couldn't load the plans here. "),
+          Object.assign(el("a", "", "Open them on their own page"), { href: "community-benefits.html" })
+        );
+      });
+  }
+  return _plansPromise;
 }
 
 function selectUserSubtab(group, key) {
@@ -5200,13 +5367,13 @@ function selectUserSubtab(group, key) {
 function wireSubtabs() {
   for (const btn of document.querySelectorAll("[data-guide-target]")) {
     btn.addEventListener("click", () => {
-      activateView("policies");
-      setActiveSubtab("pol", "agreements");
+      activateView("benefits");
       setActiveSubtab("cba", btn.dataset.guideTarget);
+      setActiveSubtab("ben", "agreements");
       const key = btn.dataset.guideTarget;
       const ready = key === "strongest" ? loadPoliciesData() : _planningGuidePromise;
-      openWhenStillOn("policies", ready, () => {
-        if (_activeSubtab.pol !== "agreements" || _activeSubtab.cba !== key) return;
+      openWhenStillOn("benefits", ready, () => {
+        if (benefitsPane() !== "agreements" || _activeSubtab.cba !== key) return;
         const pane = document.getElementById(`subpane-cba-${key}`);
         const target = key === "strongest" ? pane.querySelector(".cba-title") : pane;
         if (target) {
@@ -7347,7 +7514,7 @@ if (window.matchMedia) {
     if (state.explorerLoaded) renderProjectList();
     if (state.moratoriums && state.moratoriums.length) renderMoratoriumsView();
     if (document.getElementById("rp-scorecard")?.children.length) renderRatepayerScorecard();
-    if (state.activeView === "policies" && _activeSubtab.pol === "agreements" && state.policies.length) renderAgreementsView();
+    if (state.activeView === "benefits" && benefitsPane() === "agreements" && state.policies.length) renderAgreementsView();
   });
 }
 // A "Show N more" control as an <li> (lists) or a full-width <tr> (tables).
@@ -10906,10 +11073,10 @@ function civicResult(r) {
 function civicTray() {
   const tray = document.getElementById('civic-compare-tray'); tray.hidden = !civic.selected.length;
   document.getElementById('civic-compare-count').textContent = `${civic.selected.length} selected`;
-  tray.querySelector('a').href = `?records=${encodeURIComponent(civic.selected.join(','))}#compare`;
+  tray.querySelector('a').href = `?records=${encodeURIComponent(civic.selected.join(','))}#benefits/compare`;
 }
 function civicComparisonUrl() {
-  history.replaceState(null, '', `${location.pathname}${civic.selected.length ? `?records=${encodeURIComponent(civic.selected.join(','))}` : ''}#compare`);
+  history.replaceState(null, '', `${location.pathname}${civic.selected.length ? `?records=${encodeURIComponent(civic.selected.join(','))}` : ''}#benefits/compare`);
 }
 async function civicRenderCompare() {
   const serial = ++civic.serial;
@@ -10917,7 +11084,7 @@ async function civicRenderCompare() {
   if (p.has('records')) civic.selected = [...new Set(p.get('records').split(','))].filter(key => /^(agreement|tariff):[a-z0-9-]+$/.test(key)).slice(0,3);
   const status = document.getElementById('civic-compare-status'); status.textContent = 'Loading records…';
   await civicLoad();
-  if (serial !== civic.serial || state.activeView !== 'compare') return;
+  if (serial !== civic.serial || !compareActive()) return;
   const firstKind = civic.selected[0]?.split(':')[0];
   civic.selected = civic.selected.filter(key => key.startsWith(`${firstKind}:`));
   const records = civic.selected.map(key => civic.records.find(r => r.key === key)).filter(Boolean);
@@ -10994,7 +11161,7 @@ function wireCivic() {
   document.getElementById('civic-more').addEventListener('click', () => { civic.limit += 40; civicRenderSearch(); });
   document.getElementById('civic-retry').addEventListener('click', civicRenderSearch);
   document.getElementById('civic-compare-kind').addEventListener('change', event => { civic.selected = []; civicComparisonUrl(); civicRenderCompare(); });
-  const clear = () => { civic.selected = []; civicTray(); if (state.activeView === 'compare') { civicComparisonUrl(); civicRenderCompare(); } else civicRenderSearch(); };
+  const clear = () => { civic.selected = []; civicTray(); if (compareActive()) { civicComparisonUrl(); civicRenderCompare(); } else civicRenderSearch(); };
   document.getElementById('civic-compare-clear').addEventListener('click', clear);
   document.getElementById('civic-tray-clear').addEventListener('click', clear);
   document.getElementById('civic-update-kind').addEventListener('change', () => { civic.updateLimit = 40; civicRenderUpdates(); });
@@ -11005,7 +11172,7 @@ function wireCivic() {
     if (!a || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
-    if (!a.closest('.directory-menu, .civic-presets, #civic-search-panel, #civic-compare-tray, #view-compare, #view-updates')) return;
+    if (!a.closest('.directory-menu, .civic-presets, #civic-search-panel, #civic-compare-tray, #subpane-ben-compare, #ben-plans, #view-updates, .home-feed')) return;
     event.preventDefault(); a.closest('details.directory-menu')?.removeAttribute('open'); history.pushState(null, '', url); routeFromLocation(); window.scrollTo(0, 0);
   });
 }

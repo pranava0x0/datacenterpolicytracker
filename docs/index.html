@@ -59,16 +59,15 @@
           <button id="tab-overview" class="tab" role="tab" type="button" aria-selected="true" aria-controls="view-overview">Overview</button>
           <button id="tab-ratepayer" class="tab" aria-label="The Pledge" role="tab" type="button" aria-selected="false" aria-controls="view-ratepayer">The Pledge</button>
           <button id="tab-moratoriums" class="tab" aria-label="Moratoriums" role="tab" type="button" aria-selected="false" aria-controls="view-moratoriums">Moratoriums</button>
+          <button id="tab-benefits" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-benefits">Community benefits</button>
           <button id="tab-policies" class="tab" aria-label="Policy" role="tab" type="button" aria-selected="false" aria-controls="view-policies">Policy</button>
           <button id="tab-tariffs" class="tab" aria-label="Power Costs" role="tab" type="button" aria-selected="false" aria-controls="view-tariffs">Power Costs</button>
           <button id="tab-elections" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-elections">Elections</button>
           <button id="tab-comparison" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-comparison">Companies</button>
           <button id="tab-explorer" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-explorer">Sites</button>
           <button id="tab-world" class="tab" role="tab" type="button" aria-selected="false" aria-controls="view-world" aria-label="International">International</button>
-          <button id="tab-updates" class="tab tab-util" role="tab" type="button" aria-selected="false" aria-controls="view-updates">Updates</button>
-          <button id="tab-compare" class="tab tab-util" role="tab" type="button" aria-selected="false" aria-controls="view-compare">Compare</button>
+          <button id="tab-updates" class="tab tab-util" role="tab" hidden type="button" aria-selected="false" aria-controls="view-updates">Updates</button>
         </div>
-        <a class="tab-util nav-plans" href="community-benefits.html" aria-label="Community benefits plans">Plans</a>
       </nav>
     </header>
 
@@ -126,7 +125,7 @@
               <div class="ledger-mark" data-mark-for="moratoriums"></div>
             </li>
             <li class="ledger-row" data-topic="agreements">
-              <button class="home-card ledger-head" type="button" data-path-target="agreements">
+              <button class="home-card ledger-head" type="button" data-path-target="benefits">
                 <span class="home-card-title">Community benefits</span>
                 <span class="home-card-num" data-count-for="agreements">&mdash;</span>
                 <span class="home-card-sub" data-sub-for="agreements"></span>
@@ -166,6 +165,7 @@
               <h2 class="home-h" id="home-latest-h">Latest</h2>
               <ol id="home-latest-list" class="feed-list"></ol>
               <button type="button" class="btn-link home-latest-more" id="home-latest-more" hidden></button>
+              <a class="home-all-updates" href="#updates">All updates</a>
             </section>
             <section class="whats-next" aria-labelledby="wn-h" id="whats-next">
               <h2 class="home-h" id="wn-h">Coming up</h2>
@@ -179,12 +179,6 @@
         </div>
       </section>
 
-      <section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-compare" hidden>
-        <div class="hero"><h2 class="hero-title">Compare</h2></div>
-        <div class="civic-controls"><label>Compare <select id="civic-compare-kind"><option value="agreement">Agreements</option><option value="tariff">Tariffs</option></select></label><a id="civic-choose" href="?kind=agreement#overview">Choose records</a><button id="civic-compare-clear" type="button">Clear selection</button></div>
-        <p id="civic-compare-status" class="civic-status" role="status"></p>
-        <div id="civic-compare-grid" class="civic-compare-grid"></div>
-      </section>
       <section id="view-updates" class="view" role="tabpanel" aria-labelledby="tab-updates" hidden>
         <div class="hero"><h2 class="hero-title">Updates</h2></div>
         <div class="civic-controls"><label>Show <select id="civic-update-kind"><option value="">All updates</option><option value="record">Record changes</option><option value="action">Dated actions and observations</option></select></label></div>
@@ -653,10 +647,7 @@
         <div class="hero">
 
           <h2 class="hero-title">The Pledge</h2>
-          <p class="hero-dek">
-            White House Ratepayer Protection Pledge · <span id="rp-pledge-date">March 4, 2026</span>. <a id="rp-pledge-link" href="#" target="_blank" rel="noopener noreferrer">Read the pledge →</a>
-          </p>
-          <p class="hero-dek hero-status" id="rp-status"></p>
+          <p class="hero-dek hero-status"><span id="rp-status"></span> <a id="rp-pledge-link" href="#" target="_blank" rel="noopener noreferrer">White House pledge, <span id="rp-pledge-date">March 4, 2026</span> →</a></p>
         </div>
 
         <!-- ---------------------------------------------------------------
@@ -1253,7 +1244,6 @@
         <div class="hero">
 
           <h2 class="hero-title">Policy</h2>
-          <p class="view-scope">United States</p>
         </div>
         <ul id="policy-stats" class="rp-stats" aria-label="Policy statistics"></ul>
 
@@ -1262,7 +1252,6 @@
           <button class="subtab" role="tab" type="button" id="subtab-pol-principles" aria-selected="true" tabindex="0" aria-controls="subpane-pol-principles">
             Topics <span class="subtab-count" id="policy-principles-count"></span>
           </button>
-          <button class="subtab" role="tab" type="button" id="subtab-pol-agreements" aria-selected="false" tabindex="-1" aria-controls="subpane-pol-agreements">Agreements <span class="subtab-count" id="policy-agreements-count"></span></button>
           <button class="subtab" role="tab" type="button" id="subtab-pol-latest" aria-selected="false" tabindex="-1" aria-controls="subpane-pol-latest">
             Latest <span class="subtab-count" id="policy-actions-count"></span>
           </button>
@@ -1353,11 +1342,24 @@
         </div>
 
 
-        <div id="subpane-pol-agreements" class="subtab-panel" role="tabpanel" aria-labelledby="subtab-pol-agreements" hidden>
-        <h3>Community benefit agreements</h3>
 
 
-        <div class="subtabs subtabs--view" role="tablist" aria-label="Benefit Agreements view">
+      </section>
+
+      <!-- ====================== COMMUNITY BENEFITS ====================== -->
+      <section id="view-benefits" class="view" role="tabpanel" aria-labelledby="tab-benefits" hidden>
+        <div class="hero"><h2 class="hero-title">Community benefits</h2></div>
+        <ul id="cba-stats" class="rp-stats" aria-label="Agreement statistics"></ul>
+        <p id="ben-load-error" class="load-error" role="alert" hidden>Couldn't load agreements. <button id="ben-retry" class="btn-link" type="button">Retry</button></p>
+        <div class="subtabs subtabs--view" role="tablist" aria-label="Community benefits view">
+          <button class="subtab" role="tab" type="button" id="subtab-ben-agreements" aria-selected="true" tabindex="0" aria-controls="subpane-ben-agreements">Agreements <span class="subtab-count" id="policy-agreements-count"></span></button>
+          <button class="subtab" role="tab" type="button" id="subtab-ben-plans" aria-selected="false" tabindex="-1" aria-controls="subpane-ben-plans">Plans</button>
+          <button class="subtab" role="tab" type="button" id="subtab-ben-compare" aria-selected="false" tabindex="-1" aria-controls="subpane-ben-compare">Compare</button>
+        </div>
+        <div id="subpane-ben-agreements" class="subtab-panel" role="tabpanel" aria-labelledby="subtab-ben-agreements">
+
+
+        <div class="subtabs subtabs--inner" role="tablist" aria-label="Agreements">
           <button class="subtab" role="tab" type="button" id="subtab-cba-strongest" aria-selected="true" tabindex="0" aria-controls="subpane-cba-strongest">
             Most documented <span class="subtab-count" id="cba-strongest-count"></span>
           </button>
@@ -1421,60 +1423,17 @@
         <div class="subtab-panel planning-guide" id="subpane-cba-evidence" role="tabpanel" aria-labelledby="subtab-cba-evidence" hidden>
           <p>Loading evidence guide…</p>
         </div>
-        <ul id="cba-stats" class="rp-stats" aria-label="Agreement statistics"></ul>
+                </div>
+        <div id="subpane-ben-plans" class="subtab-panel" role="tabpanel" aria-labelledby="subtab-ben-plans" hidden>
+          <p class="ben-plans-page"><a href="community-benefits.html">Open as a page</a></p>
+          <div id="ben-plans" class="ben-plans"><p class="muted">Loading plans…</p></div>
         </div>
-
-        <div id="policy-modal" class="tariff-modal" hidden>
-          <div class="tariff-modal__backdrop" data-policy-close aria-hidden="true"></div>
-          <div id="policy-detail" class="moratorium-detail tariff-detail tariff-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pd-title">
-            <button id="policy-detail-close" class="detail-close" type="button" aria-label="Close policy details">×</button>
-            <header class="detail-header">
-              <p class="detail-kind" id="pd-instrument">—</p>
-              <h3 id="pd-title">—</h3>
-              <p class="detail-sub">
-                <span id="pd-status" class="badge">—</span> ·
-                <span id="pd-where">—</span>
-              </p>
-            </header>
-            <dl class="kv">
-              <dt>Identifier</dt>
-              <dd id="pd-identifier">—</dd>
-              <dt>Date</dt>
-              <dd id="pd-date">—</dd>
-              <dt>Parties</dt>
-              <dd id="pd-parties">—</dd>
-              <dt>Stated value</dt>
-              <dd id="pd-value">—</dd>
-              <dt>Topics</dt>
-              <dd id="pd-principles">—</dd>
-              <dt>Themes</dt>
-              <dd id="pd-themes">—</dd>
-            </dl>
-            <div id="pd-summary" class="moratorium-summary"></div>
-            <div id="pd-delivered" hidden></div>
-            <section class="tariff-additional" aria-labelledby="pd-terms-heading">
-              <h4 id="pd-terms-heading">Key terms</h4>
-              <ul id="pd-terms" class="tariff-additional-list"></ul>
-            </section>
-            <section id="pd-related" class="tariff-legislation" aria-labelledby="pd-related-heading" hidden>
-              <h4 id="pd-related-heading">Related records</h4>
-              <ul id="pd-related-list" class="tariff-legislation-list"></ul>
-            </section>
-            <section class="moratorium-resources" aria-labelledby="pd-resources-heading">
-              <h4 id="pd-resources-heading">Sources &amp; Resources</h4>
-              <ul id="pd-resources-list" class="resources-list"></ul>
-            </section>
-            <section class="pd-next" aria-labelledby="pd-next-heading">
-              <h4 id="pd-next-heading">Next step</h4>
-              <p><button type="button" id="pd-draft-btn" class="btn-link"></button></p>
-              <p class="muted pd-next-note">The draft uses invented example numbers; it does not say this rule applies elsewhere.</p>
-            </section>
-            <p class="record-permalink-row"><a id="pd-permalink" class="record-permalink" href="#">Link to this record</a></p>
-            <p id="pd-captured" class="muted policy-captured"></p>
-          </div>
+        <div id="subpane-ben-compare" class="subtab-panel" role="tabpanel" aria-labelledby="subtab-ben-compare" hidden>
+        <div class="civic-controls"><label>Compare <select id="civic-compare-kind"><option value="agreement">Agreements</option><option value="tariff">Tariffs</option></select></label><a id="civic-choose" href="?kind=agreement#overview">Choose records</a><button id="civic-compare-clear" type="button">Clear selection</button></div>
+        <p id="civic-compare-status" class="civic-status" role="status"></p>
+        <div id="civic-compare-grid" class="civic-compare-grid"></div>
         </div>
       </section>
-
       <section id="view-moratoriums" class="view" role="tabpanel" aria-labelledby="tab-moratoriums" hidden>
         <div class="hero"><h2 class="hero-title">Moratoriums</h2></div>
           <ul id="moratorium-stats" class="rp-stats" aria-label="Pause statistics"></ul>
@@ -1697,7 +1656,58 @@
       </section>
     </main>
 
-    <div id="civic-compare-tray" class="civic-compare-tray" hidden><span id="civic-compare-count"></span><a href="#compare">Compare</a><button id="civic-tray-clear" class="btn-link" type="button">Clear</button></div>
+    <!-- Opened from Policy and Community benefits alike, so it lives outside both views. -->
+        <div id="policy-modal" class="tariff-modal" hidden>
+          <div class="tariff-modal__backdrop" data-policy-close aria-hidden="true"></div>
+          <div id="policy-detail" class="moratorium-detail tariff-detail tariff-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pd-title">
+            <button id="policy-detail-close" class="detail-close" type="button" aria-label="Close policy details">×</button>
+            <header class="detail-header">
+              <p class="detail-kind" id="pd-instrument">—</p>
+              <h3 id="pd-title">—</h3>
+              <p class="detail-sub">
+                <span id="pd-status" class="badge">—</span> ·
+                <span id="pd-where">—</span>
+              </p>
+            </header>
+            <dl class="kv">
+              <dt>Identifier</dt>
+              <dd id="pd-identifier">—</dd>
+              <dt>Date</dt>
+              <dd id="pd-date">—</dd>
+              <dt>Parties</dt>
+              <dd id="pd-parties">—</dd>
+              <dt>Stated value</dt>
+              <dd id="pd-value">—</dd>
+              <dt>Topics</dt>
+              <dd id="pd-principles">—</dd>
+              <dt>Themes</dt>
+              <dd id="pd-themes">—</dd>
+            </dl>
+            <div id="pd-summary" class="moratorium-summary"></div>
+            <div id="pd-delivered" hidden></div>
+            <section class="tariff-additional" aria-labelledby="pd-terms-heading">
+              <h4 id="pd-terms-heading">Key terms</h4>
+              <ul id="pd-terms" class="tariff-additional-list"></ul>
+            </section>
+            <section id="pd-related" class="tariff-legislation" aria-labelledby="pd-related-heading" hidden>
+              <h4 id="pd-related-heading">Related records</h4>
+              <ul id="pd-related-list" class="tariff-legislation-list"></ul>
+            </section>
+            <section class="moratorium-resources" aria-labelledby="pd-resources-heading">
+              <h4 id="pd-resources-heading">Sources &amp; Resources</h4>
+              <ul id="pd-resources-list" class="resources-list"></ul>
+            </section>
+            <section class="pd-next" aria-labelledby="pd-next-heading">
+              <h4 id="pd-next-heading">Next step</h4>
+              <p><button type="button" id="pd-draft-btn" class="btn-link"></button></p>
+              <p class="muted pd-next-note">The draft uses invented example numbers; it does not say this rule applies elsewhere.</p>
+            </section>
+            <p class="record-permalink-row"><a id="pd-permalink" class="record-permalink" href="#">Link to this record</a></p>
+            <p id="pd-captured" class="muted policy-captured"></p>
+          </div>
+        </div>
+
+    <div id="civic-compare-tray" class="civic-compare-tray" hidden><span id="civic-compare-count"></span><a href="#benefits/compare">Compare</a><button id="civic-tray-clear" class="btn-link" type="button">Clear</button></div>
     <footer class="site-footer">
       <p>
         <a href="https://github.com/pranava0x0/datacenterpolicytracker">Code on GitHub</a>.

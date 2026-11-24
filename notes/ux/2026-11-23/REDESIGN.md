@@ -66,3 +66,19 @@ not be fetched: Good Jobs First returned 403 and Heatmap is paywalled.
   `:root`. They are pre-existing; `slop_design` warns on them.
 - The ★ governor marker on the Pledge coverage strip is flagged as emoji in
   body copy. It stays because it is a data key.
+
+## Follow-up (same day, owner)
+
+- **Community benefits is a tab.** It has three sub-tabs. Agreements moved
+  over from Policy. Plans shows the plans page inline; the page stays at
+  `community-benefits.html` for sharing, PDFs and print. Compare used to be
+  its own view. Old links redirect: `#policies/agreements*`, `#agreements*`
+  and `#compare`.
+- **Updates has no tab.** `#updates` still works, and Home's Latest links to it.
+- **Fewer stacked lines.** A ledger figure and its unit share one line. The
+  "Newest" label wraps with its title. Moratorium stat tiles lost their
+  city/county/state breakdown line. The Policy "United States" subtitle is
+  gone. The Pledge has one line under its heading, not two. The Elections
+  intro is cut to counts and a date.
+- **AGENTS.md is the always-loaded file.** CLAUDE.md is `@AGENTS.md`. The
+  old AGENTS.md workflow moved verbatim to `notes/agent/workflow.md`.

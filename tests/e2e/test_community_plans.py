@@ -17,7 +17,7 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
     assert not any('community-plans.js' in url for url in requests)
     page.get_by_role('button', name='County and state drafts', exact=True).click()
     expect(page.locator('#draft-plan-decision')).to_be_visible()
-    assert page.url.endswith('#policies/agreements/drafts')
+    assert page.url.endswith('#benefits/drafts')
     expect(page.locator('#cba-stats')).to_be_visible()
     expect(page.locator('.guide-notice')).to_contain_text('amounts, limits and deadlines are examples')
     for key, heading, sections in [('county', 'County plan', 8), ('state', 'State plan', 6)]:
@@ -45,7 +45,7 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
         assert 'regs.maryland.gov' in text and 'nj.gov' in text
     page.get_by_role('tab', name='Evidence', exact=True).click()
     expect(page.locator('#impact-evidence-rule')).to_be_visible()
-    assert page.url.endswith('#policies/agreements/evidence')
+    assert page.url.endswith('#benefits/evidence')
     page.get_by_text('Water permission and water use', exact=True).click()
     expect(page.locator('[data-evidence-answer]').first).to_have_text('Actual water consumption is not established.')
     expect(page.locator('[data-evidence-status]').first).to_contain_text('actual use')
@@ -53,7 +53,7 @@ def test_plans_and_evidence(page, base_url, width, tmp_path):
     expect(page.locator('#subpane-cba-evidence')).to_contain_text('were not authenticated')
     expect(page.locator('#subpane-cba-evidence')).to_contain_text('does not show actual withdrawal')
     assert not page.evaluate('document.documentElement.scrollWidth > innerWidth')
-    assert page.locator('#subpane-pol-agreements > .subtabs').evaluate('(e) => e.scrollWidth <= e.clientWidth + 1')
+    assert page.locator('#subpane-ben-agreements > .subtabs').evaluate('(e) => e.scrollWidth <= e.clientWidth + 1')
     page.get_by_role('tab', name='Terms', exact=False).click()
     expect(page.locator('#cba-stats')).to_be_visible()
     assert not errors
@@ -68,7 +68,7 @@ def test_guide_deep_link_and_keyboard(page, base_url):
     expect(page.locator('#impact-evidence-rule')).to_be_visible()
     page.reload()
     expect(page.locator('#impact-evidence-rule')).to_be_visible()
-    assert page.url.endswith('#policies/agreements/evidence')
+    assert page.url.endswith('#benefits/evidence')
 
 
 def test_guide_import_failure_can_retry(page, base_url):
@@ -85,9 +85,11 @@ def test_guide_import_failure_can_retry(page, base_url):
 def test_blueprint_share_links_and_complete_downloads(page, base_url, width, tmp_path):
     page.set_viewport_size({"width": width, "height": 812})
     page.goto(base_url)
-    entry = page.get_by_role("link", name="Community benefits plans", exact=True)
-    expect(entry).to_be_in_viewport(ratio=1)
-    page.get_by_role("tab", name="Policy", exact=True).click()
+    # Plans live under Community benefits; the standalone page opens from there.
+    page.get_by_role("tab", name="Community benefits", exact=True).click()
+    page.locator("#subtab-ben-plans").click()
+    expect(page.locator("#ben-plans .bp-picker")).to_be_visible()
+    entry = page.get_by_role("link", name="Open as a page", exact=True)
     expect(entry).to_be_in_viewport(ratio=1)
     entry.click()
     assert page.url.endswith("/community-benefits.html")
@@ -126,17 +128,16 @@ def test_blueprint_print_urls_fit_the_page(page, base_url):
 def test_blueprint_back_restores_tracker_route(page, base_url, file_preview):
     if file_preview:
         base_url = (Path(__file__).resolve().parents[2] / "docs").as_uri()
-    page.goto(base_url + "/index.html?q=Tulsa#explorer")
-    expect(page.locator("#f-q")).to_have_value("Tulsa")
+    page.goto(base_url + "/index.html#benefits/plans")
     origin = page.url
-    page.get_by_role("link", name="Community benefits plans", exact=True).click()
+    page.get_by_role("link", name="Open as a page", exact=True).click()
     page.locator('#choose a[href="#urban"]').click()
     page.reload()
-    back = page.get_by_role("link", name="← Back to Sites", exact=True)
+    back = page.get_by_role("link", name="← Back to Community benefits", exact=True)
     expect(back).to_have_attribute("href", origin)
     back.click()
-    expect(page.get_by_role("tab", name="Sites", exact=True)).to_have_attribute("aria-selected", "true")
-    expect(page.locator("#f-q")).to_have_value("Tulsa")
+    expect(page.get_by_role("tab", name="Community benefits", exact=True)).to_have_attribute("aria-selected", "true")
+    expect(page.locator("#subpane-ben-plans")).to_be_visible()
     # An independently opened shared link must not borrow an old return route.
     page.goto(base_url + "/community-benefits.html#corridor")
     page.get_by_role("link", name="← Back to Overview", exact=True).click()
@@ -147,7 +148,8 @@ def test_blueprint_back_restores_tracker_route(page, base_url, file_preview):
 def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     page.set_viewport_size({"width": width, "height": 812})
     page.goto(base_url)
-    dashboard = [["Overview", "#overview"], ["Compare", "#compare"], ["Plans", ""], ["Updates", "#updates"]]
+    dashboard = [["Overview", "#overview"], ["The Pledge", "#ratepayer"], ["Moratoriums", "#moratoriums"],
+                 ["Community benefits", "#benefits"], ["Policy", "#policies"]]
     page.goto(base_url + "/community-benefits.html#rural")
     nav = page.get_by_role("navigation", name="Main navigation")
     expect(nav).to_be_in_viewport(ratio=1)
@@ -156,8 +158,8 @@ def test_blueprint_main_navigation_from_shared_draft(page, base_url, width):
     heading = page.locator("#rural h2")
     expect(heading).to_be_in_viewport(ratio=1)
     assert heading.bounding_box()["y"] >= nav.bounding_box()["y"] + nav.bounding_box()["height"] - 1
-    nav.get_by_role("link", name="Updates", exact=True).click()
-    expect(page.get_by_role("tab", name="Updates", exact=True)).to_have_attribute("aria-selected", "true")
+    nav.get_by_role("link", name="Community benefits", exact=True).click()
+    expect(page.get_by_role("tab", name="Community benefits", exact=True)).to_have_attribute("aria-selected", "true")
 
 
 def test_published_plan_pdfs_match_current_drafts():
@@ -167,7 +169,7 @@ def test_published_plan_pdfs_match_current_drafts():
 
 
 def test_state_packet_return_link_preserves_the_editable_plan(page, base_url):
-    page.goto(base_url + "/?p-draft=state#policies/agreements/drafts")
+    page.goto(base_url + "/?p-draft=state#benefits/drafts")
     expect(page.locator("#draft-plan-kind")).to_have_value("state")
     expect(page.locator("#draft-plan-content h3")).to_contain_text("State plan")
     page.reload()
@@ -186,3 +188,21 @@ def test_updated_records_link_to_the_schedule_and_host_site(page, base_url):
     page.locator("#pd-related-list a").first.click()
     expect(page.locator("#project-detail")).to_be_visible()
     assert "project=xai-memphis-tn" in page.url
+
+
+def test_inline_plans_offer_pdf_and_text_downloads(page, base_url, tmp_path):
+    """Codex on #150: the inline Plans pane gets the same per-draft downloads
+    as the standalone page."""
+    page.goto(base_url + "/#benefits/plans")
+    article = page.locator("#bp-rural")
+    expect(article.get_by_role("button", name="Download rural county draft (.txt)", exact=True)).to_be_visible()
+    with page.expect_download() as event:
+        article.get_by_role("button", name="Download rural county draft (.txt)", exact=True).click()
+    path = tmp_path / event.value.suggested_filename
+    event.value.save_as(path)
+    draft = path.read_text()
+    assert event.value.suggested_filename == "rural-community-benefits-draft.txt"
+    assert all(s in draft for s in ("Sample agreement", "If your community has a moratorium", "Sources"))
+    assert "community-benefits.html#rural" in draft
+    assert "https://pranava0x0.github.io/datacenterpolicytracker/index.html" in draft
+    expect(article.get_by_role("link", name="(PDF)", exact=False)).to_have_attribute("href", "plans/rural-community-benefits.pdf")

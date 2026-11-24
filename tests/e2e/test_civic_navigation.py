@@ -25,7 +25,7 @@ def test_compare_share_reload_and_remove(page, base_url):
     page.locator('#civic-results input').nth(1).check()
     page.locator('#civic-compare-tray a').click()
     expect(page.locator('#civic-compare-grid article')).to_have_count(2)
-    expect(page).to_have_url(re.compile('records=.*#compare'))
+    expect(page).to_have_url(re.compile('records=.*#benefits/compare'))
     page.reload()
     expect(page.locator('#civic-compare-grid article')).to_have_count(2)
     expect(page.locator('#civic-compare-grid')).to_contain_text('Terms')
@@ -52,9 +52,10 @@ def test_phone_primary_navigation_and_updates(page, base_url):
     # The first top line is readable on the first phone screen.
     expect(page.locator('[data-line-for="pledge"]')).not_to_be_empty()
     assert page.locator('[data-line-for="pledge"]').bounding_box()['y'] < 600
-    for name in ['Overview', 'Compare', 'Updates']:
+    for name in ['Overview', 'Community benefits']:
         expect(page.get_by_role('tab', name=name, exact=True)).to_be_in_viewport()
-    page.get_by_role('tab', name='Updates', exact=True).click()
+    # Updates has no tab (2026-11-23); Home's Latest links to it.
+    page.locator('.home-all-updates').click()
     expect(page.locator('#civic-updates')).to_contain_text('Event date')
     page.locator('#civic-update-kind').select_option('record')
     expect(page.locator('#civic-updates-status')).to_contain_text('Record history since')
@@ -64,7 +65,7 @@ def test_phone_primary_navigation_and_updates(page, base_url):
 def test_typing_then_leaving_does_not_rewrite_destination(page, base_url):
     page.goto(base_url)
     page.locator('#civic-query').fill('Virginia')
-    page.locator('#tab-updates').click()
+    page.locator('.home-all-updates').click()
     expect(page.locator('#civic-updates')).to_contain_text('Event date')
     expect(page).to_have_url(re.compile('#updates$'))
     expect(page.locator('#view-overview')).to_be_hidden()

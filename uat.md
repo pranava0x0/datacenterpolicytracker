@@ -597,3 +597,8 @@ six tasks: five top lines (`topline_*`) and `place_search`.
   row, so `policy_cba` mobile 3 → 5; `state_panel` +1 (Coverage collapsed).
 - `site_comment` desktop hit one 10 s timeout in the final run; its budget
   stays at the previous measured 5.
+
+Follow-up: Community benefits became a tab with Agreements, Plans and Compare.
+A new `plans_rural` task covers the inline plans. Budgets were re-measured.
+Only regressions and drops of more than one were written, so the
+layout-sensitive swipes keep one unit of headroom.

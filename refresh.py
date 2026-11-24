@@ -1103,12 +1103,12 @@ SITE_URL = "https://pranava0x0.github.io/datacenterpolicytracker/"
 # this, so a new view needs one entry here (test_agent_files_cover_every_view
 # derives the expected set from app.js VIEWS).
 VIEW_GUIDE = {
-    "overview": ("Explore", "Search records and places, latest actions and dated upcoming decisions."),
-    "compare": ("Compare", "Compare agreement terms or tariff provisions, with sources and explicit gaps."),
+    "overview": ("Overview", "Search records and places, the top lines for each topic, latest actions and dated upcoming decisions."),
+    "benefits": ("Community benefits", "Signed benefit agreements and their terms, draft plans for four kinds of host community, and side-by-side comparison of agreements or tariffs."),
     "updates": ("Updates", "Dated actions and material changes to published records."),
     "elections": ("Elections", "Incoming and prior officeholders' data-center policies, proposed changes, and local ballot measures."),
     "ratepayer": ("The Pledge", "The White House Ratepayer Protection Pledge: its five commitments (quoted), every signatory, and a per-site scorecard."),
-    "policies": ("Policy", "Laws, bills, executive orders, local rules and community benefit agreements."),
+    "policies": ("Policy", "Laws, bills, executive orders, regulations and local rules, by topic."),
     "moratoriums": ("Moratoriums", "Enacted, proposed, lifted and failed restrictions, with a searchable directory, map and trends."),
     "tariffs": ("Power Costs", "Large-load electricity tariffs scored against the DOE/LBL design elements, and the docketed rate cases behind them."),
     "comparison": ("Companies", "What each operator has published about jobs, tax, energy, water, grants, infrastructure, education and engagement, with quotes."),

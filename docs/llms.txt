@@ -6,12 +6,12 @@ Last refreshed 2026-11-23. Record counts: 196 sites (62 contested), 17 companies
 
 ## Sections
 
-- [Explore](https://pranava0x0.github.io/datacenterpolicytracker/#overview): Search records and places, latest actions and dated upcoming decisions.
-- [Compare](https://pranava0x0.github.io/datacenterpolicytracker/#compare): Compare agreement terms or tariff provisions, with sources and explicit gaps.
+- [Overview](https://pranava0x0.github.io/datacenterpolicytracker/#overview): Search records and places, the top lines for each topic, latest actions and dated upcoming decisions.
+- [Community benefits](https://pranava0x0.github.io/datacenterpolicytracker/#benefits): Signed benefit agreements and their terms, draft plans for four kinds of host community, and side-by-side comparison of agreements or tariffs.
 - [Updates](https://pranava0x0.github.io/datacenterpolicytracker/#updates): Dated actions and material changes to published records.
 - [Elections](https://pranava0x0.github.io/datacenterpolicytracker/#elections): Incoming and prior officeholders' data-center policies, proposed changes, and local ballot measures.
 - [The Pledge](https://pranava0x0.github.io/datacenterpolicytracker/#ratepayer): The White House Ratepayer Protection Pledge: its five commitments (quoted), every signatory, and a per-site scorecard.
-- [Policy](https://pranava0x0.github.io/datacenterpolicytracker/#policies): Laws, bills, executive orders, local rules and community benefit agreements.
+- [Policy](https://pranava0x0.github.io/datacenterpolicytracker/#policies): Laws, bills, executive orders, regulations and local rules, by topic.
 - [Moratoriums](https://pranava0x0.github.io/datacenterpolicytracker/#moratoriums): Enacted, proposed, lifted and failed restrictions, with a searchable directory, map and trends.
 - [Power Costs](https://pranava0x0.github.io/datacenterpolicytracker/#tariffs): Large-load electricity tariffs scored against the DOE/LBL design elements, and the docketed rate cases behind them.
 - [Companies](https://pranava0x0.github.io/datacenterpolicytracker/#comparison): What each operator has published about jobs, tax, energy, water, grants, infrastructure, education and engagement, with quotes.

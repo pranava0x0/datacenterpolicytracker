@@ -10,8 +10,10 @@ family; generous space between groups and compact rows within them.
 
 **2026-11-23 — one row, a ledger Home.** The Explore/Compare/Plans/Updates
 row plus a second "Browse records" row and a footer copy of the same tabs
-became one navigation row: Overview, the nine record tabs, then Updates,
-Compare and Plans. Home leads with search and five top lines (The Pledge,
+became one navigation row: Overview and the record tabs. Community benefits
+holds Agreements, Plans (the plans page, inline) and Compare; Updates has no
+tab and is linked from Home's Latest. Headings carry no subtitle unless it
+states a fact, and a figure's unit sits beside it. Home leads with search and five top lines (The Pledge,
 Moratoriums, Community benefits, Policy, Power Costs) — a large tabular
 figure, one status sentence, the newest or next dated item — under a 2px ink
 rule, with two data marks (assessed pledge sites by status; moratoriums

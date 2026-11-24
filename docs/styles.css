@@ -1729,13 +1729,6 @@ main {
 }
 .rp-stat-value { font-size: var(--fs-lg); font-weight: 700; line-height: 1.2; color: var(--rp-color); }
 .rp-stat-label { font-size: var(--fs-sm); color: var(--text); line-height: 1.3; }
-.rp-stat-breakdown {
-  grid-column: 1 / -1;
-  font-size: var(--fs-2xs);
-  color: var(--text-muted);
-  line-height: 1.3;
-  margin-top: 0.1rem;
-}
 
 /* ================= MORATORIUM SUMMARY CHARTS ================= */
 /* Pure CSS/DOM charts (no library). Colors are CSS custom properties so they
@@ -6683,7 +6676,6 @@ button.depth-chip:focus-visible {
 /* Jurisdiction geometry and public DOE references, loaded on the Map pane. */
 #jurisdiction-map-content { --map-pause: #6f7fa1; --map-pause-edge: #4f6084; --map-framework: #689e98; --map-framework-edge: #356e68; --map-both: #79799b; --map-both-edge: #465c77; }
 [data-theme="dark"] #jurisdiction-map-content { --map-pause-edge: #b2c3e6; --map-framework-edge: #9dcac5; --map-both-edge: #c0b8db; }
-.view-scope { margin: 6px 0 0; font-size: var(--fs-sm); }
 .directory-filters { align-items: end; margin-bottom: 12px; gap: 10px 12px; }
 .directory-filters .filter { flex-direction: column; gap: 3px; }
 .filter-name { font-size: var(--fs-sm); }
@@ -6771,8 +6763,7 @@ button.depth-chip:focus-visible {
 #jurisdiction-map-meta { font-size: var(--fs-sm); font-style: normal; margin: 8px 0; }
 @media (max-width: 640px) {
   #moratorium-stats { display: flex; gap: 2px 16px; }
-  #moratorium-stats .rp-stat-breakdown { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .jurisdiction-layers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 8px; }
+  #moratorium-stats   .jurisdiction-layers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 8px; }
   .directory-filters > .filter { flex: 1 1 130px; min-width: 0; }
   .directory-filters > .filter-search { flex-basis: 100%; }
   .directory-filters select, .directory-filters input[type="search"] { width: 100%; max-width: 100%; }
@@ -6973,8 +6964,7 @@ h2, h3, h4, h5, thead th, .theme-quotes-title { color: var(--text); }
 main { padding-top: 24px; }
 .hero, #view-overview .hero { margin: 0 0 16px; max-width: none; }
 .hero-title, #view-overview .hero-title { font-size: var(--fs-3xl); letter-spacing: -.025em; margin-bottom: 6px; }
-.hero-dek, .view-scope { font-size: var(--fs-sm); margin: 0; }
-.home-h { font-size: var(--fs-xl); }
+.hero-dek, .home-h { font-size: var(--fs-xl); }
 .home-latest { gap: 36px; margin-top: 24px; }
 
 .home-card { background: transparent; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 12px 0; }
@@ -7254,3 +7244,32 @@ details[open] > .pb-topic-toggle::before { transform: rotate(90deg); }
   .pb-topic-toggle::before { position: absolute; left: .7rem; top: 1rem; margin: 0; }
   .primary-nav .tab, .primary-nav a.tab-util { min-height: 44px; }
 }
+
+/* Community benefits → Plans: the plans page's content, inline. */
+.ben-plans-page { margin: 0 0 8px; font-size: var(--fs-sm); }
+.ben-plans { max-width: 58rem; }
+.ben-plans .bp-intro { padding: 0 0 12px; }
+.ben-plans .bp-picker { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ben-plans .bp-picker a { display: block; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
+.ben-plans .bp-picker span { display: block; color: var(--text-muted); font-size: var(--fs-sm); }
+.ben-plans article, .ben-plans .bp-block { border-top: 2px solid var(--text); padding: 20px 0; margin-top: 20px; }
+.ben-plans h2 { font-size: var(--fs-xl); }
+.ben-plans dt { font-weight: 600; margin-top: 12px; }
+.ben-plans dd { margin: 4px 0; }
+.ben-plans p, .ben-plans dd, .ben-plans li { max-width: 75ch; }
+.ben-plans .bp-note { border-left: 3px solid var(--accent); padding-left: 12px; }
+.home-all-updates { display: inline-flex; align-items: center; min-height: 44px; margin-left: 12px; font-size: var(--fs-sm); }
+@media (max-width: 640px) { .ben-plans .bp-picker { grid-template-columns: 1fr; } }
+
+/* One line per figure: the unit sits beside the number, not under it. */
+.ledger-head { grid-template-columns: max-content max-content; grid-template-areas: "title title" "num sub"; align-items: baseline; column-gap: 8px; }
+.hero-status:empty, #rp-status:empty { display: none; }
+.primary-nav .nav-tabs { justify-content: flex-start; }
+.ledger-latest { display: block; }
+.ledger-latest .ledger-label { margin-right: 10px; }
+.ben-plans .bp-picker a { text-decoration: none; color: var(--text); font-weight: 600; }
+.ben-plans .bp-picker a:hover { border-color: var(--accent); color: var(--accent); }
+.ben-plans .bp-picker span { font-weight: 400; }
+.ledger-ref .ledger-label { color: var(--text-muted); }
+.ledger-ref:hover .ledger-label, .ledger-ref:hover .ledger-ref-date { text-decoration: none; }
+.subtabs--inner { margin-top: 4px; }
