@@ -3731,13 +3731,12 @@ class TestIssue72Navigation:
     def test_back_after_a_tab_click_returns_to_the_previous_view(self, page: Page, base_url: str):
         page.goto(base_url + "/")
         page.wait_for_selector("#home-latest-list .feed-item", timeout=E2E_WAIT)
-        page.click("#tab-policies")
-        page.click("#subtab-pol-agreements")
-        expect(page.locator("#subpane-pol-agreements")).to_be_visible()
+        page.click("#tab-benefits")
+        expect(page.locator("#subpane-ben-agreements")).to_be_visible()
         page.go_back()
         expect(page.locator("#view-overview")).to_be_visible()
         page.go_forward()
-        expect(page.locator("#subpane-pol-agreements")).to_be_visible()
+        expect(page.locator("#subpane-ben-agreements")).to_be_visible()
 
     def test_home_and_benefits_count_signed_agreements_the_same_way(self, page: Page, base_url: str):
         home = json.loads((ROOT / "docs/data/home.json").read_text())
@@ -3776,7 +3775,7 @@ class TestIssue72Navigation:
         page.click("#pd-draft-btn")
         expect(page.locator("#policy-modal")).to_be_hidden()
         expect(page.locator("#draft-plan-kind")).to_have_value("state")
-        assert page.url.endswith("#policies/agreements/drafts")
+        assert page.url.endswith("#benefits/drafts")
 
     def test_back_with_a_policy_record_open_leaves_policies(self, page: Page, base_url: str):
         # Sonnet review of #77: closing the modal during popstate rewrote the
@@ -3961,8 +3960,7 @@ class TestIssues78And79:
             page.click("#project-list .project-list-more button")
             assert cards.count() == min(total, 2 * page.evaluate("() => SITES_PAGE"))
             # Benefits: the first few full cards, then the rest on request.
-            page.click("#tab-policies")
-            page.click("#subtab-pol-agreements")
+            page.click("#tab-benefits")
             page.wait_for_selector("#cba-strongest .cba-card", timeout=E2E_WAIT)
             n = page.evaluate("() => strongestAgreements().length")
             strongest = page.locator("#cba-strongest .cba-card")
@@ -4105,7 +4103,7 @@ class TestInternational:
             page.goto(base_url + "/")
             page.wait_for_selector("#tab-world", timeout=E2E_WAIT)
             rows = page.evaluate(
-                "() => new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().y))).size"
+                "() => new Set([...document.querySelectorAll('.primary-nav .tab:not([hidden])')].map(t => Math.round(t.getBoundingClientRect().y))).size"
             )
             assert rows <= 3, f"{rows} primary navigation rows at {width}px"
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")

@@ -175,7 +175,9 @@ def test_phone_moratorium_rows_keep_duration_and_hide_reasons(browser, base_url:
         ("#policies/map", "moratoriums", "subpane-mor-map"),
         ("#policies/trends", "moratoriums", "subpane-mor-trends"),
         ("#policies/directory", "policies", "subpane-pol-rules"),
-        ("#policies/drafts", "policies", "subpane-cba-drafts"),
+        ("#policies/drafts", "benefits", "subpane-cba-drafts"),
+        ("#policies/agreements", "benefits", "subpane-ben-agreements"),
+        ("#compare", "benefits", "subpane-ben-compare"),
     ],
 )
 def test_links_from_before_the_policy_merge_still_land(page: Page, base_url: str, old: str, view: str, pane: str):

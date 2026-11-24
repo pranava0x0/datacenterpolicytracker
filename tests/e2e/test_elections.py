@@ -185,7 +185,7 @@ def test_layout_and_keyboard_sources(elections: Page, base_url: str, width: int)
     # A wrapping row must not inherit the generic filter bar's column layout:
     # mobile flex-basis values would become 140px-tall empty rows.
     assert elections.locator(".election-filters").evaluate("e => e.getBoundingClientRect().height") < 260
-    assert elections.evaluate("new Set([...document.querySelectorAll('.primary-nav .tab')].map(t => Math.round(t.getBoundingClientRect().top))).size") <= (3 if width < 700 else 1)
+    assert elections.evaluate("new Set([...document.querySelectorAll('.primary-nav .tab:not([hidden])')].map(t => Math.round(t.getBoundingClientRect().top))).size") <= (3 if width < 700 else 1)
     source = elections.locator("#election-tx-governor-2026 .election-summary a")
     source.focus()
     expect(source).to_be_focused()
