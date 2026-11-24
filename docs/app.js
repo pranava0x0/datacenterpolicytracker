@@ -1181,6 +1181,9 @@ function _routeFromLocation(boot) {
     setActiveSubtab(sub.group, sub.key);
   } else if (fromHash) {
     const group = VIEW_SUBTAB_GROUP[fromHash.name];
+    // A bare #benefits is the default agreements pane, not whichever inner
+    // pane the reader last opened (Codex on #150).
+    if (fromHash.name === "benefits") setActiveSubtab("cba", SUBTAB_GROUPS.cba[0]);
     if (group) setActiveSubtab(group, SUBTAB_GROUPS[group][0]);
     activateView(fromHash.name);
   } else if (explorerParams) {
@@ -5227,14 +5230,24 @@ function writeBenefitsUrl() {
   history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : "") + hash);
 }
 
+function wireBenefitsRetry() {
+  wireBtn("ben-retry", () => loadBenefitsPane(benefitsPane()));
+}
+
 function loadBenefitsPane(key) {
+  wireBenefitsRetry();
   if (key === "agreements") {
     loadPoliciesData()
       .then(() => {
+        document.getElementById("ben-load-error").hidden = true;
         setSubtabCount("policy-agreements-count", agreementRecords().length);
         if (state.activeView === "benefits" && benefitsPane() === "agreements") renderAgreementsView();
       })
-      .catch((err) => console.error("Failed to load agreements:", err));
+      .catch((err) => {
+        // Without this the pane reads as an empty directory (Codex on #150).
+        console.error("Failed to load agreements:", err);
+        document.getElementById("ben-load-error").hidden = false;
+      });
     const cba = _activeSubtab.cba;
     if (cba === "drafts" || cba === "evidence") loadPlanningGuide(cba);
   } else if (key === "plans") {

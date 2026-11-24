@@ -210,3 +210,26 @@ def test_home_next_power_step_skips_an_expired_milestone(page: Page, base_url: s
                    return document.querySelector('[data-latest-for="tariffs"]').textContent; }"""
     )
     assert empty == ""
+
+
+def test_bare_benefits_route_resets_the_inner_pane(page: Page, base_url: str):
+    """Codex on #150: returning to #benefits after Evidence must show the
+    default agreements pane, the same as a reload of that URL."""
+    page.goto(base_url + "/#benefits/evidence")
+    expect(page.locator("#subpane-cba-evidence")).to_be_visible(timeout=E2E_WAIT)
+    page.goto(base_url + "/#overview")
+    page.goto(base_url + "/#benefits")
+    page.go_back()
+    page.go_forward()
+    expect(page.locator("#subpane-cba-strongest")).to_be_visible(timeout=E2E_WAIT)
+    expect(page.locator("#subpane-cba-evidence")).to_be_hidden()
+
+
+def test_benefits_shows_a_load_error_and_retries(page: Page, base_url: str):
+    """Codex on #150: a failed policies.json must not read as an empty list."""
+    page.route("**/data/policies.json", lambda route: route.abort(), times=1)
+    page.goto(base_url + "/#benefits")
+    expect(page.locator("#ben-load-error")).to_be_visible(timeout=E2E_WAIT)
+    page.locator("#ben-retry").click()
+    expect(page.locator("#ben-load-error")).to_be_hidden(timeout=E2E_WAIT)
+    expect(page.locator("#cba-strongest .cba-card").first).to_be_visible(timeout=E2E_WAIT)
