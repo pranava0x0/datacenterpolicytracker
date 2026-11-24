@@ -2348,7 +2348,7 @@
       "notes": "1,400-acre, four-building campus in Doña Ana County, NM. Bloom Energy fuel-cell-powered as of Apr 27 2026 announcement (~92% NOx reduction vs combined-cycle gas, negligible water use). Up to ~2.4 GW. Closed-loop non-evaporative cooling. 4,000 construction + 1,500 ongoing jobs. Workforce-training partnership with Doña Ana Community College + Oracle Academy at NMSU. $600M+ projected Gross Revenue Tax payments to state + county. OpenAI is the workload tenant.",
       "source_url": "https://www.oracle.com/news/announcement/oracle-borderplex-and-bloom-energy-to-power-project-jupiter-with-fuel-cell-technology-2026-04-27/",
       "source_title": "Oracle — Project Jupiter powered by Bloom Energy fuel cells (Apr 27 2026)",
-      "captured_at": "2026-11-15",
+      "captured_at": "2026-11-24",
       "project_page_url": "https://www.oracle.com/data-centers/",
       "acreage": 1400,
       "power_mw": 2400,
@@ -2379,6 +2379,16 @@
           "upcoming": false,
           "source_url": "https://www.abqjournal.com/business/new-mexico-supreme-court-lifts-stays-on-project-jupiter-dealing-setback-to-opponents/3124024",
           "source_title": "Albuquerque Journal — New Mexico Supreme Court lifts stays on Project Jupiter, dealing setback to opponents"
+        },
+        {
+          "date": "2026-11-06",
+          "kind": "hearing",
+          "title": "Air permit hearing set for Dec 7 vacated; Nov 23 decision deadline waived",
+          "summary": "NMED and the microgrid developer, Yucca Growth Infrastructure, asked to postpone the Dec 7 public hearing and waived the Nov 23 decision deadline. The hearing officer vacated the hearing without setting a new date; it will be rescheduled after NMED's Air Quality Bureau makes a recommendation.",
+          "authority": "New Mexico Environment Department hearing officer",
+          "upcoming": false,
+          "source_url": "https://www.abqjournal.com/news/project-jupiter-air-permit-faces-new-delay/3157572",
+          "source_title": "Albuquerque Journal — Project Jupiter air permit faces new delay (Nov 6 2026)"
         }
       ]
     },
@@ -4805,10 +4815,10 @@
       "announced_year": 2007,
       "claimed_investment_usd": 1500000000,
       "claimed_jobs": 2892,
-      "notes": "Microsoft's Texas datacenter hub in Bexar and Medina counties; original Westover Hills site dates to 2007, with a $1.5B expansion and 2,892 peak construction jobs. Anchored by the Datacenter Community Pledge and a local Community-First Infrastructure Initiative; Datacenter Academy at Northwest Vista College trains local workers. Water-replenishment and pay-our-way electricity commitments.",
+      "notes": "Microsoft's Texas datacenter hub in Bexar and Medina counties; original Westover Hills site dates to 2007, with a $1.5B expansion and 2,892 peak construction jobs. Anchored by the Datacenter Community Pledge and a local Community-First Infrastructure Initiative; Datacenter Academy at Northwest Vista College trains local workers. Water-replenishment and pay-our-way electricity commitments. Microsoft's June 2026 economic-impact sheet reports $48.4 million in incremental tax revenue in Bexar and Medina counties in 2025 and calls Microsoft the #1 taxpayer there (https://local.microsoft.com/wp-content/uploads/2026/06/Economic-Impact_SanAntonioTX_FY26Q4.pdf).",
       "source_url": "https://local.microsoft.com/communities/americas/greater-san-antonio/",
       "source_title": "Microsoft Local — Greater San Antonio datacenter community page",
-      "captured_at": "2026-06-18",
+      "captured_at": "2026-11-24",
       "project_page_url": "https://local.microsoft.com/communities/americas/greater-san-antonio/",
       "offtaker": "Microsoft",
       "at_a_glance": {
@@ -4881,10 +4891,10 @@
       "announced_year": 2019,
       "claimed_investment_usd": null,
       "claimed_jobs": null,
-      "notes": "Google's DFW-area campus at Railport Parkway, online since 2019; ~540 acres (375 + 165 added). Part of Google's Nov 2025 $40B Texas investment through 2027 (also funding new Armstrong and Haskell County campuses). Grow with Google has trained 1,191,000+ Texans; $112M+ in Texas philanthropic giving since 2005. 2024 TX economic activity ~$50.3B.",
+      "notes": "Google's DFW-area campus at Railport Parkway, online since 2019; ~540 acres (375 + 165 added). Part of Google's Nov 2025 $40B Texas investment through 2027 (also funding new Armstrong and Haskell County campuses). Grow with Google has trained 1,191,000+ Texans; $112M+ in Texas philanthropic giving since 2005. Statewide, Google says it helped provide $55.7B of economic activity for Texas businesses in 2025 (location page, checked 2026-11-24).",
       "source_url": "https://datacenters.google/locations/ellis-county-texas/",
       "source_title": "Google Data Centers — Ellis County, Texas location page",
-      "captured_at": "2026-06-19",
+      "captured_at": "2026-11-24",
       "project_page_url": "https://datacenters.google/locations/ellis-county-texas/",
       "offtaker": "Google",
       "acreage": 540,

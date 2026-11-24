@@ -342,7 +342,7 @@
       "office": "Governor",
       "level": "governor",
       "election_date": "2026-11-03",
-      "captured_at": "2026-11-04",
+      "captured_at": "2026-11-24",
       "candidates": [
         {
           "name": "David Bronson",
@@ -370,11 +370,20 @@
         }
       ],
       "result": {
-        "status": "unverified"
+        "status": "reported",
+        "winner": "Jonathan Kreiss-Tomkins",
+        "evidence": {
+          "statement": "Democrat Jonathan Kreiss-Tomkins, a former state representative from the small island community of Sitka, won the race for Alaska governor, according to a race call by the Associated Press.",
+          "source_url": "https://www.kyuk.org/2026-11-13/democrat-jonathan-kreiss-tomkins-wins-race-for-alaska-governor-replaces-a-republican",
+          "source_title": "KYUK (Alaska Public Media) — Democrat Jonathan Kreiss-Tomkins wins race for Alaska governor, replaces a Republican",
+          "captured_at": "2026-11-24",
+          "published_at": "2026-11-13"
+        },
+        "source_type": "news"
       },
       "related_moratorium_ids": [],
       "related_policy_ids": [],
-      "notes": "Preliminary results and news reports described a lead, but no race call was verified. Ranked-choice and remaining-ballot counts must not be treated as a completed result."
+      "notes": "AP race call reported Nov 13 2026; he passed 50% of first choices, so no ranked-choice tabulation was needed (Alaska Public Media, Nov 12). Replaces term-limited Republican Gov. Mike Dunleavy. Certification not verified in this pass."
     },
     {
       "id": "az-governor-2026",

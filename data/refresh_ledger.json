@@ -29,6 +29,10 @@
       "last_reviewed": "2026-11-14",
       "summary": "Checked datacenters.atmeta.com: 2026 posts (New Albany Oct, Eagle Mountain Sept, careers Oct, 2026 grant recipients) already cited; no new sites or changed commitments found."
     },
+    "company:microsoft": {
+      "last_reviewed": "2026-11-24",
+      "summary": "Partial pass: re-read Community-First AI Infrastructure page (Jan 13 2026; no later update; training claim wording confirmed); searched Microsoft newsroom/Local for new US community commitments since Oct: none new (NDA end already tracked). Per-site reviews of 24 sites not done this run."
+    },
     "company:openai": {
       "last_reviewed": "2026-11-15",
       "summary": "Newsroom RSS checked: no new sites since Effingham. New Nov 5 National Community Compact not yet recorded; openai.com + Wayback blocked, coverage paraphrases only. BACKLOG lead (high). last_reviewed bumped."
@@ -116,6 +120,10 @@
     "site:google-council-bluffs-ia": {
       "last_reviewed": "2026-09-29",
       "summary": "Checked status/figures, links, ratepayer eligibility (pre-pledge, none due), and news since 2026-05-14. Fixed a dead source_url (datacenters.google/locations/council-bluffs/ now 404s) to the live iowa page. Re-captured 3 claims with updated figures (investment $6.8B->$20B statewide, 2025 economic activity $2.1B->$2.7B, education orgs/Iowans updated); water grade-stabilization claim unchanged. Added a mixed CommunityResponse: the mayor's June 2026 moratorium request was unanimously declined by city council. Filed a lead for an untracked Cedar Rapids Google site."
+    },
+    "site:google-ellis-county-tx": {
+      "last_reviewed": "2026-11-24",
+      "summary": "Re-fetched Google Ellis County page: 1.19M trained and $112M giving confirmed; statewide economic activity updated to 2025 $55.7B. 540 acres and 2019 online not stated on the page (milestone: first Texas data center investment 2019). No local permit or news checked beyond one search; Red Oak expansion and Midlothian Building 3 (trackers only) not added."
     },
     "site:google-franklin-furnace-oh": {
       "last_reviewed": "2026-11-07",
@@ -233,6 +241,10 @@
       "last_reviewed": "2026-11-14",
       "summary": "Checked Microsoft project page (April 2026 update: planning phase, early site prep) and WRAL June 30 community meeting; added mixed residents response; status stays announced."
     },
+    "site:microsoft-san-antonio-tx": {
+      "last_reviewed": "2026-11-24",
+      "summary": "Re-fetched Greater San Antonio page (Bexar/Medina, water and pay-our-way lines confirmed) and the June 2026 economic-impact PDF; added 2025 tax-revenue line to notes. $1.5B/2,892 jobs/2007 not on the cited page: lead filed. Not pledge-eligible (pre-2026 site)."
+    },
     "site:microsoft-union-city-ga": {
       "last_reviewed": "2026-11-15",
       "summary": "Azure blog source doesn't name Union City; repointed source to AJC (EdgeConnex developer, Microsoft end user, 2032 completion condition); added DAFC 5-3 tax-break vote response. Pre-pledge site, no ratepayer assessment. No 2026 construction news found."
@@ -274,10 +286,14 @@
       "summary": "Added Sep 1 (NM Supreme Court keeps air-permit hearing paused, KRWG) and Sep 17 (stays lifted, ABQ Journal) updates. Source NM 403. NMED Law Center county suit and AG support not added (unread). Air permit decision expected by Nov 23.",
       "follow_ups": [
         {
-          "due": "2026-11-24",
-          "what": "NMED air quality permit decision for Project Jupiter (expected by Nov 23 per KRWG): issued, denied or delayed?"
+          "due": "2026-12-15",
+          "what": "Project Jupiter air permit: has the NMED hearing officer rescheduled the public hearing after the Air Quality Bureau recommendation?"
         }
-      ]
+      ],
+      "last_check": {
+        "date": "2026-11-24",
+        "summary": "No NMED air-permit decision: NMED and YGI waived the Nov 23 deadline and the Dec 7 hearing was vacated with no new date (ABQ Journal, Nov 6). Added a site update."
+      }
     },
     "site:prologis-coweta-ga": {
       "last_check": {
@@ -331,13 +347,13 @@
     },
     "state:AK": {
       "last_check": {
-        "date": "2026-11-07",
-        "summary": "Governor race still uncalled in checked sources (Alaska Public teaser: data incomplete, ranked-choice tabulation Nov 23+). No data change."
+        "date": "2026-11-24",
+        "summary": "AP called governor race for Jonathan Kreiss-Tomkins (KYUK/Alaska Public Media, Nov 13); >50% first choices, no RCV tally. ak-governor-2026 result set to reported. Certification (scheduled Nov 25) not verified."
       },
       "follow_ups": [
         {
-          "due": "2026-11-24",
-          "what": "Check Alaska governor race call after ranked-choice tabulation."
+          "due": "2026-11-30",
+          "what": "Check Alaska Division of Elections certification of the 2026 governor result (scheduled Nov 25)."
         }
       ]
     },
