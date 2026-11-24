@@ -5257,6 +5257,52 @@ function loadBenefitsPane(key) {
   }
 }
 
+// Same controls the standalone page builds after </main> (Codex on #150):
+// each draft gets its PDF, an editable .txt and a way back to the picker.
+const PLANS_PAGE_URL = "https://pranava0x0.github.io/datacenterpolicytracker/community-benefits.html";
+function planDraftText(section) {
+  return Array.from(section.querySelectorAll("h2, h3, p:not(.bp-actions), dt, dd, li"), (node) => {
+    const copy = node.cloneNode(true);
+    for (const a of copy.querySelectorAll("a")) {
+      const href = a.dataset.origHref || a.getAttribute("href");
+      a.append(" (" + new URL(href, PLANS_PAGE_URL).href + ")");
+    }
+    return copy.textContent.trim();
+  }).join("\n\n");
+}
+
+function addPlanDownloads(root) {
+  for (const article of root.querySelectorAll("article")) {
+    const heading = article.querySelector("h2");
+    if (!heading) continue;
+    const key = article.id.replace(/^bp-/, "");
+    const actions = el("p", "bp-actions");
+    const button = el("button", "btn-link", `Download ${heading.textContent.toLowerCase()} draft (.txt)`);
+    button.type = "button";
+    button.addEventListener("click", () => {
+      const parts = [article, ...["common", "pause", "sources"].map((id) => document.getElementById("bp-" + id))].filter(Boolean);
+      const text = "Data center community benefits plans\n" + PLANS_PAGE_URL + "#" + key + "\n\n" + parts.map(planDraftText).join("\n\n");
+      const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = key + "-community-benefits-draft.txt";
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    const pdf = article.querySelector(".bp-pdf a");
+    if (pdf) actions.append(pdf, " · ");
+    actions.append(button, " · ");
+    article.querySelector(".bp-pdf")?.remove();
+    const back = el("a", "", "Choose another draft");
+    back.href = "community-benefits.html#choose";
+    back.dataset.planAnchor = "bp-choose";
+    actions.append(back);
+    heading.after(actions);
+  }
+}
+
 // The plans page stays a standalone, shareable document (PDF links, print,
 // #rural anchors); this pane shows the same content inside the tracker.
 let _plansPromise = null;
@@ -5280,6 +5326,7 @@ function loadPlans() {
         }
         for (const a of main.querySelectorAll("a[href]")) {
           const href = a.getAttribute("href");
+          a.dataset.origHref = href; // the text download cites the page's own URLs
           if (href.startsWith("#")) {
             // In-page anchors scroll within the pane; the tracker owns the hash.
             a.setAttribute("href", "community-benefits.html" + href);
@@ -5289,6 +5336,7 @@ function loadPlans() {
           }
         }
         root.replaceChildren(...main.childNodes);
+        addPlanDownloads(root);
         root.dataset.loaded = "1";
         root.addEventListener("click", (e) => {
           const a = e.target.closest?.("a[data-plan-anchor]");

@@ -188,3 +188,21 @@ def test_updated_records_link_to_the_schedule_and_host_site(page, base_url):
     page.locator("#pd-related-list a").first.click()
     expect(page.locator("#project-detail")).to_be_visible()
     assert "project=xai-memphis-tn" in page.url
+
+
+def test_inline_plans_offer_pdf_and_text_downloads(page, base_url, tmp_path):
+    """Codex on #150: the inline Plans pane gets the same per-draft downloads
+    as the standalone page."""
+    page.goto(base_url + "/#benefits/plans")
+    article = page.locator("#bp-rural")
+    expect(article.get_by_role("button", name="Download rural county draft (.txt)", exact=True)).to_be_visible()
+    with page.expect_download() as event:
+        article.get_by_role("button", name="Download rural county draft (.txt)", exact=True).click()
+    path = tmp_path / event.value.suggested_filename
+    event.value.save_as(path)
+    draft = path.read_text()
+    assert event.value.suggested_filename == "rural-community-benefits-draft.txt"
+    assert all(s in draft for s in ("Sample agreement", "If your community has a moratorium", "Sources"))
+    assert "community-benefits.html#rural" in draft
+    assert "https://pranava0x0.github.io/datacenterpolicytracker/index.html" in draft
+    expect(article.get_by_role("link", name="(PDF)", exact=False)).to_have_attribute("href", "plans/rural-community-benefits.pdf")
