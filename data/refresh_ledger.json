@@ -133,6 +133,10 @@
       "last_reviewed": "2026-11-19",
       "summary": "Checked Google blog + June 2026 announcement PDF, POWER Magazine. Softened water wording to Google's 'domestic uses like restrooms'; Caprock hub and status confirmed. 840 MW demand figure seen only in search synthesis, not recorded."
     },
+    "site:google-henderson-nv": {
+      "last_reviewed": "2026-11-25",
+      "summary": "Re-fetched Google's Henderson page: $6B is statewide (Henderson + Storey County), so claimed_investment_usd cleared to null; both claims still verbatim on page; no 2026 permits or news found"
+    },
     "site:google-lenoir-nc": {
       "last_reviewed": "2026-11-23",
       "summary": "Re-fetched Google NC page ($4B+ since 2007 confirmed; no tax/400-jobs text). Added Mar 2026 $1B two-year expansion + $2M Energy Impact Fund + grants to notes (NSJ); added Lenoir mayor positive response. Existing note's '2024 $1B' framing unverified, left as lead."
@@ -224,6 +228,10 @@
     "site:microsoft-douglasville-ga": {
       "last_reviewed": "2026-11-20",
       "summary": "Re-fetched Azure blog (Feb 11, 2021, quotes Douglasville): announced_year 2023→2021. Notes' $1.8B/160 ac/216 MW not on that page — BACKLOG lead. Pre-pledge, no ratepayer assessment. No news search this run."
+    },
+    "site:microsoft-el-mirage-az": {
+      "last_reviewed": "2026-11-25",
+      "summary": "Re-fetched Greater Phoenix page (still lists El Mirage and Goodyear as operating) and Oct 2025 AZ fact sheet; appended ~430 employed / ~2,050 construction jobs; 763 jobs figure is AZ-wide 2024 projection, filed as lead"
     },
     "site:microsoft-heath-oh": {
       "last_reviewed": "2026-11-13",
@@ -483,7 +491,9 @@
       "last_check": {
         "date": "2026-10-21",
         "summary": "Oct 21: Fort Wayne council rejected both Booker ordinances (3-5, 4-4); policy marked failed."
-      }
+      },
+      "last_reviewed": "2026-11-25",
+      "summary": "Checked pending/proposed IN records (one rate case, milestone June 2027), searched new local moratoriums and IURC orders since Nov 7; added Starke County (Dec 15 2025, 12 months); Fulton County duration set to one year; Madison County still lacks a vote date; White and Putnam counties filed as leads. Projects not re-checked this run."
     },
     "state:KS": {
       "last_check": {
@@ -529,13 +539,13 @@
     },
     "state:MN": {
       "last_check": {
-        "date": "2026-11-21",
-        "summary": "Minneapolis moratorium expires Nov 21; replacement ordinance passed 7-6 Nov 12, vetoed by Frey Nov 19; override outcome not yet reported"
+        "date": "2026-11-25",
+        "summary": "Minneapolis: override of Frey's veto failed 7-5 on Nov 20 (KSTP, CBS); moratorium lapsed Nov 21 with no replacement rules; earliest new regulations Dec 17"
       },
       "follow_ups": [
         {
-          "due": "2026-11-25",
-          "what": "Minneapolis: did the council override Frey's Nov 19 veto of the data center ordinance, or did the staff framework pass? Moratorium lapsed Nov 21."
+          "due": "2026-12-18",
+          "what": "Minneapolis: did the council adopt fast-tracked data center regulations at its Dec 17 meeting?"
         }
       ]
     },

@@ -1680,7 +1680,7 @@
       "enacted_date": "2026-05-21",
       "effective_date": "2026-05-21",
       "duration_months": 6,
-      "duration_description": "6 months; expires Nov. 21, 2026. On November 12, 2026 the City Council passed replacement data center regulations 7-6; Mayor Jacob Frey vetoed them on November 19, 2026. An override needs nine votes; the outcome was not yet reported.",
+      "duration_description": "6 months; expired Nov. 21, 2026. On November 12, 2026 the City Council passed replacement data center regulations 7-6; Mayor Jacob Frey vetoed them on November 19, 2026. On November 20, 2026 the override failed 7-5 (nine votes needed), so the moratorium lapsed with no replacement regulations; city attorneys said the earliest the council can add new regulations is Dec. 17.",
       "power_threshold_mw": null,
       "key_reasons": [
         "transparency",
@@ -1689,7 +1689,7 @@
       "summary": "Minneapolis enacted a 6-month moratorium (May 2026) on new data center permits while assessing grid impact and environmental justice concerns. Triggered by proposed data centers in neighborhoods with existing industrial burden. Supported by environmental justice groups, residents, and climate advocates. City planning to establish equity guidelines ensuring DCs don't concentrate in low-income communities. Explores renewable energy mandates and community benefit agreements for future projects.",
       "source_url": "https://www.datacenterbans.com/",
       "source_title": "DatacenterBans.com",
-      "captured_at": "2026-11-21",
+      "captured_at": "2026-11-25",
       "resources": [
         {
           "url": "https://datacenterbans.com/",
@@ -1710,6 +1710,14 @@
         {
           "url": "https://mprnews.org/story/2026/11/19/minneapolis-mayor-jacob-frey-vetoes-data-center-ordinance-denial-of-police-chief-nominee",
           "title": "MPR News — Frey vetoes council's data center ordinance"
+        },
+        {
+          "url": "https://kstp.com/kstp-news/top-news/minneapolis-council-falls-short-in-attempts-to-override-frey-vetoes-on-data-centers-police-chief/",
+          "title": "KSTP — Minneapolis council falls short in attempts to override Frey vetoes on data centers, police chief"
+        },
+        {
+          "url": "https://www.cbsnews.com/minnesota/news/minneapolis-city-council-fails-to-override-mayor-frey-vetoes-police-chief-data-centers/",
+          "title": "CBS Minnesota — council fails to override Frey's vetoes, moves to fast-track new data center rules"
         }
       ],
       "state_code": "MN"
@@ -7708,14 +7716,53 @@
       "status": "enacted",
       "enacted_date": "2026-03-02",
       "effective_date": null,
-      "duration_months": null,
+      "duration_months": 12,
       "bill_number": "Ordinance 03022026",
       "source_url": "https://www.co.fulton.in.us/AgendaCenter/ViewFile/Minutes/_03022026-368",
       "source_title": "Fulton County — Ordinance 03022026, 2026-03-02",
-      "captured_at": "2026-11-07",
+      "captured_at": "2026-11-25",
       "summary": "Fulton County adopted a data-center moratorium on March 2, 2026. The commissioners approved Ordinance 03022026 on final reading by a 2–1 vote.",
-      "duration_description": "Duration not confirmed",
-      "key_reasons": []
+      "duration_description": "One year; during that year a committee will review data center impacts and recommend future regulations.",
+      "key_reasons": [],
+      "resources": [
+        {
+          "url": "https://www.953mnc.com/2026/03/03/fulton-county-commissioners-approve-one-year-moratorium-on-new-data-center-development/",
+          "title": "95.3 MNC — Fulton County commissioners approve one-year moratorium on new data center development"
+        }
+      ]
+    },
+    {
+      "id": "starke-county-in-2025-12",
+      "jurisdiction": "Starke County",
+      "jurisdiction_type": "county",
+      "status": "enacted",
+      "enacted_date": "2025-12-15",
+      "effective_date": null,
+      "duration_months": 12,
+      "duration_description": "One year; covers improvement location permits and related applications for hyperscale data center projects in all zoning districts within unincorporated Starke County.",
+      "power_threshold_mw": null,
+      "key_reasons": [],
+      "summary": "The Starke County Board of Commissioners unanimously adopted an ordinance on December 15, 2025 imposing a one-year moratorium on improvement location permits for hyperscale data center projects in all zoning districts within unincorporated Starke County.",
+      "source_url": "https://wkvi.com/2026/01/starke-county-commissioners-adopt-data-center-moratorium",
+      "source_title": "WKVI — Starke County Commissioners adopt data center moratorium",
+      "enacted_by": "Starke County Commissioners",
+      "city_council_vote": "Unanimous",
+      "captured_at": "2026-11-25",
+      "resources": [
+        {
+          "url": "https://wkvi.com/2026/01/starke-county-commissioners-adopt-data-center-moratorium",
+          "title": "WKVI — Starke County Commissioners adopt data center moratorium"
+        },
+        {
+          "url": "https://abc57.com/news/starke-county-commissioners-approve-12-month-moratorium-on-hyperscale-data-centers",
+          "title": "ABC57 — Starke County Commissioners approve 12-month moratorium on hyperscale data centers"
+        },
+        {
+          "url": "https://www.insideindianabusiness.com/articles/starke-county-commissioners-approve-data-center-moratorium",
+          "title": "Inside Indiana Business — Starke County Commissioners approve data center moratorium"
+        }
+      ],
+      "state_code": "IN"
     },
     {
       "id": "adair-county-ia-2026-03",
