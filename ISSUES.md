@@ -122,7 +122,7 @@ Projects with important gaps:
 - **google-franklin-furnace-oh** (announced): claimed_jobs, power_mw
 - **google-goochland-va** (announced): claimed_investment_usd, claimed_jobs, power_mw, at_a_glance
 - **google-hermantown-mn** (announced): claimed_jobs
-- **google-jackson-county-al** (construction): claimed_jobs
+- **google-jackson-county-al** (construction): claimed_jobs, power_mw
 - **google-lagrange-ga** (construction): claimed_jobs
 - **google-lea-county-nm** (announced): claimed_investment_usd, claimed_jobs, power_mw
 - **google-lima-oh** (announced): claimed_jobs, power_mw

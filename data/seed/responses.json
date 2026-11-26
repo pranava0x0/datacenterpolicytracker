@@ -2684,6 +2684,17 @@
       "source_url": "https://www.wpsdlocal6.com/news/bray-clymer-debate-community-benefits-for-data-center/article_7730c404-972a-44f5-aae1-f7ae396a8cdb.html",
       "source_title": "WPSD Local 6 — Bray, Clymer debate community benefits for data center (Oct. 16, 2026)",
       "single_source": true
+    },
+    {
+      "id": "resp-google-jackson-county-al-ledbetter-2026-06",
+      "project_id": "google-jackson-county-al",
+      "date": "2026-06-16",
+      "stance": "positive",
+      "constituency": "local_government",
+      "summary": "Alabama House Speaker Nathaniel Ledbetter called Google's $1.5 billion Jackson County expansion one of the largest announcements made in the county, and Senate Majority Leader Steve Livingston praised partnerships between industry and local communities.",
+      "source_url": "https://www.alreporter.com/2026/06/16/google-plans-1-5-billion-jackson-county-data-center-expansion/",
+      "source_title": "Alabama Reporter — Google plans $1.5 billion Jackson County data center expansion (June 16, 2026)",
+      "single_source": true
     }
   ]
 }
