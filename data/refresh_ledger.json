@@ -139,6 +139,10 @@
       "last_reviewed": "2026-11-25",
       "summary": "Re-fetched Google's Henderson page: $6B is statewide (Henderson + Storey County), so claimed_investment_usd cleared to null; both claims still verbatim on page; no 2026 permits or news found"
     },
+    "site:google-jackson-county-al": {
+      "last_reviewed": "2026-11-26",
+      "summary": "Re-read Google blog (investment, 100% cost funding confirmed); corrected power_mw 300 -> null: AL Reporter says 300+ MW is new generation contracted across the Tennessee Valley, not campus draw; added Ledbetter/Livingston response; no local opposition or permits found"
+    },
     "site:google-lenoir-nc": {
       "last_reviewed": "2026-11-23",
       "summary": "Re-fetched Google NC page ($4B+ since 2007 confirmed; no tax/400-jobs text). Added Mar 2026 $1B two-year expansion + $2M Energy Impact Fund + grants to notes (NSJ); added Lenoir mayor positive response. Existing note's '2024 $1B' framing unverified, left as lead."
