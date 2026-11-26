@@ -286,7 +286,7 @@
       "filed_date": null,
       "decided_date": null,
       "effective_date": null,
-      "next_milestone": "WFAE/WUNC reported on November 17, 2026 that the Commission issued its rate order, including new data center rates; the order document itself has not yet been fetched for this record, so the status stays pending until it is.",
+      "next_milestone": "Duke Energy's November 17, 2026 release says the NCUC approved the Duke Energy Carolinas and Duke Energy Progress orders on Monday (November 16), with new rates taking effect January 1, 2027, and a new rate schedule for data centers above 50 MW. The Carolinas order is on NCUC eDockets (starw1.ncuc.gov ViewFile Id c9a8c860-6e37-4eac-8b88-5ad8440335cb) but returned 403 to this run, so the status stays pending until the order document is read.",
       "next_milestone_date": null,
       "related_tariff_id": "duke-nc-large-load-rate-case-2025",
       "related_project_ids": null,
@@ -321,9 +321,17 @@
         {
           "url": "https://www.wunc.org/2026-11-17/duke-energy-rates-are-going-up-next-year-as-nc-utilities-commission-approves-increase",
           "title": "WFAE/WUNC — Duke Energy rates are going up next year, as NC Utilities Commission approves increase (Nov. 17, 2026)"
+        },
+        {
+          "url": "https://news.duke-energy.com/releases/north-carolina-regulators-approve-more-cost-effective-path-to-strengthen-reliability-and-power-the-states-future",
+          "title": "Duke Energy — North Carolina regulators approve more cost-effective path to strengthen reliability and power the state's future (Nov. 17, 2026)"
+        },
+        {
+          "url": "https://www.carolinajournal.com/nc-regulators-ok-duke-energy-rate-hikes-starting-jan-1/",
+          "title": "Carolina Journal — NC regulators OK Duke Energy rate hikes starting Jan. 1 (Nov. 18, 2026)"
         }
       ],
-      "captured_at": "2026-11-19"
+      "captured_at": "2026-11-26"
     },
     {
       "id": "nv-pucn-google-esa-2026",
