@@ -13,6 +13,10 @@
       "last_reviewed": "2026-10-26",
       "summary": "Infrastructure policy and newsroom checked; four company-wide verbatim commitments added. No new site or delivery evidence."
     },
+    "company:brookfield": {
+      "last_reviewed": "2026-11-26",
+      "summary": "Checked Paducah site news since Jul 30 (WPSD): added Oct 16 Bray/Clymer community-benefit-agreement debate response (mixed); NextEra source live; no newsroom page on file; no new sites or company claims found"
+    },
     "company:coreweave": {
       "last_reviewed": "2026-09-27",
       "summary": "Bumped last_reviewed; checked newsroom (no new US community-impact commitments beyond tracked sites). Cedar Creek TX lead still blocked (DCD 403). Elk Grove Village IL bond/lease/revenue figures now corroborated by a Bloomberg-sourced wire story (GuruFocus via TradingView) but still lack a first-party source, so not promoted to a Project; BACKLOG.md updated."
@@ -64,10 +68,8 @@
       }
     },
     "site:amazon-boardman-or": {
-      "blocked": {
-        "date": "2026-11-12",
-        "reason": "Morrow County rezoning narrative (Threemile Canyon Farms, 1,298 ac EDCC) found but never names Amazon; GeekWire/DCD 403; dailytidings is a rewrite site. Unblock with a readable source tying Amazon to the Threemile parcel, or the county adoption decision."
-      }
+      "last_reviewed": "2026-11-26",
+      "summary": "GeekWire source re-read (now loads); added Johnson Economics 16-20 bldg / $8-12B / 1 GW estimates and Amazon 'plans not final' quote to notes; no 2026 county decision or news found (OPB Sept 10 not site-specific); county file ACM-155-25 lead added"
     },
     "site:amazon-bossier-parish-la": {
       "last_reviewed": "2026-10-30",
@@ -483,8 +485,8 @@
         }
       ],
       "last_check": {
-        "date": "2026-11-17",
-        "summary": "Bloomington: Nov 16 Planning Commission unanimously recommended a 12-month extension (WGLT Nov 17); WGLT now says pause expires end of November; council has not acted"
+        "date": "2026-11-26",
+        "summary": "Bloomington: council unanimously extended moratorium Nov 23 (Kent Lee amended 12 to 24 months; WGLT Nov 24); duration_months 30, end date not stated"
       }
     },
     "state:IN": {
@@ -558,8 +560,8 @@
     "state:NC": {
       "follow_ups": [
         {
-          "due": "2026-11-26",
-          "what": "nc-ncuc-duke-settlement-2026: fetch the NCUC order document and record approval"
+          "due": "2026-12-03",
+          "what": "nc-ncuc-duke-settlement-2026: read NCUC order (starw1 ViewFile c9a8c860-6e37-4eac-8b88-5ad8440335cb) and flip to approved with decided_date"
         },
         {
           "due": "2026-12-14",
@@ -571,8 +573,8 @@
         }
       ],
       "last_check": {
-        "date": "2026-11-18",
-        "summary": "Vance County moratorium extended 30 days at Nov 13 special called meeting (unanimous, Hester absent); now expires Dec 13, 2026 (WIZS Nov 16)."
+        "date": "2026-11-26",
+        "summary": "Duke DEC/DEP orders approved Nov 16 per Duke Nov 17 release and Carolina Journal (links order ViewFile c9a8c860-...); order PDF 403 to WebFetch/curl, so rate case held pending; next_milestone updated"
       },
       "last_reviewed": "2026-11-19",
       "summary": "Checked Duke DEC rate case (NCUC order reported Nov 17 by WFAE/WUNC; order doc not fetched, status held pending), Pitt County hearing, Cumberland moratorium term. Updated nc-ncuc-duke-settlement-2026; 3 leads added."
