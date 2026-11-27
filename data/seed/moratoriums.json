@@ -6201,15 +6201,21 @@
       "state_code": "OR",
       "status": "enacted",
       "enacted_date": "2026-07-27",
-      "duration_months": 4,
-      "duration_description": "120 days from the July 27, 2026 vote",
+      "duration_months": 10,
+      "duration_description": "120 days from the July 27, 2026 vote; on Tuesday, November 17, 2026 the City Council voted to adopt a six-month extension (KPTV, November 18). The new end date was not stated.",
       "key_reasons": [],
-      "summary": "Hillsboro City Council voted on Monday, July 27, 2026 to approve a 120-day temporary moratorium on new data centers while the city reviews its land-use rules. KVAL's report, published that same Monday, says the council voted that day.",
+      "summary": "Hillsboro City Council voted on Monday, July 27, 2026 to approve a 120-day temporary moratorium on new data centers while the city reviews its land-use rules. KVAL's report, published that same Monday, says the council voted that day. On Tuesday, November 17, 2026, after nearly a dozen people spoke, the council voted to adopt a six-month extension of the land use moratorium on data centers (KPTV, November 18); the vote count and new end date were not reported.",
       "source_url": "https://kval.com/news/local/hillsboro-pauses-new-data-centers-issuing-120-day-temporary-moratorium",
       "source_title": "KVAL / KATU — Hillsboro pauses new data centers, issuing 120-day temporary moratorium",
       "enacted_by": "City Council",
       "session": "2026",
-      "captured_at": "2026-10-19"
+      "captured_at": "2026-11-27",
+      "resources": [
+        {
+          "url": "https://www.kptv.com/2026/11/18/hillsboro-city-council-extends-data-center-moratorium-by-6-months/",
+          "title": "KPTV — Hillsboro City Council extends data center moratorium by 6 months (November 18, 2026)"
+        }
+      ]
     },
     {
       "id": "norman-ok-2026-06",
