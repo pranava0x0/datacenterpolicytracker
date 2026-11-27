@@ -219,6 +219,10 @@
         "summary": "Checked news and source link; added Apr 2026 contractor layoff note; datacenters.atmeta.com/location/prineville/ returns 404 (needs new URL, not swapped); permits not checked (partial: permits not checked, so not counted as a full review)"
       }
     },
+    "site:meta-richland-la": {
+      "last_reviewed": "2026-11-27",
+      "summary": "Re-fetched Meta project page (5 GW, $50B+, 7,500+ peak construction, 1,000 ops jobs, $215M to Entergy programs) — matches record; searched local/LPSC news since Jul 14: nothing new citable; LPSC decision on 7 added gas plants still set for Dec 16 (tracked on la-lpsc-entergy-meta-2025). No changes."
+    },
     "site:meta-tulsa-ok": {
       "last_reviewed": "2026-11-12",
       "summary": "Re-fetched Meta Hello Tulsa page (live, figures match); no news after April 2026 groundbreaking found; added OK Commerce PSO / Light a Life note; ratepayer affirmed unchanged."
@@ -478,19 +482,9 @@
       "summary": "No pending/proposed IA records; searched new county moratoriums; added Plymouth County (Jun 16 2026, KLEM); Iowa/Sioux/Shelby/Ida counties left as leads; legislature/IUB not checked"
     },
     "state:IL": {
-      "follow_ups": [
-        {
-          "due": "2026-11-27",
-          "what": "Bloomington's 6-month moratorium from May 26 nears its end — extended, lapsed, or replaced by the permanent ordinance?"
-        },
-        {
-          "due": "2026-12-01",
-          "what": "Bloomington: did the City Council extend the moratorium before its end-of-November expiry (WGLT Nov 17)?"
-        }
-      ],
       "last_check": {
-        "date": "2026-11-26",
-        "summary": "Bloomington: council unanimously extended moratorium Nov 23 (Kent Lee amended 12 to 24 months; WGLT Nov 24); duration_months 30, end date not stated"
+        "date": "2026-11-27",
+        "summary": "Bloomington: extension (Nov 23, 24 months) already recorded; no ordinance text with exact end date found Nov 27"
       }
     },
     "state:IN": {
@@ -641,8 +635,8 @@
         }
       ],
       "last_check": {
-        "date": "2026-11-02",
-        "summary": "UE 463: PUC POWER Act report cites Order 26-239 (Jul 10) on Schedule 401 but wording unclear and order PDF unreadable via fetch; no stipulation order verified. Recheck on docket page."
+        "date": "2026-11-27",
+        "summary": "Hillsboro: council voted Tue Nov 17 to adopt a six-month extension (KPTV Nov 18); duration_months 4->10, end date and vote count not reported"
       }
     },
     "state:PA": {
