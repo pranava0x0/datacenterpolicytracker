@@ -3337,7 +3337,7 @@
       "notes": "Part of April 9 2026 $12B central Mississippi expansion announcement, alongside Madison County ($11B) and Hinds County / Clinton ($1B). Brings AWS Mississippi total commitment to $25B / 2,000+ jobs. Per a dedicated Amazon Newsroom release (aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment): at least 200 new jobs at the data center campus, plus 300+ additional FTE positions in the Warren County community overall.",
       "source_url": "https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers",
       "source_title": "Amazon Newsroom — $25 billion Mississippi data centers (Apr 9 2026)",
-      "captured_at": "2026-07-15",
+      "captured_at": "2026-11-28",
       "offtaker": "AWS",
       "ratepayer": {
         "status": "contested",
@@ -5115,15 +5115,15 @@
       "announced_year": 2023,
       "claimed_investment_usd": null,
       "claimed_jobs": null,
-      "notes": "65-80 acre campus near the I-70/C-470 interchange on Aurora's eastern edge, south of Denver International Airport. Planned 4 buildings; one complete, a second nearly finished, and site work underway on a third as of July 2026. At full build-out will draw at least 160-177 MW peak — about 4x DIA's own peak capacity — making it one of Xcel Energy's largest individual customers (per the original announcement, Colorado Sun, Oct 2023: coloradosun.com/2023/10/11/aurora-data-center-to-become-one-of-xcels-biggest-customers-rivaling-mines-and-steel-mills/). Aurora and Arapahoe County offered tax incentives; the larger draw was a competitive electricity rate, which Colorado PUC staff and the state utility consumer advocate challenged as excessive, recommending a smaller ~15% discount instead. $28M was invested in dedicated high-voltage transmission lines. July 2026 (this record's current source_url): amid reporting that QTS is seeking to expand its on-site diesel backup generator fleet (exact permit figures not independently confirmed — the specific-count source was inaccessible to re-verify directly, so left out here), Aurora councilmember Amy Wiles is pursuing targeted regulations (neighborhood buffers, dropping water-intensive landscaping requirements) rather than a moratorium — 'I personally think we need a neighborhood buffer to make sure they're not being built right next to neighborhoods.' Data centers' diesel generators are subject to Colorado Air Quality Control Commission reporting requirements per the same report. No organized resident opposition group identified in sources reviewed; not enough to source a CommunityResponse record yet.",
+      "notes": "About 67 acres (photo caption) / 80 acres (body text) near the I-70/C-470 interchange on Aurora's eastern edge, per the Colorado Sun (Oct 11 2023: coloradosun.com/2023/10/11/aurora-data-center-to-become-one-of-xcels-biggest-customers-rivaling-mines-and-steel-mills/): 'The Aurora campus, on 80 acres, will consist of four buildings and is projected to ramp up to capacity over 10 years'; planned 177 MW of power capacity and a 160 MW peak load 'carried to the facility by its own $28 million high-voltage lines', making it one of Xcel Energy's largest individual customers. 'Aurora and Arapaho County offered QTS tax breaks', but the larger draw was a discounted economic development rate, which the state Office of Utility Consumer Advocate called an 'excessive subsidy', recommending a 15% EDR discount for the first five years and 10% for the remaining five. July 2026 (Sentinel Colorado, this record's source_url): QTS's 1160 Gun Club Road site has an energy capacity of 160 megawatts and QTS plans up to 200 MW across its Colorado facilities over five years; amid reporting that QTS is seeking to expand its on-site diesel backup generator fleet (permit figures not independently confirmed — the CPR source 403'd), Aurora councilmember Amy Wiles is pursuing targeted regulations — 'I personally think we need a neighborhood buffer to make sure they're not being built right next to neighborhoods.' Generator use must be reported to state air regulators, per QTS VP Michael Grassmick. Aurora's six-month moratorium was rejected Aug 10 2026 (see moratorium aurora-co-2026-08). No organized resident opposition group identified in sources reviewed.",
       "source_url": "https://sentinelcolorado.com/metro/aurora-considers-targeted-regulations-for-new-data-centers-amidst-growing-concerns/",
       "source_title": "Sentinel Colorado — Aurora considers targeted regulations for new data centers amidst growing concerns (July 2026)",
-      "captured_at": "2026-07-14",
+      "captured_at": "2026-11-28",
       "acreage": 80,
       "power_mw": 160,
       "offtaker": "QTS",
       "at_a_glance": {
-        "energy": "160-177 MW at build-out — ~4x DIA's peak capacity",
+        "energy": "160 MW peak load; 177 MW planned capacity (Colorado Sun, 2023)",
         "engagement": "Diesel-generator expansion reporting prompted Aurora to weigh siting regulations, not a moratorium"
       },
       "serving_utility": "Xcel Energy",
